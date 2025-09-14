@@ -1,0 +1,80 @@
+<div>
+    <strong>Grafana-Prometheus<br /></strong><br />
+</div>
+<div>
+    A monitoring stack should be in place to monitor the infrastructure in the
+    production environment. It offers more clarity on the health of the
+    applications and the servers. It can also assist in debugging the issues
+    that occur on the application side or the infrastructure side. One of the
+    methods to monitor the infrastructure is using the Grafana-Prometheus
+    stack.<br /><br />
+</div>
+<div>
+    <strong>Features of Grafana<br /></strong><br />
+</div>
+<ul>
+    <li>Visualize server stats and the applications running on top of it.</li>
+    <li>
+        Create real-time dashboards or import the pre-existing dashboards from
+        the community library.
+    </li>
+    <li>
+        Supports a vast number of plugins for integrating with different data
+        sources, adding new visualizations, etc.
+    </li>
+    <li>
+        Connects with databases such as Prometheus, Elasticsearch, InfluxDB,
+        MySQL, etc.
+    </li>
+    <li>
+        Send notifications to selected groups through different channels for
+        alerting the proper teams.
+    </li>
+    <li>Silence specific alerts that are triggered frequently.</li>
+</ul>
+<div>
+    <strong>Features of Prometheus<br /></strong><br />
+</div>
+<ul>
+    <li>Scrapes and stores the data in time-series format.</li>
+    <li>Allows querying over the time-series data using PromQL.</li>
+    <li>
+        Labels scraped metrics with multiple key-value pairs to uniquely
+        identify each of them.
+    </li>
+    <li>
+        A wide range of exporters is available to scrape metrics of different
+        applications and monitor them.
+    </li>
+</ul>
+<div>
+    <strong>How does the integration work?<br /></strong><br />
+</div>
+<ul>
+    <li>
+        Define the targets in the Prometheus configuration. These targets are
+        the exporters that pull the metrics from the applications or services.
+    </li>
+    <li>
+        Prometheus will scrape the metrics from these targets. It can send HTTP
+        requests to these targets to pull the metrics.
+    </li>
+    <li>
+        Prometheus stores these metrics in a time-series format at a specified
+        location.
+    </li>
+    <li>
+        Prometheus is configured as a data source using the Grafana UI.
+        Alternatively, we can also add details of the Prometheus server in the
+        configuration file of Grafana. It will automatically add the Prometheus
+        server as a data source.
+    </li>
+    <li>
+        Create or import dashboards to start monitoring the
+        infrastructure.&nbsp;
+    </li>
+    <li>
+        Set up rules on different metrics to send alerts if the rules are
+        triggered.
+    </li>
+</ul>

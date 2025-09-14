@@ -1,0 +1,100 @@
+.ic-coach-item {
+    border-radius: 10px;
+    border: 1px solid $stock;
+    background: #FFF;
+
+    .ic-coach-image {
+        height: 205px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+
+    .coach-bage {
+        border-radius: 50px;
+        padding: 6px 10px;
+        background-color: $green;
+        color: $white;
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .wishlist {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        @include bd-radius(50%);
+        background-color: #E8543E;
+        line-height: 30px;
+        text-align: center;
+
+        i {
+            color: $white;
+            font-size: 16px;
+        }
+    }
+
+    .ic-coach-content {
+        padding: 15px;
+
+        .coach-title {
+            font-size: 18px;
+            color: #272C37;
+            padding-bottom: 9px;
+        }
+
+        .coach-names {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-bottom: 15px;
+
+            p {
+                padding: 4px 10px;
+                border-radius: 50px;
+                border: 1px solid $stock;
+                background-color: $white;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                font-weight: 300;
+                gap: 10px;
+                font-family: $font-rubik;
+
+                img {
+                    width: 15px;
+                    height: 15px;
+                    @include bd-radius(50%);
+                }
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 300;
+                }
+
+                i {
+                    color: $orange;
+                }
+            }
+        }
+
+        .coach-price {
+            gap: 10px;
+
+            h4 {
+                font-weight: 500;
+                color: $primary;
+            }
+
+            p {
+                font-size: 14px;
+                color: #6C757D;
+                font-weight: 300;
+            }
+        }
+    }
+}

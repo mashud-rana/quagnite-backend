@@ -1,0 +1,194 @@
+.ic-member-become-card {
+    padding: 50px 40px;
+    border-radius: 10px;
+
+    @media #{$max1650} {
+        padding: 45px 38px;
+    }
+
+    @media #{$max1399} {
+        padding: 40px 36px;
+    }
+
+    @media #{$max1199} {
+        padding: 38px 34px;
+    }
+
+    @media #{$max991} {
+        padding: 36px 32px;
+    }
+
+    @media #{$max767} {
+        padding: 34px 30px;
+    }
+
+    @media #{$max575} {
+        padding: 30px 26px;
+    }
+
+    h3 {
+        font-weight: 500;
+    }
+
+    a {
+        font-family: $font-lexend;
+        font-weight: 400;
+        color: #6c757d !important;
+    }
+}
+
+.ic-member-become-main {
+    border-radius: 10px;
+    border: 1px solid #E2E2EA;
+    background: #FFF;
+    box-shadow: 0px 1px 4px 0px rgba(20, 3, 66, 0.07);
+
+    .fs-24{
+
+        font-size: 24px;
+
+        @media #{$max1650} {
+            font-size: 22px;
+        }
+    
+        @media #{$max1399} {
+            font-size: 21px;
+        }
+    
+        @media #{$max1199} {
+            font-size: 19px;
+        }
+    
+        @media #{$max991} {
+            font-size: 17px;
+        }
+    
+        @media #{$max767} {
+            font-size: 15px;
+        }
+    }
+}
+
+.ic-become-banner-post {
+    padding: 40px;
+    border-radius: 10px 10px 0px 0px;
+
+    @media #{$max1650} {
+        padding: 38px;
+    }
+
+    @media #{$max1399} {
+        padding: 36px;
+    }
+
+    @media #{$max1199} {
+        padding: 34px;
+    }
+
+    @media #{$max991} {
+        padding: 32px;
+    }
+
+    @media #{$max767} {
+        padding: 30px;
+    }
+
+    @media #{$max575} {
+        padding: 26px;
+    }
+
+    h3 {
+        font-weight: 500;
+        padding-bottom: 15px;
+
+        @media #{$max991} {
+            padding-bottom: 12px;
+        }
+
+        @media #{$max767} {
+            padding-bottom: 10px;
+        }
+
+        @media #{$max575} {
+            padding-bottom: 8px;
+        }
+    }
+
+    p {
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        font-family: $font-lexend;
+        padding-bottom: 25px;
+
+        @media #{$max1399} {
+            padding-bottom: 23px;
+            font-size: 17px;
+        }
+
+        @media #{$max1199} {
+            padding-bottom: 21px;
+            font-size: 16px;
+        }
+
+        @media #{$max991} {
+            padding-bottom: 20px;
+            font-size: 15px;
+        }
+
+        @media #{$max767} {
+            padding-bottom: 18px;
+            font-size: 14px;
+        }
+
+        @media #{$max575} {
+            padding-bottom: 16px;
+        }
+    }
+
+    a {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 28px;
+        /* 140% */
+        color: #fff;
+
+        @media #{$max1650} {
+            font-size: 18px;
+        }
+
+        @media #{$max1399} {
+            font-size: 17px;
+        }
+
+        @media #{$max991} {
+            font-size: 16px;
+        }
+
+       
+    }
+}
+
+.become-form {
+    padding: 40px 27px;
+}
+
+input[type="file"] {
+    line-height: 45px;
+    font-size: 14px;
+    padding: 0;
+
+    &::file-selector-button {
+        height: 50px;
+        background-color: #DDE0E3;
+        font-size: 15px;
+        font-weight: 300;
+        width: 150px;
+    }
+
+    &::placeholder {
+        font-size: 15px;
+        font-weight: 300;
+    }
+}

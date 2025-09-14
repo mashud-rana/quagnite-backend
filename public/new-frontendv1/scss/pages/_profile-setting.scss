@@ -1,0 +1,243 @@
+.ic-profile {
+    &__setting {
+        background-color: #fff;
+        border: 1px solid $stock;
+        @include bd-radius(10px);
+        padding: 30px;
+        margin-top: 30px;
+        .bootstrap-select {
+            .dropdown-toggle {
+                padding: 4px 13px;
+                background-color: #fff;
+                .filter-option-inner-inner {
+                    font-weight: 300;
+                    font-size: 15px;
+                }
+                &::after {
+                    transition: 0.3s;
+                }
+                &.show {
+                    &::after {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+        textarea {
+            height: 135px;
+        }
+    }
+    &__navsTab {
+        @include d-flex();
+        @include align-items(center);
+        gap: 20px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow-x: auto;
+        &::-webkit-scrollbar {
+            height: 3px;
+          }
+        li {
+            a {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 28px;
+                color: $text-color;
+                position: relative;
+                padding: 7px 0px;
+                display: inline-block;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: #000;
+                    transform: scaleX(0);
+                    transition: all linear 0.3s;
+                }
+                &.active {
+                    color: #000;
+                    &::before {
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ic-profile {
+    &__photoUpdate {
+        @include d-flex();
+        gap: 20px;
+        border-bottom: 1px solid $stock;
+        flex-wrap: nowrap;
+        margin-bottom: 30px;
+        padding-bottom: 35px;
+        @media #{$max1650} {
+            margin-bottom: 28px;
+            padding-bottom: 30px;
+        }
+        @media #{$max1399} {
+            margin-bottom: 26px;
+            padding-bottom: 28px;
+        }
+        @media #{$max1199} {
+            margin-bottom: 24px;
+            padding-bottom: 26px;
+        }
+        @media #{$max991} {
+            margin-bottom: 22px;
+            padding-bottom: 24px;
+        }
+        @media #{$max767} {
+            margin-bottom: 18px;
+            padding-bottom: 22px;
+        }
+        @media #{$max575} {
+            margin-bottom: 16px;
+            padding-bottom: 20px;
+        }
+       
+    }
+    &__avatar {
+        img {
+            width: 100px;
+            height: 100px;
+            @include bd-radius(50%);
+            @media #{$max575} {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
+    &__tabsContent {
+        padding-top: 30px;
+    }
+    &__avatarName {
+        .ic__avatarName {
+            font-weight: 500;
+            color: $black;
+        }
+        .avatar__filesize {
+            font-weight: 300;
+            font-size: 14px;
+            color: $text-color;
+        }
+        .upload-avatar {
+            @include box(37px, 37px);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid $stock;
+            @include bd-radius(5px);
+            padding-bottom: 0;
+            margin-top: 8px;
+            @include transition(0.3s);
+            &:hover {
+                background-color: $primary;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+    }
+    &__tabsItems {
+        display: none;
+        &.active{
+            display: block;
+        }
+    }
+}
+.ic-profile-submit {
+    @include d-flex();
+    @include align-items(center);
+    gap: 25px;
+}
+
+.ic-profile {
+    &__paymentCard {
+        padding: 20px;
+        @include bd-radius(5px);
+        border: 1px solid $stock;
+    }
+    &__card {
+        @include d-flex();
+        @include align-items(center);
+        gap: 15px;
+
+        &:not(:last-child) {
+            margin-bottom: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.14);
+        }
+    }
+    &__cardView {
+        flex: 1;
+        @include d-flex();
+        @include align-items(center);
+        @include justify-content(space-between);
+        gap: 15px;
+    }
+    &__fileUpload {
+        border: 1px solid $stock;
+        @include bd-radius(5px);
+        padding: 9px 11px;
+        label {
+            text-align: center;
+            width: 100%;
+            border: 1px dashed $stock;
+            @include bd-radius(5px);
+            padding: 50px 50px;
+            cursor: pointer;
+            i {
+                font-size: 40px;
+                padding-bottom: 10px;
+                color: $primary;
+            }
+            .announcement {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                color: $black;
+                padding-bottom: 8px;
+            }
+            .how-muchsize{
+                font-weight: 300;
+                font-size: 15px;
+                line-height: 18px;
+                color: $primary;
+                padding-bottom: 10px;
+            }
+            .file-names {
+                font-weight: 300;
+                font-size: 15px;
+                line-height: 18px;
+                color: $gray;
+            }
+        }
+    }
+}
+
+.ic-profile__setting {
+    .btn-book{
+        @media #{$max1399} {
+            height: 45px;
+            font-size: 15px;
+            padding: 0 20px;
+        }
+        @media #{$max991} {
+            height: 40px;
+            font-size: 14px;
+            padding: 0 18px;
+        }
+    }
+}
+
+
+.modal-body input::file-selector-button {
+    line-height: 1.8;
+  }
+

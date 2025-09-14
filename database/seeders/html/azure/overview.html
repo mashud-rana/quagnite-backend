@@ -1,0 +1,140 @@
+<div>
+    <strong>What Is Microsoft Azure<br /></strong><br />
+</div>
+<div>
+    Imagine you need to build a Kubernetes cluster in the real world. You need
+    to buy a few servers, configure them, run network cables to each one. Then
+    you need to install and configure Kubernetes-related software on each one.
+    It's a complicated process.<br /><br />
+</div>
+<div>
+    Cloud computing lets you do this stuff much faster. For example, let's say
+    you want that Kubernetes cluster. But you want to do this in the cloud,
+    instead of buying your own hardware. With a few clicks on a web page, you
+    select the AKS, Azure Kubernetes Service. Then you pick how many nodes you
+    want in that cluster, how many resources each node should have, and bam! You
+    have a fully functional Kubernetes cluster. No need to even configure a
+    server.<br /><br />
+</div>
+<div>Here are some other examples of Azure services:<br /><br /></div>
+<ul>
+    <li>
+        In case you need a server where you want to install an operating system,
+        you can use a virtual machine. Then you can configure it as you would a
+        real server. You pick how many CPU cores you want, how much memory, how
+        much disk space, and so on. You basically build a virtual computer in
+        the cloud. But if you don't want to manage a server on your own, then
+        you have other alternatives. For example, you can:
+    </li>
+    <li>
+        Store and use databases without needing to configure a server yourself
+    </li>
+    <li>Run code in the cloud, again with no need to configure a server</li>
+    <li>
+        Run containers (for example, Docker containers). Yet again, no need to
+        configure servers.
+    </li>
+    <li>Get storage space where you can backup data or simply store files.</li>
+    <li>And so on. The available in the cloud is huge.</li>
+</ul>
+<div>
+    <strong>KodeKloud Azure Playground<br /></strong><br />
+</div>
+<div>
+    It's nice that you can choose from hundreds of things. If you want to build
+    any type of service, the cloud has you covered. It gives you access to
+    almost anything you might require. But this immense selection of services
+    can also intimidate. Especially at first sight. It's hard to figure out what
+    those things do and how you should use them. And it takes a bit of
+    experimenting to understand them. That's why we created playgrounds at
+    KodeKloud.<br /><br />
+</div>
+<div>
+    The Azure Playground lets you test out a few of these cloud-hosted services.
+    So you can see for yourself what's what. With a simple click, you can
+    <strong>immediately begin testing the Azure platform</strong>. No need to
+    create an Azure account, provide credit/debit card details, and so on. One
+    click and you get dropped into the Azure web interface. So you get to play
+    with Azure services, risk free. There's no risk of forgetting to close a
+    service and wake up with a $200 bill.<br /><br />
+</div>
+<div>
+    <strong>Quick Start Guide<br /></strong><br />
+</div>
+<div>
+    To avoid any issues, please read the guide below. The text highlighted with
+    <strong>bold</strong> is important.<br /><br />
+</div>
+<div>
+    Here are the services available at this time in our playground:<br /><br />
+</div>
+<div>
+    <strong>Virtual Machines<br /></strong><br />
+</div>
+<div>
+    Virtual machines are basically servers that you run in the cloud. You can
+    choose what operating system you want, and then configure the resources each
+    server should have.<br /><br />
+</div>
+<div>When you launch these, make sure to choose:<br /><br /></div>
+<ul>
+    <li>
+        A disk that is a <strong>standard SSD</strong> or an
+        <strong>HDD </strong>(locally-redundant storage).
+    </li>
+    <li>
+        The <strong>maximum disk size</strong> we currently support in the
+        playground is <strong>128GB</strong>.
+    </li>
+</ul>
+<div>
+    <strong>Virtual Machine Scale Sets<br /></strong><br />
+</div>
+<div>
+    The VM Scale Set is a collection of virtual servers. As they are used more
+    intensely, more will auto-launch, to keep up with demand. If there's less
+    pressure on them, the extra ones will automatically disappear as they are
+    not needed anymore.<br /><br />
+</div>
+<ul>
+    <li><strong>Scaleset Maximum Count: 3.</strong></li>
+    <li>
+        The <strong>name of the scaleset</strong> must be
+        <strong>app-scaleset</strong>.
+    </li>
+    <li>
+        <strong>Scaling Policy Type</strong> should be <strong>Manual</strong>.
+    </li>
+</ul>
+<div>
+    <strong>Azure SQL<br /></strong><br />
+</div>
+<div>
+    This gives you full access to an SQL database. And it does not require you
+    to manage a server where the database would be hosted.<br /><br />
+</div>
+<div>
+    Our Azure playground currently supports databases that use:<br /><br />
+</div>
+<ul>
+    <li>A maximum of <strong>2 vCPU cores</strong>.</li>
+    <li><strong>50GB of data</strong>.</li>
+    <li>
+        In the <strong>Backup storage redundancy</strong> section select
+        <strong>Locally-redundant backup storage</strong>.
+    </li>
+</ul>
+<div>
+    <strong>AKS - Azure Kubernetes Service<br /></strong><br />
+</div>
+<div>
+    You can create a Kubernetes cluster on Azure with these properties:<br /><br />
+</div>
+<ul>
+    <li>Maximum <strong>node size of B2s</strong>.</li>
+    <li><strong>2 nodes pool size</strong>.</li>
+    <li>
+        <strong>Container insights</strong> and <strong>alerting</strong> should
+        be <strong>disabled</strong>.
+    </li>
+</ul>

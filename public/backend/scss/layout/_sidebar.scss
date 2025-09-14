@@ -1,0 +1,229 @@
+.simplebar-scrollbar:before {
+  background: $color-gradient;
+}
+.ic-dashboard-overlay {
+  @media #{$max1199} {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    background: linear-gradient(84.67deg, #ff64a142 0.46%, #5a4ffd47 100%);
+    top: 0;
+  }
+  &.active {
+    @media #{$max1199} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.ic-mobile-sidebar-close {
+  display: none;
+  @media #{$max1199} {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: $color-gradient;
+    @include align-center();
+    @include d-flex();
+    color: $color-white;
+    font-size: 20px;
+    @include bd-radius2(0px, 20px, 0px, 0px);
+  }
+}
+.ic-main-sidebar {
+  background-color: $color-white;
+  @include box-shadow2($shadow-3);
+  @include bd-radius2(0px, 20px, 20px, 0px);
+  width: 290px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @media #{$max1650} {
+    width: 270px;
+  }
+  @media #{$max1399} {
+    width: 260px;
+  }
+  @media #{$max1199} {
+    @include transform-x(-100%);
+    @include transition(0.5s);
+    z-index: 9999;
+  }
+
+  &.active {
+    @media #{$max1199} {
+      @include transform-x(0);
+    }
+  }
+}
+
+.ic-sidebar-brand {
+  padding: 33px 20px 32px 40px;
+  position: relative;
+  @media #{$max1650} {
+    padding: 26px 20px 26px 30px;
+  }
+  @media #{$max1399} {
+    padding: 21px 20px 21px 30px;
+  }
+  @media #{$max1199} {
+    padding: 21px 20px 21px 20px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    background: $color-gradient3;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    opacity: 0.4;
+    left: 0;
+  }
+}
+
+.ic-sidebar-menu {
+  padding-top: 40px;
+  @media #{$max1650} {
+    padding-top: 30px;
+  }
+
+  .ic-nav-item {
+    .ic-nav-link {
+      @include d-flex();
+      @include align-items(center);
+      padding: 12px 40px;
+      @media #{$max1650} {
+        padding: 12px 30px;
+      }
+      @media #{$max1199} {
+        padding: 12px 20px;
+      }
+      &:hover {
+        i {
+          background: $color-gradient;
+          @include colorgradient();
+        }
+
+        span {
+          color: $color-hotpink;
+        }
+      }
+
+      &.active {
+        background-color: $color-gray;
+        i {
+          background: $color-gradient;
+          @include colorgradient();
+        }
+
+        span {
+          background: $color-gradient;
+          @include colorgradient();
+        }
+      }
+      i {
+        font-size: 24px;
+        color: $color-shuttleGray;
+        @include transition(0.5s);
+        @media #{$max1650} {
+          font-size: 22px;
+        }
+        @media #{$max1399} {
+          font-size: 20px;
+        }
+      }
+
+      span {
+        margin-left: 16px;
+        color: $color-shuttleGray;
+        @include transition(0.5s);
+        @media #{$max1650} {
+          margin-left: 14px;
+        }
+        @media #{$max1399} {
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+
+  .ic-logout-item {
+    margin-top: 40px;
+    @media #{$max1399} {
+      margin-top: 20px;
+    }
+  }
+}
+
+.ic-sidebar-footer {
+  padding: 0px 40px;
+  padding-top: 120px;
+  @media #{$max1650} {
+    padding: 0px 30px;
+    padding-top: 90px;
+  }
+  @media #{$max1199} {
+    padding: 0px 20px;
+    padding-top: 90px;
+  }
+  .ic-sidebar-promotion {
+    background: $color-gradient;
+    @include bd-radius(10px);
+    padding: 100px 34px 24px 34px;
+    margin-bottom: 64px;
+    position: relative;
+    @media #{$max1650} {
+      margin-bottom: 40px;
+    }
+
+    .ic-promotion-icon {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      @include transform-x(-50%);
+    }
+
+    .sub-btn {
+      background-color: $color-white;
+      @include bd-radius(4px);
+      font-family: $font-circular-medium;
+      padding: 0px 16px;
+      height: 32px;
+      @include align-center();
+
+      span {
+        background: $color-gradient;
+        @include colorgradient();
+      }
+    }
+  }
+
+  .ic-sidebar-copyright {
+    padding-bottom: 40px;
+    @media #{$max1650} {
+      padding-bottom: 30px;
+    }
+  }
+}
+
+.ic-dashboard-main-content {
+  padding: 40px 40px 40px 330px;
+
+  @media #{$max1650} {
+    padding: 30px 30px 30px 300px;
+  }
+  @media #{$max1399} {
+    padding: 30px 30px 30px 290px;
+  }
+  @media #{$max1199} {
+    padding: 30px 20px 30px 20px;
+  }
+}

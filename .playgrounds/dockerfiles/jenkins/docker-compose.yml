@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  ansible_controller:
+    build:
+      context: .
+    container_name: ubuntu
+    ports:
+      - "8080:8080"
+    networks:
+      - jenkins
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8090:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+    networks:
+      - jenkins
+
+networks:
+  jenkins:
+    name: jenkins-network

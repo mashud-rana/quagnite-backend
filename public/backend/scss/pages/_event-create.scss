@@ -1,0 +1,130 @@
+.ic-create-event-wraper {
+  .ic-heading {
+    h3 {
+      @include d-flex();
+      @include align-items(center);
+
+      i {
+        margin-right: 16px;
+        background: $color-gradient;
+        @include colorgradient();
+      }
+    }
+  }
+}
+
+.ic-create-event-row {
+  @include d-flex();
+
+  .ic-create-event-left {
+    flex: 0 0 auto;
+    width: 65%;
+  }
+
+  .ic-create-event-right {
+    flex: 0 0 auto;
+    width: 35%;
+    padding-left: 40px;
+  }
+}
+
+.ic-create-event-left-content {
+  background-color: $color-white;
+  @include box-shadow2($shadow-6);
+}
+
+.ic-create-event-form-wraper {
+  .form-group {
+    margin-bottom: 24px;
+
+    @media #{$max1650} {
+      margin-bottom: 20px;
+    }
+  }
+  .ic-checkbox-wraper {
+    @include d-flex();
+    @include align-items(center);
+    .form-check-input {
+      width: 16px;
+      height: 16px;
+      border: 2px solid $color-shuttleGray;
+
+      &:checked {
+        background-color: $color-blue;
+        border: 2px solid $color-blue;
+
+        & + .form-check-label {
+          color: $color-blue;
+        }
+      }
+    }
+
+    .form-check {
+      @include d-flex();
+      padding: 16px 0px;
+      padding-left: 1.5em;
+      margin-right: 40px;
+
+      @media #{$max1650} {
+        padding: 12px 0px;
+        padding-left: 1.5em;
+      }
+
+      @media #{$max1399} {
+        padding: 10px 0px;
+        padding-left: 1.5em;
+      }
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+    .form-check-label {
+      margin-left: 16px;
+      font-family: $font-circular-medium;
+      margin-bottom: 0px;
+    }
+  }
+
+  .editor-wraper {
+    @include box-shadow2($shadow-1);
+    @include bd-radius2(0px, 0px, 20px, 20px);
+  }
+  .ck-toolbar {
+    border: none !important;
+    background-color: $color-white !important;
+    @include bd-radius2(20px, 20px, 0px, 0px!important);
+    padding: 16px 24px 16px !important;
+  }
+
+  .ck-editor__main {
+    .ck-content {
+      border: none !important;
+      min-height: 130px;
+      padding: 10px 24px;
+      background-color: $color-white !important;
+      box-shadow: none !important;
+      @include bd-radius2(0px, 0px, 20px, 20px!important);
+    }
+  }
+
+  // .event-place-group {
+  //   display: none;
+  // }
+  // .event-fee-group {
+  //   display: none;
+  // }
+}
+
+.ic-event-image-upload {
+  .dz-message {
+    h5 {
+      flex-direction: column;
+      @include d-flex();
+
+      i {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

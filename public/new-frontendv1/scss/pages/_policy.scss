@@ -1,0 +1,15 @@
+.ic-policy-item {
+    padding-bottom: 15px;
+    h5 {
+        padding-bottom: 2px;
+    }
+    ul {
+        li {
+            list-style: circle;
+            margin-left: 18px;
+            p {
+                color: $gray;
+            }
+        }
+    }
+}

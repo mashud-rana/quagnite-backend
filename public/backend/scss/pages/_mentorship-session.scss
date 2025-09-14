@@ -1,0 +1,41 @@
+.ic-all-event-filter .filter-mobile-two-btn {
+  .ic-btn {
+    @media #{$max575} {
+      width: 49%;
+    }
+  }
+}
+.mentorship-student-req-btn {
+  text-align: right;
+  @media #{$max575} {
+    text-align: left;
+  }
+  .ic-btn {
+    padding: 0px 32px;
+    height: 44px;
+    @media #{$max575} {
+      width: 100%;
+    }
+  }
+}
+
+.ic-dashboard-event-item {
+  &:hover {
+    .date-enroll-student {
+      .sub-3 {
+        color: $color-blue;
+      }
+      .body-2 {
+        color: $color-ebonyClay;
+      }
+    }
+  }
+  .date-enroll-student {
+    .sub-3 {
+      @include transition(0.5s);
+    }
+    .body-2 {
+      @include transition(0.5s);
+    }
+  }
+}

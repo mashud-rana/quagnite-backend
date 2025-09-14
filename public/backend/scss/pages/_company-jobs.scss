@@ -1,0 +1,92 @@
+.ic-company-job-header {
+  @include d-flex();
+  @include justify-content(space-between);
+  @include align-items(flex-end);
+  @media #{$max575} {
+    flex-direction: column;
+    @include align-items(flex-start);
+  }
+  .ic-left {
+    max-width: 60%;
+    @media #{$max1650} {
+      max-width: 70%;
+    }
+    @media #{$max767} {
+      max-width: 68%;
+    }
+    @media #{$max575} {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+    .title {
+      h3 {
+        @include d-flex();
+        @include align-items(center);
+        span {
+          margin-left: 16px;
+          @media #{$max767} {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+  .ic-right {
+    flex: 1;
+    text-align: right;
+  }
+}
+
+.ic-company-job-filter-wraper {
+  @include d-flex();
+  gap: 16px;
+  @media #{$max991} {
+    gap: 10px;
+  }
+  @media #{$max575} {
+    gap: 8px;
+  }
+  .ic-btn.active {
+    &:after {
+      background: $color-blue;
+    }
+  }
+}
+
+.ic-company-job-main-content-wraper {
+  .ic-company-job-item-wraper {
+    .col {
+      .ic-company-job-item {
+        margin-bottom: 0;
+        margin-top: 24px;
+        @media #{$max1399} {
+          margin-top: 20px;
+        }
+      }
+
+      &:nth-child(1) {
+        .ic-company-job-item {
+          margin-top: 0px;
+        }
+      }
+      &:nth-child(2) {
+        .ic-company-job-item {
+          margin-top: 0px;
+
+          @media #{$max767} {
+            margin-top: 20px;
+          }
+        }
+      }
+      &:nth-child(3) {
+        .ic-company-job-item {
+          margin-top: 0px;
+
+          @media #{$max1199} {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}

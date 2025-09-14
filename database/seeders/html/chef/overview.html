@@ -1,0 +1,88 @@
+<div>Welcome to the Chef playground.<br /><br /></div>
+<div>
+    Our playground comes equipped with everything you need to experiment with
+    Chef, risk-free! Everything is available in your web browser. No need to
+    install complicated software or rent servers.&nbsp;<br /><br />
+</div>
+<div>
+    Chef is a company with several software automation products. This playground
+    focuses on Chef Infra, a configuration management automation
+    software.&nbsp;<br /><br />
+</div>
+<div>
+    In simple terms,
+    <strong
+        >Chef Infra automates the configuration &amp; management of
+        servers.</strong
+    >
+    That includes things such as managing users &amp; permissions, installing
+    &amp; configuring software, and other similar tasks.&nbsp;<br /><br />
+</div>
+<div>
+    First, let's talk about some important terms used in the Chef universe.<br /><br />
+</div>
+<ul>
+    <li>
+        <strong>Resources:</strong> Resources are used to configure
+        infrastructure, such as creating users, installing packages, etc. A
+        resource declares the steps needed to bring a resource type (such as
+        user, file &amp; package) to the desired state. It is written using the
+        Ruby programming language.
+    </li>
+    <li>
+        <strong>Recipes:</strong> Multiple resources are grouped together to
+        form a recipe. Recipes tell Chef which resources you want to configure
+        on your server.&nbsp;
+    </li>
+    <li>
+        <strong>Cookbooks:</strong> Multiple recipes together form a cookbook.
+        Cookbooks are designed to perform a specific set of tasks. For example,
+        the mysql cookbook is used to manage MySQL databases.&nbsp;
+    </li>
+</ul>
+<div>
+    <strong>Chef Infra Components<br /></strong><br />
+</div>
+<div>
+    Chef Infra’s architecture is divided into three main components:<br /><br />
+</div>
+<ol>
+    <li>
+        <strong>Chef Workstation:</strong> The Chef workstation is a location
+        where you can write &amp; test cookbooks. You can also interact with the
+        Chef Infra Server using “knife”. Knife is Chef’s command line tool. It
+        is used to upload cookbooks to Chef Infra Server. The Chef Workstation
+        package includes the Chef Infra Client.
+    </li>
+    <li>
+        <strong>Chef Infra Client:</strong> The Chef Infra Client is installed
+        on each node (a physical or virtual machine) managed by Chef Infra. When
+        the Chef Infra Client is run on a node, it retrieves cookbooks from the
+        Chef Server and executes them. This brings the node into the expected
+        state.
+    </li>
+    <li>
+        <strong>Chef Server:</strong> The Chef Server is a central hub for
+        configuration information. It stores cookbooks, the policies that are
+        applied to the systems in your infrastructure, and metadata that
+        describe each system.
+    </li>
+</ol>
+<div>
+    <strong>Playground Features<br /></strong><br />
+</div>
+<div>
+    The playground includes a standalone server that runs both a
+    <strong>Chef Workstation</strong> &amp; a
+    <strong>Chef Infra Server</strong>. It also includes a repository called
+    <strong>chef-repo</strong>. Chef-repo is a collection of files and
+    directories containing cookbooks and configuration policies needed to manage
+    your infrastructure.<br /><br />
+</div>
+<div>Playground Notes<br /><br /></div>
+<div>
+    You can use the playground for 1 hour. If required, you can extend the usage
+    by 15 minutes by clicking on the icon next to the timer icon.&nbsp;<br /><br />
+</div>
+<div>If you need help, check out our beginner-friendly.<br /><br /></div>
+<div>Have fun &amp; happy configuring!<br /><br /></div>

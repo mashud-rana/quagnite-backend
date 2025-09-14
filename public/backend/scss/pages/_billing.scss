@@ -1,0 +1,624 @@
+.ic-billing-wraper {
+  @include d-flex();
+  .ic-billing-left {
+    flex: 0 0 auto;
+    width: 66%;
+    @media #{$max1650} {
+      width: 68%;
+    }
+    @media #{$max991} {
+      width: 100%;
+    }
+
+    .ic-billing-header {
+      width: 85%;
+    }
+  }
+
+  .ic-billing-right {
+    flex: 1;
+    padding-left: 40px;
+    @media #{$max1650} {
+      padding-left: 30px;
+    }
+    @media #{$max1399} {
+      padding-left: 20px;
+    }
+    @media #{$max991} {
+      padding-left: 0px;
+      margin-top: 20px;
+      width: 50%;
+      flex: 0 0 auto;
+    }
+    @media #{$max575} {
+      width: 100%;
+    }
+  }
+}
+
+.ic-talentable-sponser-header {
+  @include d-flex();
+  @include justify-content(space-between);
+  @include align-items(center);
+}
+
+.ic-billing-item {
+  @include d-flex();
+  background-color: $color-white;
+  @include box-shadow2($shadow-4);
+  @include bd-radius(10px);
+  @include align-items(center);
+  @include transition(0.5s);
+  margin-bottom: 24px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    @include box-shadow2($shadow-5);
+
+    .content {
+      h5 {
+        background: $color-gradient;
+        @include colorgradient();
+      }
+    }
+  }
+}
+
+.ic-billing-item-left {
+  flex: 0 0 auto;
+  width: 80%;
+  padding-right: 40px;
+  border-right: 1px solid rgb(172 179 188 / 40%);
+  @media #{$max1650} {
+    padding-right: 30px;
+    width: 75%;
+  }
+  @media #{$max1399} {
+    padding-right: 20px;
+  }
+  @media #{$max767} {
+    width: 100%;
+    padding-right: 0px;
+    border-right: 0;
+    border-bottom: 1px solid rgb(172 179 188 / 40%);
+    padding-bottom: 10px;
+  }
+
+  .image-content {
+    @include d-flex();
+    @media #{$max575} {
+      flex-direction: column;
+    }
+
+    .image {
+      flex: 0 0 auto;
+      width: 160px;
+      @media #{$max575} {
+        width: 140px;
+      }
+
+      img {
+        @include bd-radius(10px);
+      }
+    }
+    .content {
+      flex: 1;
+      padding-left: 40px;
+      @media #{$max1650} {
+        padding-left: 30px;
+      }
+      @media #{$max1399} {
+        padding-left: 20px;
+      }
+      @media #{$max575} {
+        padding-left: 0px;
+        padding-top: 10px;
+      }
+    }
+  }
+}
+.ic-billing-item-right {
+  flex: 1;
+  padding-left: 40px;
+  @media #{$max1650} {
+    padding-left: 30px;
+  }
+  @media #{$max1399} {
+    padding-left: 20px;
+  }
+  @media #{$max767} {
+    padding-left: 0px;
+    padding-top: 10px;
+  }
+  .billing-status-date {
+    @media #{$max767} {
+      @include d-flex();
+      @include justify-content(space-between);
+      @include align-items(center);
+    }
+    .ic-status-badge {
+      @media #{$max767} {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.ic-billing-upcoming-event {
+  background-color: $color-white;
+  @include bd-radius(10px);
+  @include box-shadow2($shadow-4);
+
+  .ic-dashboard-event-item {
+    box-shadow: none;
+    .ic-dashboard-event-image img {
+      width: 100%;
+    }
+  }
+}
+
+.company-billing-row {
+  .col {
+    margin-top: 24px;
+    @media #{$max1650} {
+      margin-top: 20px;
+    }
+
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+    &:nth-child(2) {
+      margin-top: 0;
+      @media #{$max991} {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+.ic-company-biling-header {
+  width: 60%;
+  @media #{$max1650} {
+    width: 85%;
+  }
+  @media #{$max767} {
+    width: 100%;
+  }
+}
+
+.ic-billing-student-sponsership-wraper {
+  .ic-title {
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+  }
+  .ic-billing-item {
+    .ic-billing-item-left {
+      width: 72%;
+      @media #{$max767} {
+        border-right: 1px solid rgba(172, 179, 188, 0.4);
+        border-bottom: none;
+        width: 68%;
+      }
+      @media #{$max575} {
+        width: 100%;
+        border-right: 0;
+        border-bottom: 1px solid rgba(172, 179, 188, 0.4);
+      }
+      .image-content {
+        @include align-items(center);
+        @media #{$max575} {
+          text-align: center;
+        }
+      }
+    }
+    .image {
+      width: 96px;
+      @media #{$max1399} {
+        width: 80px;
+      }
+      @media #{$max1280} {
+        width: 60px;
+      }
+      img {
+        @include box(96px, 96px);
+        @include box-circle();
+        @media #{$max1399} {
+          @include box(80px, 80px);
+        }
+        @media #{$max1280} {
+          @include box(60px, 60px);
+        }
+      }
+    }
+    .ic-billing-item-right {
+      @media #{$max767} {
+        padding-top: 0;
+        padding-left: 20px;
+      }
+      @media #{$max575} {
+        padding-top: 10px;
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.ic-comapny-billing-item {
+  background-color: $color-white;
+  @include bd-radius(10px);
+  @include box-shadow2($shadow-4);
+  margin-bottom: 24px;
+  @include transition(0.5s);
+  @include d-flex();
+  // @include align-items(center);
+  @media #{$max1650} {
+    margin-bottom: 20px;
+  }
+  &.student-request-item {
+    .ic-status-badge {
+      min-width: 78px;
+      cursor: pointer;
+      &.badge-danger {
+        background-color: #ff3131;
+      }
+    }
+    .course-info {
+      .date {
+        @include transition(0.5s);
+      }
+    }
+
+    &:hover {
+      .course-info {
+        h4 {
+          color: $color-blue;
+        }
+        .date {
+          color: $color-hotpink;
+        }
+      }
+    }
+  }
+  &:hover {
+    @include box-shadow2($shadow-5);
+    .studnet-info {
+      .info h5 {
+        background: $color-gradient;
+        @include colorgradient();
+      }
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .studnet-info {
+    flex: 0 0 auto;
+    width: 35%;
+    @include d-flex();
+    @include align-items(center);
+    border-right: 1px solid rgb(172 179 188 / 40%);
+    @media #{$max767} {
+      width: 50%;
+      margin-bottom: 10px;
+    }
+    @media #{$max575} {
+      width: 100%;
+      border-right: 0;
+      border-bottom: 1px solid rgb(172 179 188 / 40%);
+      padding-bottom: 10px;
+    }
+    .image {
+      flex: 0 0 auto;
+      width: 96px;
+      @media #{$max1399} {
+        width: 80px;
+      }
+      @media #{$max1280} {
+        width: 60px;
+      }
+
+      img {
+        width: 96px;
+        height: 96px;
+        @include bd-radius(50%);
+        @media #{$max1399} {
+          @include box(80px, 80px);
+        }
+        @media #{$max1280} {
+          @include box(60px, 60px);
+        }
+      }
+    }
+    .info {
+      flex: 1;
+      padding-left: 40px;
+      @media #{$max1650} {
+        padding-left: 30px;
+      }
+      @media #{$max1399} {
+        padding-left: 20px;
+      }
+      @media #{$max767} {
+        padding-left: 10px;
+      }
+      h5 {
+        @include transition(0.5s);
+      }
+    }
+  }
+  .course-info {
+    flex: 0 0 auto;
+    width: 50%;
+    padding: 0px 40px;
+    border-right: 1px solid rgb(172 179 188 / 40%);
+    @include d-flex();
+    flex-direction: column;
+    @include justify-content(center);
+    @media #{$max1650} {
+      padding: 0px 30px;
+    }
+    @media #{$max1399} {
+      padding: 0px 20px;
+    }
+    @media #{$max767} {
+      padding: 0px 10px;
+      padding-right: 0;
+      border-right: 0;
+      padding-bottom: 10px;
+    }
+    @media #{$max575} {
+      width: 100%;
+      padding-left: 0;
+      padding-bottom: 10px;
+    }
+    h4 {
+      @include transition(0.5s);
+    }
+  }
+  .course-status {
+    flex: 1;
+    padding-left: 40px;
+    @include d-flex();
+    flex-direction: column;
+    @include justify-content(center);
+    @include align-items(flex-start);
+    @media #{$max1650} {
+      padding-left: 30px;
+    } 
+    @media #{$max1399} {
+      padding-left: 20px;
+    }
+    @media #{$max767} {
+      padding-left: 0;
+      @include d-flex();
+      @include justify-content(space-between);
+      @include align-items(center);
+      padding-top: 10px;
+      border-top: 1px solid rgb(172 179 188 / 40%);
+      flex-direction: row;
+    }
+    .ic-status-badge {
+      @media #{$max767} {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/**Mentor Billing**/
+
+.ic-mentor-billing-wraper {
+  @include d-flex();
+}
+
+.ic-mentor-billing-left {
+  flex: 0 0 auto;
+  width: 71.5%;
+  @media #{$max1199} {
+    width: 100%;
+  }
+  .ic-heading {
+    width: 80%;
+    @media #{$max1650} {
+      width: 100%;
+    }
+  }
+}
+
+.ic-mentor-billing-item {
+  background-color: $color-white;
+  @include bd-radius(10px);
+  @include box-shadow2($shadow-4);
+  padding: 16px 24px;
+  @include d-flex();
+  @include flex-wrap(nowrap);
+  margin-bottom: 16px;
+  @media #{$max1650} {
+    padding: 16px 16px;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .billing-info {
+    flex: 0 0 auto;
+    width: 37%;
+    @include d-flex();
+    padding-right: 24px;
+    @media #{$max1800} {
+      padding-right: 20px;
+    }
+    @media #{$max1650} {
+      padding-right: 16px;
+    }
+    @media #{$max1399} {
+      width: 39%;
+    }
+
+    .image {
+      flex: 0 0 auto;
+      width: 120px;
+      @media #{$max1399} {
+        width: 100px;
+      }
+
+      img {
+        @include bd-radius(10px);
+        max-width: 100%;
+      }
+    }
+    .info {
+      padding-left: 24px;
+      flex: 1;
+      @media #{$max1800} {
+        padding-left: 20px;
+      }
+      @media #{$max1650} {
+        padding-left: 16px;
+      }
+    }
+  }
+  .total-price,
+  .commission,
+  .income {
+    flex: 0 0 auto;
+    width: 17.8%;
+    padding: 0px 24px;
+    @include d-flex();
+    flex-direction: column;
+    @include justify-content(center);
+    @media #{$max1800} {
+      padding: 0px 20px;
+    }
+    @media #{$max1650} {
+      padding: 0px 16px;
+    }
+    @media #{$max1399} {
+      width: 15.8%;
+    }
+  }
+
+  .total-price {
+    border-left: 1px solid rgb(172 179 188 / 10%);
+    border-right: 1px solid rgb(172 179 188 / 10%);
+  }
+
+  .income {
+    border-left: 1px solid rgb(172 179 188 / 10%);
+    border-right: 1px solid rgb(172 179 188 / 10%);
+  }
+
+  .status {
+    padding-left: 24px;
+    @include d-flex();
+    flex-direction: column;
+    @include justify-content(center);
+    @media #{$max1800} {
+      padding-left: 20px;
+    }
+    @media #{$max1650} {
+      padding-left: 16px;
+    }
+    .ic-badge {
+      padding: 0px 16px;
+      min-width: 80px;
+      @media #{$max1650} {
+        min-width: 70px;
+        padding: 0px 12px;
+      }
+      @media #{$max1399} {
+        min-width: 65px;
+        padding: 0px 10px;
+      }
+    }
+  }
+}
+
+.ic-mentor-billing-right {
+  flex: 1;
+  padding-left: 40px;
+  @media #{$max1650} {
+    padding-left: 30px;
+  }
+  @media #{$max1399} {
+    padding-left: 20px;
+  }
+  @media #{$max1199} {
+    padding-left: 0;
+    margin-top: 20px;
+    @include d-flex();
+    @include justify-content(space-between);
+  }
+}
+
+.ic-mentor-billing-income-card {
+  background-color: $color-white;
+  @include bd-radius(10px);
+  @include box-shadow2($shadow-4);
+  @include d-flex();
+  @include align-items(center);
+  @media #{$max1199} {
+    flex: 0 0 auto;
+    width: 49%;
+    margin-bottom: 0px !important;
+  }
+  @media #{$max575} {
+    width: 100%;
+    margin-bottom: 10px !important;
+  }
+
+  .icon {
+    flex: 0 0 auto;
+    width: 80px;
+    @media #{$max1800} {
+      width: 65px;
+    }
+    @media #{$max1650} {
+      width: 55px;
+    }
+    @media #{$max1399} {
+      width: 50px;
+    }
+  }
+  .content {
+    margin-left: 56px;
+    flex: 1;
+    @media #{$max1800} {
+      margin-left: 30px;
+    }
+    @media #{$max1650} {
+      margin-left: 20px;
+    }
+    @media #{$max1399} {
+      margin-left: 15px;
+    }
+
+    .sub-1 {
+      padding: 10px 0px;
+      @media #{$max1650} {
+        padding: 5px 0px;
+      }
+    }
+  }
+}
+
+.ic-mentor-billing-table-wraper {
+  @media #{$max1280} {
+    overflow: auto;
+  }
+}
+.ic-mentor-billing-table {
+  @media #{$max1280} {
+    width: 850px;
+  }
+  @media #{$max1199} {
+    width: 100%;
+  }
+  @media #{$max991} {
+    width: 1000px;
+  }
+}

@@ -1,0 +1,151 @@
+.ic-notification {
+    margin-top: 30px;
+}
+.notification-main {
+    @include bd-radius(10px);
+    background: #FFF;
+    box-shadow: 0px 1px 4px 0px rgba(20, 3, 66, 0.07);
+    .notification-header{
+        padding: 30px 30px 25px 30px;
+        border-bottom: 1px solid $stock;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        @media #{$max767} {
+            padding: 22px 22px 20px 22px;
+        }
+        p {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 28px; /* 155.556% */
+            color: #6C757D;
+            @media #{$max767} {
+                font-size: 15px;
+            }
+        }
+    }
+    .notification-body {
+        padding: 25px 30px;
+        @media #{$max575} {
+            padding: 20px 20px;
+        }
+        ul {
+            li {
+                display: flex;
+                align-items: center;
+                padding: 21px 20px;
+                @include bd-radius(5px);
+                border: 1px solid $stock;
+                background: #fff;
+                gap: 60px;
+                overflow: hidden;
+                transition: 0.3s;
+                @media #{$max991} {
+                    flex-direction: column;
+                    align-items: start;
+                    gap: 20px;
+                }
+                &:not(:last-child){
+                    margin-bottom: 24px;
+                }
+                .left-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    flex: 0 0 auto;
+                    width: 420px;
+                    transition: 0.3s;
+                    @media #{$max575} {
+                        width: 100%;
+                    }
+                    .icon {
+                        flex: 0 0 auto;
+                        width: 44px;
+                        height: 44px;
+                        @include bd-radius(50%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        i {
+                            color: #fff;
+                            font-size: 20px;
+                        }
+                    }
+                    .notification-subject {
+                        h6 {
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: normal;
+                            color: #272C37;
+                            padding-bottom: 5px;
+                            @media #{$max575} {
+                                font-size: 16px;
+                            }
+                        }
+                        p {
+                            font-size: 15px;
+                            font-style: normal;
+                            font-weight: 300;
+                            color: #6C757D;
+                            @media #{$max991} {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+                .right-content {
+                    width: calc(100% - 480px);
+                    padding-right: 110px;
+                    position: relative;
+                    @media #{$max991} {
+                        width: calc(100% - 0px);
+                    }
+                    @media #{$max575} {
+                        padding-right: 86px;
+                    }
+                    p {
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: normal;
+                    }
+                    .notification-delete-btn {
+                        position: absolute;
+                        height: 44px;
+                        @include bd-radius(5px);
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 5px;
+                        background-color: $red;
+                        padding: 0 15px;
+                        color: $white;
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%) translateX(126%);
+                        transition: all linear 0.6s;
+                        @media #{$max575} {
+                            height: 38px;
+                            padding: 0 10px;
+                        }
+                        i {
+                            color: $white;
+                        }
+                    }
+                }
+                &:hover {
+                    border: 1px solid $red;
+                    box-shadow: 0px 0px 40px 0px rgba(0, 172, 182, 0.10);
+                    .right-content {
+                        .notification-delete-btn {
+                            transform: translateY(-50%) translateX(0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

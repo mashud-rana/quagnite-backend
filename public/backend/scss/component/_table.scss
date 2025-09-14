@@ -1,0 +1,79 @@
+.ic-table {
+  border-collapse: separate;
+  border-spacing: 0 16px;
+  thead {
+    tr {
+      th {
+        padding: 0px 24px;
+        @media #{$max1650} {
+          padding: 0px 20px;
+        }
+        @media #{$max1399} {
+          padding: 0px 16px;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      @include box-shadow2($shadow-4);
+      @include transition(0.5s);
+      &:hover {
+        @include box-shadow2($shadow-5);
+        .title {
+          @include colorgradient();
+          background: $color-gradient;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+      td {
+        background-color: $color-white;
+        padding: 24px 24px;
+        @media #{$max1650} {
+          padding: 20px 20px;
+        }
+        @media #{$max1399} {
+          padding: 16px 16px;
+        }
+        &:first-child {
+          @include bd-radius2(10px, 0px, 0px, 10px);
+        }
+        &:last-child {
+          @include bd-radius2(0px, 10px, 10px, 0px);
+        }
+      }
+    }
+  }
+
+  .ic-dropdown {
+    .dropdown-toggle {
+      background-color: transparent !important;
+      color: $color-shuttleGray;
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .title {
+    display: inline-block;
+    min-width: 250px;
+  }
+  .lesson-add-view-btn {
+    @include d-flex();
+    flex-wrap: nowrap;
+    .ic-btn {
+      margin-right: 24px;
+      @media #{$max1650} {
+        margin-right: 20px;
+      }
+      @media #{$max1399} {
+        margin-right: 15px;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

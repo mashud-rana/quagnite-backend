@@ -1,0 +1,53 @@
+// Abstract Styles
+
+@import "./abstracts/mixins";
+@import "./abstracts/variable";
+
+//Base Styles
+
+@import "./base/global";
+@import "./base/reset";
+@import "./base/typhography";
+
+//Component
+
+@import "./component/button";
+@import "./component/forms";
+@import "./component/pagination";
+@import "./component/dropdown";
+@import "./component/file-upload";
+@import "./component/custom-tab";
+@import "./component/social-share";
+@import "./component/table";
+
+//Layout
+
+@import "./layout/header";
+@import "./layout/sidebar";
+
+//Pages Styles
+
+@import "./pages/dashboard";
+@import "./pages/user-profile";
+@import "./pages/event";
+@import "./pages/student";
+@import "./pages/event-create";
+@import "./pages/event-details";
+@import "./pages/company-dashboard";
+@import "./pages/company-jobs";
+@import "./pages/create-jobs";
+@import "./pages/job-details";
+@import "./pages/company-content";
+@import "./pages/career-guide";
+@import "./pages/companies";
+@import "./pages/company-details";
+@import "./pages/billing";
+@import "./pages/courses";
+@import "./pages/mentor-profile";
+@import "./pages/course-details";
+@import "./pages/mentorship-session";
+@import "./pages/student-request";
+@import "./pages/course-view";
+@import "./pages/notification";
+@import "./pages/student-application";
+@import "./pages/my-course";

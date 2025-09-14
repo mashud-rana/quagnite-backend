@@ -1,0 +1,102 @@
+.ic__loginRegistration--users {
+    max-width: 897px;
+    margin: -150px auto 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    position: relative;
+    @media #{$max575} {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media #{$max480} {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .login-registration-doted {
+        position: absolute;
+        left: -190px;
+        top: 27%;
+        max-width: 138px;
+    }
+
+    .ic__loginRegistration--items {
+        padding: 38px 10px;
+        background: #FFFFFF;
+        box-shadow: 0px 50.6796px 51.6182px rgba(74, 83, 188, 0.08);
+        @include bd-radius(15px);
+        @include transition(0.3s);
+
+        @media #{$max1399} {
+            padding: 28px 10px;
+        }
+
+        .ic__loginRegistration--img {
+            text-align: center;
+            width: 151.41px;
+            height: 151.41px;
+            overflow: hidden;
+            @include bd-radius(50%);
+            background-color: #CDFCFF;
+            margin: 0 auto 28px auto;
+            @include transition(0.3s);
+
+            @media #{$max991} {
+                width: 120.41px;
+                height: 120.41px;
+                margin: 0 auto 6px auto;
+            }
+
+            @media #{$max767} {
+                width: 80.41px;
+                height: 80.41px;
+                margin: 0 auto 6px auto;
+            }
+
+            img {
+                object-fit: scale-down;
+                width: 100%;
+                height: 100%;
+                object-position: bottom;
+            }
+        }
+
+        h6 {
+            font-size: 22px;
+            line-height: 28px;
+            color: $black;
+            text-align: center;
+
+            @media #{$max1399} {
+                font-size: 18px;
+            }
+
+            @media #{$max991} {
+                font-size: 16px;
+            }
+        }
+
+        &:hover {
+            box-shadow: 0px 50.6796px 51.6182px rgba(74, 83, 188, 0.08), inset 0px -5.37001px 0px #24BCDC;
+        }
+    }
+}
+
+.ic-chat-waves {
+    position: absolute;
+    bottom: 0;
+    right: 4%;
+
+    @media #{$max1650} {
+        right: 2%;
+        max-width: 160px;
+    }
+
+    @media #{$max1440} {
+        right: 2%;
+        max-width: 129px;
+    }
+}
+
+.ic__loginRegistration--btn {
+    padding-top: 40px;
+    text-align: center;
+}

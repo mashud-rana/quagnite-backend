@@ -1,0 +1,184 @@
+.ic-blog-author {
+    @include d-flex();
+    @include justify-content(space-between);
+    padding: 35px 0;
+    flex-wrap: nowrap;
+    @media #{$max575} {
+        gap: 20px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .ic-author-names {
+        @include d-flex();
+        @include align-items(center);
+        gap: 10px;
+        flex-wrap: nowrap;
+
+        .author-word {
+            width: 56px;
+            height: 56px;
+            @include bd-radius(50%);
+            background: $gradient;
+            color: $white;
+            font-size: 32px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        .author-posted {
+            color: $gray;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+    .blog-social-media {
+        @include d-flex();
+        flex-wrap: nowrap;
+        gap: 24px;
+        @media #{$max575} {
+            padding-left: 60px;
+        }
+        li {
+            a {
+                color: $black;
+
+                i {
+                    font-size: 18px;
+                }
+
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    }
+
+}
+
+.ic-blog-paragraph {
+    padding-bottom: 15px;
+    font-weight: 300;
+}
+
+.ic-blog-details-content {
+    h2 {
+        @media #{$max1199} {
+            font-size: 26px;
+            line-height: 38px;
+        }
+    }
+}
+
+.ic-leave-comment{
+    h2{
+        font-family: $font-rubik;
+    }
+
+    .ic-des{
+        text-transform: capitalize;
+        color: $gray ;
+    }
+
+    .ic-form {
+
+
+        .form-label {
+            font-size: 16px;
+            color: $black;
+            font-weight: 500;
+            padding-bottom: unset;
+            font-family: $font-rubik;
+
+            @media #{$max1199} {
+                font-size: 14px;
+            }
+        }
+
+        .form-control {
+            font-size: 15px;
+            font-weight: 300;
+            height: 50px;
+            color: #6D7C90;
+            background-color: $white;
+            border: 1px solid #E6E8EC;
+            @include bd-radius(5px);
+
+            @media #{$max1650} {
+                height: 46px;
+            }
+            @media #{$max1399} {
+                height: 43px;
+            }
+            @media #{$max1199} {
+                height: 42px;
+                font-size: 14px;
+            }
+
+            @media #{$max991} {
+                height: 40px;
+            }
+
+            @media #{$max575} {
+                font-size: 13px;
+            }
+
+            &:focus {
+                border: 1px solid $primary;
+            }
+        }
+
+        
+
+        .textarea {
+            height: 164px !important;
+            resize: none;
+
+
+            @media #{$max1650} {
+                height: 120px !important;
+            }
+            @media #{$max1399} {
+                height: 100px !important;
+            }
+            @media #{$max1199} {
+                height: 80px !important;
+            }
+        }
+
+        .form-check {
+
+            cursor: pointer;
+            @media #{$max767} {
+                font-size: 14px;
+                min-height: unset;
+                margin-bottom: unset;
+            }
+
+            input {
+                @include box-shadow2(none);
+            }
+
+            label {
+                color: #6D7C90;
+            }
+        }
+
+        .form-check-input {
+            cursor: pointer;
+            border-radius: 3px !important;
+            &:focus {
+                border-color: $primary;
+            }
+
+            &:checked {
+                background-color: $primary;
+                border-color:$primary;
+            }
+        }
+    }
+}

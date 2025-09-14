@@ -1,0 +1,17 @@
+.cancel-couse-form {
+  .textarea {
+    height: 156px;
+    @include bd-radius(20px);
+    padding-top: 26px;
+
+    @media #{$max1650} {
+      height: 130px;
+    }
+    @media #{$max1199} {
+      height: 120px;
+    }
+    @media #{$max991} {
+      height: 100px;
+    }
+  }
+}

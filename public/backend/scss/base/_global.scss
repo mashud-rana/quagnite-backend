@@ -1,0 +1,400 @@
+// section space
+.ic-section-space {
+  padding: 160px 0px;
+
+  @media #{$max1650} {
+    padding: 140px 0px;
+  }
+  @media #{$max1399} {
+    padding: 120px 0px;
+  }
+  @media #{$max1280} {
+    padding: 100px 0px;
+  }
+  @media #{$max991} {
+    padding: 80px 0px;
+  }
+}
+
+// section space top
+.ic-section-space-top {
+  padding-top: 160px;
+  @media #{$max1650} {
+    padding-top: 140px;
+  }
+  @media #{$max1399} {
+    padding-top: 120px;
+  }
+  @media #{$max1280} {
+    padding-top: 100px;
+  }
+  @media #{$max991} {
+    padding-top: 80px;
+  }
+}
+
+// section space bottom
+.ic-section-space-bottom {
+  padding-bottom: 160px;
+  @media #{$max1650} {
+    padding-bottom: 140px;
+  }
+  @media #{$max1399} {
+    padding-bottom: 120px;
+  }
+  @media #{$max1280} {
+    padding-bottom: 100px;
+  }
+  @media #{$max991} {
+    padding-bottom: 80px;
+  }
+}
+
+.ic-header-space-bottom {
+  margin-bottom: 40px;
+  @media #{$max1650} {
+    margin-bottom: 30px;
+  }
+  @media #{$max991} {
+    margin-bottom: 20px;
+  }
+}
+
+//Spaceing
+
+.ic-mb-4 {
+  margin-bottom: 4px;
+}
+.mb-6 {
+  margin-bottom: 6px;
+}
+.mb-8 {
+  margin-bottom: 8px;
+  @media #{$max991} {
+    margin-bottom: 5px;
+  }
+}
+.mb-12 {
+  margin-bottom: 12px;
+
+  @media #{$max767} {
+    margin-bottom: 8px;
+  }
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+  @media #{$max1650} {
+    margin-bottom: 10px;
+  }
+  @media #{$max767} {
+    margin-bottom: 8px;
+  }
+}
+.mb-24 {
+  margin-bottom: 24px !important;
+  @media #{$max1650} {
+    margin-bottom: 20px !important;
+  }
+  @media #{$max1199} {
+    margin-bottom: 15px !important;
+  }
+  @media #{$max767} {
+    margin-bottom: 12px !important;
+  }
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+  @media #{$max1650} {
+    margin-bottom: 20px;
+  }
+}
+
+.mb-40 {
+  margin-bottom: 40px !important;
+  @media #{$max1650} {
+    margin-bottom: 30px !important;
+  }
+  @media #{$max991} {
+    margin-bottom: 20px !important;
+  }
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.padding-40 {
+  padding: 40px 40px;
+  @media #{$max1650} {
+    padding: 30px 30px;
+  }
+  @media #{$max1199} {
+    padding: 25px 25px;
+  }
+  @media #{$max991} {
+    padding: 20px 20px;
+  }
+}
+
+.padding-24 {
+  padding: 24px 24px;
+  @media #{$max1650} {
+    padding: 20px 20px;
+  }
+  @media #{$max1399} {
+    padding: 16px 16px;
+  }
+}
+
+// position relative
+.ic-pos-rel {
+  position: relative;
+}
+
+// overflow hidden
+.ic-over-hi {
+  overflow: hidden;
+}
+
+.bg-img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.text-gradient {
+  @include colorgradient();
+}
+
+// social
+.ic-social {
+  ul {
+    @include d-flex();
+
+    li {
+      margin-right: 16px;
+      @media #{$max1399} {
+        margin-right: 12px;
+      }
+      @media #{$max1199} {
+        margin-right: 10px;
+      }
+    }
+  }
+  a {
+    width: 48px;
+    height: 48px;
+    @include align-center();
+    border-radius: 50%;
+    border: 1px solid $color-white;
+    @include transition(0.5s);
+    @media #{$max1399} {
+      width: 45px;
+      height: 45px;
+    }
+    @media #{$max1199} {
+      width: 40px;
+      height: 40px;
+    }
+
+    i {
+      font-size: 24px;
+      color: $color-white;
+      @media #{$max1399} {
+        font-size: 22px;
+      }
+      @media #{$max1199} {
+        font-size: 20px;
+      }
+    }
+
+    &:last-of-type {
+      margin-right: 0px;
+    }
+
+    &:hover {
+      background-color: $color-white;
+      i {
+        background: $color-gradient2;
+        @include colorgradient();
+      }
+    }
+  }
+}
+
+.ic-social-secondary {
+  a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+
+    i {
+      font-size: 16px;
+    }
+  }
+}
+
+.ic-heading-flex {
+  @include d-flex();
+  @include justify-content(space-between);
+  @include align-items(flex-end);
+  @media #{$max575} {
+    flex-direction: column;
+    @include align-items(flex-start);
+  }
+
+  .ic-heading-title {
+    flex: 0 0 auto;
+    width: 40%;
+    @media #{$max1800} {
+      width: 45%;
+    }
+    @media #{$max1650} {
+      width: 50%;
+    }
+    @media #{$max1280} {
+      width: 55%;
+    }
+    @media #{$max1199} {
+      width: 50%;
+    }
+    @media #{$max991} {
+      width: 70%;
+    }
+    @media #{$max767} {
+      width: 80%;
+    }
+    @media #{$max575} {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.ic-badge {
+  height: 30px;
+  @include bd-radius(4px);
+  @include align-center();
+  color: $color-white;
+  padding: 0px 12px;
+  font-size: 14px;
+  line-height: unset;
+  @media #{$max1650} {
+    height: 28px;
+    padding: 0px 10px;
+    font-size: 12px;
+  }
+
+  @media #{$max1280} {
+    height: 25px;
+    padding: 0px 8px;
+  }
+  &.badge-blue {
+    background-color: $color-blue;
+  }
+  &.badge-hotpink {
+    background-color: $color-hotpink;
+  }
+  &.badge-green {
+    background-color: #39b345;
+  }
+  &.badge-info {
+    background-color: #0ca7ff;
+  }
+  &.badge-red {
+    background-color: #db2626;
+  }
+  &.badge-danger {
+    background-color: #ff3131;
+  }
+  &.badge-blue2 {
+    background-color: #2a3c7c;
+  }
+}
+
+/**Modal**/
+
+@media (min-width: 575px) {
+  .modal-xl {
+    max-width: 100%;
+    padding: 0px 20px;
+  }
+}
+
+@media (min-width: 991px) {
+  .modal-xl {
+    max-width: 100%;
+    padding: 0px 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1040px;
+  }
+  .modal-md {
+    max-width: 548px;
+  }
+}
+
+.ic-modal {
+  .modal-content {
+    @include bd-radius(20px);
+    @include box-shadow2($shadow-6);
+    background-color: $color-white;
+    border: none;
+    padding: 40px 40px;
+    @media #{$max1399} {
+      padding: 30px 30px;
+    }
+    @media #{$max1199} {
+      padding: 30px 20px;
+    }
+  }
+
+  .modal-header {
+    padding: 0px 0px;
+    border: none;
+
+    .modal-title {
+      font-size: 28px;
+      line-height: 130%;
+      font-family: $font-circular-medium;
+      @media #{$max1650} {
+        font-size: 24px;
+      }
+
+      @media #{$max1399} {
+        font-size: 20px;
+      }
+
+      @media #{$max575} {
+        font-size: 20px;
+      }
+    }
+
+    img {
+      @media #{$max1399} {
+        width: 30px;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 0px 0px;
+  }
+}
+
+.ic-modal-fotter-bottom {
+  @include d-flex();
+  .ic-btn {
+    padding: 0px 28px;
+    margin-right: 8px;
+  }
+}
+
+.dropzone .dz-preview {
+  pointer-events: none;
+}

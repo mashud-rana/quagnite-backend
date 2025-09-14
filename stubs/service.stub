@@ -1,0 +1,17 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use App\Services\BaseService;
+
+class $CLASS_NAME$Service extends BaseService
+{
+    protected $model;
+
+    public function __construct()
+    {
+
+    }
+}
+
+

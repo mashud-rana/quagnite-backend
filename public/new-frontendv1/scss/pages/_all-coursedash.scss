@@ -1,0 +1,26 @@
+.t-all-course {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    .create-exam-btn {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        padding: 5px 12px;
+        background-color: $green;
+        color: #fff;
+        border-radius: 50px;
+    }
+    .delete {
+        color: $red;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .edit {
+        color: $primary;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+}

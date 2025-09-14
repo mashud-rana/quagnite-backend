@@ -1,0 +1,81 @@
+.badge-secondary {
+    background-color: #7e7e7e;
+}
+.ic-font-size-12 {
+    font-size: 12px !important;
+}
+
+.parsley-errors-list li {
+    color: #ff3131;
+    font-size: 14px;
+}
+
+li.parsley-required {
+    color: #ff3131 !important;
+}
+
+.swal2-styled {
+    /* padding: 1.15em 1.1em !important; */
+}
+
+.about-description-textarea-sm {
+    height: 180px !important;
+}
+.one-to-one-modal-btn .ic-btn {
+    color: #fff;
+}
+.one-to-one-modal-btn .ic-btn::before {
+    background: linear-gradient(102.59deg, #7e75ff 20.13%, #ff72a9 93.9%);
+}
+.one-to-one-modal-btn .ic-btn::after {
+    background: linear-gradient(84.67deg, #ff72a9 0.46%, #7e75ff 100%);
+}
+
+.one-to-one-modal-btn .btn-shuttleGray::before {
+    background: linear-gradient(102.59deg, #7e75ff 20.13%, #ff72a9 93.9%);
+}
+.one-to-one-modal-btn .btn-shuttleGray::after {
+    background: #5c6268;
+}
+
+.ic-about-mentorship-content .ic-about-edit-wraper {
+    text-align: left;
+}
+
+.star-empty {
+    color: #acb3bc !important;
+}
+
+.rating .rating-star {
+    display: flex;
+    align-items: center;
+}
+
+.course-view-chapter-wraper
+    .ic-course-content-item-wraper
+    .ic-content-item
+    .duration {
+    width: auto;
+    margin-left: 5px;
+    display: flex;
+    align-items: start;
+}
+.plyr__poster::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #7e75ff;
+    opacity: 0.5;
+}
+
+.ic-course-details-demo-video-wraper .video-overlay::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #7e75ff;
+    opacity: 0.5;
+    z-index: 99;
+    border-radius: 10px;
+}

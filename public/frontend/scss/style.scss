@@ -1,0 +1,65 @@
+// Abstract Styles
+
+@import "./abstracts/mixins";
+@import "./abstracts/variable";
+
+//Base Styles
+
+@import "./base/global";
+@import "./base/reset";
+@import "./base/typhography";
+
+//Component
+
+@import "./component/breadcumb";
+@import "./component/button";
+@import "./component/forms";
+@import "./component/pagination";
+@import "./component/select";
+@import "./component/newsletter";
+@import "./component/preloader";
+@import "./component/datepicker";
+@import "./component/according";
+@import "./component/fileupload";
+@import "./component/chat";
+@import "./component/calender";
+@import "./component/range-slider";
+@import "./component/modal";
+
+//Layout   
+
+@import "./layout/banner";
+@import "./layout/footer";
+@import "./layout/header";
+@import "./layout/course-header";
+
+//Pages Styles 
+@import "./pages/home";
+@import "./pages/courseNewVersion";
+@import "./pages/premium";
+@import "./pages/pricing";
+@import "./pages/_studentLogin.scss";
+@import "./pages/_memberLogin.scss";
+@import "./pages/_memberReg.scss";
+@import "./pages/_contact2.scss";
+@import "./pages/_eventDetails.scss";
+@import "./pages/reserve";
+@import "./pages/event";
+@import "./pages/ebook";
+@import "./pages/wiki";
+@import "./pages/forum";
+@import "./pages/blog";
+@import "./pages/wiki-details";
+@import "./pages/login-registration";
+@import "./pages/helpdesk";
+@import "./pages/playground";
+@import "./pages/coaching";
+@import "./pages/online-course";
+@import "./pages/cloud-computing";
+@import "./pages/business";
+@import "./pages/coaches";
+@import "./pages/single-coaching-details";
+@import "./pages/blog-list";
+@import "./pages/video-course-content";
+@import "./pages/exam-test";
+@import "./pages/exam-test-result";

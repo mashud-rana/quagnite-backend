@@ -1,0 +1,128 @@
+.ic-my-course-table-weaper {
+  overflow: auto;
+}
+.ic-my-course-table {
+  @media #{$max1199} {
+    width: 1200px;
+  }
+  .ic-table-head {
+    padding: 10px 24px;
+    @media #{$max1650} {
+      padding: 10px 20px;
+    }
+    @media #{$max1399} {
+      padding: 10px 16px;
+    }
+  }
+  .ic-item-wraper {
+    @include d-flex();
+    flex-wrap: wrap;
+    @include align-items(center);
+
+    .item {
+      margin-right: 40px;
+      @media #{$max1650} {
+        margin-right: 30px;
+      }
+      @media #{$max1399} {
+        margin-right: 10px;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &.sl-no {
+        flex: 0 0 auto;
+        width: 7%;
+      }
+      &.course-info {
+        width: 39%;
+        flex: 0 0 auto;
+      }
+      &.status {
+        flex: 0 0 auto;
+        width: 11%;
+      }
+      &.lesson {
+        flex: 0 0 auto;
+        width: 25%;
+      }
+      &.action {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.ic-my-course-item {
+  background-color: $color-white;
+  @include bd-radius(10px);
+  @include box-shadow2(shadow-4);
+  @include transition(0.5s);
+  margin-bottom: 16px;
+  &:hover {
+    @include box-shadow2(shadow-5);
+    .course-content {
+      p {
+        color: $color-blue;
+      }
+      h5 {
+        @include colorgradient();
+        background: $color-gradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+  &:last-child {
+    margin-bottom: 0px;
+  }
+  .course-info-wrap {
+    @include d-flex();
+    .course-img {
+      flex: 0 0 auto;
+      width: 200px;
+      @media #{$max1399} {
+        width: 150px;
+      }
+    }
+    .course-content {
+      flex: 1;
+      padding-left: 24px;
+      @media #{$max1650} {
+        padding-left: 20px;
+      }
+
+      p {
+        @include transition(0.5s);
+      }
+      h5 {
+        @include transition(0.5s);
+      }
+    }
+  }
+  .lesson-add-view-btn {
+    @include d-flex();
+    .ic-btn {
+      margin-right: 24px;
+      @media #{$max1650} {
+        margin-right: 20px;
+      }
+      @media #{$max1399} {
+        margin-right: 15px;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .ic-dropdown {
+    .dropdown-toggle {
+      background-color: transparent !important;
+      color: $color-shuttleGray;
+
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+}

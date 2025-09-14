@@ -1,0 +1,41 @@
+version: '3.7'
+services:
+  ansible_controller:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile_ansible
+    container_name: ansible_controller
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.10
+    ports:
+      - "8080:8080"
+
+  web1:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile_server01
+    container_name: web1
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.11
+    ports:
+      - "2222:22"
+
+  web2:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile_server02
+    container_name: web2
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.12
+    ports:
+      - "3333:22"
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

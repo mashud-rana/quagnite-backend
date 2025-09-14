@@ -1,0 +1,83 @@
+.ic-organization-main {
+    margin: 40px;
+    display: flex;
+    gap: 40px;
+    .ic-organization-sidebar {
+        width: 300px;
+        @include bd-radius(5px);
+        background-color: #fff;
+        padding: 20px 0;
+        ul {
+            li {
+                a {
+                    color: $black;
+                    padding: 10px 20px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    position: relative;
+                    transition: 0.3s;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 2px;
+                        height: 100%;
+                        background-color: $primary;
+                        transform: scaleY(0);
+                        transition: 0.3s;
+                    }
+                    &.active {
+                        &::before {
+                            transform: scaleY(1);
+                        }
+                    }
+                    &:hover {
+                        &::before {
+                            transform: scaleY(1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .content-right {
+        width: calc(100% - 340px);
+    }
+}
+
+.ic-exam-finish-modal {
+    &.modal .modal-dialog {
+        max-width: 514px;
+    }
+    .finish-modal-body {
+        padding: 40px 40px;
+        .finish-modal-digit {
+            text-align: center;
+            svg {
+                padding-bottom: 6px;
+            }
+            h4 {
+                padding-bottom: 4px;
+            }
+            p {
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 20px; /* 142.857% */
+                color: #6C757D;
+            }
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            color: #E8543E;
+            i {
+                font-size: 24px;
+            }
+        }
+    }
+}

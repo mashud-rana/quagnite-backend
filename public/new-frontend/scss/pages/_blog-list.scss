@@ -1,0 +1,221 @@
+.ic-blog-grid-items {
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 39px 50px rgba(75, 49, 147, 0.05);
+    @include bd-radius(5px);
+    height: 100%;
+    @include d-flex();
+    flex-direction: column;
+
+    @media #{$max767} {
+        padding: 10px;
+    }
+
+    .img {
+        position: relative;
+
+        .posted-date {
+            background: linear-gradient(180deg, #2EB7D3 0.01%, #06738A 100%), #FFFFFF;
+            @include bd-radius(10px);
+            padding: 14px 20px;
+            display: inline-block;
+            position: absolute;
+            right: 36px;
+            bottom: -27px;
+            text-align: center;
+
+            @media #{$max1199} {
+                padding: 5px 15px;
+            }
+            @media #{$max767} {
+                right: 16px;
+                bottom: -20px;
+            }
+
+            p,
+            h5 {
+                color: #fff;
+            }
+        }
+
+        img {
+            border: 1px solid #E2E2EA;
+            @include bd-radius(5px);
+            height: 282px;
+            object-fit: cover;
+            object-position: top;
+
+            @media #{$max767} {
+                height: 143px;
+            }
+        }
+    }
+
+    .user-posted {
+        padding-top: 28px;
+
+        li {
+            @include d-flex();
+            @include align-items(center);
+            gap: 10px;
+
+            img {
+                width: 25px;
+                height: 25px;
+                @include bd-radius(50%);
+            }
+
+            p {
+                font-size: 15px;
+                color: $black;
+            }
+        }
+    }
+
+    h6 {
+        padding-top: 10px;
+        padding-bottom: 8px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 130%;
+    }
+
+    .paragraph {
+        color: $gray;
+        margin-bottom: 12px;
+        font-size: 15px;
+        line-height: 150%;
+        
+    }
+
+    a {
+        color: $primary;
+        @include d-flex();
+        @include align-items(center);
+        gap: 5px;
+        margin-top: auto;
+    }
+}
+
+.sidebar-card {
+    background-color: #fff;
+    box-shadow: 0px 39px 50px rgba(19, 62, 73, 0.05);
+    @include bd-radius(5px);
+    margin-bottom: 30px;
+
+    form {
+        padding: 20px 20px 0 20px;
+
+        input {
+            border: 1px solid #E2E2EA;
+            @include bd-radius(5px);
+            height: 60px;
+            padding-left: 48px;
+
+            @media #{$max1399} {
+                height: 50px;
+            }
+        }
+
+        i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 20px;
+            font-size: 20px;
+        }
+    }
+
+    .card-inner {
+        h6 {
+            color: $black;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E2E2EA;
+            padding-left: 20px;
+            padding-top: 20px;
+            font-weight: 500;
+        }
+
+        .Categories {
+            padding: 20px;
+
+            li {
+                &:not(:last-child) {
+                    padding-bottom: 20px;
+                }
+
+                a {
+                    color: $black;
+                    @include transition(0.4s);
+
+                    &:hover {
+                        color: $primary;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.ic-latest-bloger {
+    padding: 20px;
+
+    .ic-latest-items {
+        @include d-flex();
+        @include align-items(center);
+        flex-wrap: nowrap;
+        gap: 14px;
+
+        img {
+            width: 80px;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+
+        .blog-content {
+            p {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 20px;
+                color: $black;
+            }
+
+            span {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                color: $primary;
+            }
+        }
+
+    }
+}
+
+.tags {
+    padding: 20px;
+    @include d-flex();
+    gap: 10px;
+
+    a {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 26px;
+        display: inline-block;
+        padding: 7px 20px;
+        background: #FFFFFF;
+        border: 1px solid #E2E2EA;
+        border-radius: 60px;
+        color: $black;
+        transition: all linear .3s;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}

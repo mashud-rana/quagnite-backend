@@ -1,0 +1,431 @@
+.ic-student-right-event-title {
+  @include d-flex();
+  @include align-items(center);
+  @include justify-content(space-between);
+}
+
+.ic-student-right-event-wrap {
+  @media #{$max1199} {
+    @include d-flex();
+    grid-gap: 24px;
+  }
+  @media #{$max991} {
+    grid-gap: 20px;
+  }
+  @media #{$max575} {
+    grid-gap: 0;
+  }
+
+  .ic-dashboard-event-item {
+    margin-top: 0;
+    @media #{$max991} {
+      flex: 0 0 auto;
+      width: 48.5%;
+    }
+    @media #{$max767} {
+      width: 48%;
+    }
+    @media #{$max575} {
+      width: 100%;
+    }
+
+    &:last-child {
+      margin-top: 24px;
+
+      @media #{$max1399} {
+        margin-top: 20px;
+      }
+
+      @media #{$max1199} {
+        margin-top: 0;
+      }
+      @media #{$max575} {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.ic-recomended-student-wraper {
+  background-color: $color-white;
+  @include box-shadow2($shadow-6);
+  @include bd-radius(10px);
+}
+
+.ic-recomemded-student-heading {
+  @include d-flex();
+  @include justify-content(space-between);
+  @include align-items(flex-end);
+  @media #{$max575} {
+    flex-direction: column;
+    @include align-items(flex-start);
+  }
+
+  .ic-left {
+    flex: 0 0 auto;
+    width: 38%;
+
+    @media #{$max1650} {
+      width: 45%;
+    }
+
+    @media #{$max991} {
+      width: 60%;
+    }
+    @media #{$max767} {
+      width: 80%;
+    }
+    @media #{$max575} {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.ic-recommended-student-item-wraper {
+  .row {
+    .col {
+      @media #{$max1650} {
+        width: 25%;
+      }
+      @media #{$max1399} {
+        width: 33.33%;
+      }
+      @media #{$max767} {
+        width: 50%;
+      }
+      @media #{$max575} {
+        width: 100%;
+      }
+      &:nth-child(1) {
+        .ic-recommended-student-item {
+          margin-top: 0;
+        }
+      }
+      &:nth-child(2) {
+        .ic-recommended-student-item {
+          margin-top: 0;
+          @media #{$max575} {
+            margin-top: 20px;
+          }
+        }
+      }
+      &:nth-child(3) {
+        .ic-recommended-student-item {
+          margin-top: 0;
+          @media #{$max767} {
+            margin-top: 20px;
+          }
+        }
+      }
+      &:nth-child(4) {
+        .ic-recommended-student-item {
+          margin-top: 0;
+          @media #{$max1399} {
+            margin-top: 20px;
+          }
+        }
+      }
+      &:nth-child(5) {
+        .ic-recommended-student-item {
+          margin-top: 0;
+
+          @media #{$max1650} {
+            margin-top: 25px;
+          }
+          @media #{$max1399} {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ic-recommended-student-item {
+  background-color: $color-white;
+  @include box-shadow2($shadow-5);
+  @include bd-radius(10px);
+  text-align: center;
+  margin-top: 24px;
+  @include transition(0.5s);
+  &:hover {
+    @include box-shadow2($shadow-5);
+  }
+  @media #{$max1399} {
+    margin-top: 20px;
+  }
+
+  .student-img {
+    img {
+      @include box(130px, 130px);
+      @include box-circle();
+
+      @media #{$max1650} {
+        @include box(110px, 110px);
+      }
+      @media #{$max1399} {
+        @include box(100px, 100px);
+      }
+      @media #{$max991} {
+        @include box(90px, 90px);
+      }
+    }
+  }
+
+  .student-content {
+    padding-bottom: 24px;
+    border-bottom: 1px solid $color-porcelain;
+    @media #{$max1650} {
+      padding-bottom: 20px;
+    }
+    @media #{$max1399} {
+      padding-bottom: 16px;
+    }
+  }
+
+  .student-interest-area {
+    padding-top: 24px;
+    @include d-flex();
+    @include justify-content(center);
+    @media #{$max1650} {
+      padding-top: 20px;
+    }
+    @media #{$max1399} {
+      padding-top: 16px;
+    }
+
+    span {
+      @include box(36px, 36px);
+      @include box-circle();
+      @include align-center();
+      margin-right: 8px;
+      @media #{$max767} {
+        @include box(32px, 32px);
+      }
+
+      img {
+        width: 20px;
+        @media #{$max767} {
+          width: 16px;
+        }
+      }
+
+      &.bg-blue {
+        background-color: $color-blue;
+      }
+
+      &.bg-green {
+        background-color: #2ac94d;
+      }
+
+      &.bg-yellow {
+        background-color: #fec636;
+      }
+    }
+  }
+}
+
+.ic-student-filter-wraper {
+  position: relative;
+  .ic-student-filter-item-wraper {
+    @include d-flex();
+    @include align-items(center);
+    gap: 16px;
+    flex-wrap: nowrap;
+    @media #{$max1399} {
+      gap: 8px;
+    }
+    @media #{$max991} {
+      flex-wrap: wrap;
+    }
+    @media #{$max767} {
+      @include justify-content(space-between);
+    }
+    .item {
+      @media #{$max767} {
+        width: 32% !important;
+      }
+      @media #{$max575} {
+        width: 49% !important;
+      }
+      @media #{$max480} {
+        width: 100% !important;
+      }
+      &.industry,
+      &.study {
+        width: 290px;
+        @media #{$max1399} {
+          width: 260px;
+        }
+        @media #{$max1280} {
+          width: 155px;
+        }
+        @media #{$max1199} {
+          width: 210px;
+        }
+      }
+
+      &.gender,
+      &.race {
+        width: 256px;
+        @media #{$max1280} {
+          width: 135px;
+        }
+        @media #{$max1199} {
+          width: 180px;
+        }
+      }
+
+      &.age {
+        width: 196px;
+      }
+    }
+
+    .more-filter {
+      a {
+        height: 56px;
+        @include bd-radius(6px);
+        background-color: $color-white;
+        padding: 0px 24px;
+        @include d-flex();
+        @include align-items(center);
+        color: $color-blue;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        @include box-shadow2($shadow-1);
+        @media #{$max1650} {
+          height: 50px;
+        }
+        @media #{$max1399} {
+          padding: 0px 16px;
+        }
+        @media #{$max991} {
+          height: 45px;
+        }
+        @media #{$max767} {
+          @include justify-content(center);
+        }
+        i {
+          font-size: 24px;
+          margin-right: 24px;
+          @media #{$max1399} {
+            font-size: 20px;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .ic-more-filter-wraper {
+    @include d-flex();
+    @include align-items(center);
+    gap: 16px;
+    background-color: $color-white;
+    @include box-shadow2($shadow-5);
+    @include bd-radius(10px);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+    @media #{$max1399} {
+      gap: 8px;
+    }
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .item {
+      min-width: 300px;
+      @media #{$max1800} {
+        min-width: 290px;
+      }
+      @media #{$max1650} {
+        min-width: auto;
+        width: 23%;
+      }
+      @media #{$max767} {
+        width: 49%;
+      }
+
+      @media #{$max575} {
+        width: 48%;
+      }
+
+      @media #{$max480} {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/**Student- details**/
+
+.ic-stduent-details-info-wraper {
+  border-top: 1px solid rgb(172 179 188 / 20%);
+
+  .ic-details-info-item {
+    h4 {
+      padding: 3px 0px;
+      @media #{$max767} {
+        padding: 1px 0px;
+      }
+    }
+
+    p {
+      padding: 5px 0px;
+
+      @media #{$max767} {
+        padding: 3px 0px;
+      }
+    }
+
+    &.language {
+      ul {
+        li {
+          @include d-flex();
+          @include align-items(center);
+          span {
+            width: 8px;
+            height: 8px;
+            @include bd-radius(50%);
+            background-color: $color-blue;
+            display: inline-block;
+            margin-right: 16px;
+
+            @media #{$max767} {
+              margin-right: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ic-student-details-experience {
+  .ic-info-item-wrap .ic-info-item .ic-right {
+    padding-right: 0 !important;
+  }
+}
+
+.ic-student-details-skills {
+  .ic-skills-item-wrap .ic-skills-item {
+    span {
+      width: auto !important;
+      @include bd-radius(18px!important);
+      padding: 0px 13px !important;
+    }
+
+    &:last-child span {
+      padding: 0px 13px !important;
+    }
+  }
+}

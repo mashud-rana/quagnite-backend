@@ -1,0 +1,147 @@
+//Font
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+//  open sans
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+$font-rubik: 'Rubik', sans-serif;
+// $font-rubik: 'Open Sans', sans-serif;
+
+//Color
+
+$primary: #00ACB6;
+$primary-hover: #136071;
+$secondary: #06738A;
+$text-color: #2FB4D1;
+$input-bg: #F4F5FE;
+$gray-light: #FAFBFE;
+$gray-dark: #6C757D;
+$black-800: #242B33; 
+$black-900: #101828;
+$gray-900: #101828;
+
+$ebony-clay: #475467;
+$success-25: #f6fef9;
+$shuttle-gray: #5c6268;
+$gray: #6A6C80;
+$gray-500: #667085;
+
+$rgba-color: rgba(23, 23, 23, 0.8);
+
+$black: #22223B;
+$white: #fff;    
+$yellow: #F7B000;
+$green: #12b76a;
+$gray-300: #d0d5dd;
+$gray-200: #eaecf0;
+$gray-600: #475467;
+$gray-400: #98A2B3;
+$gray-800: #A4A4A4;
+$gray-800-1: #1D2939;
+$error-500: #F04438;
+$gray-100: #F2F4F7;
+$orange: #F47820;
+
+
+$light-blue: #2AA6C0;
+$dark-blue: #11849E;
+$dark-black: #081735;
+$dark-black-600: #2E2F47;
+$dark-black-2: #14133A;
+$deep-black: #141016;
+$shadow-1: 0px 6px 16px rgba(0, 0, 0, 0.06);
+
+.primary {
+  color: $primary;
+}
+.secondary {
+  color: $primary;
+}
+.paragraph {
+  color: $rgba-color;
+}
+.ebony-clay {
+  color: $ebony-clay;
+}
+.shuttle-color {
+  color: $shuttle-gray; 
+}
+.black {
+  color: $black;
+}
+.white {
+  color: $white;
+}
+.yellow {
+  color: $yellow!important;
+}
+.green {
+  color: $green;
+}
+.gray {
+  color: $gray;
+}
+.gray-300 {
+  color: $gray-300;
+}
+.gray-500 {
+  color: $gray-500;
+}
+.gray-400 {
+  color: $gray-400!important;
+}
+.gray-600 {
+  color: $gray-600!important;
+}
+.gray-800 {
+  color: $gray-800;
+}
+.gray-900 {
+  color: $gray-900;
+}
+.red {
+  color: $error-500;
+}
+.text-color {
+  color: $text-color;
+} 
+.gray-dark {
+  color: $gray-dark;
+} 
+.cl-dark-blue {
+  color: $dark-blue;
+}
+.cl-light-blue {
+  color: $light-blue;
+}
+.cl-dark-black{
+  color: $dark-black;
+} 
+.orange {
+  background-color: $orange!important;
+}
+.gray-light-bg {
+  background-color: rgba(47, 180, 209, 0.03);
+}
+.bg-gray {
+  background-color: #F7F8FD;
+}
+//Media Query
+
+$max1920: "only screen and (max-width: 1920px)";
+// $max1850: "only screen and (max-width: 1850px)";
+$max1800: "only screen and (max-width: 1800px)";
+$max1760: "only screen and (max-width: 1760px)";
+$max1650: "only screen and (max-width: 1650px)";
+$max1440: "only screen and (max-width: 1440px)";
+$max1399: "only screen and (max-width: 1399.98px)";
+$max1366: "only screen and (max-width: 1366px)";
+$max1280: "only screen and (max-width: 1280px)";
+$max1199: "only screen and (max-width: 1199.98px)";
+$max1024: "only screen and (max-width: 1024px)";
+$max991: "only screen and (max-width: 991.98px)";
+$max767: "only screen and (max-width: 767.98px)";   
+$max575: "only screen and (max-width: 575.98px)";
+$max480: "only screen and (max-width: 480px)";
+$max414: "only screen and (max-width: 414px)";
+$max374: "only screen and (max-width: 374.98px)";

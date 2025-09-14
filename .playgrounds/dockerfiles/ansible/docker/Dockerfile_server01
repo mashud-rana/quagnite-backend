@@ -1,0 +1,21 @@
+FROM ubuntu:20.04
+
+USER root
+
+RUN apt update && \
+    apt install -y \
+    openssh-server
+
+# Configure SSH
+RUN mkdir /var/run/sshd
+RUN echo 'root:Passw0rd' | chpasswd
+
+#password for user login
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+RUN echo 'PS1="\[\e[36m\]root@web1 \[\e[32m\]\w\[\e[m\]\$ "' >>/root/.bashrc
+
+EXPOSE 22
+
+# Start SSH server
+CMD ["/usr/sbin/sshd", "-D"]

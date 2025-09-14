@@ -1,0 +1,163 @@
+.ic-user-profile-about-wraper {
+  @include d-flex();
+}
+
+.ic-user-profile-about-left {
+  flex: 0 0 auto;
+  width: 67%;
+  @media #{$max1399} {
+    width: 57%;
+  }
+
+  @media #{$max991} {
+    width: 100%;
+  }
+}
+
+.ic-about-request-mentorship {
+  flex: 1;
+  padding-left: 40px;
+  @media #{$max1800} {
+    padding-left: 30px;
+  }
+  @media #{$max1650} {
+    padding-left: 30px;
+  }
+  @media #{$max1399} {
+    padding-left: 20px;
+  }
+  @media #{$max991} {
+    padding-left: 0;
+    margin-top: 20px;
+  }
+}
+
+.ic-about-mentorship-content {
+  background: $color-gradient5;
+  @include bd-radius(10px);
+  padding: 34px 24px;
+  text-align: center;
+  @media #{$max1800} {
+    padding: 24px 14px;
+  }
+
+  .ic-btn {
+    color: $color-blue;
+    &::after {
+      background: $color-white;
+    }
+    &::before {
+      background: $color-white;
+    }
+  }
+}
+
+.ic-mentor-profile-session-wraper {
+  .ic-heading {
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+  }
+}
+
+.ic-mentor-session-item-wraper {
+  .row {
+    .col {
+      &:nth-child(3) {
+        @media #{$max767} {
+          margin-top: 20px;
+        }
+      }
+      &:nth-child(2) {
+        @media #{$max575} {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+.ic-mentor-session-item {
+  background-color: $color-white;
+  @include bd-radius(10px);
+  @include box-shadow2($shadow-4);
+  @include transition(0.5s);
+  @media #{$max575} {
+    max-width: 350px;
+    margin: auto;
+  }
+
+  &:hover {
+    @include box-shadow2($shadow-5);
+    .image img {
+      transform: scale(1.1);
+    }
+    .title h4 {
+      color: $color-blue;
+    }
+  }
+
+  .image {
+    @include bd-radius(10px);
+    overflow: hidden;
+    img {
+      @include bd-radius(10px);
+      @include transition(0.5s);
+    }
+  }
+  .title {
+    h4 {
+      @include transition(0.5s);
+    }
+  }
+  .date-time {
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+    gap: 5px;
+  }
+}
+
+.ic-mentor-activity-heading {
+  @include d-flex();
+  @include justify-content(space-between);
+
+  .ic-activity-left {
+    .ic-event-filter {
+      @include d-flex();
+      gap: 16px;
+      @media #{$max1650} {
+        gap: 12px;
+      }
+      @media #{$max1399} {
+        gap: 10px;
+      }
+      @media #{$max1199} {
+        gap: 8px;
+      }
+    }
+    .ic-btn {
+      background-color: $color-blue;
+      &.active {
+        &::after {
+          background-color: $color-blue;
+        }
+      }
+      &::after {
+        background: $color-aluminium;
+      }
+
+      &::before {
+        background: $color-blue;
+      }
+    }
+  }
+}
+
+.ic-mentors-courses-wraper {
+  .ic-heading {
+    @include d-flex();
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+}

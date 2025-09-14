@@ -1,0 +1,63 @@
+.ic-reserve-orders {
+    background-color: $white;
+    @include bd-radius(10px);
+
+    .ic-reserve-order {
+        height: 100%;
+
+        img {
+            height: 100%;
+            width: 100%;
+            @media #{$max991} {
+                @include bd-radius(10px);
+            }
+        }
+    }
+
+    .reserve-order-form {
+        padding: 55px 72px 60px 72px;
+        @media #{$max1199} {
+            padding: 55px 50px 60px 50px;
+        }
+        @media #{$max991} {
+            padding: 30px 50px 30px 50px;
+        }
+        @media #{$max767} {
+            padding: 30px 30px 30px 30px;
+        }
+        .form-control {
+            background-color: $w-shade;
+        }
+
+        textarea {
+            height: 146px;
+        }
+        .ic-2types-select {
+            .row {
+                .col-lg-6 {
+                    &:first-child {
+                        .bootstrap-select .dropdown-toggle {
+                            @include bd-radius2(4px, 0, 0, 4px);
+                        }
+                    }
+                    &:last-child {
+                        .bootstrap-select .dropdown-toggle {
+                            @include bd-radius2(0, 4px, 4px, 0);
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        .bootstrap-select .dropdown-toggle {
+            padding: 4px 14px;
+            background-color: $w-shade;
+            .filter-option-inner-inner {
+                font-weight: 300;
+                font-size: 16px;
+                color: $gray;
+            }
+        }
+    }
+}

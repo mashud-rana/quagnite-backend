@@ -1,0 +1,243 @@
+.ic-dashboard-event-item {
+  background-color: $color-white;
+  @include box-shadow2($shadow-4);
+  @include bd-radius(10px);
+  @include transition(0.5s);
+  margin-top: 20px;
+  @media #{$max575} {
+    max-width: 315px;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  &:hover {
+    @include box-shadow2($shadow-5);
+    .ic-dashboard-event-image img {
+      transform: scale(1.1);
+    }
+    .ic-dashboard-event-content {
+      h5 {
+        background: $color-gradient;
+        @include colorgradient();
+      }
+    }
+  }
+
+  .ic-dashboard-event-image {
+    overflow: hidden;
+    @include bd-radius(10px);
+    img {
+      @include bd-radius(10px);
+      @include transition(0.5s);
+    }
+  }
+
+  .ic-dashboard-event-content {
+    .title h5 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .created-time {
+    @include d-flex();
+    @include justify-content(space-between);
+    @include align-items(center);
+    .author {
+      text-transform: uppercase;
+    }
+  }
+
+  .ic-event-link {
+    margin-top: 24px;
+    @media #{$max1650} {
+      margin-top: 20px !important;
+    }
+    @media #{$max1199} {
+      margin-top: 15px !important;
+    }
+    @media #{$max767} {
+      margin-top: 12px !important;
+    }
+
+    .ic-btn {
+      background: $color-blue;
+      &::after {
+        background: $color-blue;
+      }
+      &::before {
+        background: $color-gradient;
+      }
+    }
+  }
+}
+
+.ic-all-event-heading {
+  @include d-flex();
+  @include align-items(flex-end);
+
+  @media #{$max767} {
+    flex-direction: column;
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+  }
+
+  .ic-left {
+    flex: 0 0 auto;
+    width: 60%;
+    @media #{$max1399} {
+      width: 65%;
+    }
+    @media #{$max767} {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      @include d-flex();
+      @include align-items(center);
+
+      i {
+        margin-right: 16px;
+        background: $color-gradient;
+        @include colorgradient();
+        @media #{$max1650} {
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+
+  .ic-right {
+    flex: 1;
+    text-align: right;
+  }
+}
+
+.ic-all-event-filter {
+  @include d-flex();
+  @include align-items(center);
+  @include justify-content(space-between);
+  gap: 5px;
+
+  @media #{$max575} {
+    flex-direction: column;
+    @include align-items(flex-start);
+  }
+
+  .ic-event-filter-item {
+    @include d-flex();
+    @include align-items(center);
+
+    @media #{$max575} {
+      width: 100%;
+    }
+
+    .ic-btn {
+      margin-right: 16px;
+      background: $color-blue;
+      @media #{$max991} {
+        margin-right: 10px;
+      }
+      @media #{$max575} {
+        margin-right: 5px;
+        margin-bottom: 10px;
+        width: 32.2%;
+        font-size: 12px;
+      }
+      &.active {
+        &::after {
+          background: $color-blue;
+        }
+      }
+      &::after {
+        background: $color-aluminium;
+      }
+
+      &::before {
+        background: $color-blue;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .ic-event-filter-sort {
+    min-width: 290px;
+    @media #{$max1399} {
+      min-width: 250px;
+    }
+    @media #{$max991} {
+      min-width: 200px;
+    }
+    @media #{$max767} {
+      min-width: 170px;
+    }
+
+    @media #{$max575} {
+      min-width: 100%;
+    }
+  }
+}
+
+.ic-all-event-item-wraper {
+  .row {
+    .col {
+      &:nth-child(1) {
+        .ic-dashboard-event-item {
+          margin-top: 0px;
+        }
+      }
+      &:nth-child(2) {
+        .ic-dashboard-event-item {
+          margin-top: 0px;
+          @media #{$max575} {
+            margin-top: 20px;
+          }
+        }
+      }
+      &:nth-child(3) {
+        .ic-dashboard-event-item {
+          margin-top: 0px;
+          @media #{$max767} {
+            margin-top: 20px;
+          }
+        }
+      }
+      &:nth-child(4) {
+        .ic-dashboard-event-item {
+          margin-top: 0px;
+          @media #{$max991} {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+  .ic-dashboard-event-item {
+    margin-top: 24px;
+
+    @media #{$max1399} {
+      margin-top: 20px;
+    }
+
+    @media #{$max575} {
+      max-width: 350px;
+    }
+
+    .ic-dashboard-event-image {
+      position: relative;
+    }
+
+    .ic-item-action {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+  }
+}

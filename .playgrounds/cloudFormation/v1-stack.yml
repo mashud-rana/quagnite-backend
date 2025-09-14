@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  KeyPairName:
+    Type: String
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+
+Resources:
+  MyEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: "ami-079db87dc4c10ac91"
+      InstanceType: "t2.micro"
+      KeyName: !Ref KeyPairName
+      SecurityGroups:
+        - !Ref MySecurityGroup
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          sudo yum update -y
+          sudo yum install -y httpd
+          sudo yum install -y docker
+          sudo service docker start
+          sudo chkconfig docker on
+          sudo service httpd start
+          sudo chkconfig httpd on
+          sudo usermod -aG docker $USER
+
+  MySecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: "Security group for EC2 instance"
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: "0.0.0.0/0"
+        - IpProtocol: "tcp"
+          FromPort: 22
+          ToPort: 22
+          CidrIp: "0.0.0.0/0"

@@ -1,0 +1,519 @@
+.ic-switch-grid {
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+    padding-top: 60px;
+    margin-bottom: 40px;
+
+    @media #{$max991} {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .switch-buttons {
+        @include d-flex();
+        @include align-items(center);
+        gap: 20px;
+
+        @media #{$max991} {
+            flex-direction: column;
+        }
+
+        .switch-button {
+            display: inline-flex;
+            @include align-items(center);
+            @include justify-content(center);
+            gap: 5px;
+
+            @media #{$max991} {
+                order: 2;
+            }
+
+            a {
+                height: 40px;
+                padding: 0 15px;
+                background-color: #fff;
+                border: 1px solid rgba(121, 139, 142, 0.2);
+                @include bd-radius(50px);
+                color: $black;
+                display: inline-flex;
+                @include align-items(center);
+                @include justify-content(center);
+                gap: 5px;
+
+                &.active {
+                    border: 0;
+                    background: linear-gradient(180deg,
+                            #2eb7d3 0.01%,
+                            #06738a 100%),
+                        #00acb6;
+                    color: #fff;
+                }
+            }
+        }
+
+        .showresult {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 21px;
+            color: #22223b;
+
+            @media #{$max1399} {
+                font-size: 16px;
+            }
+
+            @media #{$max991} {
+                order: 1;
+            }
+        }
+    }
+
+  }
+.ic-searchfilter {
+    @include d-flex();
+    @include align-items(center);
+    gap: 12px;
+
+    @media #{$max414} {
+        flex-direction: column;
+    }
+
+    input {
+        width: 313px;
+        padding: 0 50px 0 38px;
+        height: 50px;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgba(121, 139, 142, 0.2);
+        @include bd-radius(50px);
+
+        @media #{$max991} {
+            width: 265px;
+        }
+
+        @media #{$max414} {
+            width: 100%;
+        }
+
+        +i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 38px;
+            color: rgba(34, 34, 59, 0.5);
+        }
+        }
+
+    .ic-btn {
+        padding: 0 22px;
+        height: 49px;
+    }
+    }
+.sort-filter {
+    padding-top: 40px;
+    padding-bottom: 50px;
+    @include d-flex();
+    @include align-items(end);
+    gap: 20px;
+
+    @media #{$max991} {
+        padding-top: 18px;
+        padding-bottom: 24px;
+    }
+
+    .filter-items {
+        width: calc(100% / 4 - 20px + 20px / 4);
+
+        @media #{$max991} {
+            width: calc(100% / 2 - 20px + 20px / 2);
+        }
+
+        @media #{$max480} {
+            width: calc(100% / 1 - 20px + 20px / 1);
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        label {
+            font-size: 18px;
+            color: #22223b;
+
+            @media #{$max1399} {
+                font-size: 16px;
+            }
+        }
+
+        .bootstrap-select {
+            .dropdown-toggle {
+                background-color: #fff;
+                height: 50px;
+
+                .filter-option-inner-inner {
+                    color: #70798b;
+                }
+            }
+        }
+
+        .range {
+            padding-top: 15px;
+        }
+    }
+}
+
+.range-price {
+    .ic-btn {
+        height: 30px;
+        padding: 0 15px;
+        font-size: 16px;
+    }
+}
+
+.ic-items-list-main {
+    &.ic-items-grid-main {
+        .ic-items-list {
+            gap: 15px;
+
+            .ic-list-image {
+                border-radius: 10px;
+                height: 303px;
+                width: 100%;
+                @media #{$max991} {
+                    height: 150px;
+                }
+                @media #{$max991} {
+                    height: 200px;
+                }
+                >div {
+                    height: 100%;
+
+                    img {
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: top;
+                        border-radius: 10px;
+                    }
+                }
+
+                .coach-names {
+                    display: inline-block;
+                    top: 15px;
+                    left: 15px;
+                    right: unset;
+
+                    @media #{$max1440} {
+                        top: 15px;
+                    }
+                }
+
+                .wishlist {
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    width: 34px;
+                    height: 34px;
+                    @include bd-radius(50%);
+                    background-color: #fff;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: $primary;
+                }
+
+                .ic-rating-info {
+                    position: absolute;
+                    bottom: 30px;
+                    left: 0;
+                    right: 0;
+                    justify-content: center;
+                    padding-bottom: 0;
+
+                    li {
+                        p {
+                            background-color: #fff;
+                        }
+                    }
+                }
+            }
+
+            .ic-btn {
+                padding: 0 28px;
+                height: 40px;
+            }
+
+            .ic-list-conetnt {
+                padding: 0 10px;
+
+                p {
+                    font-weight: 500;
+                    font-size: 18px;
+                    color: $black;
+                }
+
+                @media #{$max1440} {
+                    padding: 0 0;
+                }
+            }
+        }
+    }
+
+    &.ic-bootcamp-grid-main {
+        .ic-items-list {
+            
+            .ic-list-image {
+                height: 283px;
+
+                .coach-names {
+                    right: 0;
+                    left: unset;
+                    p {
+                        @include bd-radius2(36px, 0px, 0px, 36px);
+                        background-color: #f47820;
+                        color: #fff;
+                    }
+                }
+            }
+
+            .ic-list-conetnt {
+                .list-conetnt-info {
+                    padding-bottom: 6px;
+
+                    .list-info-items {
+                        padding: 0;
+                        padding-bottom: 8px;
+
+                        .review-course {
+                            @include d-flex();
+                            @include align-items(center);
+                            gap: 3px;
+                        }
+
+                        .ratting-count {
+                            font-weight: 600;
+                            font-size: 14px;
+                            line-height: 26px;
+                            color: #22223b;
+                        }
+                    }
+                }
+
+                
+            }
+            .card-btn {
+                .ic-btn {
+                    height: 50px;
+                }
+            }
+        }
+    }
+
+    .ic-items-list {
+        padding: 10px;
+        background: #ffffff;
+        box-shadow: 0px 54px 55px rgba(74, 83, 188, 0.08);
+        border-radius: 10px;
+        @include d-flex();
+        gap: 33px;
+        flex-wrap: nowrap;
+        margin-bottom: 40px;
+        height: 100%;
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @media #{$max1199} {
+            gap: 15px;
+        }
+
+        @media #{$max575} {
+            flex-direction: column;
+        }
+
+        .ic-list-image {
+            width: 358px;
+            flex: 0 0 auto;
+            border-radius: 20px;
+
+            @media #{$max1199} {
+                width: 300px;
+            }
+
+            @media #{$max991} {
+                width: 155px;
+            }
+
+            img {
+                border-radius: 20px;
+            }
+
+            .coach-names {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 31px;
+                text-align: center;
+
+                p {
+                    padding: 8px 20px;
+                    background-color: #fff;
+                    @include bd-radius(50px);
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 18px;
+                    display: inline-block;
+
+                    @media #{$max991} {
+                        padding: 5px 20px;
+                        font-size: 13px;
+                        line-height: 16px;
+                    }
+                }
+            }
+        }
+
+        .ic-rating-info {
+            @include d-flex();
+            gap: 15px;
+            padding-bottom: 25px;
+
+            @media #{$max1199} {
+                gap: 6px;
+            }
+
+            li {
+                p {
+                    padding: 0px 10px;
+                    border: 1px solid rgba(23, 141, 166, 0.22);
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    @include bd-radius(50px);
+
+                    @media #{$max1440} {
+                        gap: 4px;
+                    }
+
+                    @media #{$max1199} {
+                        padding: 2px 10px;
+                        font-size: 13px;
+                    }
+
+                    &.orange {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .ic-list-conetnt {
+            flex: 1;
+
+            .list-conetnt-info {
+                padding-top: 13px;
+                padding-bottom: 20px;
+
+                .list-info-items {
+                    padding: 13px 11px;
+                    border-bottom: 1px solid rgba(23, 141, 166, 0.22);
+
+                    @media #{$max1440} {
+                        padding: 10px 0px;
+                    }
+
+                    &:first-child {
+                        border-top: 1px solid rgba(23, 141, 166, 0.22);
+                    }
+
+                    p {
+                        @include d-flex();
+                        @include align-items(center);
+                        flex-wrap: nowrap;
+                        color: #73768f;
+                        font-size: 16px;
+                        gap: 10px;
+                        font-weight: 300;
+                        @media #{$max1440} {
+                            font-size: 14px;
+                        }
+
+                        i {
+                            color: $primary;
+                        }
+                    }
+
+                    span {
+                        display: inline-flex;
+                        padding: 5px 15px;
+                        @include bd-radius(50px);
+                        background-color: $primary;
+                        color: #fff;
+                        margin-left: auto;
+                        @include align-items(center);
+                        gap: 10px;
+
+                        @media #{$max1199} {
+                            margin-right: auto;
+                            margin-left: unset;
+                            padding: 2px 10px;
+                            font-size: 13px;
+                            gap: 4px;
+                        }
+                    }
+
+                    @include d-flex();
+                    @include align-items(center);
+                    gap: 10px;
+                }
+            }
+        }
+        .card-btn {
+            @include d-flex();
+            @include align-items(center);
+            @include justify-content(space-between);
+        }
+    }
+}
+
+.ic-pagination {
+    padding-top: 60px;
+
+    ul {
+        @include d-flex();
+        @include align-items(center);
+
+        li {
+            margin-right: 8.9px;
+
+            a {
+                width: 50px;
+                height: 50px;
+                background: #ffffff;
+                box-shadow: 0px 13.6991px 28.5398px rgba(74, 83, 188, 0.12);
+                border-radius: 5px;
+                display: inline-flex;
+                @include align-items(center);
+                @include justify-content(center);
+                color: #a1a5bb;
+
+                &:hover {
+                    background: linear-gradient(18.13deg,
+                            #06738a 24.73%,
+                            #2aa6c0 96.42%),
+                        linear-gradient(180deg, #fc8e51 0%, #f05c58 100%),
+                        #3d4862;
+                    color: #fff;
+                }
+
+                &.active {
+                    background: linear-gradient(18.13deg,
+                            #06738a 24.73%,
+                            #2aa6c0 96.42%),
+                        linear-gradient(180deg, #fc8e51 0%, #f05c58 100%),
+                        #3d4862;
+                    box-shadow: 0px 8px 40px rgba(36, 156, 181, 0.4);
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

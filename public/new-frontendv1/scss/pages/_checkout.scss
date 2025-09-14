@@ -1,0 +1,409 @@
+.ic_checkout {
+    // background-color: $white;
+    // padding: 30px;
+    // @include bd-radius(5px);
+
+    @media #{$max1399} {
+        padding: 28px;
+    }
+
+    @media #{$max1199} {
+        padding: 27px;
+    }
+
+    @media #{$max991} {
+        padding: 26px;
+    }
+
+    @media #{$max767} {
+        padding: 22px;
+    }
+
+    @media #{$max575} {
+        padding: 20px 10px;
+    }
+
+
+
+   
+
+    .ic_card_wrapper {
+        gap: 16px;
+
+        @media #{$max1399} {
+            gap: 14px;
+        }
+
+        @media #{$max1199} {
+            gap: 12px;
+        }
+
+        @media #{$max991} {
+            gap: 7px;
+        }
+
+        @media #{$max767} {
+            gap: 5px;
+        }
+    }
+
+    .card_secure_info {
+        @extend .ic_card_wrapper;
+
+        input {
+            // width: 60px;
+            width: calc(100% / 3 - 16px + 16px / 3);
+            text-align: center;
+
+            @media #{$max1399} {
+                width: calc(100% / 3 - 14px + 14px / 3);
+            }
+
+            @media #{$max1199} {
+                width: calc(100% / 3 - 12px + 12px / 3);
+            }
+
+            @media #{$max991} {
+                width: calc(100% / 3 - 7px + 7px / 3);
+            }
+
+            @media #{$max767} {
+                width: calc(100% / 3 - 5px + 5px / 3);
+            }
+
+            &::placeholder {
+                text-align: center;
+            }
+        }
+    }
+
+    .ic_checkout_content_wrapper {
+        gap: 20px;
+
+        @media #{$max991} {
+            gap: 16px;
+        }
+
+        .checkout_left_content {
+            width: calc(65% - 20px + 20px / 2);
+
+            @media #{$max991} {
+                width: calc(50% - 16px + 16px / 2);
+            }
+
+            @media #{$max767} {
+                width: 100%;
+            }
+
+            .ic_link {
+                a {
+                    @include transition-linear(0.5s);
+
+                    &:hover {
+                        color: $primary;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .checkout_right_content {
+            width: calc(35% - 20px + 20px / 2);
+
+            @media #{$max991} {
+                width: calc(50% - 16px + 16px / 2);
+            }
+
+            @media #{$max767} {
+                width: 100%;
+            }
+
+            .ic_order {
+                padding: 23px;
+                border: 1px solid $stock;
+                background-color: $gray;
+                @include bd-radius(5px);
+
+                @media #{$max1399} {
+                    padding: 20px 16px;
+                }
+
+                @media #{$max1199} {
+                    padding: 18px 16px;
+                }
+
+                @media #{$max575} {
+                    padding: 16px 10px;
+                }
+            }
+
+        }
+    }
+
+    .ic_bb_1 {
+        border-bottom: 1px solid $stock;
+    }
+
+    .form-label {
+        font-size: 16px;
+        color:$black;
+        font-weight: 500;
+        margin-bottom: 9px;
+
+        @media #{$max991} {
+            font-size: 15px;
+        }
+
+        @media #{$max767} {
+            font-size: 14px;
+        }
+    }
+
+    .form-control {
+        font-size: 15px;
+        font-weight: 300;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: $white;
+        border: 1px solid $stock;
+        color: $gray;
+        @include box-shadow2(none);
+        @include bd-radius(5px);
+
+        @media #{$max1399} {
+            height: 50px;
+            font-size: 14px;
+        }
+
+        @media #{$max991} {
+            height: 45px;
+            font-size: 13px;
+        }
+
+
+
+        &:focus {
+            border: 1px solid #0c7a134f;
+        }
+    }
+
+    .bootstrap-select {
+        width: 100% !important;
+
+        .dropdown-toggle {
+            gap: 10px;
+
+            font-size: 15px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            color: $gray;
+            background-color: $white;
+            border: 1px solid $stock;
+            font-weight: 300;
+            text-transform: capitalize;
+            cursor: pointer;
+            @include transition-linear(0.2s);
+            @include bd-radius(4px);
+
+            &:focus {
+                border: 1px solid #0c7a134f;
+            }
+
+            &:focus {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+            @media #{$max1399} {
+                height: 50px;
+                font-size: 14px;
+            }
+
+            @media #{$max991} {
+                height: 45px;
+                font-size: 13px;
+            }
+
+        }
+
+        // .dropdown-item {
+        //     &.active {
+        //         color: $gray;
+        //         background-color: $color-green-shade;
+        //     }
+        // }
+    }
+
+    .form-check {
+        @media #{$max767} {
+            font-size: 14px;
+            min-height: unset;
+            margin-bottom: unset;
+        }
+
+        input {
+            @include box-shadow2(none);
+        }
+
+        label {
+            color: $gray;
+        }
+    }
+
+    .form-check-input {
+
+        top: 12px;
+            left: 33px;
+            box-shadow: none;
+
+            &:checked+.single_payment {
+                border: 1px solid $primary;
+            }
+        &:focus {
+            border-color: $primary;
+        }
+
+        &:checked {
+            background-color: $primary;
+            border-color: $primary;
+        }
+    }
+
+    .ic-message-search {
+        display: none;
+    }
+
+    .ic_search_bar {
+        position: relative;
+        @include d-flex;
+        @include align-items(center);
+        width: 100%;
+        // height: 50px;
+        font-size: 13px;
+        font-weight: 300;
+        color:$black;
+        background-color: $gray;
+        @include bd-radius(5px);
+
+
+        @media #{$max1399} {
+            font-size: 14px;
+            max-width: 130px;
+        }
+
+        @media #{$max1199} {
+            font-size: 13px;
+            max-width: 120px;
+        }
+
+        .form_control {
+            background-color: transparent;
+            position: relative;
+            flex: 1 1 auto;
+            width: 1%;
+            min-width: 0;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+
+            i {
+                font-size: 20px;
+
+                @media #{$max1399} {
+                    font-size: 18px;
+                }
+
+                @media #{$max1199} {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+
+    .save-card-button-wrapper {
+        @include d-flex;
+        gap: 20px;
+    }
+
+    .single_payment_wrapper {
+        @include d-flex;
+        @include flex-wrap(wrap);
+        gap: 14px;
+
+
+
+      
+
+        .single_payment {
+           
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #eaeaea;
+            @include bd-radius(5px);
+            cursor: pointer;
+            gap: 14px;
+
+            padding: 12px 12px 12px 35px;
+            min-width: 210px;
+        }
+
+       
+
+        .content {
+            width: 60%;
+
+            small {
+                color: #595e72;
+            }
+
+            .name_edit {
+                gap: 4px;
+            }
+
+            .circle {
+                width: 4px;
+                height: 4px;
+                background: #595e72;
+                @include bd-radius(50%);
+            }
+        }
+    }
+}
+.ic_payment {
+    @extend .ic_order;
+
+    .payment_logo {
+        cursor: pointer;
+        padding: 4px;
+        height: 30px;
+        width: 55px;
+        border: 0.78px solid $stock;
+        background-color: $white;
+        @include inline-flex;
+        @include justify-content(center);
+        @include align-items(center);
+        @include bd-radius(5px);
+
+        &.active {
+            border: 0.78px solid $primary;
+        }
+    }
+
+    .form-check-input {
+        margin-top: 8px;
+        border-radius: 50%!important;
+        &:focus {
+            border-color: $primary;
+            box-shadow: none;
+        }
+
+        &:checked {
+            background-color: $primary;
+            border-color: $primary;
+        }
+    }
+}

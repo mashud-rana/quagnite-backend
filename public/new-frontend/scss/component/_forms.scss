@@ -1,0 +1,259 @@
+.form-group {
+  label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-rubik;
+    color: $purple;
+  }
+
+  margin-bottom: 18px;
+
+  @media #{$max1650} {
+    margin-bottom: 15px;
+  }
+
+  @media #{$max1399} {
+    margin-bottom: 12px;
+  }
+
+  @media #{$max991} {
+    margin-bottom: 10px;
+  }
+}
+
+.form-check-input {
+  padding: 0;
+  border-radius: 0 !important;
+  // border-radius: 0 !important;
+  position: relative;
+  &[type="radio"]{
+    border-radius: 50% !important;
+    border: 2px solid $gray;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 10px;
+      height: 10px;
+      @include bd-radius(50%);
+      border: 3px solid $gray;
+    }
+  }
+  &:checked {
+    border: 2px solid $primary;
+    &[type="radio"] {
+      background-image: unset;
+      background-color: transparent;
+      &::after {
+        border: 3px solid $primary;
+      }
+    }
+  }
+}
+.form-switch {
+  .form-check-input {
+    border-radius: 2em!important;
+
+    &:checked {
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+}
+.form-control {
+  background: #FFFFFF;
+  border: 1px solid #EAEFF3;
+  border: 1px solid rgba(121, 139, 142, 0.2);
+  @include bd-radius(5px);
+  height: 50px;
+
+  // height: 48px;
+  &:focus {
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 25px;
+    color: #70798B;
+  }
+}
+
+.input {
+  height: 50px;
+  line-height: 50px;
+  // box-shadow: 0px 0px 0px 4px rgba(13, 110, 253, 0.25);
+  @include bd-radius(4px);
+  font-size: 14px;
+  color: $gray;
+  padding: 0px 14px;
+  background-color: $white;
+  color: $gray;
+
+  &::placeholder {
+    color: $gray;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  @media #{$max1399} {
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: $gray;
+  padding-bottom: 6px;
+}
+
+.ic-select {
+  display: block;
+  width: 100% !important;
+
+  .dropdown-toggle {
+    width: 100%;
+    height: 44px;
+    @include bd-radius(8px);
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border: 1px solid #d0d5dd !important;
+    padding: 0px 14px !important;
+
+    @media #{$max1399} {
+      height: 40px;
+    }
+  }
+}
+
+.filter-option-inner {
+  line-height: 40px;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option {
+  height: auto;
+}
+
+.form-checks {
+  @include d-flex();
+  @include align-items(center);
+  min-height: auto;
+  padding-left: 0;
+
+  label {
+    color: gray;
+    padding-bottom: 0;
+
+
+  }
+
+  input {
+    display: none;
+  }
+}
+
+$u: 16px;
+// Google Material Colors
+$bluegrey100: #CFD8DC;
+$bluegrey300: #90A4AE;
+$bluegrey500: #607D8B;
+$bluegrey900: #263238;
+$blueA400: $primary;
+// Timing Functions
+$easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+$easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+$easeIn: $easeInQuart;
+$easeOut: $easeOutQuart;
+$easeInOut: $easeInOutQuart;
+
+// Important
+.majesticCheckbox {
+  $boxSize: $u * .90;
+  $checkThickness: 2px;
+  cursor: pointer;
+  display: flex;
+  min-height: $boxSize;
+  align-items: center;
+  line-height: 1;
+  user-select: none;
+  color: $bluegrey500;
+  font-weight: normal;
+  @include bd-radius(2px);
+  // To be removed. Showcase only
+
+  span {
+    position: relative;
+    display: flex;
+    width: $boxSize;
+    height: $boxSize;
+    border: 1px solid $bluegrey500;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-right: calc($u / 2);
+
+    i {
+      position: relative;
+      width: $boxSize;
+      height: $boxSize;
+      margin-left: calc($boxSize / 10);
+      transform: rotate(-45deg) translateX(0%) translateY(0%) scale(0.8);
+      transform-origin: center left;
+
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        background-color: white;
+        border-radius: $boxSize;
+      }
+
+      &:before {
+        height: 0%;
+        top: 50%;
+        left: 0;
+        width: $checkThickness;
+      }
+
+      &:after {
+        width: 0%;
+        bottom: 0;
+        left: 0;
+        height: $checkThickness;
+      }
+    }
+  }
+
+  // Box
+  // If selected
+  input:checked~span {
+    border: none;
+    background-color: $blueA400;
+
+    i:before {
+      height: 50%;
+      transition: height 300ms $easeIn;
+    }
+
+    i:after {
+      width: 100%;
+      transition: width 300ms 300ms $easeOut;
+    }
+  }
+
+  input:checked~b {
+    color: $bluegrey900;
+  }
+}
+
+// Majestic Checkbox

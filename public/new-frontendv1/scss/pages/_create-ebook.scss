@@ -1,0 +1,194 @@
+.ic-create-ebook {
+    padding: 45px 0px 77px;
+
+    @media #{$max1650} {
+        padding: 45px 0px 70px;
+    }
+
+    @media #{$max1440} {
+        padding: 45px 0px 60px;
+    }
+
+    @media #{$max1399} {
+        padding: 45px 0px 50px;
+    }
+
+    @media #{$max1399} {
+        padding: 45px 0px;
+    }
+
+    @media #{$max991} {
+        padding: 30px 0px;
+    }
+
+    @media #{$max767} {
+        padding: 20px 0px;
+    }
+}
+
+.ic-create-ebook-heading {
+    margin-bottom: 35px;
+
+    @media #{$max1440} {
+        margin-bottom: 30px;
+    }
+
+    @media #{$max1199} {
+        margin-bottom: 25px;
+    }
+
+    @media #{$max991} {
+        margin-bottom: 20px;
+    }
+
+    @media #{$max991} {
+        font-size: 20px;
+    }
+
+    @media #{$max767} {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+
+        @media #{$max1399} {
+            font-size: 30px;
+        }
+
+        @media #{$max1199} {
+            font-size: 25px;
+        }
+
+        @media #{$max991} {
+            font-size: 20px;
+        }
+
+        @media #{$max767} {
+            font-size: 18px;
+        }
+    }
+}
+
+.ic-event-details-register-form {
+    &.ic-create-ebook-form {
+        border-radius: 10px;
+        border: 1px solid var(--Stock, #E2E2EA);
+        background: var(--white, #FFF);
+        box-shadow: 0px 1px 4px 0px rgba(20, 3, 66, 0.07);
+    }
+}
+
+.ic-create-ebook-content-top {
+    padding-bottom: 31px;
+    border-bottom: 1px solid #E2E2EA;
+
+    @media #{$max767} {
+        padding-bottom: 15px;
+    }
+
+
+    .ic-ebook-file {
+        text-align: center;
+        padding: 48px 50px;
+        border-radius: 5px;
+        border: 1px dashed var(--Stock, #E2E2EA);
+        background: var(--white, #FFF);
+        box-shadow: 0px 0px 50px 0px rgba(35, 35, 35, 0.05);
+
+        @media #{$max991} {
+            padding: 25px 50px;
+        }
+
+        @media #{$max575} {
+            padding: 20px 50px;
+        }
+
+        input {
+            display: none;
+        }
+    }
+
+    .ic-file-content {
+        // text-align: center;
+        // padding: 48px 50px;
+        // border-radius: 5px;
+        // border: 1px dashed var(--Stock, #E2E2EA);
+        // background: var(--white, #FFF);
+        // box-shadow: 0px 0px 50px 0px rgba(35, 35, 35, 0.05);
+    }
+}
+
+.ic-create-ebook-content-bottom {
+    padding-top: 30px;
+
+    @media #{$max767} {
+        padding-top: 15px;
+    }
+
+    .form-select {
+        @media #{$max1399} {
+            height: 42px;
+        }
+
+        @media #{$max1199} {
+            height: 40px;
+        }
+
+        @media #{$max991} {
+            height: 38px;
+        }
+
+        @media #{$max767} {
+            height: 37px;
+        }
+    }
+
+    .ic-btn-group {
+        @include d-flex();
+        gap: 20px;
+
+        @media #{$max991} {
+            gap: 15px;
+
+        }
+
+        button {
+            display: inline-flex;
+            height: 50px;
+            padding: 0px 25px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            border-radius: 5px;
+            width: unset;
+            color: white;
+
+            @media #{$max991} {
+                height: 45px;
+                font-size: 14px;
+
+            }
+
+            @media #{$max575} {
+                height: 35px;
+                font-size: 14px;
+            }
+
+
+
+            &:first-child {
+                background: $red;
+            }
+
+            &:last-child {
+                background: $green;
+            }
+        }
+
+    }
+}

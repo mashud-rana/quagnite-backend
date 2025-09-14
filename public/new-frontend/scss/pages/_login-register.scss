@@ -1,0 +1,305 @@
+.ic__loginRegistration--users {
+    padding: 90px 10px;
+    border-radius: 10px;
+
+    @media #{$max1199} {
+        padding: 50px 10px;
+    }
+
+    .users-main {
+        max-width: 930px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+
+        @media #{$max1366} {
+            max-width: 800px;
+        }
+
+        @media #{$max1199} {
+            max-width: 700px;
+        }
+
+        @media #{$max991} {
+            max-width: 600px;
+            gap: 10px;
+        }
+
+        a {
+            width: calc(100% / 3 - 30px + 30px / 3);
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            @include bd-radius(10px);
+            background-color: #fff;
+            border: 1px solid #fff;
+
+            @media #{$max991} {
+                width: calc(100% / 3 - 10px + 10px / 3);
+            }
+
+            @media #{$max767} {
+                width: calc(100% / 2 - 10px + 10px / 2);
+                padding: 10px;
+            }
+
+            &:hover {
+                border: 1px solid $primary;
+
+                h6 {
+                    color: $primary !important;
+                }
+            }
+
+            img {
+                width: 130px;
+                height: 130px;
+                @include bd-radius(50%);
+
+                @media #{$max1199} {
+                    width: 100px;
+                    height: 100px;
+                }
+
+                @media #{$max991} {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+
+            .ic__loginRegistration--items {
+                .ic__loginRegistration--img {
+                    padding-bottom: 20px;
+                }
+
+                h6 {
+                    color: #272C37;
+                    font-size: 24px;
+                    font-family: $font-lexend;
+                    transition: all linear .3s;
+
+                    @media #{$max1366} {
+                        font-size: 20px;
+                    }
+
+                    @media #{$max1199} {
+                        font-size: 18px;
+                    }
+
+                    @media #{$max767} {
+                        font-size: 16px;
+                    }
+                }
+
+                text-align: center;
+            }
+
+        }
+    }
+}
+.main_content {
+    width: 548px;
+    display: none;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    @media #{$max575} {
+        width: 100%;
+    }
+    @include bd-radius(10px);
+    &.ic-register-main {
+        width: 1096px;
+        margin: 0 auto;
+        display: flex;
+        padding: 0;
+        align-items: center;
+
+        @media #{$max1199} {
+            width: 500px;
+        }
+
+        @media #{$max575} {
+            width: 100%;
+        }
+
+        .ic-register-left {
+            width: 50%;
+            padding: 40px;
+            border-right: 1px solid #E2E2EA;
+
+            @media #{$max1199} {
+                width: 100%;
+            }
+
+            @media #{$max575} {
+                padding: 24px;
+            }
+        }
+
+        .ic-register-right {
+            width: 50%;
+            padding: 40px;
+
+
+            @media #{$max1199} {
+                display: none;
+            }
+
+            @media #{$max575} {
+                display: none;
+                padding: 24px;
+            }
+        }
+        }
+    .logo {
+        img {
+            max-width: 140px;
+        }
+
+        padding-bottom: 24px;
+        border-bottom: 1px solid #EAECF0;
+    }
+
+    .title {
+        padding-top: 22px;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 130%;
+        @media #{$max767} {
+            font-size: 24px;
+        }
+
+        @media #{$max575} {
+            font-size: 20px;
+        }
+        +p {
+            color: #6C757D;
+            padding-bottom: 18px;
+        }
+    }
+
+    .ic_google_signin {
+        a {
+            border: 1px solid #E2E2EA;
+            background: #FFF;
+            // box-shadow: 0px 4px 16px -2px rgba(27, 37, 51, 0.06);
+            width: 100%;
+            display: block;
+            font-weight: 600;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #272C37;
+            border-radius: 5px;
+        }
+    }
+}
+
+.ic_signin_with_email {
+    height: 48px;
+    position: relative;
+    margin-top: 24px;
+    @media #{$max575} {
+        margin-top: 10px;
+    }
+    &::after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 1px;
+        background-color: #E2E2EA;
+    }
+
+    span {
+        padding: 10px 16px;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9;
+        font-weight: 600;
+        color: #00ACB6;
+    }
+}
+
+.form-label {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 145%;
+    font-family: $font-lexend;
+    color: #272C37;
+}
+
+.ic_remember_me {
+    a {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 145%;
+        color: #6C757D;
+
+        span{
+            font-size: 14px;
+            color: #00ACB6;
+        }
+    }
+}
+
+.ic_create_acc {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 115%;
+
+    a {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+    }
+}
+
+.ic_input_group {
+    .form-control {
+        height: 48px;
+    }
+
+}
+
+.submit-btn {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    /* 24px */
+    color: $white;
+    background-color: $primary;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ic-icon-locks {
+    width: 42px;
+    height: 42px;
+    @include bd-radius(50%);
+    border: 6px solid #FDEEEC;
+    background: #FADDD8;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 0 auto;
+}
+

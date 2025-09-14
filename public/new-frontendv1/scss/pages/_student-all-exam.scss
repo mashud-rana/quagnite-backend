@@ -1,0 +1,116 @@
+/* student all exam */
+.ic-teacher-create-exam {
+    &.ic-student-all-exam {
+        .ic-teacher-create-exam-wrapper {
+            margin-top: 44px;
+            margin-bottom: 0;
+
+            @media #{$max1199} {
+                margin-top: 40px;
+            }
+
+            @media #{$max991} {
+                margin-top: 35px;
+            }
+
+            @media #{$max767} {
+                margin-top: 30px;
+            }
+
+            @media #{$max575} {
+                margin-top: 25px;
+            }
+        }
+
+        .ic-exam-heading {
+            @include d-flex();
+            @include justify-content(space-between);
+            gap: 10px;
+        }
+
+        .ic-exam-heading-left {
+            h2 {
+                font-size: 30px;
+                margin-bottom: 13px;
+
+                @media #{$max991} {
+                    font-size: 25px;
+                }
+
+                @media #{$max767} {
+                    font-size: 20px;
+                }
+
+                @media #{$max575} {
+                    font-size: 18px;
+                }
+            }
+
+            p {
+                color: var(--Greay, #6C757D);
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+        }
+
+        .ic-exam-heading-right {
+            .dropdown-toggle {
+                height: 40px;
+                padding: 0px 20px;
+                border-radius: 25px;
+                border: 1px solid var(--Stock, #E2E2EA);
+                background: var(--white, #FFF);
+                color: $primary;
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+
+                &::after {
+                    display: none;
+                }
+
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .ic-action-btn {
+            button {
+                height: 35px;
+                border-radius: 25px;
+                border: 1px solid var(--Stock, #E2E2EA);
+                background: #FFF;
+                padding: 0px 15px;
+                color: #00ACB6;
+
+                @media #{$max575} {
+                    font-size: 14px;
+                    height: 30px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        thead {
+            th {
+                background-color: $primary;
+                color: white;
+            }
+        }
+
+        tbody {
+            td {
+                &:last-child {
+                    min-width: 275px;
+                }
+            }
+
+            .ic-table-item {
+                width: unset;
+            }
+        }
+    }
+}

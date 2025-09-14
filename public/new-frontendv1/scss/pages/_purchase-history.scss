@@ -1,0 +1,182 @@
+.ic-purchase-history {
+    margin-top: 40px;
+    padding: 30px;
+    @include bd-radius(10px);
+    background-color: #fff;
+
+    .ic-tables {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid $stock;
+
+        thead {
+            th {
+                background-color: $w-shade;
+                color: $gray;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                padding: 18px 18px;
+                text-align: center;
+                white-space: nowrap;
+
+                &:not(:last-child) {
+                    border-right: 1px solid $stock;
+                }
+
+                &:nth-child(1) {
+                    border-top-left-radius: 5px;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 5px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    color: $gray;
+                    font-weight: 400;
+                    text-align: center;
+                    padding: 18px 8px;
+                    border: 1px solid $stock;
+                    @media #{$max1399} {
+                        font-size: 14px;
+                    }
+                    &:last-child {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ic-pruchase-plan-method {
+    margin-bottom: 30px;
+}
+
+.ic-plan-items-p {
+    background: rgba(0, 172, 182, 0.05);
+    border: 1px solid $stock;
+    @include bd-radius(5px);
+    padding: 25px;
+    margin-top: 20px;
+    @media #{$max575} {
+        padding: 14px;
+    }
+    .ic-chooes-plan-names {
+        @include d-flex();
+        @include align-items(center);
+        gap: 10px;
+        h4 {
+            @media #{$max1650} {
+                font-size: 16px;
+            }
+        }
+        p {
+            @media #{$max1650} {
+                font-size: 14px;
+            }
+        }
+        .payment-method-img {
+            background-color: #fff;
+            border: 1px solid $stock;
+            @include bd-radius(5px);
+            flex: 0 0 auto;
+            width: 108px;
+            height: 56px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                max-width: 72px;
+            }
+        }
+
+        span {
+            background: rgba(0, 172, 182, 0.05);
+            border: 1px solid $stock;
+            @include bd-radius(50px);
+            font-size: 14px;
+            color: $primary;
+            display: inline-block;
+            padding: 5px 15px;
+        }
+
+        .ic-change-btn {
+            height: 41px;
+            background-color: #fff;
+            @include bd-radius(25px);
+            color: $gray;
+            padding: 0 31px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all linear .3s;
+
+            &:hover {
+                background-color: $primary;
+                color: #fff;
+            }
+        }
+    }
+
+    p {
+        font-weight: 300;
+        @media #{$max1650} {
+            font-size: 14px;
+        }
+    }
+}
+
+.ic-badge {
+    background: rgba(0, 172, 182, 0.05);
+    border: 1px solid $stock;
+    @include bd-radius(50px);
+    display: inline-block;
+    padding: 5px 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    @media #{$max1650} {
+        font-size: 14px;
+    }
+}
+
+.method {
+    width: 54px;
+    height: 30px;
+    @include bd-radius(5px);
+    border: 0.777642px solid #D9D9D9;
+    display: inline-flex;
+    padding: 5px 5px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    @media #{$max1650} {
+        font-size: 14px;
+    }
+}
+
+.status {
+    @include bd-radius(50px);
+    display: inline-block;
+    padding: 6px 15px;
+    background: rgba(0, 172, 182, 0.1);
+    border-radius: 20px;
+    color: $primary;
+    @media #{$max1650} {
+        font-size: 14px;
+    }
+    &.ic-Pending {
+        background-color: rgba(244, 120, 32, 0.1);
+        color: #F47820;
+    }
+    &.ic-cancel {
+        background-color: rgba(232, 84, 62, 0.1);
+        color: $red;
+    }
+}

@@ -1,0 +1,73 @@
+/* ic-latest-blog-section */
+// .ic-banner-part {
+//     .ic-btn {
+//         font-size: 20px;
+//     }
+// }
+
+.ic-latest-blog-section {
+    .business-tabs {
+        padding-top: 36px;
+    }
+
+}
+
+.ic-blog-list-heading {
+    width: 100%;
+    max-width: 590px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 56px;
+
+    @media #{$max1650} {
+        margin-bottom: 40px;
+    }
+
+    @media #{$max1199} {
+        margin-bottom: 30px;
+    }
+
+    @media #{$max991} {
+        margin-bottom: 20px;
+    }
+
+    @media #{$max575} {
+        margin-bottom: 10px;
+    }
+
+    .ic-heading-tag {
+        margin-top: 15px;
+        color: $gray-deep;
+        font-family: $font-lexend;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 30px;
+    }
+
+}
+
+.data-science-navs {
+    &.blog-list-navs {
+        ul {
+            li {
+                a {
+                    color: $text-color;
+                    font-family: $font-lexend;
+
+                    &.active {
+                        color: $primary;
+                    }
+
+                    &::after {
+                        background-color: $primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* bootcamp section */
+.ic-bootcamp-employee-section {
+    background-color: #EDF2F6;
+}

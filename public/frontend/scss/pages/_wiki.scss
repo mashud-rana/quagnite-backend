@@ -1,0 +1,85 @@
+.ic__wiki--headers {
+    @include d-flex();
+    @include justify-content(space-between);
+    @include align-items(center);
+    padding-bottom: 43px;
+    @media #{$max1199} {
+        padding-bottom: 30px;
+    }
+}
+
+.ic-wikiLast-shape {
+    position: absolute;
+    right: 0;
+    bottom: -56px;
+
+    @media #{$max1650} {
+        position: absolute;
+        right: 0;
+        bottom: -8px;
+        max-width: 126px;
+    }
+
+    @media #{$max1399} {
+        position: absolute;
+        right: 0;
+        bottom: -34px;
+    }
+    @media #{$max991} {
+        display: none;
+    }
+}
+
+.ic__lesson--part {
+    .slick-slide {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    .slick-list {
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+
+    
+}
+
+.ic__lesson--items {
+    background: #FFFFFF;
+    @include bd-radius(25px);
+    padding: 20px 20px 48px 20px;
+    box-shadow: 5px 33px 22px rgba(31, 29, 85, 0.05);
+    margin-bottom: 79px;
+    @media #{$max1199} {
+        margin-bottom: 50px;
+    }
+    >div {
+        padding-bottom: 28px;
+
+        img {
+            @include bd-radius(25px);
+            width: 100%;
+        }
+    }
+
+    span {
+        color: #24A5C0;
+    }
+
+    h6 {
+        line-height: 32px;
+        color: #2E2F47;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 26px;
+        color: #8F9BB4;
+        padding-bottom: 30px;
+        @media #{$max1399} {
+            font-size: 16px;
+        }
+    }
+}

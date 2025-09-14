@@ -1,0 +1,76 @@
+<div><strong>What is Git?<br></strong><br></div>
+<div>Git is a so-called distributed version control system. It helps developers work on the same source code, without
+    creating problems like code conflicts caused by contradicting changes. Git makes it easy for everyone to see who
+    modified some code, when, and why. It makes it easy to track what code is written for version 1.1 of the app, and
+    what changed in version 1.2. It lets people see what lines of code some bug fixes changed, and so on. Long story
+    short, Git allows multiple people to collaborate on the same source code.<br><br></div>
+<div><strong>Learn about Git<br></strong><br></div>
+<div>You can learn more about Git by reading the DevOps: Git for Beginners</a> blog. That way you get a quick intro. If
+    you have time to learn more though, we recommend the KodeKloud. This explains the basic concepts of Git such as
+    branching, merging, rebasing, reverting, etc. It includes visualizations and animations for a better understanding
+    of the concepts. The learners also get access to the labs where they can get practical experience with Git.<br><br>
+</div>
+<div><strong>Play with Git<br></strong><br></div>
+<div>Experiment with Git as much as you’d like by using this Git playground. The playground includes the
+    <strong>git</strong> command preinstalled. You also get access to Gitea, something that will let you access a
+    website similar to GitHub. It's basically a self-hosted web platform that lets you store source code in
+    repositories, and perform various actions on it, through your web browser. But the git command can also interact
+    with the Gitea service (for example, to upload new code from a local computer to a Gitea repository).<br><br></div>
+<div><strong>Basic Git commands<br></strong><br></div>
+<ul>
+    <li>Initialize an empty repository</li>
+</ul>
+<blockquote><strong>git init</strong></blockquote>
+<ul>
+    <li>To check the status of the repository</li>
+</ul>
+<blockquote><strong>git status</strong></blockquote>
+<ul>
+    <li>Add the untracked files in the staging area. We basically tell Git what files we intend to update with our next
+        commit action.</li>
+</ul>
+<blockquote><strong>git add &lt;file_names&gt;</strong></blockquote>
+<ul>
+    <li>To save the changes to the local repository</li>
+</ul>
+<blockquote><strong>git commit -m “Message to describe the commit”</strong></blockquote>
+<ul>
+    <li>To create, delete or list the branches in the repository</li>
+</ul>
+<blockquote><strong>git branch &lt;branch_name&gt; (Creates branch)</strong></blockquote>
+<ul>
+    <li>To switch from one branch to another</li>
+</ul>
+<blockquote><strong>git checkout &lt;branch_name&gt;</strong></blockquote>
+<ul>
+    <li>To integrate the working branch with stable or other branches</li>
+</ul>
+<blockquote><strong>git merge &lt;branch_name&gt;</strong></blockquote>
+<ul>
+    <li>To create a copy of the repository in a local machine</li>
+</ul>
+<blockquote><strong>git clone &lt;repository_url&gt;</strong></blockquote>",
+'instruction' => "<div><strong>Git Playground</strong></div>
+<div><br>Welcome to the Git playground! This environment allows you to practice and explore Git commands.<br><br></div>
+<pre>Username: mcdns
+                Passowrd: mcdns123</pre>
+<div><strong>Click the Red Cross button on the top right corner to end this sandbox environment<br></strong><br></div>
+<div><strong>Basic Commands:<br><br>Git Version Check<br></strong><br></div>
+<pre>git --version </pre>
+<div><strong><br></strong><br></div>
+<div>Configure Git:</div>
+<div># Set your name<br><br></div>
+<pre>git config --global user.name 'Your Name'</pre>
+<div><br># Set your email</div>
+<pre>git config --global user.email 'your.email@example.com'</pre>
+<div><br># Initialize a new repository</div>
+<pre>git init</pre>
+<div><br># Clone an existing repository</div>
+<pre>git clone &lt;repository-url&gt;</pre>
+<div><br># Check the status of your repository</div>
+<pre>git status</pre>
+<div><br># Stage changes for commit</div>
+<pre>git add &lt;file-name&gt;</pre>
+<div><br># Commit changes</div>
+<pre>git commit -m 'Your commit message'</pre>
+<div><br>Feel free to explore and practice different Git commands. Happy coding!</div>

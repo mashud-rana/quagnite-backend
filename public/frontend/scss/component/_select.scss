@@ -1,0 +1,63 @@
+.bootstrap-select {
+  width: 100%!important;
+  .dropdown-toggle {
+    background-color: #F4F7F9;
+    border: none;
+    border: 1px solid #EAECF0;
+    font-family: $font-rubik;
+    padding: 0;
+    padding: 4px 24px;
+    @include bd-radius(4px);
+
+    &::after {
+      font-family: "remixicon" !important;
+      content: "\ea4e";
+      border: none;
+      color: $gray;
+      font-size: 19px;
+      font-weight: 800;
+    }
+    &:active {
+      background-color: #F4F7F9;
+    }
+
+    .filter-option-inner-inner {
+      font-family: $font-rubik;
+      color: $black;
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    &:focus {
+      box-shadow: none;
+      outline: 0 !important;
+    }
+  }
+
+  .dropdown-menu {
+    &.inner {
+      li {
+        .dropdown-item {
+          &:active {
+            background-color: $primary;
+          }
+        }
+
+        &.selected {
+          &.active {
+            .dropdown-item {
+              &.selected {
+                background-color: $primary;
+              }
+            }
+          }
+        }
+
+        .text {
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}

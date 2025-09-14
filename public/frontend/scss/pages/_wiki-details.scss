@@ -1,0 +1,110 @@
+.ic__wiki--detailsHeader {
+    padding-top: 16px;
+    padding-bottom: 35px;
+    @media #{$max991} {     
+        padding-bottom: 20px;
+      }
+    .ic-wiki-title {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 32px;
+        color: #0FA6AE;
+        padding-bottom: 11px;
+        @media #{$max1399} {     
+            font-size: 18px;
+            line-height: 30px;
+          }
+          @media #{$max1280} {
+            font-size: 16px;
+            line-height: 30px;
+          }
+    }
+
+    .ic-wiki-subTitle {
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 32px;
+        padding-bottom: 11px;
+        color: #136576;
+        @media #{$max1399} {     
+            font-size: 20px;
+            line-height: 30px;
+          }
+          @media #{$max1280} {
+            font-size: 18px;
+            line-height: 30px;
+          }
+    }
+
+    h3 {
+        font-size: 35px;
+        line-height: 57px;
+        color: $black;
+        @media #{$max1399} {     
+            font-size: 28px;
+            line-height: 30px;
+          }
+          @media #{$max1280} {
+            font-size: 26px;
+            line-height: 30px;
+          }
+          @media #{$max1199} {
+            font-size: 24px;
+            line-height: 30px;
+          }
+          @media #{$max991} {
+            font-size: 22px;
+            line-height: 30px;
+          }
+    }
+}
+
+.ic__shape-doted {
+    position: absolute;
+    right: -84px;
+    top: -68px;
+    max-width: 138px;
+    z-index: -1;
+    @media #{$max1399} {
+        right: -23px;
+    }
+    @media #{$max1199} {
+        display: none;
+    }
+}
+
+.ic__share-bt {
+    .dropdown-toggle {
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.ic__helpFull--content {
+    padding: 26px;
+    background: #FFFFFF;
+    box-shadow: -16px 48px 80px rgba(31, 29, 85, 0.05);
+    @include bd-radius(25px);
+    margin-top: 50px;
+
+    .ic__helpFull-first {
+        padding-bottom: 23px;
+        margin-bottom: 23px;
+        border-bottom: 1px solid #ddd;
+        border-image: url(/assets/images/border-bottom-w-det.png) 30 stretch;
+        i {
+            color:
+            #06738A;
+            padding-left: 10px;
+            font-size: 20px;
+        }
+    }
+    .titles {
+        padding-bottom: 10px;
+    }
+    p {
+        font-size: 18px;
+        line-height: 30px;
+    }
+}

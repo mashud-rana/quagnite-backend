@@ -1,0 +1,100 @@
+<div>
+    <strong>What Is ArgoCD<br /></strong><br />
+</div>
+<div>
+    ArgoCD is a <strong>Continuous Delivery</strong> (CD) and
+    <strong>GitOps</strong> tool for Kubernetes.<br /><br />
+</div>
+<div>
+    Think about how apps are usually deployed into Kubernetes. Someone writes a
+    YAML file, and then uses a 'kubectl apply' command to deploy stuff declared
+    in that file. But this can quickly become a problem when multiple people are
+    managing a Kubernetes cluster. It will be hard to track who created what,
+    and what changes have happened lately. But a tool like ArgoCD makes this
+    much more transparent and simple.<br /><br />
+</div>
+<div>
+    People won't create YAML files on their laptops and then push changes to
+    Kubernetes directly, making others wonder what might have changed last
+    night. Instead, everyone will work through a
+    <strong>Git repository</strong>. They'll all have a
+    <em>common middleground</em>, instead of working on their own files, in
+    isolation. And
+    <strong
+        >ArgoCD can continuously synchronize Kubernetes with the states that are
+        defined in that repository</strong
+    >. So it makes Kubernetes continuously
+    <strong>follow the state declared in that Git repository</strong>. This is
+    part of the reason why it's called a continuous delivery tool.<br /><br />
+</div>
+<div>
+    It's worth noting that this depends on how ArgoCD is configured. It can be
+    configured to require manual resynchronization when changes are pushed to
+    Git, or it can be configured to do so automatically.<br /><br />
+</div>
+<div>
+    For example, if John wants to create a cool deployment, he'll create a YAML
+    file, and then upload it to this repository. ArgoCD will notice the new file
+    and automatically deploy this to Kubernetes. Now Jane can take a look at the
+    repository, and see exactly what John did. And if Jane has a nice idea about
+    how to improve this deployment, she can suggest some edits to John's YAML
+    file. John approves them, ArgoCD notices the changes again, and immediately
+    resynchronizes Kubernetes with this new deployment definition.<br /><br />
+</div>
+<div>
+    In a nutshell, the Git repository makes it very convenient for multiple
+    people to collaborate on the changes they want to push to Kubernetes. And
+    ArgoCD synchronizes Kubernetes with the states defined in this repository,
+    at all times.<br /><br />
+</div>
+<div>
+    <strong>Features of ArgoCD<br /></strong><br />
+</div>
+<ul>
+    <li>Automates the deployments of the apps on specific environments.</li>
+    <li>
+        Supports multiple configuration management and templating tools such as
+        Helm, Kustomize, and Jsonnet.&nbsp;
+    </li>
+    <li>Can manage multiple clusters at the same time.</li>
+    <li>Can analyze health status for application resources.</li>
+    <li>
+        Has a web user interface that can be used to explore application
+        activity.
+    </li>
+    <li>Provides Prometheus metrics to enable better monitoring.</li>
+    <li>
+        Integrates with different platforms such as GitHub, BitBucket, and
+        GitLab, using webhooks.
+    </li>
+    <li>
+        Plus many other features that you can check out on the
+        <a href="https://argo-cd.readthedocs.io/en/stable/">product's page</a>.
+    </li>
+</ul>
+<div>
+    <strong>ArgoCD Playground<br /></strong><br />
+</div>
+<div>
+    Setting up Kubernetes, ArgoCD, and a Git repository would take a very long
+    time. So we saved you the trouble and prepared an environment where
+    everything is provided.<br /><br />
+</div>
+<div>
+    The playground is pre-configured with <strong>ArgoCD</strong> and
+    <strong>Gitea</strong>. Gitea is a self-hosted Git service that is used to
+    store files in a repository - an alternative to GitHub. For ease of use, we
+    also provide
+    <strong>web user interfaces for both Gitea and ArgoCD</strong>.<br /><br />
+</div>
+<div>
+    Start pushing changes to your Git repository and see ArgoCD in action! We
+    hope you'll have a great time learning and experimenting in our
+    playground.<br /><br />
+</div>
+<div>
+    And if you don't know enough about this continuous delivery/GitOps tool, you
+    can check out this
+    <a href="https://kodekloud.com/courses/argocd/">course about ArgoCD</a> to
+    help you out.<br /><br /><br />
+</div>

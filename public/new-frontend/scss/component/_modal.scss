@@ -1,0 +1,114 @@
+.modal {
+    &.ic-videoAddDiscussion {
+        .modal-dialog {
+            max-width: 940px;
+            .modal-body {
+                padding: 30px 16px;
+            }
+        }
+    }
+    .modal-dialog {
+        max-width: 785px;
+
+        .modal-header {
+            .modal-title {
+                margin: 0 auto;
+            }
+
+            .btn-close {
+                position: absolute;
+                right: 20px;
+            }
+        }
+
+        .form-group {
+            label {
+                font-weight: 500;
+                font-family: $font-rubik;
+                color: #1F2029;
+                font-size: 16px;
+            }
+
+            .form-control {
+                height: 50px;
+                @include bd-radius(5px);
+                color: #70798B;
+
+                &:disabled {
+                    background-color: rgba(0, 172, 182, 0.05);
+                    border: 1px solid rgba(121, 139, 142, 0.2);
+                }
+            }
+        }
+    }
+
+    .consultation-modal-schedule-list-wrap {
+        padding: 40px 0 60px 0;
+        @media #{$max767} {
+            padding: 20px 0 30px 0;
+        }
+        .time-slot-item {
+
+            .ic-time-btn {
+                padding: 15px 30px;
+                background-color: $primary;
+                color: #fff;
+                @include bd-radius(5px);
+                font-weight: 400;
+                font-size: 16px;
+                cursor: pointer;
+                @media #{$max767} {
+                    font-size: 14px;
+                    padding: 10px 25px;
+                }
+            }
+
+            .btn-check:checked+.btn {
+                background-color: $black;
+            }
+        }
+    }
+
+    .ic-btn-block {
+        height: 50px;
+        background-color: $primary;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 25px;
+        @include bd-radius(5px);
+        border: 1px solid rgba(121, 139, 142, 0.2);
+        color: #fff;
+        font-family: $font-rubik;
+    }
+    .consultation-schedule-day {
+        padding-bottom: 10px;
+    }
+}
+
+
+.ic-modal {
+    .modal-content {
+        position: relative;
+        padding: 40px 60px;
+        .bootstrap-select {
+            .dropdown-toggle {
+                padding: 4px 14px;
+                background-color: #fff;
+                .filter-option-inner-inner {
+                    color: #70798B;
+                }
+            }
+        }
+        .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            z-index: 99;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+    
+}

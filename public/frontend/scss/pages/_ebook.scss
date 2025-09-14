@@ -1,0 +1,131 @@
+.ic-ebookRight-shape {
+    position: absolute;
+    right: 0;
+    bottom: -57px;
+
+    @media #{$max1650} {
+        bottom: -40px;
+        max-width: 150px;
+    }
+
+    @media #{$max1399} {
+        bottom: -22px;
+        max-width: 115px;
+    }
+
+    @media #{$max991} {
+        bottom: -37px;
+        max-width: 107px;
+    }
+    @media #{$max767} {
+        display: none;
+    }
+}
+
+.ic__ebook--part {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    .ic-double-images {
+        position: absolute;
+        top: 16%;
+        right: 5%;
+        width: 136px;
+        z-index: -1;
+    }
+}
+
+.ic__bootcamp--content {
+    .ic__ebook--vernation {
+        ul {
+            @include d-flex();
+            gap: 16px;
+            @include align-items(center);
+
+            li {
+                @include d-flex();
+                gap: 16px;
+                @include align-items(center);
+
+                p {
+                    font-weight: 400;
+                    color: #8E9AB0;
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 35px;
+            line-height: 35px;
+            color: #00B5BF;
+            padding-bottom: 19px;
+        }
+    }
+}
+
+.ic__upcoming--releases {
+    padding-top: 100px;
+
+    @media #{$max1399} {
+        padding-top: 80px;
+    }
+
+    @media #{$max1199} {
+        padding-top: 60px;
+    }
+
+    @media #{$max991} {
+        padding-top: 40px;
+    }
+
+    @media #{$max767} {
+        padding-top: 20px;
+    }
+}
+
+.ic__ebook--containers {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    position: relative;
+
+    .ic-ebook-cube-shape {
+        position: absolute;
+        bottom: -91px;
+        left: -103px;
+        width: 251px;
+        height: 233px;
+    }
+
+    .ic-ebook-tree-shape {
+        position: absolute;
+        bottom: -219px;
+        right: -219px;
+        width: 302px;
+        height: 344px;
+        z-index: 9;
+
+        @media #{$max1650} {
+            right: -112px;
+            width: 234px;
+            height: 259px;
+        }
+
+        @media #{$max1440} {
+            right: -112px;
+            width: 234px;
+            height: 259px;
+        }
+
+        @media #{$max1399} {
+            display: none;
+        }
+    }
+}
+
+.ic__ebook--bottomShape {
+    background-position: bottom;
+}

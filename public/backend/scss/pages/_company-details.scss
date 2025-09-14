@@ -1,0 +1,125 @@
+.ic-company-details-wraper {
+  background-color: $color-white;
+  @include bd-radius(10px);
+  @include box-shadow2($shadow-6);
+}
+
+.ic-comapany-profile-wraper {
+  .ic-company-cover-photo {
+    img {
+      @include bd-radius(10px);
+    }
+  }
+
+  .company-profile-name-contact {
+    @include d-flex();
+    @include justify-content(space-between);
+    @include align-items(flex-end);
+    padding-left: 24px;
+    @media #{$max991} {
+      padding-left: 10px;
+    }
+
+    .ic-company-profile-name {
+      @include d-flex();
+      .profile-pic {
+        @include box(160px, 160px);
+        background-color: $color-white;
+        @include bd-radius(10px);
+        padding: 10px 10px;
+        @include align-center();
+        margin-top: -80px;
+        margin-right: 40px;
+        @media #{$max1650} {
+          margin-right: 30px;
+          @include box(150px, 150px);
+        }
+        @media #{$max1399} {
+          @include box(130px, 130px);
+          margin-top: -65px;
+          margin-right: 20px;
+        }
+        @media #{$max1280} {
+          @include box(120px, 120px);
+          margin-top: -60px;
+        }
+        @media #{$max1199} {
+          @include box(100px, 100px);
+          margin-top: -50px;
+        }
+        @media #{$max575} {
+          @include box(80px, 80px);
+          margin-top: -40px;
+        }
+      }
+
+      h4 {
+        margin-top: 16px;
+        @media #{$max575} {
+          margin-top: 10px;
+        }
+      }
+    }
+    .contact-btn {
+      @media #{$max575} {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.ic-company-overview {
+  p {
+    color: $color-shuttleGray;
+    margin-bottom: 16px;
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.ic-company-info-map-wraper {
+  @include d-flex();
+  @media #{$max575} {
+    flex-direction: column;
+  }
+  .ic-company-info {
+    flex: 0 0 auto;
+    width: 27%;
+    background-color: $color-white;
+    @include box-shadow2($shadow-1);
+    @include bd-radius2(10px, 0px, 0px, 10px);
+    @media #{$max1650} {
+      width: 30%;
+    }
+    @media #{$max1399} {
+      width: 35%;
+    }
+    @media #{$max991} {
+      width: 40%;
+    }
+    @media #{$max767} {
+      width: 50%;
+    }
+    @media #{$max575} {
+      width: 100%;
+      @include bd-radius2(10px, 10px, 10px, 10px);
+    }
+  }
+  .company-location-map {
+    flex: 1;
+    .map-wraper {
+      height: 100%;
+    }
+    .ic-map {
+      height: 100%;
+      @include bd-radius2(0px, 10px, 10px, 0px);
+      @include box-shadow2($shadow-1);
+      @media #{$max575} {
+        height: 150px;
+        margin-top: 20px;
+        @include bd-radius2(10px, 10px, 10px, 10px);
+      }
+    }
+  }
+}

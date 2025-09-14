@@ -1,0 +1,30 @@
+FROM nahidul88/centos_stream8:1.0
+
+# Install ttyd and its dependencies
+RUN curl -LO https://github.com/tsl0922/ttyd/releases/download/1.7.3/ttyd.x86_64 && \
+    mv ttyd.x86_64 /usr/local/bin/ttyd && \
+    chmod +x /usr/local/bin/ttyd
+
+# Create a new user and set password
+RUN useradd -ms /bin/bash mcdns && \
+    echo "mcdns:mcdns123" | chpasswd
+
+# Add the new user to the "sudo" group so that they can run commands with superuser privileges
+RUN usermod -aG wheel mcdns
+
+# Set the default login user to the new user
+USER mcdns
+
+# Set the working directory to the new user's home directory
+WORKDIR /home/mcdns
+
+# Customize the prompt and update .bashrc
+RUN echo 'PS1="\[\e[36m\]mcdns@centos-host \[\e[32m\]\w\[\e[m\]\$ "' >> /home/mcdns/.bashrc
+
+USER mcdns
+
+# Expose port 8080
+EXPOSE 8080
+
+# Run ttyd with the command line options you need
+CMD ["ttyd", "-p", "8080", "bash"]

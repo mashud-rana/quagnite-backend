@@ -1,0 +1,30 @@
+.accordion-button {
+    padding: 20px 0;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: $black;
+    font-family: $font-rubik;
+    &:not(.collapsed) {
+        background-color: #fff;
+        box-shadow: none;
+        color: $black;
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.accordion-item {
+    background-color: #fff;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.accordion-body {
+    padding: 0 0 10px 0;
+    p {
+        font-family: $font-rubik;
+    }
+}

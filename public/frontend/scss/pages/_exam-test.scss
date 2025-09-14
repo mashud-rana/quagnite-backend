@@ -1,0 +1,130 @@
+.ic-exam-test-flat {
+    margin-right: 27px;
+
+    .ic-exam-headers {
+        padding: 26px 40px;
+        background-color: #00ACB6;
+        color: #fff;
+        @include bd-radius2(5px, 5px, 0px, 0px);
+    }
+
+
+    .ic-exam-test-content {
+        background-color: #fff;
+        padding: 25px;
+
+        .exam-test-progress {
+            @include d-flex();
+            @include align-items(center);
+            gap: 10px;
+            padding-bottom: 25px;
+
+            .ic-question-count {
+                color: $black;
+            }
+
+            .progress {
+                width: 138px;
+                height: 4px;
+
+                .progress-bar {
+                    background-color: $primary;
+                }
+            }
+
+            .persange {
+                color: $primary;
+            }
+        }
+    }
+
+    .ic-question-alls {
+        .ic-question-items {
+            background: #F7F7FA;
+            border: 1px solid #E2E2EA;
+            @include bd-radius(5px);
+            padding: 20px;
+            margin-bottom: 30px;
+
+            h6 {
+                padding-bottom: 18px;
+            }
+
+            ul {
+                @include d-flex();
+                @include align-items(center);
+                gap: 21px;
+
+                li {
+                    width: calc(100% / 2 - 21px + 21px / 2);
+
+                    .form-check {
+                        padding-left: 0;
+                    }
+
+                    .form-check-input {
+                        @include bd-radius(50% !important);
+                        margin-left: 0;
+                        margin-right: 10px;
+                        border: 2px solid $primary;
+                        width: 20px;
+                        height: 20px;
+                        &:checked[type=radio] {
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z' fill='rgba(255,255,255,1)'/%3E%3C/svg%3E");
+                            background-color: $primary;
+                            border-color: $primary;
+                        }
+
+                        &:checked[type=checkbox] {
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z' fill='rgba(255,255,255,1)'/%3E%3C/svg%3E");
+                            background-color: $primary;
+                            border-color: $primary;
+                        }
+
+                        &:focus {
+                            box-shadow: 0 0 0 0.25rem rgba(0, 173, 182, 0.178);
+                        }
+                    }
+
+                    .form-check-label {
+                        padding-bottom: 0;
+                        color: $black;
+                        padding: 11px 15px;
+                        background: #FFFFFF;
+                        border: 1px solid #E2E2EA;
+                        @include bd-radius(5px);
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        flex-direction: row-reverse;
+                        justify-content: start;
+                    }
+                }
+            }
+        }
+
+        // padding-top: ;
+    }
+}
+
+
+.ic-question-submit {
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+    gap: 20px;
+
+    a,
+    button {
+        background: $primary;
+        height: 50px;
+        @include bd-radius(5px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        color: #fff;
+        width: calc(100% / 3 - 20px + 20px / 3);
+        gap: 10px;
+    }
+}

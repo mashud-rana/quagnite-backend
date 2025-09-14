@@ -1,0 +1,122 @@
+.ic-create-jobs-wraper {
+  max-width: 1008px;
+  .ic-title {
+    h3 {
+      @include d-flex();
+      @include align-items(center);
+
+      span {
+        margin-left: 16px;
+        @media #{$max1399} {
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+}
+
+.ic-create-job-form-wraper {
+  background-color: $color-white;
+  @include bd-radius(20px);
+  @include box-shadow2($shadow-6);
+
+  .form-group {
+    margin-bottom: 24px;
+    @media #{$max1650} {
+      margin-bottom: 20px;
+    }
+  }
+
+  .ic-input-radio-group {
+    @include d-flex();
+    @include align-items(center);
+    .form-check {
+      @include d-flex();
+      @include align-items(center);
+      padding-top: 16px;
+      padding-bottom: 16px;
+      margin-right: 40px;
+      @media #{$max1650} {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      @media #{$max1399} {
+        margin-right: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      @media #{$max991} {
+        margin-right: 20px;
+      }
+      @media #{$max575} {
+        margin-right: 10px;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .form-check-input {
+      width: 18px;
+      height: 18px;
+      border: 2px solid $color-shuttleGray;
+      margin-top: 0;
+      @media #{$max767} {
+        width: 16px;
+        height: 16px;
+      }
+      &:checked {
+        border: 2px solid $color-blue;
+        background-color: $color-blue;
+
+        & + .form-check-label {
+          color: $color-blue;
+        }
+      }
+    }
+    .form-check-label {
+      margin-bottom: 0px;
+      margin-left: 16px;
+      @media #{$max1399} {
+        margin-left: 12px;
+      }
+    }
+  }
+
+  .editor-wraper {
+    @include box-shadow2($shadow-1);
+  }
+  .ck-toolbar {
+    border: none !important;
+    background-color: $color-white !important;
+    @include bd-radius2(20px, 20px, 0px, 0px!important);
+    padding: 16px 24px 16px !important;
+  }
+
+  .ck-editor__main {
+    .ck-content {
+      border: none !important;
+      min-height: 130px;
+      padding: 10px 24px;
+      background-color: $color-white !important;
+      box-shadow: none !important;
+      @include bd-radius2(0px, 0px, 20px, 20px!important);
+    }
+  }
+
+  .save-btn {
+    .ic-btn {
+      padding: 0px 54px;
+      @media #{$max1650} {
+        padding: 0px 45px;
+      }
+      @media #{$max1399} {
+        padding: 0px 40px;
+      }
+
+      @media #{$max767} {
+        padding: 0px 30px;
+      }
+    }
+  }
+}

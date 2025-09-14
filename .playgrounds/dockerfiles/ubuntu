@@ -1,0 +1,53 @@
+FROM ubuntu:20.04
+
+USER root
+
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y \
+    sudo \
+    nano \
+    apt-transport-https \
+    ca-certificates \
+    wget \
+    curl \
+    figlet \
+    lolcat \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install ttyd
+RUN curl -LO https://github.com/tsl0922/ttyd/releases/download/1.7.3/ttyd.x86_64 && \
+    mv ttyd.x86_64 /usr/local/bin/ttyd && \
+    chmod +x /usr/local/bin/ttyd
+
+# Create a new user and set password
+RUN useradd -ms /bin/bash mcdns && \
+    echo "mcdns:mcdns123" | chpasswd
+
+# Add the new user to the "sudo" group so that they can run commands with superuser privileges
+RUN usermod -aG sudo mcdns
+
+# Set the default login user to the new user
+USER mcdns
+
+# Set the working directory to the new user's home directory
+WORKDIR /home/mcdns
+
+# Customize the prompt and update .bashrc
+RUN echo 'PS1="\[\e[36m\]mcdns@ubuntu-host \[\e[32m\]\w\[\e[m\]\$ "' >> /home/mcdns/.bashrc && \
+    echo 'termwidth="$(tput cols)"' >> /home/mcdns/.bashrc && \
+    echo 'left_align() {' >> /home/mcdns/.bashrc && \
+    echo '  local padding="$(printf '\''%0.1s'\'' \ {1..500})"' >> /home/mcdns/.bashrc && \
+    echo '  local padding_percentage="$1"' >> /home/mcdns/.bashrc && \
+    echo '  local padding_width=$((termwidth*padding_percentage/100))' >> /home/mcdns/.bashrc && \
+    echo '  printf '\''%*.*s %s %*.*s\n'\'' "$padding_width" "$padding_width" "$padding" "$2" 0 "$((termwidth-1-${#2}-padding_width))" "$padding"' >> /home/mcdns/.bashrc && \
+    echo '}' >> /home/mcdns/.bashrc && \
+    echo 'left_align 2 "Welcome to the Mcdns Hands-On lab"' >> /home/mcdns/.bashrc && \
+    echo 'figlet -w ${termwidth} -f slant MCDNS' >> /home/mcdns/.bashrc && \
+    echo 'left_align 4 "All rights reserved"' >> /home/mcdns/.bashrc
+
+# Expose port 8080
+EXPOSE 8080
+
+# Run ttyd with the command line options you need
+CMD ["ttyd", "-p", "8080", "bash"]

@@ -1,0 +1,27 @@
+
+//
+// page-title
+//
+
+
+.page-title-box {
+    padding-bottom: $grid-gutter-width;
+
+    .page-title {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+    }
+
+    .breadcrumb {
+        padding:  0rem;
+    }
+
+    .dropdown {
+        .show.header-item {
+            background-color: rgba($gray-100, 0.1);
+        }
+    }
+
+}
+

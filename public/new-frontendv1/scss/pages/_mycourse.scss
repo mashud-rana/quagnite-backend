@@ -1,0 +1,48 @@
+.ic-my-courses {
+    &__tabs {
+        margin-top: 40px;
+        border: 1px solid $stock;
+            @include bd-radius(5px);
+            @media #{$max767} {
+                margin-top: 20px;
+            }
+        .ic-profile {
+            
+            &__navsTab {
+                padding: 14px 27px;
+                
+                // background-color: #fff;
+                li {
+                    a {
+                        color: $white;
+                        &::before{
+                            background-color: $white;
+                        }
+                    }
+                }
+            }
+            &__tabsContent {
+                padding: 30px;
+                // background-color: #fff;
+                @include bd-radius2(0px, 0px, 5px, 5px);
+                @media #{$max575} {
+                    padding: 15px;
+                }
+            }
+        }
+    }
+}
+.ic-my-course__navlinks {
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+    background-color: $primary;
+    border-bottom: 1px solid $stock;
+    padding-right: 18px;
+    @include bd-radius2(5px, 5px, 0px, 0px);
+}
+.button-withPrice{
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+}

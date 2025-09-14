@@ -1,0 +1,92 @@
+<div>
+    <strong>What Is Maven?<br /></strong><br />
+</div>
+<div>
+    Maven is a software project management tool. It can manage a project’s
+    build, reporting, and documentation, in a simplified way using a central
+    piece of information. Maven provides a standard way to manage projects that
+    makes it easy for developers to understand project structure and build
+    lifecycle. Although it can build software written in multiple languages, it
+    is mostly used for Java projects.<br /><br />
+</div>
+<div>Maven can provide the following features:<br /><br /></div>
+<ul>
+    <li>Build lifecycle</li>
+    <li>Documentation</li>
+    <li>Reporting</li>
+    <li>Dependency management</li>
+    <li>Release and distribution</li>
+</ul>
+<div>
+    <strong>How Maven Works<br /></strong><br />
+</div>
+<div>
+    The main tasks that Maven is responsible for are software build lifecycle
+    and dependency management.&nbsp;<br /><br />
+</div>
+<div>
+    To declare how these tasks should work, Maven uses what is called a POM
+    file. POM is an XML file that contains the project information and defines
+    its build configuration.<br /><br />
+</div>
+<div>
+    The build lifecycle defines the steps required to run on the project to
+    generate a final artifact for the software. These steps can include
+    compilation, unit testing, and packaging the compiled code into a
+    distributable format. In order for Maven to execute these steps it uses some
+    type of <strong>plugin</strong> for each specific step. And using this
+    plugin it runs what is called a <strong>goal</strong>. This goal defines the
+    step that Maven wants the plugin to do.<br /><br />
+</div>
+<div>
+    For example, Maven uses a “maven-compiler-plugin” to execute the “compile”
+    goal. By using this goal the source code is compiled as part of the project
+    lifecycle.&nbsp;<br /><br />
+</div>
+<div>
+    To make it easier to manage projects, each set of goals are combined into
+    what is called a lifecycle <strong>phase</strong>. These phases should be
+    well defined inside the lifecycle and used as a standard method for building
+    projects. When any phase is executed this means that all goals included in
+    this phase are executed. You can still run individual goals outside of
+    phases when needed.<br /><br />
+</div>
+<div>
+    Maven also makes dependency management easier in large projects. When
+    writing software code, you don’t want to implement some functionality from
+    scratch that might have been implemented before and can be reused directly
+    in your project. When this functionality is a common part that might be
+    reused multiple times in different projects, it is usually packaged in its
+    own separate piece of code, and can be imported inside your application.
+    This piece of code is what we call a <strong>dependency</strong>. When you
+    write code, you'll usually want to use such dependencies, to avoid rewriting
+    what is already available online. Managing these dependencies, how to
+    download them, how to add them to your application, and which version you
+    require, is called dependency management.<br /><br />
+</div>
+<div>
+    Maven uses repositories to store dependencies in a centralized location. You
+    can then use these repositories to download any specific dependencies you
+    need when you build your application through Maven commands. You declare the
+    dependencies you require, the plugins and goals to be executed, and other
+    project configuration, in the POM file (this is a centralized location from
+    where Maven can read project information and configuration). When you run a
+    Maven command that triggers the build of the application, then Maven will
+    look for the POM file, read the configuration, and start downloading the
+    dependencies and executing the required tasks.<br /><br />
+</div>
+<div>
+    <strong>Maven Playground details<br /></strong><br />
+</div>
+<div>
+    In this Maven playground you’re provided with the following :&nbsp;<br /><br />
+</div>
+<ol>
+    <li>Maven installed.</li>
+    <li>OpenJDK installed.</li>
+    <li>Sample Maven project with the name 'mvn-workspace'.</li>
+</ol>
+<div>
+    Start experimenting right away, without having to deal with time-consuming
+    installation and configuration steps!<br /><br />
+</div>

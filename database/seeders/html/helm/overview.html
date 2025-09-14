@@ -1,0 +1,78 @@
+<div>
+    To understand Helm, think about a program installed on a Windows computer.
+    This program has hundreds or thousands of files. But when you install it,
+    you just use one file, maybe setup.exe. When you uninstall it, you just use
+    Add/Remove Programs from Control Panel. You don't need to go around
+    installing each file, or removing each file. The setup application
+    <strong>tracks all files that belong to that application</strong>. Helm does
+    a similar thing for Kubernetes applications.<br /><br />
+</div>
+<div>
+    For example, you might have a WordPress installation running on Kubernetes.
+    This will need Pods, Services, Deployments, Secrets, and who knows what
+    other objects. Normally, you'd need to have multiple YAML files where you
+    define your Services, Deployments, Secrets, and so on. Imagine you need 20
+    different WordPress websites in your cluster. It will become hard to install
+    them all. You'd need to 'kubectl apply -f' hundreds of YAML files,
+    potentially. And then track what YAML file belongs to what website. Helm
+    simplifies that by <strong>grouping YAML files together</strong> and
+    <strong>tracking what objects belong to what application</strong>. It's like
+    a setup.exe for your Kubernetes applications. With one command, it installs
+    all objects required. With another command, it can uninstall all objects
+    required by a particular application. And more interestingly, it can also
+    upgrade or downgrade them.<br /><br />
+</div>
+<div>
+    Helm groups all the objects required by some application, in what it calls a
+    <strong>Helm Chart</strong>. This is simply a directory (or archive) that
+    contains a bunch of files that describe that application to Kubernetes.<br /><br />
+</div>
+<div>
+    <strong>Want to learn Helm?<br /></strong><br />
+</div>
+<div>
+    course is the perfect way to get started with Helm. You will go through the
+    basic concepts of Helm and understand its architecture. Learn how to create
+    Helm charts and use different functions and conditionals.<br /><br />
+</div>
+<div>
+    <strong>Features of Helm<br /></strong><br />
+</div>
+<ul>
+    <li>
+        Ease the deployment and management of applications on the Kubernetes
+        cluster.
+    </li>
+    <li>
+        Easily download and install Helm charts developed by others. It's
+        similar to how you can use Docker containers from the Internet.
+    </li>
+    <li>Ability to upgrade the application or roll back the changes.</li>
+    <li>Customize the configuration of the applications during deployment.</li>
+</ul>
+<div>
+    <strong>Components of Helm<br /></strong><br />
+</div>
+<div>1. Helm Client<br /><br /></div>
+<ul>
+    <li>Command line interface for the end users.</li>
+    <li>Used to download, install, or uninstall charts, plus other actions.</li>
+    <li>
+        Used to upgrade applications to their next version, or downgrade to the
+        previous version in case something goes wrong.
+    </li>
+</ul>
+<div>2. Helm library<br /><br /></div>
+<ul>
+    <li>
+        Contains the logic for implementing the operations sent by the Helm
+        client.
+    </li>
+    <li>
+        Interacts with the Kubernetes API server to perform all the operations.
+    </li>
+    <li>
+        Responsible for managing the life cycle of the applications managed
+        through these charts.
+    </li>
+</ul>

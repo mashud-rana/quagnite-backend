@@ -1,0 +1,256 @@
+.ic-schedule-coaching-check {
+    border-radius: 5px;
+    border: 1px solid $stock;
+
+    .schedule-head {
+        background-color: $g-shade;
+        padding: 10px 20px;
+
+        p {
+            @media #{$max1280} {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .ic-schedule-body {
+        padding: 30px 20px 30px 20px;
+        justify-content: center;
+        gap: 28px;
+
+        @media #{$max374} {
+            gap: 15px;
+        }
+
+        .form-check {
+            padding-left: 0;
+
+            .form-check-label {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .form-check-input {
+                float: unset;
+                margin-left: 0;
+                width: 20px;
+                height: 20px;
+                border-radius: 20px !important;
+                border: 1.5px solid #D6DAE1;
+
+                &:checked {
+                    background-color: #00ACB6 !important;
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+                }
+            }
+
+            .form-check-input[type=radio] {
+                &::after {
+                    border: 0;
+                }
+            }
+        }
+    }
+}
+
+.ic-coach-header {
+    border-radius: 5px;
+    padding: 12px 10px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn-time {
+    padding: 0 16px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: $white;
+}
+
+.btn-eyes {
+    padding: 0 16px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: $green;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: $white;
+}
+
+.time-schedule-item {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    border: 1px solid $stock;
+    background: $white;
+
+    @media #{$max374} {
+        flex-direction: column;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 16px;
+    }
+
+    .day-name {
+        border-radius: 5px 0px 0px 5px;
+        border-right: 1px solid $stock;
+        padding: 18px 45px;
+        background-color: $w-shade;
+        color: $black;
+        display: flex;
+        align-items: center;
+        width: 175px;
+        @media #{$max575} {
+            padding: 18px 30px;
+        }
+    }
+
+    .day-buttons {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-right: 12px;
+
+        @media #{$max767} {
+            flex-wrap: wrap;
+        }
+
+        .day-off {
+            @media #{$max480} {
+                width: 100%;
+            }
+        }
+
+        .form-switch {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            height: 40px;
+            padding: 0 16px;
+            border-radius: 5px;
+            border: 1px solid $stock;
+            background: $w-shade;
+
+            .form-check-input {
+                margin-left: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                width: 36px;
+                height: 20px;
+                background-color: $red;
+                border-color: $red;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+
+                +label {
+                    color: $red;
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+
+                &:checked {
+                    border-color: $green;
+                    background-color: $green;
+
+                    +label {
+                        color: $green;
+                    }
+                }
+            }
+        }
+
+        @media #{$max480} {
+            .btn-eyes {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-time {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-switch {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+.time-adds {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 10px;
+
+    .times-plan {
+        &:not(:last-child) {
+            width: calc(90% / 2 - 24px + 24px / 2);
+        }
+
+        width: calc(90% / 1 - 24px + 24px / 1) !important;
+    }
+
+    .deleted-time {
+        padding: 0 16px;
+        height: 50px;
+        border-radius: 5px;
+        border: 1px solid rgba(232, 84, 62, 0.50);
+        background: rgba(232, 84, 62, 0.10);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: $red;
+        font-size: 20px;
+        transition: all linear .3s;
+
+        &:hover {
+            background-color: $red;
+            color: $white;
+        }
+    }
+}
+
+.posted-images-activities {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    li {
+        img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+}
+
+.ic-activities-textarea {
+    .ic-attached {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 21px;
+        padding-bottom: 0;
+        display: block;
+        line-height: normal;
+        i {
+            font-size: 18px;
+        }
+    }
+    .form-control {
+        padding-left: 50px;
+    }
+}

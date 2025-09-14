@@ -1,0 +1,100 @@
+// Abstract Styles
+
+@import "./abstracts/mixins";
+@import "./abstracts/variable";
+
+//Base Styles
+
+@import "./base/global";
+@import "./base/reset";
+@import "./base/typhography";
+
+//Component
+
+@import "./component/breadcumb";
+@import "./component/button";
+@import "./component/forms";
+@import "./component/pagination";
+@import "./component/select";
+@import "./component/newsletter";
+@import "./component/preloader";
+@import "./component/datepicker";
+@import "./component/according";
+@import "./component/fileupload";
+@import "./component/chat";
+@import "./component/calender";
+@import "./component/range-slider";
+@import "./component/modal";
+@import "./component/card-item";
+
+//Layout   
+
+@import "./layout/banner";
+@import "./layout/footer";
+@import "./layout/header";
+@import "./layout/course-header";
+
+//Pages Styles 
+@import "./pages/home";
+@import "./pages/sakibHome";
+@import "./pages/video-course-content";
+@import "./pages/student-dashboard";
+@import "./pages/aws";
+@import "./pages/playground";
+@import "./pages/profile-setting";
+@import "./pages/mycourse";
+@import "./pages/my-certificates";
+@import "./pages/purchase-history";
+@import "./pages/exam-test";
+@import "./pages/exam-test-result";
+@import "./pages/business";
+@import "./pages/course-details";
+@import "./pages/bootcamps-details";
+@import "./pages/wiki";
+@import "./pages/pricing";
+@import "./pages/cart";
+@import "./pages/billing";
+@import "./pages/forum";
+@import "./pages/coaching";
+@import "./pages/coaches";
+@import "./pages/single-coaching-details";
+@import "./pages/v1-bootcamp-list";
+@import "./pages/v1-bootcamp-overview";
+@import "./pages/coach";
+@import "./pages/v1-exam-list";
+@import "./pages/member-dashboard";
+@import "./pages/login-register.scss";
+@import "./pages/coaches-single";
+@import "./pages/support-ticket";
+@import "./pages/wallet";
+@import "./pages/all-coursedash";
+@import "./pages/student-bootcamp";
+@import "./pages/v1-blog-page";
+@import "./pages/up-coming-event";
+@import "./pages/blog-list";
+@import "./pages/teacher-create-exam";
+@import "./pages/teacher-add-exam";
+@import "./pages/create-question";
+@import "./pages/v1-ebook";
+@import "./pages/coach-schedule";
+@import "./pages/teacher-dashboard";
+@import "./pages/teacher-course-create";
+@import "./pages/help-center";
+@import "./pages/event-details";
+@import "./pages/checkout";
+@import "./pages/protected-exam";
+@import "./pages/organization";
+@import "./pages/playground-details";
+@import "./pages/create-ebook";
+@import "./pages/student-ebook";
+@import "./pages/coaching-details";
+@import "./pages/notification";
+@import "./pages/student-exam";
+@import "./pages/student-result";   
+@import "./pages/student-all-exam";
+@import "./pages/all-student-enrole";
+@import "./pages/policy";
+@import "./pages/coach-dashboard";
+@import "./pages/reserve-order";
+@import "./pages/chat";
+

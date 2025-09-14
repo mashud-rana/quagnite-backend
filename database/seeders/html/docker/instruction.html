@@ -1,0 +1,42 @@
+<div>
+    Docker Playground<br /><br />Welcome to the Docker playground! This
+    environment allows you to practice and explore Docker commands.
+</div>
+<br />
+<br />
+<pre>
+Username: mcdns
+Passowrd: mcdns123
+</pre>
+<div>
+    <strong
+        >Click the Red Cross button on the top right corner to end this sandbox
+        environment</strong
+    ><br /><br />## Basic Commands:<br /># Docker Version Check
+</div>
+<pre>docker -v</pre>
+<div>
+    <br />### 1. Pulling and Running Images:<br /><br /># Pull a Docker image
+    from Docker Hub
+</div>
+<pre>docker pull &lt;image-name&gt;</pre>
+<div># Run a Docker container</div>
+<pre>docker run -d --name &lt;container-name&gt; &lt;image-name&gt;</pre>
+<div><br /># List running containers</div>
+<pre>docker ps</pre>
+<div><br /># List all containers (including stopped ones)</div>
+<pre>docker ps -a</pre>
+<div><br /># Stop a running container</div>
+<pre>docker stop &lt;container-name&gt;</pre>
+<div># Remove a container</div>
+<pre>docker rm &lt;container-name&gt;</pre>
+<div># Build a Docker image from a Dockerfile</div>
+<pre>docker build -t &lt;image-name&gt; &lt;path-to-dockerfile&gt;</pre>
+<div><br /># Show Docker network information</div>
+<pre>docker network ls</pre>
+<div># Create a custom network</div>
+<pre>docker network create &lt;network-name&gt;</pre>
+<div>
+    <br />Feel free to explore and practice different Docker commands. Happy
+    coding!
+</div>

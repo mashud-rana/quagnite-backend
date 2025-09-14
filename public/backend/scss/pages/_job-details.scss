@@ -1,0 +1,307 @@
+.ic-job-details-wraper {
+  background-color: $color-white;
+  @include bd-radius(20px);
+  @include box-shadow2($shadow-6);
+  max-width: 1008px;
+}
+
+.ic-job-details-heading {
+  @include d-flex();
+  padding-bottom: 35px;
+  border-bottom: 1px solid #d9d9d9;
+  @media #{$max1650} {
+    padding-bottom: 30px;
+  }
+  @media #{$max991} {
+    padding-bottom: 20px;
+  }
+
+  @media #{$max575} {
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .company-logo {
+    width: 120px;
+    flex: 0 0 auto;
+
+    @media #{$max767} {
+      width: 100px;
+    }
+
+    img {
+      @include box(120px, 120px);
+      @include bd-radius(10px);
+      @media #{$max767} {
+        @include box(100px, 100px);
+      }
+    }
+  }
+  .job-info {
+    flex: 1;
+    margin-left: 24px;
+    @media #{$max767} {
+      margin-left: 20px;
+    }
+    @media #{$max575} {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+
+    .location-type-deadline {
+      @include d-flex();
+      @include align-items(center);
+
+      .item {
+        @include d-flex();
+        @include align-items(center);
+        margin-right: 80px;
+        margin-bottom: 5px;
+        @media #{$max1650} {
+          margin-right: 70px;
+        }
+        @media #{$max1399} {
+          margin-right: 20px;
+        }
+        @media #{$max767} {
+          margin-right: 10px;
+        }
+        @media #{$max575} {
+          margin-bottom: 10px;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+
+        i {
+          font-size: 24px;
+          color: $color-blue;
+          margin-right: 16px;
+          @media #{$max1399} {
+            margin-right: 8px;
+            font-size: 22px;
+          }
+          @media #{$max767} {
+            margin-right: 5px;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ic-job-details-description-wraper {
+  padding: 40px 0px;
+  border-bottom: 1px solid #d9d9d9;
+  @media #{$max1650} {
+    padding: 30px 0px;
+  }
+  @media #{$max991} {
+    padding: 20px 0px;
+  }
+  ul {
+    padding-left: 15px;
+    li {
+      list-style-type: disc;
+      list-style-position: outside;
+      padding: 6px 0px;
+    }
+  }
+}
+
+.ic-job-details-main-skills {
+  padding-top: 40px;
+  @media #{$max1650} {
+    padding-top: 30px;
+  }
+  @media #{$max991} {
+    padding-top: 20px;
+  }
+
+  .skills-item-wraper {
+    @include d-flex();
+    gap: 8px;
+
+    .item {
+      background-color: $color-aluminium;
+      @include bd-radius(4px);
+      height: 40px;
+      @include align-center();
+      padding: 0px 16px;
+      color: $color-white;
+
+      @media #{$max1650} {
+        height: 38px;
+        padding: 0px 14px;
+      }
+      @media #{$max1399} {
+        height: 36px;
+        padding: 0px 12px;
+      }
+      @media #{$max767} {
+        height: 34px;
+        padding: 0px 10px;
+      }
+    }
+  }
+}
+
+.ic-student-job-details-wraper {
+  @include d-flex();
+  @media #{$max1199} {
+    flex-direction: column;
+  }
+
+  .ic-job-details-wraper {
+    flex: 0 0 auto;
+    max-width: unset;
+    width: 67%;
+    @media #{$max1199} {
+      width: 100%;
+    }
+  }
+
+  .ic-student-job-details-right {
+    flex: 1;
+    padding-left: 40px;
+    width: 33%;
+    @media #{$max1650} {
+      padding-left: 30px;
+    }
+    @media #{$max1399} {
+      padding-left: 24px;
+    }
+    @media #{$max1199} {
+      padding-left: 0;
+      width: 50%;
+      margin: auto;
+      margin-top: 30px;
+    }
+    @media #{$max991} {
+      width: 100%;
+    }
+
+    .ic-job-share {
+      background-color: $color-white;
+      @include box-shadow2($shadow-6);
+
+      .title {
+        h5 {
+          @include d-flex();
+          @include align-items(center);
+          i {
+            margin-right: 16px;
+            @media #{$max991} {
+              margin-right: 12px;
+            }
+          }
+        }
+      }
+      .ic-about-social-share {
+        @include d-flex();
+
+        .ic-btn {
+          margin-right: 8px;
+          @include transition(0.8s);
+          width: 48px;
+          overflow: hidden;
+          background: $color-gradient;
+          @media #{$max1399} {
+            width: 45px;
+          }
+          @media #{$max767} {
+            width: 40px;
+          }
+          &:hover {
+            width: 145px;
+            span {
+              width: max-content;
+              opacity: 1;
+            }
+
+            i {
+              margin-right: 16px;
+              @media #{$max1399} {
+                margin-right: 12px;
+              }
+              @media #{$max767} {
+                margin-right: 8px;
+              }
+            }
+          }
+          @media #{$max575} {
+            margin-right: 5px;
+          }
+          span {
+            width: 0px;
+            overflow: hidden;
+            @include transition(0.8s);
+          }
+
+          i {
+            margin-right: 0;
+          }
+
+          &::after {
+            display: none;
+          }
+          &::before {
+            display: none;
+          }
+
+          &.facebook {
+            background: #3b5998;
+          }
+          &.twitter {
+            background: #00acee;
+          }
+          &.linkedin {
+            background: #0a66c2;
+          }
+          &.instagram {
+            background: linear-gradient(
+              84.8deg,
+              #515bd4 -0.87%,
+              #8134af 27.78%,
+              #dd2a7b 58.25%,
+              #feda77 89.33%,
+              #f58529 116.15%
+            );
+          }
+          &.youtube {
+            background: #ff0000;
+          }
+        }
+      }
+    }
+
+    .ic-job-match-percentage {
+      background: $color-gradient;
+      @include bd-radius(10px);
+      @include box-shadow2($shadow-6);
+
+      .see-btn {
+        height: 48px;
+        @include align-center();
+        padding: 0px 24px;
+        color: $color-blue;
+        @include transition(0.5s);
+        background-color: $color-white;
+        @include bd-radius(5px);
+        @media #{$max1399} {
+          height: 45px;
+          padding: 0px 20px;
+        }
+        @media #{$max991} {
+          height: 40px;
+        }
+
+        &:hover {
+          background-color: $color-blue;
+          color: $color-white;
+        }
+      }
+    }
+  }
+}

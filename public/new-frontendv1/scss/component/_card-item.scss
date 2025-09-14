@@ -1,0 +1,217 @@
+/* blog list page and latest card*/
+
+.ic-latest-blog-item {
+    background: white;
+    border: 1px solid $stock;
+    border-radius: 10px;
+    box-shadow: $shadow-1;
+    height: 100%;
+
+    .ic-item-image {
+        position: relative;
+        height: 276px;
+        overflow: hidden;
+        border-radius: 10px 10px 0px 0px;
+
+        img {
+            border-radius: 10px 10px 0px 0px;
+            transition: all linear .3s;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ic-event-bage {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            border-radius: 100px;
+            color: white;
+            background-color: #F47820;
+            padding: 6px 12px;
+            font-size: 12px;
+            letter-spacing: 0.12px;
+            line-height: 1;
+            z-index: 9;
+        }
+        @media #{$max1650} {
+            height: 250px;
+        }
+    
+        @media #{$max1399} {
+            height: 230px;
+        }
+    
+        @media #{$max991} {
+            height: 200px;
+        }
+    
+        @media #{$max767} {
+            height: unset;
+            max-height: 250px;
+        }
+    }
+
+    .ic-item-conetnt-wrapper {
+        padding: 0px 30px 30px;
+
+        @media #{$max1650} {
+            padding: 0px 28px 28px;
+        }
+
+        @media #{$max1399} {
+            padding: 0px 26px 26px;
+        }
+
+        @media #{$max1199} {
+            padding: 0px 24px 24px;
+        }
+
+        @media #{$max991} {
+            padding: 0px 22px 22px;
+        }
+
+        @media #{$max767} {
+            padding: 0px 20px 20px;
+        }
+
+        @media #{$max575} {
+            padding: 0px 16px 16px;
+        }
+    }
+
+    .ic-item-like-comment {
+        @include d-flex();
+        gap: 20px;
+        padding: 20px 0;
+
+        @media #{$max575} {
+            gap: 15px;
+            padding: 8px 0;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            // padding-top: 10px;
+            font-family: "Lexend", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            color: $gray-deep;
+
+            @media #{$max575} {
+                font-size: 18px;
+                padding-top: 0px;
+                font-size: 14px;
+            }
+
+
+        }
+
+        span {
+            font-weight: 400;
+            font-family: $font-lexend;
+        }
+
+        i {
+            font-size: 24px;
+            color: $primary;
+
+            @media #{$max575} {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .ic-sub-title {
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 26px;
+        margin-bottom: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: $black;
+        padding-top: 10px;
+
+        @media #{$max575} {
+            font-size: 16px;
+            line-height: 22px;
+            margin-bottom: 6px;
+        }
+    }
+
+    p {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 20px;
+        color: $gray-deep;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media #{$max575} {
+            line-height: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+    }
+
+    .ic-bloger-info {
+        @include d-flex();
+        @include align-items(center);
+        gap: 15px;
+
+        .bloger-details {
+            img {
+                width: 48px;
+                height: 48px;
+                border-radius: 100%;
+            }
+
+            .name {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+                color: $black;
+
+                @media #{$max575} {
+                    font-size: 14px;
+                    line-height: normal;
+                }
+            }
+
+            .designation {
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 20px;
+                color: $black;
+            }
+        }
+
+        .img-box {
+            img {
+                width: 48px;
+                height: 48px;
+                @include bd-radius(50%);
+            }
+        }
+    }
+
+    &:hover {
+        .ic-item-image {
+            img {
+                transform: scale(1.06);
+            }
+        }
+    }
+}

@@ -1,0 +1,358 @@
+.ic-coach-info {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media #{$max991} {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media #{$max575} {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .coach-info-items {
+        padding: 30px;
+        background: #FFFFFF;
+        box-shadow: 0px 39px 50px rgba(75, 49, 147, 0.05);
+        @include bd-radius(5px);
+        @include d-flex();
+        @include align-items(center);
+        gap: 17px;
+
+        @media #{$max1199} {
+            flex-direction: column;
+            @include align-items(start);
+        }
+
+        @media #{$max991} {
+            flex-direction: row;
+            @include align-items(center);
+        }
+
+        @media #{$max767} {
+            padding: 30px 18px;
+        }
+
+        @media #{$max575} {
+            flex-direction: row;
+            @include align-items(center);
+        }
+
+        p {
+            color: #42526B;
+        }
+    }
+}
+
+.sechedule-container {
+    max-width: 1398px;
+    margin: 0 auto;
+    @media #{$max1440} {
+        max-width: 1200px;
+        padding: 0 12px;
+    }
+}
+.ic-biography {
+    margin-top: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 60px 0px rgba(0, 172, 182, 0.08);
+    @include bd-radius(10px);
+    padding: 40px;
+
+    .ic-biography-text {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        color: #73768F;
+
+        @media #{$max1440} {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+
+    .ic-bio-info {
+        padding-top: 35px;
+
+        li {
+            @include d-flex();
+            @include align-items(center);
+            gap: 10px;
+
+            p {
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 32px;
+                color: #303051;
+
+                @media #{$max1440} {
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+            }
+
+            &:not(:last-child) {
+                padding-bottom: 12px;
+            }
+        }
+    }
+}
+
+
+.ic-coaching-reawad {
+    padding-top: 35px;
+
+    .ic-coach-experience {
+        padding: 24px;
+        @include bd-radius(10px);
+        background-color: #F1EBFF;
+        @include d-flex();
+        gap: 20px;
+        @include align-items(center);
+
+        @media #{$max1399} {
+            gap: 10px;
+            padding: 24px 18px;
+        }
+
+        @media #{$max1199} {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media #{$max575} {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        @media #{$max480} {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        p {
+            color: #42526B;
+            text-transform: uppercase;
+        }
+
+        img {
+            +div {
+                @media #{$max480} {
+                    text-align: center;
+                }
+
+            }
+        }
+
+        &.green {
+            background-color: #E7F5E8;
+        }
+
+        &.orange-light {
+            background-color: #FFF9EE;
+        }
+
+        &.alchol {
+            background-color: #FEEDFA;
+        }
+    }
+}
+
+.ic-biography-avatar {
+    img {
+        @include bd-radius2(10px, 10px, 0px, 0px);
+    }
+
+    .ic-avatar-infos {
+        border: 1px solid rgba(23, 141, 166, 0.22);
+        @include bd-radius2(0px, 0px, 10px, 10px);
+
+        .ic-avatar-accept {
+            // @include d-flex();
+            // @include align-items(center);
+            // @include justify-content(center);
+            // gap: 10px;
+            text-align: center;
+            padding: 20px;
+            h4 {
+                font-family: $font-lexend;
+            }
+            p {
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400; 
+                color: #00ACB6;
+            }
+        }
+
+        ul {
+            border-top: 1px solid rgba(23, 141, 166, 0.22);
+
+            li {
+                padding: 12px 10px;
+                @include d-flex();
+                @include align-items(center);
+                gap: 11px;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid rgba(23, 141, 166, 0.22);
+                }
+            }
+        }
+    }
+}
+
+.ic-choose-coach {
+    padding: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 60px 0px rgba(0, 172, 182, 0.08);
+    @include bd-radius(15px);
+    text-align: center;
+
+    h6 {
+        padding-top: 28px;
+        margin-top: 28px;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background-color: $primary;
+        }
+    }
+}
+
+.scroll-dates-slider {
+    @media #{$max575} {
+        width: 600px;
+    }
+}
+
+.ic-coahing-scheduled {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1.02735px solid $stock;
+    box-shadow: 0px 10px 60px 0px rgba(0, 172, 182, 0.08);
+    @include bd-radius(10px);
+    @include d-flex();
+    flex-wrap: nowrap;
+    gap: 24px;
+
+    @media #{$max991} {
+        gap: 10px;
+    }
+
+    @media #{$max767} {
+        flex-direction: column;
+    }
+
+    .coahing-images {
+        width: 336px;
+        flex: 0 0 auto;
+
+        @media #{$max991} {
+            width: 100px;
+        }
+    }
+
+   
+}
+.ic-right-side {
+    width: calc(100% - 360px);
+
+    @media #{$max991} {
+        width: calc(100% - 114px);
+    }
+
+    @media #{$max767} {
+        width: calc(100% - 0px);
+    }
+
+   
+}
+.ic-date-show {
+    @include d-flex();
+    @include align-items(center);
+    @include justify-content(space-between);
+    margin-bottom: 25px;
+
+    .date-shows {
+        padding: 10px 20px;
+        background: $primary;
+        @include bd-radius(5px);
+        font-size: 18px;
+        @include d-flex();
+        @include align-items(center);
+        gap: 10px;
+        color: #fff;
+
+        @media #{$max991} {
+            padding: 5px 20px;
+            font-size: 14px;
+        }
+    }
+
+    .ic-dates-arrows {
+        padding: 5px;
+        width: 50px;
+        height: 45px;
+        @include bd-radius(5px);
+        background-color: $primary;
+        color: $white;
+    }
+}
+
+.ic-date-slider {
+    .ic-date-items {
+        text-align: center;
+
+        p {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 25px;
+            color: #303051;
+            padding-bottom: 20px;
+
+            @media #{$max1024} {
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            @media #{$max991} {
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+
+        h5 {
+            width: 61px;
+            height: 43px;
+            background: #FFFFFF;
+            box-shadow: 0px 13.6991px 28.5398px rgba(74, 83, 188, 0.12);
+            @include bd-radius(5px);
+            color: $primary;
+            @include d-flex();
+            @include align-items(center);
+            @include justify-content(center);
+            margin: 0 auto 20px auto;
+        }
+
+        span {
+            color: $primary;
+            font-size: 12px;
+            @media #{$max1024} {
+                font-size: 12px;
+            }
+            @media #{$max767} {
+                font-size: 10px;
+            }
+        }
+    }
+}

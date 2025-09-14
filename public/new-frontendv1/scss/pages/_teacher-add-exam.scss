@@ -1,0 +1,72 @@
+/* ic-teacher-add-exam */
+.ic-teacher-create-exam {
+    &.ic-teacher-add-exam {
+        .ic-exam-heading {
+            @include d-flex();
+            @include justify-content(space-between);
+            @include align-items(center);
+            margin-bottom: 25px;
+            color: $gray-deep;
+
+            @media #{$max575} {
+                margin-bottom: 15px;
+            }
+
+            h5 {
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 28px;
+            }
+
+            p {
+                font-family: $font-lexend;
+            }
+        }
+
+        table {
+            thead {
+                tr {
+                    th {
+                        background-color: $primary;
+                        color: white;
+                        font-family: $font-rubik;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        .ic-tick {
+                            display: inline-flex;
+                            gap: 5px;
+                            color: $green;
+
+                            i {
+                                font-size: 20px;
+                            }
+                        }
+
+                        .ic-edit-delete-btn {
+                            display: inline-flex;
+                            gap: 10px;
+
+                            .ic-edit {
+                                color: $primary;
+                            }
+
+                            .ic-delete {
+                                color: $red;
+                            }
+
+                            i {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

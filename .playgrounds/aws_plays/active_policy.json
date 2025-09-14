@@ -1,0 +1,51 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+    	{
+        	"Effect": "Allow",
+        	"Action": [
+            	"ec2:Describe*",
+            	"rds:Describe*",
+            	"rds:ListTagsForResource",
+            	"rds:List*",
+            	"elasticloadbalancing:Describe*",
+            	"cloudwatch:Describe*",
+            	"cloudwatch:Get*",
+            	"cloudwatch:List*",
+            	"logs:Describe*",
+            	"logs:Get*",
+            	"logs:List*",
+            	"iam:List*",
+            	"iam:Get*",
+            	"s3:List*",
+            	"s3:Get*",
+            	"dynamodb:Describe*",
+            	"dynamodb:List*",
+            	"dynamodb:Get*",
+            	"lambda:List*",
+            	"lambda:Get*",
+            	"lambda:InvokeFunction",
+            	"cloudformation:Describe*",
+            	"cloudformation:List*",
+            	"cloudformation:Get*",
+            	"config:Describe*",
+            	"config:Get*",
+            	"config:List*",
+            	"sns:Get*",
+            	"sns:List*",
+            	"sqs:Get*",
+            	"sqs:List*",
+            	"autoscaling:Describe*",
+            	"events:List*",
+            	"events:Describe*",
+            	"elasticache:Describe*",
+            	"elasticache:List*",
+            	"cloudtrail:LookupEvents",
+            	"cloudtrail:DescribeTrails",
+            	"cloudtrail:Get*",
+            	"cloudtrail:List*"
+        	],
+        	"Resource": "*"
+    	}
+	]
+}

@@ -1,0 +1,581 @@
+.ic-twidget__card {
+    @include bd-radius(10px);
+    gap: 20px;
+    padding: 30px 38px;
+    @include d-flex();
+    flex-wrap: nowrap;
+    height: 100%;
+
+    @media #{$max1399} {
+        padding: 30px 15px;
+    }
+
+    @media #{$max1199} {
+        padding: 15px 15px;
+    }
+
+    h3 {
+        @media #{$max1399} {
+            font-size: 20px;
+
+            span {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .ic-twidget-content {
+        @include d-flex();
+        flex-direction: column;
+    }
+
+    .ic-t-icons {
+        @include box(86px, 86px);
+        flex: 0 0 auto;
+        @include bd-radius(50%);
+        background-color: #fff;
+        @include d-flex();
+        @include align-items(center);
+        @include justify-content(center);
+
+        @media #{$max1399} {
+            @include box(66px, 66px);
+
+            img {
+                width: 35px;
+            }
+        }
+
+        @media #{$max1199} {
+            @include box(50px, 50px);
+
+            img {
+                width: 20px;
+            }
+        }
+    }
+
+    .ic-twidget__btn {
+        height: 40px;
+        padding: 0 20px;
+        background-color: $w-shade;
+        @include bd-radius(20px);
+        color: $primary;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all linear .3s;
+        border: 1px solid $w-shade;
+        gap: 3px;
+        margin-top: auto;
+        align-self: baseline;
+
+
+
+
+        @media #{$max1399} {
+            font-size: 14px;
+        }
+
+        @media #{$max1199} {
+            padding: 0 18px;
+        }
+
+        @media #{$max991} {
+            padding: 0 16px;
+        }
+
+        @media #{$max767} {
+            padding: 0 14px;
+            height: 38px;
+        }
+
+        @media #{$max575} {
+            height: 35px;
+            font-size: 13px;
+        }
+
+        i {
+            font-size: 18px;
+        }
+
+        &:hover {
+            color: $w-shade;
+            background-color: transparent;
+        }
+    }
+}
+
+.ic-recently-added {
+    // background-color: #fff;
+    // @include bd-radius(10px);
+    // border: 1px solid $stock;
+    margin-bottom: 30px;
+    // box-shadow: 0px 1px 4px rgba(20, 3, 66, 0.07);
+}
+
+.ic-teacher-dash-heading {
+    background-color: #fff;
+    border: 1px solid $stock;
+    box-shadow: 0px 1px 4px rgba(20, 3, 66, 0.07);
+    @include bd-radius(10px);
+    @include d-flex();
+    @include justify-content(space-between);
+    @include align-items(center);
+    padding: 15px;
+    border-bottom: 1px solid $stock;
+
+    @media #{$max767} {
+        gap: 20px;
+        @include justify-content(center);
+    }
+
+    h3 {
+        @media #{$max1199} {
+            font-size: 22px;
+        }
+    }
+
+    .ic-btn {
+        font-size: 16px;
+        height: 40px;
+        padding: 0 20px;
+        white-space: nowrap;
+        box-shadow: none;
+    }
+
+    .ic-dashboard-heading-right {
+        @include d-flex();
+        @include align-items(center);
+        flex-wrap: nowrap;
+        gap: 10px;
+
+        .dropdown-toggle {
+            width: 142px;
+            padding: 8px 15px;
+            height: 40px;
+            @include bd-radius(25px);
+            background-color: $white;
+            border: 1px solid $stock;
+
+            &::after {
+                color: $primary;
+                margin-top: 3px;
+            }
+
+            .filter-option-inner-inner {
+                color: $primary;
+            }
+        }
+
+        .ic-btn {
+
+
+
+            @media #{$max1399} {
+                font-size: 14px;
+            }
+
+            @media #{$max1199} {
+                padding: 0 18px;
+            }
+
+            @media #{$max991} {
+                padding: 0 16px;
+            }
+
+            @media #{$max767} {
+                padding: 0 14px;
+                height: 38px;
+            }
+
+            @media #{$max575} {
+                height: 35px;
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+.ic-teacher-course {
+    padding: 25px 0;
+
+    @media #{$max767} {
+        padding: 10px;
+    }
+}
+
+.teacher-dashboard-course {
+    .ic-teacher-course-items {
+        height: 100%;
+    }
+
+    .ic-coach-item {
+        .coach-price {
+            a {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                &:first-child {
+                    padding: 0px 12px;
+                    border-radius: 50px;
+                    height: 28px;
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+
+                &:nth-child(2) {
+                    color: $red;
+                    background: transparent;
+
+                }
+
+                &:last-child {
+                    background: transparent;
+
+                }
+            }
+        }
+    }
+
+
+}
+
+.ic-teacher-course-items {
+    @include d-flex();
+    flex-wrap: nowrap;
+    @include bd-radius(5px);
+    border: 1px solid $stock;
+    background-color: #fff;
+
+    @media #{$max767} {
+        flex-direction: column;
+    }
+
+    .course-items-img {
+        width: 262px;
+        flex: 0 0 auto;
+        @include bd-radius2(4px, 0px, 0px, 4px);
+        overflow: hidden;
+
+        @media #{$max1399} {
+            width: 186px;
+        }
+
+        @media #{$max767} {
+            @include bd-radius2(4px, 4px, 0px, 0px);
+            width: 100%;
+
+        }
+
+        img {
+            @include bd-radius2(4px, 0px, 0px, 4px);
+            height: 100%;
+            transition: .3s;
+            object-fit: cover;
+
+            @media #{$max767} {
+                @include bd-radius2(4px, 4px, 0px, 0px);
+                width: 100%;
+                height: 250px;
+            }
+        }
+    }
+
+    .course-items-content {
+        padding: 25px 15px;
+
+        @media #{$max767} {
+            padding: 15px 15px;
+        }
+
+        ul {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            @include bd-radius(5px);
+            background-color: $w-shade;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+
+            li {
+                @include d-flex();
+                @include align-items(center);
+                position: relative;
+                gap: 5px;
+
+                &:not(:first-child) {
+                    margin-left: 5px;
+                }
+
+                &:not(:last-child) {
+                    margin-right: 5px;
+
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        top: 50%;
+                        transform: translateY(-50%);
+                        right: -5px;
+                        width: 1px;
+                        height: 15px;
+                        background-color: #E2E2EA;
+                    }
+                }
+
+                i {
+                    color: $gray;
+                    font-size: 11px;
+                }
+
+                span {
+                    color: gray;
+                    font-weight: 300;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .review-scrore {
+            @include d-flex();
+            @include align-items(center);
+            gap: 10px;
+            color: $gray;
+            padding-top: 5px;
+
+            .t-star {
+                color: $orange;
+                display: flex;
+            }
+        }
+
+        .teacher-tags {
+            padding-top: 8px;
+
+            span {
+                display: inline-block;
+                padding: 5px 12px;
+                @include bd-radius(3px);
+                background-color: $primary;
+                color: $white;
+            }
+        }
+    }
+
+    &:hover {
+        .course-items-img {
+            img {
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+.ic-eidit-buttons {
+    display: inline-flex;
+    @include align-items(center);
+    gap: 10px;
+    padding-top: 15px;
+
+    a {
+        display: inline-flex;
+        @include align-items(center);
+        gap: 5px;
+    }
+}
+
+.ic-course-today {
+    padding: 60px 20px;
+    @include bd-radius(10px);
+    text-align: center;
+
+    @media #{$max1650} {
+        padding: 50px 18px;
+    }
+
+    @media #{$max1399} {
+        padding: 47px 17px;
+    }
+
+    @media #{$max1199} {
+        padding: 42px 17px;
+    }
+
+    @media #{$max991} {
+        padding: 30px 15px;
+    }
+
+    @media #{$max767} {
+        padding: 25px 14px;
+    }
+
+    h2 {
+        font-weight: 500;
+        font-size: 35px;
+        line-height: 41px;
+        padding-bottom: 20px;
+
+        @media #{$max1650} {
+            font-size: 33px;
+            padding-bottom: 18px;
+        }
+
+        @media #{$max1399} {
+            font-size: 32px;
+            padding-bottom: 17px;
+        }
+
+        @media #{$max1199} {
+            font-size: 28px;
+            line-height: normal;
+            padding-bottom: 16px;
+        }
+
+        @media #{$max991} {
+            font-size: 24px;
+            padding-bottom: 14px;
+        }
+
+        @media #{$max767} {
+            font-size: 22px;
+            padding-bottom: 12px;
+        }
+
+        @media #{$max575} {
+            font-size: 20px;
+        }
+    }
+
+    .uploadbtn {
+        @include bd-radius(50px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        color: $primary;
+        background-color: $white;
+        border: 1px solid $white;
+        transition: all linear .4s;
+
+        padding: 0 25px;
+        height: 50px;
+
+        @media #{$max1650} {
+            padding: 0 22px;
+            height: 48px;
+        }
+
+        @media #{$max1399} {
+            padding: 0 20px;
+            height: 45px;
+            font-size: 14px;
+        }
+
+        @media #{$max1199} {
+            padding: 0 18px;
+            height: 42px;
+        }
+
+        @media #{$max991} {
+            padding: 0 16px;
+            height: 40px;
+        }
+
+        @media #{$max767} {
+            padding: 0 14px;
+            height: 38px;
+        }
+
+        @media #{$max575} {
+            height: 35px;
+            font-size: 13px;
+        }
+
+        &:hover {
+            background-color: transparent;
+            color: $white;
+
+            i {
+                color: $white;
+            }
+        }
+    }
+}
+
+.student-course-table {
+    padding: 35px;
+
+    .ic-my-buttons {
+        width: 40px;
+        height: 40px;
+        @include bd-radius(5px);
+        padding: 0;
+    }
+}
+
+.text-truncation {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.ic-student-images-box {
+    img {
+        width: 40px;
+        height: 40px;
+        @include bd-radius(50%);
+        border: 1px solid $stock;
+    }
+
+}
+
+.ic-chat-btn {
+    height: 28px;
+    @include bd-radius(50px);
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: $gradient;
+    color: $white;
+    font-size: 14px;
+    gap: 5px;
+}
+
+.teacher-course-cards {
+    .ic-teacher-course-items {
+        height: 100%;
+    }
+}
+
+// chart design
+
+.ic-teacher-chart {
+    .apexcharts-legend {
+        display: none;
+    }
+}
+
+.ic-coach-card-header {
+    span {
+        position: relative;
+        color: #6c757d;
+
+        &::before {
+            position: absolute;
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: #158da7;
+            top: 50%;
+            transform: translateY(-50%);
+            left: -16px;
+            border-radius: 10px;
+        }
+    }
+}

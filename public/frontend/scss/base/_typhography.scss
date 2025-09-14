@@ -1,0 +1,185 @@
+/**Font Size & Font Family**/
+
+// ------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
+  font-family: $font-rubik;
+}
+
+p,
+a,
+span,
+label,
+li {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  margin-bottom: 0;
+  font-family: $font-rubik;
+  @media #{$max1399} {
+    font-size: 15px;
+    line-height: 25px;
+  }
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 120%;
+
+  @media #{$max1399} {
+    font-size: 44px;
+    line-height: 60px;
+  }
+
+  @media #{$max1199} {
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  span {
+    @extend h1;
+  }
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+
+  @media #{$max1650} {
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  @media #{$max1399} {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  @media #{$max1199} {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  @media #{$max991} {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  span {
+    @extend h2;
+  }
+}
+
+h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 120%;
+  @media #{$max1399} {     
+    font-size: 30px;
+    line-height: 30px;
+  }
+  @media #{$max1280} {
+    font-size: 28px;
+    line-height: 30px;
+  }
+  @media #{$max1199} {
+    font-size: 26px;
+    line-height: 30px;
+  }
+  @media #{$max991} {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  span {
+    @extend h3;
+  }
+}
+
+h4 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 120%;
+  @media #{$max1399} {
+    font-size: 26px;
+    line-height: 120%;
+  }
+  @media #{$max1280} {
+    font-size: 24px;
+    line-height: 120%;
+  }
+  @media #{$max1199} {
+    font-size: 22px;
+    line-height: 120%;
+  }
+  span {
+    @extend h4;
+  }
+}
+
+h5 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+
+  @media #{$max1399} {
+    font-size: 20px;
+    line-height: 120%;
+  }
+  @media #{$max1199} {
+    font-size: 18px;
+    line-height: 120%;
+  }
+  span {
+    @extend h5;
+  }
+}
+
+h6 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  @media #{$max1399} {
+    font-size: 18px;
+  }
+  span {
+    @extend h5;
+  }
+}
+
+.sub-title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+}
+
+.sub2 {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.extra-small {
+  font-size: 10px;
+  line-height: 18px;   
+}
+
+.input-text {
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.font-400 {
+  font-weight: 400;
+}

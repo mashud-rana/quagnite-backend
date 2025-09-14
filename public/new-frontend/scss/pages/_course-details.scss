@@ -1,0 +1,558 @@
+.ic-course-details-banner-list {
+    padding-bottom: 20px;
+    @include d-flex();
+    @include align-items(center);
+    gap: 12px;
+
+    @media #{$max991} {
+        @include justify-content(center);
+    }
+
+    li {
+        @include d-flex();
+        @include align-items(center);
+        gap: 10px;
+
+        span {
+            .ri-star-s-fill {
+                color: #F47820;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+// .ic-course-details {
+//     padding-top: 80px;
+// }
+
+.course-includes-list {
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid $stock;
+
+    ul {
+        @include d-flex();
+        @include align-items(center);
+        column-gap: 40px;
+        row-gap: 20px;
+
+        li {
+            @include d-flex();
+            @include align-items(center);
+            gap: 10px;
+        }
+    }
+}
+
+.ic-requirment-info {
+    >ul {
+        @include d-flex();
+        @include align-items(center);
+        column-gap: 50px;
+
+        li {
+            @include d-flex();
+            @include align-items(center);
+            gap: 15px;
+
+            img {
+                flex: 0 0 auto;
+
+                @media #{$max1399} {
+                    max-width: 30px;
+                }
+            }
+
+            p {
+                @media #{$max1399} {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.ic-learn-this-course {
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid $stock;
+
+    ul {
+        @include d-flex();
+        column-gap: 50px;
+        row-gap: 30px;
+
+        @media #{$max767} {
+            column-gap: 20px;
+        }
+
+        li {
+            width: calc(100% / 2 - 50px + 50px / 2);
+            @include d-flex();
+            flex-wrap: nowrap;
+            gap: 15px;
+
+            @media #{$max767} {
+                width: calc(100% / 2 - 30px + 30px / 2);
+            }
+
+            @media #{$max767} {
+                width: 100%;
+            }
+
+            img {
+                flex: 0 0 auto;
+                width: 40px;
+                height: 40px;
+
+                @media #{$max1399} {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            p {
+                @media #{$max1399} {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.ic-course-video-all {
+    .accordion-item {
+        border: 0;
+
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+
+    .accordion-button {
+        padding: 15px 25px 10px 25px;
+
+        &::after {
+            content: '\ea4e';
+            font-family: 'remixicon' !important;
+            background-image: unset;
+        }
+    }
+
+    .accordion-body {
+        padding: 20px 25px;
+        border-top: 1px solid #E2E2EA;
+
+        ul {
+            padding: 0 20px;
+            background: rgba(0, 172, 182, 0.05);
+            @include bd-radius(5px);
+
+            li {
+                padding-top: 20px;
+                padding-bottom: 20px;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $stock;
+                }
+
+                .ic-preview-lock {
+                    margin-left: auto;
+                    @include d-flex();
+                    @include align-items(center);
+                    gap: 12px;
+
+                    span {
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: $black;
+                    }
+
+                    i {
+                        color: $primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ic-instructor-details {
+    background: #FFFFFF;
+    border: 1px solid $stock;
+    @include bd-radius(5px);
+    @include d-flex();
+    gap: 30px;
+
+    @media #{$max767} {
+        flex-direction: column;
+    }
+
+    .ic-instructor-left {
+        width: 41%;
+
+        @media #{$max767} {
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 0, 100% 0%, 87% 100%, 0% 100%);
+
+            @media #{$max767} {
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
+        }
+    }
+
+    .ic-instructor-right {
+        flex: 1;
+        margin-right: 20px;
+        padding: 20px 0;
+        align-self: center;
+
+        @media #{$max767} {
+            padding: 0 20px 20px;
+        }
+
+        h4 {
+            +p {
+                @media #{$max1440} {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .ic-instructor-view {
+            margin-bottom: 20px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid $stock;
+            @include d-flex();
+            @include align-items(center);
+            gap: 15px;
+
+            @media #{$max1399} {
+                margin-bottom: 10px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid $stock;
+            }
+
+            li {
+                @include d-flex();
+                @include align-items(center);
+                gap: 10px;
+
+                @media #{$max1440} {
+                    font-size: 14px;
+                }
+
+                span {
+                    display: inline-block;
+                    line-height: 14px;
+
+                    i {
+                        color: #FFC014;
+                        font-size: 20px;
+                        line-height: 20px;
+                    }
+                }
+
+                span {
+                    &.star {
+                        display: flex;
+                        align-items: center;
+                        gap: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ic-course-rating-slider {
+    .slick-list {
+        margin: 0 -12px;
+    }
+
+    .ic-course-rating-items {
+        padding: 50px 46px;
+        @include bd-radius(10px);
+        background-color: #fff;
+        margin: 12px;
+
+        @media #{$max1399} {
+            padding: 25px 25px;
+        }
+
+        .ic-course-rating-avatar {
+            @include d-flex();
+            @include align-items(center);
+            gap: 12px;
+
+            img {
+                flex: 0 0 auto;
+                width: 40px;
+                height: 40px;
+                @include bd-radius(50%);
+            }
+
+
+        }
+
+        p {
+            &:nth-child(2) {
+                @media #{$max1399} {
+                    span {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            +p {
+                @media #{$max1399} {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.course-rating {
+    @include d-flex();
+    @include align-items(center);
+    gap: 2px;
+
+    i {
+        width: 20px;
+        height: 20px;
+        background-color: $primary;
+        color: #fff !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.title-benefits {
+    padding-bottom: 25px;
+    border-bottom: 1px solid $stock;
+}
+
+.ic-benefets-sall-statagies {
+    padding-top: 30px;
+    @media #{$max991} {
+        padding-top: 0;
+    }
+}
+
+.bootcapms-tabs {
+    .ic-tabs-links {
+        border-bottom: 2px solid $stock;
+    }
+}
+
+.ic-benefits-new-divs {
+    padding: 30px;
+    background-color: #fff;
+}
+
+.ic-benefets-sall-statagies {
+    @include d-flex();
+    @media #{$max991} {
+       flex-direction: column;
+    }
+    .heading-benefetis {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 26px;
+        color: $black;
+        padding-bottom: 30px;
+        text-align: center;
+
+        @media #{$max1399} {
+            font-size: 18px;
+            line-height: 24px;
+        }
+        @media #{$max991} {
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+    }
+
+    .ic-benefetis-left {
+        flex: 0 0 auto;
+        width: 28%;
+        @media #{$max991} {
+            width: 100%;
+        }
+        .inner-div {
+            border-right: 1px solid $stock;
+            border-top: 1px solid $stock;
+            border-left: 1px solid $stock;
+            border-bottom: 1px solid $stock;
+            height: calc(100% - 56px);
+            @include bd-radius2(4px, 0px, 0px, 4px);
+        }
+
+        .ic-benefits-inner-tabs {
+            flex-direction: column;
+
+            li {
+                &:not(:last-child) {
+                    border-bottom: 1px solid $stock;
+                }
+                a {
+                    color: $primary;
+                    padding: 15px 10px;
+                    display: block;
+                    text-align: center;
+                    @include bd-radius2(4px, 0px, 0px, 0px);
+                    background-color: $g-shade;
+                    transition: all linear .3s;
+                    @media #{$max991} {
+                        text-align: left;
+                        @include bd-radius2(0px, 0px, 0px, 0px);
+                    }
+                    &:hover {
+                        background-color: #fff;
+                    }
+                }
+
+                &:last-child {
+                    @include bd-radius2(0px, 0px, px, 4px);
+                }
+
+                // &:nth-child(1){
+                //     a {
+                //         color: $primary;
+                //         @include bd-radius2(4px, 0px, 0px, 0px);
+                //         background-color: #fff;
+                //     }
+                // }
+            }
+        }
+    }
+
+    .ic-benefetis-right {
+        flex: 1;
+
+        // flex-wrap: nowrap;
+        .benefits-new-divs-flex {
+            @include d-flex();
+            @media #{$max767} {
+                flex-direction: column;
+            }
+            .benefits-new-divs-itms {
+                width: 50%;
+                @media #{$max767} {
+                    width: 100%;
+                }
+                .inner-div {
+                    height: calc(100% - 56px);
+                    border-top: 1px solid $stock;
+                    border-bottom: 1px solid $stock;
+                    padding: 32px 46px;
+
+                    @media #{$max1399} {
+                        padding: 24px 10px;
+                    }
+
+                    &.hiring-companies-divs {
+                        border-left: 1px solid $stock;
+                        border-right: 1px solid $stock;
+                        @include d-flex();
+                        gap: 17px;
+
+                        @media #{$max1399} {
+                            gap: 8px;
+                        }
+
+                        .hiring-companies-logos {
+                            width: calc(100% / 3 - 17px + 17px / 3);
+                            background: rgba(255, 255, 255, 0.8);
+                            border: 0.959374px solid $stock;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            @include bd-radius(4px);
+                            padding: 10px;
+
+                            img {
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                .annual-salary-bars {
+                    @include d-flex();
+                    justify-content: center;
+                    align-items: end;
+                    gap: 15px;
+                    padding-top: 0;
+                    @media #{$max575} {
+                        gap: 8px;
+                    }
+                    .bars {
+                        width: 40px;
+                        background-color: $g-shade;
+                        position: relative;
+                        text-align: center;
+
+                        span {
+                            font-size: 10px;
+                            display: inline-block;
+                            text-align: center;
+
+                            &.bars-price {
+                                position: absolute;
+                                top: -12px;
+                                bottom: inherit;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+
+                                &.percent {
+                                    position: absolute;
+                                    bottom: -25px;
+                                    top: inherit;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                }
+                            }
+
+                        }
+
+                        &:first-child,
+                        &:last-child {
+                            height: 35px;
+                        }
+
+                        &:nth-child(2),
+                        &:nth-child(4) {
+                            height: 60px;
+                        }
+
+                        &:nth-child(3) {
+                            height: 128px;
+                            background-color: $primary;
+                        }
+                    }
+
+                    +p {
+                        font-weight: 300;
+                        font-size: 12px;
+                        line-height: 14px;
+                        color: $gray;
+                        text-align: center;
+                        padding-top: 37px;
+                    }
+
+                }
+            }
+        }
+    }
+}

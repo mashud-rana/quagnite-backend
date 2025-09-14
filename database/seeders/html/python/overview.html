@@ -1,0 +1,95 @@
+<div>
+    Quickly jump in to test, simulate and practice your Python coding skills in
+    this playground straight to your browser!<br /><br />
+</div>
+<div>
+    <strong>Playground Features<br /></strong><br />
+</div>
+<ul>
+    <li>
+        Equipped with VS Code Integrated Development Environment (IDE) complete
+        with Terminal to run your Python code
+    </li>
+    <li>Python interpreter version: Python 3.8.0</li>
+</ul>
+<div>
+    <strong>What is Python?<br /></strong><br />
+</div>
+<div>
+    Python is the most versatile programming language to date. It covers the
+    most use cases for modern technologies today such as scripting, web
+    development, AI and machine learning, data analytics, QA automated testing,
+    and more! That’s why it’s very important for DevOps engineers to learn
+    Python since they will most likely work with these different types of
+    technologies in the industry.&nbsp;<br /><br />
+</div>
+<div>
+    DevOps practices, which deal with a lot of automation, often require you to
+    write automation scripts. Python adds more power and features to your
+    scripts that otherwise would be limited with just plain Bash scripts. Some
+    of the tools that DevOps uses are usually written in Python, so having the
+    knowledge will certainly become handy when troubleshooting tough issues.<br /><br />
+</div>
+<div>
+    Python also does exceptionally well with web development, as you can build
+    complete frontend and backend web applications with the help of web
+    frameworks such as Django and Flask. You can create your own consoles or
+    custom dashboards to help you manage, monitor, and develop reporting
+    mechanisms that make your life easier as a DevOps engineer.<br /><br />
+</div>
+<div>
+    Python is also great because it’s very easy to learn. If you’re new, no
+    problem! The Python syntax is straightforward, clean, and super readable,
+    making it easier to understand even with the most complex
+    implementations.&nbsp;<br /><br />
+</div>
+<div>
+    <strong>What’s new in Python version 3.8?<br /></strong><br />
+</div>
+<div>
+    1. <strong>New Walrus Operator</strong> - allows you to assign variables
+    inside an expression<br /><br />
+</div>
+<blockquote>
+    # Printing a variable involves assignment then a separate line to print<br />print_me
+    = 'Hello World'<br />print(print_me)<br /><br /># Now, you can now do
+    something like this. Cleaner and less code right?<br />print(print_me_too :=
+    'Hello World')
+</blockquote>
+<div>Output:&nbsp;<br /><br /></div>
+<blockquote>Hello World<br />Hello World</blockquote>
+<div>
+    2. <strong>F-Strings are now supported</strong> - F-strings allow you to
+    print both variables and values for debugging purposes.<br /><br />
+</div>
+<blockquote>
+    print_me = 'Hello World'<br />print(f'Hello, {print_me=}')
+</blockquote>
+<div>Output:<br /><br /></div>
+<blockquote>Hello, print_me='Hello World'</blockquote>
+<div>
+    3.<strong> Positional-only parameters using “/” </strong>- In Python,
+    functions support both positional and keyword parameters. The
+    <strong>“/” </strong>gives you a clear identifier of the positional-only
+    parameters.<br /><br />
+</div>
+<blockquote>
+    # We put the slash in the 3rd parameter of the function<br /># This means a
+    and b should only be positional parameters<br />def test (a, b, /, c, d):<br />&nbsp;
+    &nbsp; print(a, b, c, d)<br />&nbsp; &nbsp;<br />test(1, 2, c=3, d=4)
+</blockquote>
+<div>Output:<br /><br /></div>
+<blockquote>1 2 3 4</blockquote>
+<div>
+    If we set <strong>a </strong>and <strong>b </strong>as keyword parameters we
+    get an error<br /><br />
+</div>
+<blockquote>
+    def test (a, b, /, c, d):<br />&nbsp; &nbsp; print(a, b, c, d)<br /><br />test(a='a',
+    b='b', c=3, d=4)
+</blockquote>
+<div>Output:<br /><br /></div>
+<blockquote>
+    TypeError: test() got some positional-only arguments passed as keyword<br />arguments:
+    'a, b'
+</blockquote>

@@ -1,0 +1,206 @@
+.ic__student_login--part {
+    @include background(no-repeat, cover, center);
+
+    .ic__student_login {
+        .row {
+            // min-height: 100vh;
+    
+            @media #{$max575} {
+                margin: 0 15px;
+            }
+        }
+    }
+    
+
+    .ic_login_wrapper {
+        max-width: 656px;
+        background: #FFFFFF;
+        box-shadow: 0px 39px 48px rgba(75, 49, 147, 0.06);
+        border-radius: 25px;
+        margin-top: 62px;
+        padding: 40px;
+
+        @media #{$max1440} {
+            max-width: 550px;
+        }
+
+        @media #{$max1280} {
+            max-width: 500px;
+        }
+
+        @media #{$max991} {
+            max-width: 450px;
+        }
+
+        @media #{$max575} {
+            padding: 25px 15px;
+        }
+
+        .logo {
+            img {
+                max-width: 100%;
+                height: auto;
+
+
+                @media #{$max1280} {
+                    max-width: 180px;
+                }
+
+                @media #{$max991} {
+                    max-width: 150px;
+                }
+
+                @media #{$max767} {
+                    max-width: 140px;
+                }
+            }
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 35px;
+            line-height: 57px;
+            text-align: center;
+            color: #22223B;
+
+            @media #{$max1440} {
+                font-size: 30px;
+            }
+
+            @media #{$max1280} {
+                font-size: 24px;
+                line-height: 30px;
+            }
+
+            @media #{$max991} {
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            @media #{$max575} {
+                font-size: 18px;
+                line-height: 28px;
+            }
+
+            @media #{$max480} {
+                font-size: 16px;
+                line-height: 28px;
+            }
+        }
+
+        .top_abs {
+            position: absolute;
+            top: -30px;
+            left: -70px;
+            z-index: -1;
+
+            @media #{$max1024} {
+                display: none;
+            }
+        }
+
+        .bottom_abs {
+            position: absolute;
+            bottom: -30px;
+            right: -70px;
+            z-index: -1;
+
+            @media #{$max1024} {
+                display: none;
+            }
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+            box-shadow: 53.695px 50.3901px 214.78px rgba(39, 42, 119, 0.13);
+
+            .input-group-text {
+                border: 0;
+                background-color: #EEF2F3;
+                color: $dark-blue;
+                font-size: 12px;
+                border-radius: 10px 0 0 10px;
+                padding: 18px;
+
+            }
+
+            .form-control {
+                border: 0;
+                background-color: #EEF2F3;
+                color: #081735;
+                font-size: 12px;
+                border-radius: 0 10px 10px 0;
+                padding: 18px 0;
+                @media #{$max1440} {
+                    height: 50px;
+                }
+                &::placeholder {
+                    color: #70798B;
+                }
+
+                &:-ms-input-placeholder {
+                    color: #70798B;
+                }
+
+                &::-ms-input-placeholder {
+                    color: #70798B;
+                }
+            }
+        }
+
+        .ic-btn {
+            @media #{$max1440} {
+                height: 50px
+            }
+
+            @media #{$max1280} {
+                height: 40px
+            }
+        }
+
+        .ic_remember_me {
+
+            .form-check {
+                .form-check-input {
+                    box-shadow: none;
+                    border-radius: 4px;
+
+                    &:checked {
+                        background-color: $dark-blue;
+                        border: 1px solid $dark-blue !important;
+                    }
+
+                    &:focus {
+                        border: 1px solid rgba(0, 0, 0, .25);
+                    }
+                }
+
+
+            }
+
+            label {
+                color: #081735;
+                font-weight: 500;
+                line-height: 20px;
+                font-family: $font-rubik;
+            }
+
+            a {
+                color: #2B9CB4;
+                font-weight: 400;
+                line-height: 20px;
+                font-family: $font-rubik;
+            }
+        }
+
+        .ic_create_acc {
+            small {
+                color: #8F95B2;
+            }
+
+            a {
+                color: #2B9CB4;
+            }
+        }
+    }
+}

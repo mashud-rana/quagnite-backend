@@ -1,0 +1,58 @@
+.ic-courses-search-filter {
+  flex: 0 0 auto;
+  width: 590px;
+
+  @media #{$max1650} {
+    width: 450px;
+  }
+  @media #{$max1399} {
+    width: 350px;
+  }
+  @media #{$max1199} {
+    width: 250px;
+  }
+  @media #{$max575} {
+    width: 100%;
+  }
+
+  .form-control {
+    height: 48px;
+    @include box-shadow2($shadow-2!important);
+    &::placeholder {
+      color: $color-shuttleGray;
+    }
+  }
+}
+
+.ic-courses-item-wraper {
+  .ic-dashboard-event-item {
+    .ic-dashboard-event-content {
+      .course-author {
+        p {
+          @include text-shorten();
+        }
+      }
+      .title {
+        h5 {
+          padding-right: 20px;
+        }
+      }
+      .body-2 {
+        @include transition(0.5s);
+      }
+      .sub-3 {
+        @include transition(0.5s);
+      }
+    }
+    &:hover {
+      .ic-dashboard-event-content {
+        .body-2 {
+          color: $color-blue;
+        }
+        .sub-3 {
+          color: $color-ebonyClay;
+        }
+      }
+    }
+  }
+}

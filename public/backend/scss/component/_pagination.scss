@@ -1,0 +1,33 @@
+.ic-pagination {
+  ul {
+    @include d-flex();
+    @include justify-content(flex-end);
+    .page-item {
+      margin-right: 8px;
+      .page-link {
+        @include box(32px, 32px);
+        background-color: $color-white;
+        @include bd-radius(3px);
+        @include box-shadow2($shadow-2);
+        @include align-center();
+        padding: 0px;
+        border: none;
+        color: $color-blue;
+        @include transition(0.5s);
+
+        &.active,
+        &:hover {
+          background-color: $color-blue;
+          color: $color-white;
+          path {
+            fill: $color-white;
+          }
+        }
+
+        &.prev {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}

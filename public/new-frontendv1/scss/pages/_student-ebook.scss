@@ -1,0 +1,56 @@
+/* student e-book */
+.ic-teacher-add-exam,
+.ic-teacher-create-exam {
+    &.ic-student-ebook {
+        padding-top: 45px;
+        .ic-exam-heading {
+            @include flex-direction(column);
+            @include align-items(start);
+            margin-bottom: 45px;
+
+            h5 {
+                color: var(--Black, #272C37);
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: capitalize;
+                margin-bottom: 13px;
+            }
+
+            p {
+                color: var(--Greay, #6C757D);
+                font-family: $font-rubik;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                letter-spacing: 0.16px;
+            }
+        }
+
+        tbody{
+            td{
+                font-family: $font-rubik;
+
+                &:last-child{
+                    min-width: 163px;
+                }
+            }
+        }
+
+        .ic-edit-delete-btn {
+            border-radius: 50px;
+            border: 1px solid var(--Stock, #E2E2EA);
+            background: #F8F8F8;
+            padding: 8px 15px;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            a{
+                display: inline-flex;
+            }
+        }
+    }
+}

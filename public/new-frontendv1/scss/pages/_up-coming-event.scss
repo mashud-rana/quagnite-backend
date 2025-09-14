@@ -1,0 +1,405 @@
+.ic-upcoming-events {
+    background: var(--Background, linear-gradient(180deg, #FFF 0%, #D3EDF3 100%));
+    position: relative;
+
+    .ic-event-bg-shape {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        .event-shape {
+            max-width: 845px;
+
+            @media #{$max1650} {
+                max-width: 818px;
+            }
+
+            @media #{$max1440} {
+                max-width: 783px;
+            }
+
+            @media #{$max1399} {
+                max-width: 705px;
+            }
+
+            @media #{$max1199} {
+                max-width: 615px;
+            }
+
+            @media #{$max991} {
+                display: none;
+            }
+
+
+        }
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .ic-arrows-buttons {
+        @include d-flex();
+        @include justify-content(center);
+        gap: 15px;
+        padding-top: 50px;
+
+        @media #{$max1440} {
+            padding-top: 40px;
+        }
+
+        @media #{$max1199} {
+            padding-top: 30px;
+        }
+
+        @media #{$max991} {
+            padding-top: 20px;
+        }
+
+        @media #{$max575} {
+            padding-top: 15px;
+            gap: 8px;
+        }
+
+        .slick-arrow {
+            width: 40px;
+            height: 40px;
+
+            i {
+                @media #{$max575} {
+                    font-size: 20px;
+                }
+            }
+        }
+
+
+    }
+
+    .coming-event-arrow-right,
+    .coming-event-arrow-left {
+        width: 50px;
+        height: 50px;
+        color: #2DB6D2;
+        border-radius: 50px;
+        border: 1px solid $stock;
+        background: white;
+        box-shadow: 0px 24px 48px 0px rgba(43, 70, 168, 0.08);
+        @include transition(0.4s);
+        @include d-flex();
+        @include justify-content(center);
+        @include align-items(center);
+
+        &:hover {
+            color: white;
+            background: #178fa8;
+        }
+
+        i {
+            font-size: 22px;
+        }
+    }
+}
+
+.ic-upcoming-card {
+    @include d-flex();
+    gap: 50px;
+    padding: 25px 90px 25px 30px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid $stock;
+    box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.04);
+
+    @media #{$max1440} {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    @media #{$max991} {
+        @include flex-direction(column);
+    }
+
+    @media #{$max575} {
+        padding: 10px;
+    }
+
+    &:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .ic-coming-event-card-left {
+        width: 100%;
+        max-width: 648px;
+
+        @media #{$max1440} {
+            width: 50%;
+        }
+
+        @media #{$max991} {
+            width: 100%;
+        }
+
+        img {
+            border-radius: 10px;
+            height: 380px;
+            width: 100%;
+            object-fit: cover;
+            @media #{$max1399} {
+                height: 320px;
+            }
+            @media #{$max1199} {
+                height: 280px;
+            }
+            @media #{$max575} {
+                height: 250px;
+            }
+        }
+    }
+
+    .ic-coming-event-card-right {
+        flex: 1;
+        @include d-flex();
+        @include flex-direction(column);
+        @include justify-content(center);
+        gap: 24px;
+
+        @media #{$max1440} {
+            gap: 10px;
+        }
+    }
+
+
+    .ic-live-event {
+        @include d-flex();
+        @include align-items(center);
+        @include justify-content(center);
+        max-width: 140px;
+        height: 35px;
+        // padding: 12px 15px;
+        gap: 5px;
+        border-radius: 30px;
+        border: 1px solid $stock;
+        background: #FFF;
+        color: $red;
+
+        // @media #{$max1440} {
+        //     width: 120px;
+        // }
+
+        span {
+            &:first-child {
+                @include inline-flex();
+            }
+        }
+    }
+
+    .ic-date-time-location {
+        @include d-flex();
+        gap: 18px;
+
+        @media #{$max575} {
+            gap: 10px;
+        }
+
+
+
+        span {
+            font-family: $font-lexend;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            @include d-flex();
+
+        }
+
+        i {
+            font-size: 24px;
+            color: $primary;
+
+            @media #{$max1440} {
+                font-size: 20px;
+            }
+        }
+
+        .ic-date,
+        .ic-time,
+        .ic-location {
+            @include d-flex();
+            @include align-items(center);
+            gap: 5px;
+        }
+    }
+
+    .ic-event-desc {
+        .title {
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 28px;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        p {
+            font-weight: 300;
+            color: $gray-deep;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .ic-event-card-footer {
+        @include d-flex();
+        @include align-items(center);
+        gap: 40px;
+
+        @media #{$max991} {
+            flex-direction: row-reverse;
+            @include justify-content(start);
+        }
+
+        @media #{$max374} {
+            gap: 10px;
+        }
+
+        .ic-event-author {
+            @include d-flex();
+            @include align-items(center);
+            gap: 12px;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 1px;
+                height: 32px;
+                background: $stock;
+                left: -20px;
+
+                @media #{$max991} {
+                    display: none;
+                }
+            }
+
+            .ic-author-title {
+                p {
+                    line-height: 140%;
+                }
+            }
+
+            img {
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+            }
+        }
+
+        // .ic-btn{
+        //     height: 56px;
+        // }
+    }
+}
+
+
+
+/* event card section */
+.ic-event-card-section {
+    .ic-coach-item {
+        .ic-event-bage {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            border-radius: 100px;
+            color: white;
+            background-color: #F47820;
+            padding: 6px 12px;
+            font-size: 12px;
+            letter-spacing: 0.12px;
+            line-height: 1;
+            z-index: 1;
+        }
+    }
+
+    .ic-card-content {
+        padding: 25px 30px 20px;
+        @include d-flex();
+        @include flex-direction(column);
+        gap: 20px;
+
+        @media #{$max1199} {
+            padding: 15px;
+            gap: 10px;
+        }
+
+        .ic-date-time-location {
+            @include d-flex();
+            gap: 18px;
+
+            @media #{$max767} {
+                gap: 8px;
+            }
+
+            span {
+                font-family: $font-lexend;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                @include d-flex();
+
+                @media #{$max767} {
+                    font-size: 14px;
+                }
+
+            }
+
+            i {
+                font-size: 24px;
+                color: $primary;
+
+                @media #{$max1440} {
+                    font-size: 20px;
+                }
+
+                @media #{$max767} {
+                    font-size: 16px;
+                }
+            }
+
+            .ic-date,
+            .ic-time,
+            .ic-location {
+                @include d-flex();
+                @include align-items(center);
+                gap: 5px;
+            }
+        }
+
+        .ic-card-title {
+            h5 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .ic-card-btn {
+            span {
+                display: inline-flex;
+                line-height: normal;
+            }
+        }
+
+    }
+
+}

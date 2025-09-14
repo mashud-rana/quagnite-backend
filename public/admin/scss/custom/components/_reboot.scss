@@ -1,0 +1,70 @@
+/* =============
+   General
+============= */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.h1,.h2,.h3,.h4,.h5,.h6,
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-semibold;
+}
+
+body {
+  margin: 0; // 1
+  font-family: $font-family-base;
+  @include font-size($font-size-base);
+  font-weight: $font-weight-base;
+  line-height: $line-height-base;
+  color: $body-color;
+  text-align: $body-text-align;
+  background-color: $body-bg; // 2
+  -webkit-text-size-adjust: 100%; // 3
+  -webkit-tap-highlight-color: rgba($black, 0); // 4
+  overflow-x: hidden;
+}
+
+p{
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+label {
+  font-weight: $font-weight-regular;
+}
+
+b,
+strong {
+  font-weight: $font-weight-medium;
+}
+
+// blockquote
+
+.blockquote {
+  padding: 10px 20px;
+  border-left: 4px solid $gray-300;
+}
+
+.blockquote-reverse {
+  border-left: 0;
+  border-right: 4px solid $gray-300;
+  text-align: right;
+}
+
+// Links
+
+a {
+  color: $primary;
+  text-decoration: $link-decoration;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}

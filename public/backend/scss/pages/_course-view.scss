@@ -1,0 +1,318 @@
+.course-view-header-top-left {
+  padding-left: 540px;
+  @media #{$max1650} {
+    padding-left: 510px;
+  }
+  @media #{$max1399} {
+    padding-left: 460px;
+  }
+  @media #{$max1199} {
+    padding-left: 20px;
+  }
+}
+
+.ic-pages-left-sidebar-wraper {
+  width: 500px;
+  background-color: $color-white;
+  @include bd-radius2(0px, 20px, 20px, 0px);
+  position: absolute;
+  left: 0;
+  top: 0;
+  @media #{$max1650} {
+    width: 480px;
+  }
+  @media #{$max1399} {
+    width: 430px;
+  }
+  @media #{$max1199} {
+    z-index: 9999;
+    @include transform-x((-100%));
+    @include transition(0.5s);
+    height: 100%;
+    position: fixed;
+  }
+  @media #{$max575} {
+    width: 360px;
+  }
+
+  &.active {
+    @media #{$max1199} {
+      @include transform-x(0);
+    }
+  }
+}
+
+.ic-course-view-sidebar-wraper {
+  padding: 40px 0px;
+  max-height: calc(100vh - 105px);
+
+  .course-progress {
+    @include d-flex();
+    @include align-items(center);
+    padding: 0px 32px;
+    @media #{$max1650} {
+      padding: 0px 24px;
+    }
+    @media #{$max1280} {
+      padding: 0px 18px;
+    }
+    .progress {
+      height: 12px;
+      @include bd-radius(4px);
+      background-color: $color-aluminium;
+      flex: 1;
+      @media #{$max1399} {
+        height: 10px;
+      }
+    }
+    .progress-bar {
+      background-color: $color-blue;
+      @include bd-radius(4px);
+    }
+
+    .progress-percentage {
+      padding-left: 24px;
+    }
+  }
+  .course-content {
+    padding: 0px 32px;
+    @media #{$max1650} {
+      padding: 0px 24px;
+    }
+    @media #{$max1280} {
+      padding: 0px 18px;
+    }
+    .content {
+      @include d-flex();
+      @include align-items(center);
+
+      span {
+        color: $color-blue;
+        padding: 0px 10px;
+        position: relative;
+        @media #{$max1399} {
+          padding: 0px 8px;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          @include box(8px, 8px);
+          @include box-circle();
+          background-color: $color-blue;
+          left: -4px;
+          top: 50%;
+          transform: translateY(-50%);
+          @media #{$max1399} {
+            @include box(6px, 6px);
+            left: -2px;
+          }
+        }
+        &:first-child {
+          padding-left: 0px;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.course-view-chapter-wraper {
+  .accordion-item {
+    background-color: transparent;
+  }
+  .ic-accordion-button {
+    &.collapsed {
+      background-color: #fafbfc;
+    }
+  }
+
+  .ic-course-content-item-wraper .ic-content-item {
+    @include align-items(center);
+    gap: 5px;
+    .title-icon {
+      flex: 0 0 auto;
+
+      .icon {
+        margin-right: 8px;
+      }
+    }
+    .duration {
+      width: auto;
+      margin-left: 5px;
+    }
+  }
+}
+
+.ic-course-view-right-content-wraper {
+  padding-left: 210px;
+  @media #{$max1650} {
+    padding-left: 220px;
+  }
+  @media #{$max1399} {
+    padding-left: 170px;
+  }
+  @media #{$max1199} {
+    padding-left: 0;
+  }
+}
+
+.ic-course-view-video {
+  .plyr--full-ui {
+    @include bd-radius(10px);
+    background-color: transparent;
+  }
+  .plyr__poster {
+    background-size: cover;
+    width: 101%;
+  }
+  .plyr__control.plyr__control--overlaid {
+    padding: 28px;
+    background-color: $color-white;
+    color: $color-blue;
+    @media #{$max1650} {
+      padding: 26px;
+    }
+    @media #{$max1399} {
+      padding: 24px;
+    }
+    @media #{$max1199} {
+      padding: 22px;
+    }
+    @media #{$max575} {
+      padding: 20px;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+      @media #{$max1650} {
+        width: 25px;
+        height: 25px;
+      }
+      @media #{$max1399} {
+        width: 22px;
+        height: 22px;
+      }
+      @media #{$max1199} {
+        width: 20px;
+        height: 20px;
+      }
+      @media #{$max575} {
+      }
+    }
+  }
+
+  .plyr__controls {
+    .plyr__controls__item.plyr__control {
+      &:hover {
+        background-color: $color-blue;
+        color: $color-white;
+      }
+    }
+  }
+
+  .plyr__progress {
+    input {
+      color: $color-blue;
+    }
+  }
+  .plyr__progress__buffer {
+    background-color: $color-white;
+  }
+
+  .plyr__controls__item.plyr__menu {
+    button {
+      &:hover {
+        background-color: $color-blue;
+        color: $color-white;
+      }
+    }
+  }
+  .plyr__controls__item.plyr__volume {
+    input {
+      color: $color-blue;
+    }
+  }
+}
+
+.ic-course-view-chapter-content {
+  p {
+    color: $color-shuttleGray;
+    margin-bottom: 16px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.course-view-chapter-file-download {
+  .file-wraper {
+    @include d-flex();
+    gap: 40px;
+    @media #{$max1650} {
+      gap: 30px;
+    }
+    @media #{$max1199} {
+      gap: 20px;
+    }
+
+    .file-item {
+      background-color: $color-porcelain;
+      @include bd-radius(10px);
+      padding: 10px;
+      position: relative;
+      @include box(200px, 200px);
+      @include align-center();
+      @media #{$max1650} {
+        @include box(190px, 190px);
+      }
+      @media #{$max1399} {
+        @include box(180px, 180px);
+      }
+
+      &:hover {
+        .download-icon {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+
+    .download-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include transition(0.5s);
+      opacity: 0;
+      visibility: hidden;
+      a {
+        @include box(56px, 56px);
+        @include box-circle();
+        @include align-center();
+        background-color: $color-white;
+
+        i {
+          font-size: 24px;
+          color: $color-blue;
+        }
+      }
+    }
+  }
+}
+
+.plyr__control {
+  @media #{$max575} {
+    padding: 2px;
+  }
+
+  svg {
+    @media #{$max575} {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}

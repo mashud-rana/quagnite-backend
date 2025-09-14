@@ -1,0 +1,121 @@
+.ic-enroll-div {
+    border: 1px solid $stock;
+    box-shadow: 0px 54px 55px rgba(74, 83, 188, 0.08);
+    @include bd-radius(5px);
+    background-color: #fff;
+    h3 {
+        padding: 20px 20px 20px 20px;
+        text-align: center;
+        border-bottom: 1px solid $stock;
+    }
+    .ic-bootcamp-links {
+        padding: 0 30px 30px 30px;
+        ul {
+            li {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                i {
+                    color: $primary;
+                    margin-right: 8px;
+                }
+                &:not(:last-child) {
+                    border-bottom: 1px solid $stock;
+                }
+            }
+        }
+    }
+}
+
+.bootcamps-content {
+    p {
+        padding-bottom: 20px;
+    }
+}
+
+.ic-curiculam-right {
+    .ic-course-video-all {
+        padding: 25px 25px 18px 25px;
+        background-color: #fff;
+        max-height: 453px;
+        overflow-y: auto;
+        @include bd-radius(5px);
+        .accordion-body {
+            padding: 0;
+            ul {
+                background: transparent;
+                li {
+                    padding-top: 14px;
+                    padding-bottom: 14px;
+                    border-top: 0;
+                }
+            }
+        }
+        .accordion-item {
+            margin-bottom: 0;
+            &:not(:last-child) {
+                border-bottom: 1px solid $stock;
+            }
+            .accordion-button {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            &:first-child {
+                .accordion-button {
+                    padding-top: 0;
+                }
+            }
+            &:last-child {
+                .accordion-button {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+.ic-instructor-left {
+    .ic-online-isntructor-names {
+        @include d-flex();
+        gap: 10px;
+        padding-bottom: 15px;
+    }
+    ul {
+        li {
+            &:not(:last-child) {
+                padding-bottom: 15px;
+            }
+        }
+    }
+}
+.ic-instructor-info {
+    .ic-instruc-content {
+        border: 1px solid $stock;
+        padding: 20px;
+        border: 0 0 5px 5px;
+        text-align: center;
+        ul {
+            @include d-flex();
+            @include align-items(center);
+            @include justify-content(center);
+            gap: 13px;
+            li {
+                @include d-flex();
+                @include align-items(center);
+                gap: 4px;
+                font-weight: 300;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.ic-course-rating-slider {
+    opacity: 0;
+    transition: all linear .4s;
+    &.slick-initialized {
+        opacity: 1;
+    }
+}

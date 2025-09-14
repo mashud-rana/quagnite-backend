@@ -1,0 +1,273 @@
+.ic__helpdesk--part {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.search-banner {
+    background-color: #fff;
+    @include bd-radius(10px);
+    padding: 15px 15px;
+    gap: 26px;
+    margin-top: 30px;
+
+    input {
+        color: #959EAD;
+        font-size: 14px;
+
+        &::placeholder {
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 20px;
+            color: #959EAD;
+        }
+    }
+
+    button {
+        width: 44px;
+        height: 44px;
+        @include bd-radius(7px);
+        background-color: #10C3CD;
+        color: #fff;
+    }
+}
+
+.ic__howCan--items {
+    padding: 30px 30px 40px 30px;
+    background: linear-gradient(180deg, rgba(46, 183, 211, 0.25) 0.01%, rgba(6, 115, 138, 0.25) 100%), #06738A;
+    border: 1px solid #F4F5F6;
+    box-shadow: -8.76759px 26.3028px 43.838px rgba(31, 29, 85, 0.05);
+    border-radius: 25.0714px;
+    @include bd-radius(25px);
+
+    img {
+        margin-bottom: 25px;
+    }
+
+    p {
+        color: #fff;
+        padding-bottom: 15px;
+
+        +p {
+            padding-bottom: 20px;
+        }
+    }
+
+    a {
+        border: 1px solid #fff;
+        color: #fff;
+
+        &:hover {
+            background-color: #fff;
+            color: #06738A;
+        }
+    }
+}
+
+.ic__helpdesk--banner {
+    padding-top: 221px;
+    padding-bottom: 310px;
+
+    @media #{$max1399} {
+        padding-top: 180px;
+        padding-bottom: 286px;
+    }
+
+    .ic-left-shape {
+        bottom: -115px;
+    }
+}
+
+.ic__howCan--service {
+    margin-top: -205px;
+    position: relative;
+    padding-bottom: 100px;
+    @media #{$max1399} {
+        padding-bottom: 60px;
+    }
+    @media #{$max991} {
+        margin-top: -135px;
+    }
+}
+
+
+.helpdesk {
+    position: relative;
+    padding: 10px;
+    @include bd-radius(15px);
+    background-color: #fff;
+    filter: drop-shadow(0px 32px 64px rgba(95, 85, 136, 0.11));
+
+    .ic__helpdesk--doted {
+        position: absolute;
+        bottom: -60px;
+        left: -60px;
+    }
+
+    .helpdesk--images {
+        position: relative;
+        @media #{$max575} {
+            height: 300px;
+            img {
+                height: 100%;
+            }
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            @include bd-radius(15px);
+            background: linear-gradient(0deg, rgba(24, 34, 58, 0.35), rgba(24, 34, 58, 0.35));
+        }
+    }
+
+    .ic__helpdesk--video {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        padding: 20px 50px;
+
+        h3 {
+            font-size: 35px;
+            line-height: 64px;
+            color: #fff;
+            padding-top: 19px;
+
+            @media #{$max1366} {
+                line-height: 42px;
+                font-size: 28px;
+            }
+            @media #{$max575} {
+                line-height: 30px;
+                font-size: 28px;
+            }
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 32px;
+            color: #fff;
+
+            @media #{$max1366} {
+                font-size: 16px;
+                line-height: 28px;
+            }
+        }
+
+        a {
+            display: inline-flex;
+            width: 82px;
+            height: 82px;
+            @include bd-radius(50%);
+            background-color: #fff;
+            display: inline-flex;
+            @include align-items(center);
+            @include justify-content(center);
+
+            @media #{$max1366} {
+                width: 60px;
+                height: 60px;
+            }
+
+            i {
+                color: #09778F;
+                font-size: 30px;
+                @media #{$max1366} {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}
+
+/**============  faq =========**/
+.ic__faq--part {
+    padding-top: 100px;
+
+    @media #{$max1399} {
+        padding-top: 60px;
+    }
+
+    @media #{$max1199} {
+        padding-top: 40px;
+    }
+
+    .ic_heading--sections {
+        text-align: center;
+        padding-bottom: 60px;
+
+        @media #{$max1199} {
+            padding-bottom: 40px;
+        }
+    }
+}
+
+.ic__according {
+    .accordion {
+        .ic-accordion-item {
+            background-color: #fff;
+            margin-bottom: 16px;
+            @include bd-radius(5px);
+            border-left: 2px solid #178DA6;
+
+            .accordion-button {
+                padding: 20px 35px 20px 25px;
+                @include bd-radius(5px);
+                font-size: 20px;
+
+                @media #{$max1199} {
+                    font-size: 18px;
+                }
+
+                &::after {
+                    content: '\ea12';
+                    font-family: 'remixicon' !important;
+                    width: auto;
+                    height: auto;
+                    background-color: unset;
+                    font-size: 26px;
+                    line-height: 18px;
+                    background-image: unset;
+                }
+
+                &:not(.collapsed) {
+                    color: #06738A;
+
+                    &::after {
+                        background-image: unset;
+                        content: '';
+                        width: 16px;
+                        height: 3px;
+                        background-color: #06738A;
+                        transform: unset;
+
+                    }
+                }
+
+            }
+
+            .accordion-body {
+                padding: 0px 35px 20px 25px;
+                color: #757F9D;
+                font-size: 18px;
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+.ic__newAndArticle {
+    .ic__popular--blog {
+        .ic__popular--items {
+            .ic__popular-read {
+                display: inline-block;
+                padding-top: 20px;
+            }
+        }
+    }
+}

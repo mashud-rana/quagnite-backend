@@ -1,0 +1,426 @@
+.ic-dashboard-card {
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 25px 10px 25px 15px;
+    @include bd-radius(10px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 100%;
+
+    @media #{$max1440} {
+        gap: 8px;
+    }
+
+    @media #{$max1199} {
+        padding: 15px 10px 15px 15px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .ic-dash-icon {
+        width: 56px;
+        height: 56px;
+        @include bd-radius(50%);
+        background-color: $white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+
+        @media #{$max1440} {
+            width: 40px;
+            height: 40px;
+        }
+
+        img {
+            @media #{$max1440} {
+                max-width: 20px;
+            }
+        }
+    }
+
+    .ic-dash-content {
+        p {
+            font-size: 14px;
+            color: $white;
+
+            @media #{$max991} {
+                line-height: 16px;
+            }
+        }
+
+        h4 {
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 700;
+            font-family: $font-rubik;
+            color: $white;
+
+            @media #{$max1440} {
+                font-size: 22px;
+            }
+
+            @media #{$max991} {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+.ic-student-dashboard {
+    min-height: 100vh;
+}
+
+.coach-card {
+    padding: 25px;
+    @include bd-radius(10px);
+    border: 1px solid #EBEBEB;
+    background: $white;
+}
+
+.ic-coach-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .form-select {
+        height: 26px;
+        font-size: 12px;
+        background-size: 9px 9px;
+        padding: 0 2.25rem 0 0.75rem;
+    }
+}
+
+.ic-upcomming-sessions {
+    padding-top: 13px;
+
+    ul {
+        max-height: 279px;
+        overflow-y: auto;
+
+        li {
+            &:not(:last-child) {
+                padding-bottom: 8px;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+
+                img {
+                    width: 34px;
+                    height: 35px;
+                    @include bd-radius(50%);
+                    object-fit: cover;
+                    object-position: top;
+                }
+
+                .upcoming-name {
+                    color: #2E2F47;
+                    font-weight: 500;
+                }
+
+                .upcoming-date {
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 120%;
+                    /* 15.6px */
+                    letter-spacing: 0.13px;
+                    color: #4C516D;
+                }
+
+                span {
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 120%;
+                    /* 15.6px */
+                    letter-spacing: 0.13px;
+                }
+
+                i {
+                    margin-left: auto;
+                    font-size: 22px;
+                    color: #1F2029;
+                }
+            }
+        }
+    }
+
+}
+
+.ic-coach-student-ul {
+    padding-top: 20px;
+    max-height: 457px;
+    overflow-y: auto;
+
+    li {
+        padding-bottom: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        img {
+            width: 46px;
+            height: 46px;
+            @include bd-radius(50%);
+        }
+
+        .ic-coach-student-names {
+            margin-right: auto;
+
+            p {
+                color: #1F2029;
+                font-family: $font-rubik;
+                font-weight: 500;
+
+                span {
+                    font-style: normal;
+                    font-weight: 400;
+                    color: #6C757D;
+                    font-family: $font-rubik;
+                }
+            }
+        }
+
+        .active-student {
+            p {
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 120%;
+                /* 18px */
+                letter-spacing: 0.15px;
+                color: $black;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+
+                i {
+                    font-size: 6px;
+                    color: $green;
+                }
+            }
+
+            span {
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 120%;
+                /* 15.6px */
+                letter-spacing: 0.13px;
+                color: $gray ;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+.ic-coach-top-student {
+    .ic-see-all {
+        background: rgba(0, 172, 182, 0.10);
+        color: $primary;
+        height: 40px;
+    }
+}
+
+.my-calender-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    img {
+        width: 52px;
+        height: 52px;
+        @include bd-radius(50%);
+    }
+
+    h5 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+        /* 16.8px */
+        letter-spacing: 0.14px;
+        color: $gray;
+    }
+
+    .ic-btn {
+        height: 40px;
+        background: rgba(0, 172, 182, 0.10);
+        font-size: 14px;
+        font-weight: 500;
+        color: $primary;
+        white-space: nowrap;
+    }
+
+    &.community {
+        .ic-btn {
+            height: 40px;
+            width: 40px;
+            padding: 0;
+            background: rgba(0, 172, 182, 0.10);
+            font-size: 22px;
+            font-weight: 500;
+            color: $primary;
+            @include bd-radius(5px);
+        }
+    }
+}
+
+.ic-scheduled {
+    padding-top: 10px;
+
+    .ic-date-show {
+        margin-bottom: 8px;
+    }
+
+    .date-shows {
+        font-size: 16px;
+        padding: 7px 16px;
+
+    }
+
+    .ic__arrows {
+        .ic-dates-arrows {
+            padding: 0;
+            width: 45px;
+            height: 45px;
+            @include bd-radius(5px);
+            background-color: rgba(0, 172, 182, 0.10);
+
+            i {
+                font-size: 22px;
+                color: $primary;
+            }
+        }
+    }
+
+    .ic-date-slider {
+        .ic-date-items {
+            p {
+                font-size: 16px;
+                padding-bottom: 8px;
+
+                @media #{$max1399} {
+                    font-size: 14px;
+                }
+
+                @media #{$max767} {
+                    font-size: 11px;
+                }
+            }
+
+            h5 {
+                margin: 0 auto 4px auto;
+            }
+        }
+    }
+
+    .ic-btn-outline {
+        height: 37px;
+        font-size: 14px;
+        padding: 0 20px;
+        gap: 3px;
+
+        i {
+            margin-left: 0 !important;
+        }
+    }
+}
+
+.ic-chart {
+    #SvgjsLine1007 {
+        stroke-width: 25 !important;
+        fill: rgba(225, 225, 234, 0.402) !important;
+        stroke-dasharray: 0 !important;
+        stroke: rgba(225, 225, 234, 0.402) !important;
+    }
+}
+
+.member-recently-bootcamp-area {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 60px 0px rgb(35 35 35 / 12%);
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #E2E2EA;
+
+        @media #{$max767} {
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        button {
+            background: #EBEBEB;
+            border: 1px solid #E2E2EA;
+        }
+
+    }
+
+    .recently-item-area {
+        padding: 20px;
+    }
+}
+
+// student dashboard custom style 
+.student-dashboard-card {
+    justify-content: space-between;
+    padding: 25px !important;
+    gap: 0;
+
+    @media #{$max1399} {
+        font-size: 20px !important;
+        padding: 20px !important;
+    }
+
+    @media #{$max1199} {
+        gap: 5px;
+    }
+
+    .card-title {
+        font-size: 22px !important;
+        margin-bottom: 13px;
+        line-height: normal !important;
+
+        @media #{$max1399} {
+            font-size: 20px !important;
+        }
+
+        @media #{$max1199} {
+            margin-bottom: 6px;
+        }
+    }
+
+    h4 {
+        margin-bottom: 13px;
+
+        @media #{$max1199} {
+            margin-bottom: 6px;
+        }
+    }
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        color: white;
+        gap: 5px;
+        font-weight: 300;
+    }
+}

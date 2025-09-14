@@ -1,0 +1,38 @@
+.ic-tab-link-wraper {
+  @include d-flex();
+  gap: 16px;
+  @media #{$max1650} {
+    gap: 12px;
+  }
+  @media #{$max1399} {
+    gap: 10px;
+  }
+  @media #{$max1199} {
+    gap: 8px;
+  }
+}
+.ic-tab-link {
+  background: $color-blue;
+  &::after {
+    background: $color-aluminium;
+  }
+
+  &::before {
+    background: $color-blue;
+  }
+
+  &.active {
+    &::after {
+      background: $color-blue;
+    }
+  }
+}
+.ic-tab-item-link {
+  @extend .ic-tab-link;
+}
+.ic-tab-pane {
+  display: none;
+  &.active {
+    display: block;
+  }
+}

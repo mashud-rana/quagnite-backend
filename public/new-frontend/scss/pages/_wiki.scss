@@ -1,0 +1,327 @@
+.ic-wiki-items {
+    box-shadow: 0px 15px 50px rgba(35, 35, 35, 0.05);
+    padding: 15px;
+    background-color: #fff;
+    @include bd-radius(5px);
+    height: 100%;
+    @media #{$max1399} {
+        padding: 10px;
+    }
+
+    .ic-wiki-img {
+        overflow: hidden;
+        position: relative;
+        @include bd-radius(5px);
+
+        img {
+            height: 202px;
+            object-fit: cover;
+            max-height: 100%;
+            @include bd-radius(5px);
+            border: 1px solid $stock;
+            transform: scale(1);
+            transition: all linear 0.4s;
+        }
+
+        .e-book-star {
+            padding: 4px 10px;
+            background-color: $white;
+            @include bd-radius(50px);
+            font-size: 15px;
+            line-height: 18px;
+            color: $black;
+            position: absolute;
+            top: 20px;
+            left: 13px;
+            @include d-flex();
+            @include align-items(center);
+            gap: 5px;
+
+            .ic-star-icons {
+                line-height: 14px;
+                @include d-flex();
+                @include align-items(center);
+                gap: 3px;
+            }
+
+            i {
+                font-size: 14px;
+                color: #FFC014;
+            }
+        }
+
+        .sales {
+            font-size: 15px;
+            line-height: 18px;
+            padding: 5px 15px;
+            background: linear-gradient(180deg, #2EB7D3 0.01%, #06738A 100%);
+            @include bd-radius(50px);
+            display: inline-block;
+            color: $white;
+            position: absolute;
+            top: 21px;
+            right: 13px;
+        }
+    }
+
+    .ic-wiki-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 201px);
+        .wiki-names {
+            display: inline-block;
+            padding: 6px 16px;
+            @include bd-radius(5px);
+            background-color: $orange;
+            color: $white;
+            position: absolute;
+            top: -24px;
+            right: 19px;
+            font-size: 15px;
+
+        }
+
+        .author {
+            padding: 15px 0 10px 0;
+            @include d-flex();
+            @include align-items(center);
+            gap: 10px;
+
+            img {
+                max-width: 25px;
+            }
+
+            span {
+                color: $gray;
+            }
+        }
+
+        .ic-wikis-names {
+            @media #{$max1399} {
+                font-size: 16px;
+            }
+        }
+
+        .ic-para-text {
+            @media #{$max1399} {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .ic-wiki-btn {
+        .ic-btn {
+            height: 40px;
+        }
+        margin-top: auto;
+    }
+
+    &.e-books-items {
+        .wiki-names {
+            @include bd-radius(50px);
+        }
+
+        .ic-wiki-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            .ic-btn {
+                padding: 0 20px;
+            }
+
+            .e-book-price {
+                font-size: 24px;
+                line-height: 28px;
+
+                @media #{$max1399} {
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+
+                @media #{$max1199} {
+                    font-size: 18px;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .ic-wiki-img {
+            img {
+                transform: scale(1.04);
+            }
+        }
+    }
+}
+
+.ic__blog--detailsPart {
+    .ic__blog--detailsImg {
+        height: 595px;
+        position: relative;
+        @include bd-radius(10px);
+        margin-bottom: 30px;
+
+        img {
+            height: 100%;
+            @include bd-radius(10px);
+        }
+
+        + {}
+
+        .ic-blog-text-overly {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(23, 23, 23, 0.9) 13.65%, rgba(21, 141, 167, 0) 51.85%);
+            @include bd-radius(10px);
+            display: flex;
+            align-items: end;
+            justify-content: center;
+
+            .ic-blog-heading {
+                text-align: center;
+                padding-bottom: 70px;
+
+                .program {
+                    padding: 5px 15px;
+                    background-color: $orange;
+                    color: #fff;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 28px;
+                    display: inline-block;
+                    @include bd-radius(50px);
+                }
+
+                .blog-title {
+                    font-weight: 600;
+                    font-size: 35px;
+                    line-height: 45px;
+                    color: #fff;
+                    padding-top: 10px;
+                    padding-bottom: 5px;
+                }
+
+                .dates {
+                    color: #fff;
+                    font-family: $font-lexend;
+                }
+            }
+        }
+    }
+}
+
+.blog-discription {
+    p {
+        font-weight: 300;
+        color: $gray;
+        padding-bottom: 25px;
+    }
+}
+
+.ic-share-object {
+    @include d-flex();
+    @include justify-content(space-between);
+    @include align-items(center);
+
+    .share-links {
+        @include d-flex();
+        @include align-items(center);
+        gap: 8px;
+
+        ul {
+            @include d-flex();
+            @include align-items(center);
+
+            li {
+                a {
+                    color: $black;
+                    width: 40px;
+                    height: 40px;
+                    @include bd-radius(50%);
+                    transition: all linear .4s;
+                    @include d-flex();
+                    @include align-items(center);
+                    @include justify-content(center);
+
+                    &:hover {
+                        background: $gradient;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.blog-tags {
+    ul {
+        @include d-flex();
+        flex-wrap: nowrap;
+        @include align-items(center);
+        gap: 10px;
+
+        li {
+            a {
+                @include d-flex();
+                @include align-items(center);
+                @include justify-content(center);
+                height: 50px;
+                padding: 0 25px;
+                @include bd-radius(50px);
+                color: #272C37;
+                border: 1px solid $stock;
+
+                &:hover {
+                    background: $gradient;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+
+.ic__helpFull--content {
+    padding: 26px;
+    background: #FFFFFF;
+    @include bd-radius(10px);
+    margin-top: 50px;
+    border: 1px solid $stock;
+
+    .ic__helpFull-first {
+        padding-bottom: 23px;
+        margin-bottom: 23px;
+        border-bottom: 1px solid #ddd;
+        border-image: url(/assets/images/border-bottom-w-det.png) 30 stretch;
+
+        i {
+            color:
+                #06738A;
+            padding-left: 10px;
+            font-size: 20px;
+        }
+    }
+
+    .titles {
+        padding-bottom: 10px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 30px;
+    }
+}
+
+.ic-ebook-main {
+    .ic-cols {
+        @media (max-width: 500px) {
+                width: 100%;
+        }
+    }
+}

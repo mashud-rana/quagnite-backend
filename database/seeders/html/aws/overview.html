@@ -1,0 +1,202 @@
+<div>
+    <strong>What Is AWS (Amazon Web Services)?<br /></strong><br />
+</div>
+<div>
+    AWS is currently the most popular platform for cloud computing services. But
+    what is this 'cloud computing' thing? Well, think about an app that lets
+    people shop online. How can it remember the shipping address of each user?
+    It stores it in a database. And how can the user order a product? His app
+    contacts some server. How is the user notified his order will arrive
+    tomorrow? Through an email.<br /><br />
+</div>
+<div>
+    Database, server, email -- these are just a few examples of things the app
+    needs to use. And AWS gives you access to such resources and services.<br /><br />
+</div>
+<div>
+    So how can we sum up cloud computing? It's almost like you build your own
+    datacenter in the cloud. You go to the AWS website and add anything that
+    your app, service, or website needs. It's your custom-made datacenter, in
+    the cloud. You don't care about the hardware that is required. You just buy
+    and configure your cloud services. Amazon takes care of the hardware
+    stuff.<br /><br />
+</div>
+<div>
+    <strong>KodeKloud AWS Playground<br /></strong><br />
+</div>
+<div>
+    AWS has a you can buy. If you've never used a cloud computing platform
+    before, this can be overwhelming. What do you start with? What is EC2? A
+    virtual server? How do you configure it and connect to it? How do you create
+    a Kubernetes cluster on AWS?<br /><br />
+</div>
+<div>
+    We know how hard it is to understand with theory alone. That's why we
+    created the AWS Playground. With a simple click, you get quick access to the
+    AWS platform. You can test things out and learn by doing. All of this
+    without even having to create an account there. There's no risk of breaking
+    anything. If you mess up, you can just launch a new playground.<br /><br />
+</div>
+<div>
+    <strong>Quick Start Guide<br /></strong><br />
+</div>
+<div>
+    For a smooth experience, please read the guide below. Pay close attention to
+    the stuff highlighted with <strong>bold text</strong>.<br /><br />
+</div>
+<div>The regions supported in our AWS playground are:<br /><br /></div>
+<ul>
+    <li>us-east-1</li>
+    <li>us-east-2</li>
+    <li>eu-central-1</li>
+    <li>us-west-2</li>
+    <li>eu-west-2</li>
+    <li>ap-southeast-1</li>
+</ul>
+<div>
+    And here are the AWS services you can currently test in our playground:<br /><br />
+</div>
+<div>
+    <strong>EC2 Instances (Virtual Machines / Servers)<br /></strong><br />
+</div>
+<div>
+    Elastic Compute instances, also called EC2, are basically virtual servers.
+    They're called elastic because they are easy to scale up or down. For
+    example, you can scale up from 4 CPU cores to 8 cores with a few mouse
+    clicks. Or you can scale down from 8 CPU cores to 4, as easily. Same goes
+    for RAM, or storage space.<br /><br />
+</div>
+<ul>
+    <li>
+        Use a <strong>nano, micro</strong>, <strong>small</strong>, or
+        <strong>medium</strong> size for the <strong>t1</strong>,
+        <strong>t2</strong> and <strong>t3</strong> instances.
+    </li>
+    <li>
+        For <strong>storage</strong> use the <strong>gp2</strong> (General
+        Purpose) volume.
+    </li>
+    <li>
+        The <strong>maximum storage size</strong> we support is
+        <strong>30GB</strong>.
+    </li>
+</ul>
+<div>
+    After you create your instance, you might not see it displayed. In that
+    case, just press the <strong>refresh</strong> button in your web browser.<br /><br />
+</div>
+<div>
+    <strong>S3 - Object Storage<br /></strong><br />
+</div>
+<div>
+    An S3 bucket is a convenient place to store files. Apps or users can easily
+    push files there (upload). And apps, or users can also easily pull them
+    (download).<br /><br />
+</div>
+<div>
+    Configuration is straightforward, but there is one tricky part. Make sure
+    the <strong>bucket name is unique</strong>. It must be something that no one
+    else on AWS uses. If it's hard to find a unique name, just add a random
+    number in there, e.g., 'mybucket4884796837'.<br /><br />
+</div>
+<div>
+    <strong>RDS - Relational Database Service<br /></strong><br />
+</div>
+<div>
+    NoSQL is no good? Well, if you need a relational database instead, AWS has
+    you covered. RDS supports the following database engines:<br /><br />
+</div>
+<ul>
+    <li>MySQL</li>
+    <li>MariaDB</li>
+    <li>PostgreSQL</li>
+    <li>Oracle</li>
+    <li>Microsoft SQL Server</li>
+    <li>Amazon Aurora</li>
+</ul>
+<div>
+    The quickest way to get started is to pick the <strong>Free tier</strong> in
+    the <strong>Templates </strong>section. This works with
+    <strong>MySQL</strong>, <strong>MariaDB</strong>, and
+    <strong>PostgreSQL</strong>.<br /><br />
+</div>
+<div>
+    <div>‍<br /><br /></div>
+    <div>
+        If you want to use a different engine, with custom settings, this will
+        be trickier. You need to:<br /><br />
+    </div>
+    <ul>
+        <li>Pick a <strong>Single DB Instance</strong>.</li>
+        <li>
+            Then choose a <strong>Burstable Class</strong> for the instance.
+        </li>
+        <li>
+            Next, pick a <strong>micro</strong> or
+            <strong>small</strong> instance.
+        </li>
+        <li>
+            For <strong>storage</strong> select
+            <strong>General Purpose SSD (gp2)</strong>.
+        </li>
+    </ul>
+    <div>
+        <strong>EKS - Elastic Kubernetes Service<br /></strong><br />
+    </div>
+    <div>
+        If you want to create a Kubernetes cluster yourself, it can be a pretty
+        long process. You need to launch a couple of Linux servers, then
+        configure each one. And the configuration steps can be quite long. EKS
+        lets you get such a cluster much faster, in mere minutes.<br /><br />
+    </div>
+    <ul>
+        <li>Cluster service role name = eksClusterRole</li>
+        <li>CloudFormation stack name = eks-cluster-stack</li>
+    </ul>
+    <div>
+        <strong>ECR - Elastic Container Registry<br /></strong><br />
+    </div>
+    <div>
+        Here, you can create your own container repositories. Then you can
+        upload/download container images just like you do on Docker Hub.<br /><br />
+    </div>
+    <div>
+        If you want to test other AWS services, just type their name in the top
+        search bar.<br /><br />
+    </div>
+    <div></div>
+    <div>
+        Here are the
+        <strong>other services that you can test in our playground</strong
+        >:<br /><br />
+    </div>
+    <ul>
+        <li>SNS - Simple Notification Service</li>
+        <li>KMS - Key Management Service (e.g., encryption keys)</li>
+        <li>
+            VPC - Virtual Private Cloud (configure networking in your cloud)
+        </li>
+        <li>CloudShell (Linux-type command line in your web browser)</li>
+        <li>AWS CodeCommit (Your own GitHub-like repository for code)</li>
+        <li>CodeDeploy (automate deployment of software)</li>
+        <li>
+            CodePipeline (CI/CD pipeline - Continuous Integration / Continuous
+            Delivery)
+        </li>
+        <li>Certificate Manager (Manage SSL/TLS certificates)</li>
+    </ul>
+    <div>Extra services we've enabled recently:<br /><br /></div>
+    <ul>
+        <li>CloudFormation</li>
+        <li>CloudWatch</li>
+        <li>CodeArtifact</li>
+        <li>Amazon S3</li>
+        <li>EC2 Instances</li>
+        <li>RDS</li>
+        <li>CloudTrail</li>
+        <li>Elastic Container Registry</li>
+        <li>Elastic Container Kubernetes</li>
+        <li>Simple Email Service</li>
+        <li>Simple Queue Service</li>
+    </ul>
+</div>

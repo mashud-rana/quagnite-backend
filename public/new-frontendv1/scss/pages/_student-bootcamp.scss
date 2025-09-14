@@ -1,0 +1,235 @@
+.ic-student-bootcamp-banner {
+    height: 427px;
+    margin-bottom: 40px;
+    background-size: cover;
+    border-radius: 10px;
+    @media #{$max1399} {
+        height: 300px;
+        margin-bottom: 22px;
+    }
+    @media #{$max991} {
+        height: 250px;
+    }
+    @media #{$max575} {
+        height: 200px;
+    }
+}
+.boot-title {
+    text-align: center;
+    h2 {
+        color: #272c37;
+        font-size: 35px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding-bottom: 11px;
+        @media #{$max1399} {
+            font-size: 30px;
+        }
+        @media #{$max767} {
+            font-size: 24px;
+        }
+        @media #{$max480} {
+            font-size: 20px;
+        }
+    }
+    p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        .boot-name {
+            color: #f47820;
+            font-family: $font-rubik;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+        .boot-sr {
+            color: #7b8392;
+            font-family: $font-rubik;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+    }
+}
+
+.ic-student-bootcamp {
+    .ic-tabs-content-items {
+        padding: 40px 30px;
+        background-color: #fff;
+        border-radius: 5px;
+        background: #fff;
+        box-shadow: 0px 0px 50px 0px rgba(35, 35, 35, 0.05);
+        @media #{$max767} {
+            padding: 20px 20px;
+        }
+        @media #{$max480} {
+            padding: 15px 15px;
+        }
+        .accordion-item {
+            border-bottom: none;
+            &:not(:last-child) {
+                margin-bottom: 25px;
+                @media #{$max1440} {
+                    margin-bottom: 18px;
+                }
+            }
+            .accordion-button {
+                padding: 18px 23px;
+                border-radius: 5px;
+                border: 1px solid #e2e2ea;
+                background: rgba(0, 172, 182, 0.05);
+
+                @media #{$max1440} {
+                    font-size: 18px;
+                    padding: 16px 23px;
+                }
+                @media #{$max1280} {
+                    font-size: 16px;
+                    padding: 10px 23px;
+                }
+                @media #{$max575} {
+                    padding: 10px 10px;
+                }
+                &:not(.collapsed) {
+                    color: #00ACB6;
+                }
+
+                span:first-child{
+                    max-width: 700px;
+                    @media #{$max1399} {
+                        max-width: 660px;
+                    }
+                    @media #{$max1199} {
+                        max-width: 580px;
+                    }
+                    @media #{$max991} {
+                        max-width: 400px;
+                    }
+                    @media #{$max767} {
+                        max-width: 275px;
+                    }
+                    @media #{$max575} {
+                        max-width: 150px;
+                    }
+                }
+            }
+            .accordion-body {
+                padding: 25px 25px 0 25px;
+                @media #{$max1440} {
+                    padding: 18px 18px 0 18px;
+                }
+                .ic-inner-according {
+                    .accordion-item {
+                        border-radius: 5px;
+                        border: 1px solid #e2e2ea;
+                        background: #fff;
+                        .accordion-button {
+                            background-color: transparent;
+                            border: none;
+                            .inner-lession {
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                                color: #272c37;
+                            }
+                            .ic-lession-time {
+                                display: flex;
+                                gap: 20px;
+                                padding-top: 8px;
+                                flex-wrap: wrap;
+                                row-gap: 8px;
+                                li {
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 300;
+                                    line-height: normal;
+                                    color: #00acb6;
+                                    position: relative;
+                                    @media #{$max1440} {
+                                        font-size: 12px;
+                                    }
+                                    &:not(:last-child) {
+                                        &::after {
+                                            content: "";
+                                            position: absolute;
+                                            top: 0;
+                                            right: -10px;
+                                            height: 17px;
+                                            width: 1px;
+                                            background-color: #e2e2ea;
+                                        }
+                                    }
+                                    &.times {
+                                        color: #e8543e;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .accordion-body {
+                        padding-bottom: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ic-inner-text-lession {
+    font-style: normal;
+    font-weight: 300;
+    line-height: 26px; /* 162.5% */
+    padding-bottom: 10px;
+}
+.lession-overview {
+    li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 8px;
+        &:not(:last-child) {
+            padding-bottom: 15px;
+        }
+        i {
+            color: $primary;
+        }
+        span {
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+        }
+    }
+}
+
+.joinClass {
+    display: inline-flex;
+    height: 38px;
+    border-radius: 5px;
+    background: #e8543e;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #fff;
+    margin-top: 20px;
+    transition: all .3s;
+    &:hover {
+        background-color: #d4290f;
+    }
+    @media #{$max767} {
+        margin-top: 10px;
+    }
+}
+.announcee-date {
+    position: absolute;
+    right: 60px;
+}

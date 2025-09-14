@@ -1,0 +1,60 @@
+<div>
+    <strong>What are containers?<br /></strong><br />
+</div>
+<div>
+    Containers are isolated environments for running applications. They hold the
+    application code and all the required dependencies and configurations. Each
+    container is logically isolated from the other containers, and the host
+    system. When an app in one container misbehaves, the damage is usually
+    limited to that container alone, and it does not spread to the other apps,
+    or the host system.<br /><br />
+</div>
+<div>
+    A container also helps with portability. That is, once you create a
+    container, it should work pretty much the same way in any environment. For
+    example, a container that works on Ubuntu 22.04 should also work on Ubuntu
+    20.04, or an entirely different operating system, like Debian, Red Hat, or
+    CentOS. This helps developers 'package once' and 'run anywhere'.<br /><br />
+</div>
+<div>
+    <strong>Container Engines<br /></strong><br />
+</div>
+<div>
+    Container engines are tools that help users create container images, upload
+    images to a central server, start and stop containers, manage networking
+    between containers, and so on. These engines often come in layers, where
+    higher-level tools delegate instructions to lower-level tools. For example,
+    when Docker receives a command to start a container, it delegates this task
+    to a component called runC. runC then takes care of creating and actually
+    starting that container.<br /><br />
+</div>
+<div>
+    <strong>Podman<br /></strong><br />
+</div>
+<div>
+    Podman is a daemonless container engine that provides users with a command
+    line interface to work with containers. Podman provides commands that are
+    very familiar to people who previously worked with Docker, as it uses the
+    same syntax. Podman manages the entire container ecosystem including working
+    with images, volumes, running or stopping containers, and even creating
+    Pods. Pods are a way for grouping multiple containers into a single
+    execution environment. You can think of it as a 'container for (multiple)
+    containers'; helpful when you want these to run 'closer together' and share
+    some resources more efficiently. For example, you could group an Nginx
+    container with a MySQL container so that a web application can read from and
+    write to the database more easily/faster.<br /><br />
+</div>
+<div>
+    Podman also provides a RESTFul API service for managing containers and
+    provides a Podman client to interact with this service.<br /><br />
+</div>
+<div>
+    <strong>Podman Playground<br /></strong><br />
+</div>
+<div>
+    In this playground you’re provided with Podman already installed on the
+    CentOS 8 operating system so that you can begin practicing immediately. No
+    additional setup or configuration is required, you only need a KodeKloud Pro
+    subscription and then you can access a Podman-ready environment using your
+    web browser.<br /><br />
+</div>

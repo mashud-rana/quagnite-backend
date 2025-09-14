@@ -1,0 +1,281 @@
+.ic-btn {
+  height: 48px;
+  padding: 0px 16px;
+  @include align-center;
+  @include bd-radius(5px);
+  font-size: 16px;
+  font-family: $font-circular-medium;
+  background: $color-hotpink;
+  @include transition(0.8s);
+  color: $color-white;
+  position: relative;
+  z-index: 99;
+  text-transform: capitalize;
+  @media #{$max1399} {
+    height: 42px;
+    padding: 0px 14px;
+    font-size: 14px;
+  }
+
+  @media #{$max767} {
+    height: 40px;
+    padding: 0px 12px;
+    font-size: 14px;
+  }
+  @media #{$max575} {
+    padding: 0px 10px;
+  }
+  span {
+    font-family: $font-circular-medium;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: $color-gradient3;
+    @include bd-radius(5px);
+    z-index: -1;
+    @include transition(0.8s);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: $color-gradient4;
+    @include bd-radius(5px);
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(0.8s);
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+      visibility: visible;
+      width: 100%;
+    }
+    &::after {
+      opacity: 0;
+      visibility: hidden;
+      width: 0;
+    }
+    color: $color-white;
+  }
+
+  &.btn-outline {
+    border: 1px solid $color-hotpink;
+    background: transparent;
+    color: $color-hotpink;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      // background: $color-gradient3;
+      color: $color-white;
+      border: 1px solid transparent;
+    }
+  }
+
+  &.btn-blue {
+    background: $color-blue;
+    color: $color-white;
+  }
+
+  &.btn-white {
+    background: $color-white;
+    &::after {
+      background: $color-white;
+    }
+    &::before {
+      background: $color-porcelain;
+    }
+    span {
+      @include d-flex();
+      @include align-items(center);
+      background: $color-gradient;
+      @include colorgradient();
+
+      i {
+        background: $color-gradient;
+        @include colorgradient();
+      }
+    }
+  }
+
+  &.btn-hotpink {
+    &::after {
+      background: $color-hotpink;
+    }
+  }
+
+  &.btn-blue {
+    &::after {
+      background: $color-blue;
+    }
+  }
+
+  &.btn-shuttleGray {
+    &::after {
+      background: $color-shuttleGray;
+    }
+  }
+  &.btn-aluminium {
+    background-color: $color-blue;
+    &::after {
+      background: $color-aluminium;
+    }
+    &::before {
+      background: $color-blue;
+    }
+  }
+
+  &.btn-40 {
+    height: 40px;
+    font-family: $font-circular-book;
+    @media #{$max1399} {
+      height: 35px;
+    }
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .icon-left {
+    margin-right: 16px;
+    @media #{$max1399} {
+      margin-right: 10px;
+    }
+    @media #{$max767} {
+      margin-right: 8px;
+    }
+  }
+  .icon-right {
+    margin-left: 16px;
+    @media #{$max1399} {
+      margin-left: 10px;
+    }
+    @media #{$max767} {
+      margin-left: 8px;
+    }
+  }
+
+  i {
+    font-size: 24px;
+    @media #{$max1399} {
+      font-size: 22px;
+    }
+    @media #{$max767} {
+      font-size: 18px;
+    }
+  }
+
+  &.btn-blue {
+    background: $color-blue;
+    color: $color-white;
+
+    &:hover {
+      background-color: $color-hotpink;
+    }
+
+    &::after {
+      background: $color-blue;
+    }
+    &::before {
+      background: $color-gradient;
+    }
+  }
+}
+
+button {
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/**Slider Button**/
+
+.slider-next-prev-wrap {
+  .slider-next-prev {
+    width: 48px;
+    height: 48px;
+    @include align-center();
+    position: relative;
+    background-color: $color-white;
+    @include bd-radius(5px);
+    margin-right: 16px;
+    @include transition(0.5s);
+    @media #{$max1399} {
+      width: 45px;
+      height: 45px;
+      margin-right: 12px;
+    }
+
+    @media #{$max991} {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    &:hover {
+      background: $color-gradient2;
+      i {
+        color: $color-white;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &::before {
+      content: "";
+      @include bd-radius(5px);
+      background: $color-gradient4;
+      @include transition(0.5s);
+      position: absolute;
+      width: 50px;
+      height: 49px;
+      z-index: -9;
+      @media #{$max1399} {
+        width: 47px;
+        height: 47px;
+      }
+      @media #{$max991} {
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    i {
+      font-size: 24px;
+      color: $color-hotpink;
+      @media #{$max991} {
+        width: 20px;
+      }
+    }
+  }
+}
+
+.ic-status-badge {
+  @include align-center();
+  @include bd-radius(4px);
+  height: 30px;
+  padding: 0px 16px;
+  font-size: 14px;
+  color: $color-white;
+  background-color: #39b345;
+
+  &.ic-danger {
+    background-color: #ff3131;
+  }
+}

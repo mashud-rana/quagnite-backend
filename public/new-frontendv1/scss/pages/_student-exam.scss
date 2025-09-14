@@ -1,0 +1,343 @@
+.ic-student-space {
+    padding: 50px 0px 100px;
+
+    @media #{$max1760} {
+        padding: 50px 0px 90px;
+    }
+
+    @media #{$max1650} {
+        padding: 50px 0px 80px;
+    }
+
+    @media #{$max1650} {
+        padding: 50px 0px 70px;
+    }
+
+    @media #{$max1440} {
+        padding: 50px 0px 60px;
+    }
+
+    @media #{$max1399} {
+        padding: 50px 0px;
+    }
+
+    @media #{$max1199} {
+        padding: 40px 0px;
+    }
+
+    @media #{$max991} {
+        padding: 30px 0px;
+    }
+
+    @media #{$max767} {
+        padding: 20px 0px;
+    }
+}
+
+.ic-student-exam-heading {
+    @include d-flex();
+    gap: 15px;
+    margin-bottom: 35px;
+
+    @media #{$max1199} {
+        margin-bottom: 25px;
+        gap: 10px;
+    }
+    @media #{$max575} {
+        gap: 5px;
+    }
+
+    .ic-student-img {
+        flex: 0 0 auto;
+        img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50px;
+
+            @media #{$max575} {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    }
+
+    .ic-student-title {
+        flex: 1;
+        h2 {
+            margin-bottom: 10px;
+            color: var(--Black, #272C37);
+            font-family: Lexend;
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+
+            @media #{$max1199} {
+                margin-bottom: 5px;
+            }
+
+            @media #{$max575} {
+                font-size: 16px;
+            }
+        }
+
+        p {
+            color: var(--Greay, #6C757D);
+            font-family: $font-rubik;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            letter-spacing: 0.16px;
+            text-transform: capitalize;
+
+            @media #{$max575} {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+.ic-student-exam-content-area {
+    .ic-content-heading {
+        @include d-flex();
+        @include justify-content(space-between);
+        @include align-items(center);
+        // height: 60px;
+        padding: 20px 30px;
+        color: white;
+        background-color: $primary;
+        border-radius: 10px 10px 0px 0px;
+
+        @media #{$max767} {
+gap: 10px;
+        }
+
+
+        p {
+            color: #FFF;
+            font-family: $font-lexend;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            letter-spacing: 0.16px;
+            text-transform: capitalize;
+
+            &:nth-child(2) {
+                @include d-flex();
+                @include justify-content(center);
+                @include align-items(center);
+                gap: 5px;
+            }
+        }
+
+        span {
+            display: inline-flex;
+            height: 21px;
+            width: 21px;
+            border-radius: 50px;
+            color: #6C757D;
+            background: white;
+            @include d-flex();
+            @include justify-content(center);
+            @include align-items(center);
+        }
+
+    }
+}
+
+.ic-student-exam-main-content {
+    padding: 30px 30px 41px;
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid var(--Stock, #E2E2EA);
+    background: #FFF;
+
+    @media #{$max1399} {
+        padding: 20px;
+    }
+    @media #{$max575} {
+        padding: 10px;
+    }
+
+    .ic-question {
+        margin-bottom: 25px;
+        @include d-flex();
+        @include align-items(center);
+        gap: 10px;
+
+        @media #{$max1199} {
+            margin-bottom: 15px;
+        }
+
+        @media #{$max767} {
+            // @include align-items(start);
+        }
+
+        p {
+            font-family: $font-lexend;
+            font-size: 18px;
+            flex: 1;
+
+            @media #{$max767} {
+                line-height: normal;
+                font-size: 16px;
+            }
+        }
+
+        span {
+            @include d-flex();
+            @include justify-content(center);
+            @include align-items(center);
+            flex: 0 0 auto;
+            width: 30px;
+            height: 30px;
+            background: $primary;
+            border-radius: 50px;
+            color: white;
+        }
+    }
+
+    .ic-question-answer {
+        margin-bottom: 45px;
+
+        @media #{$max1199} {
+            margin-bottom: 30px;
+        }
+    }
+
+    .ic-question-answer-wrapper {
+        @include d-flex();
+        gap: 20px;
+        margin-bottom: 25px;
+
+        @media #{$max1199} {
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .ic-form-check {
+            margin-bottom: 0;
+            border-radius: 5px;
+            border: 1px solid var(--Stock, #E2E2EA);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+
+            @media #{$max1199} {
+                // height: 44px;
+                // padding: 0px 15px;
+            }
+
+            @media #{$max767} {
+                // height: 40px;
+                // padding: 0px 15px;
+            }
+            @media #{$max575} {
+                // height: 40px;
+                // padding: 0px 5px;
+            }
+        }
+
+        .form-check-input {
+            border-radius: 50px !important;
+            margin-top: 0;
+            flex: 0 0 auto;
+
+            &:focus {
+                box-shadow: none;
+            }
+
+            &:checked {
+                background-color: $green;
+                border-color: $green;
+            }
+
+            &:checked+.form-check-label {
+                color: $green;
+            }
+
+            &:checked+.ic-form-check {
+                background: #F3F3F3;
+            }
+        }
+
+        .form-check-label {
+            font-family: $font-lexend;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 24px;
+            padding-bottom: 0;
+        }
+    }
+
+    .ic-btn-area {
+        display: inline-block;
+
+        .ic-hint-btn {
+            border-radius: 50px;
+            border: 1px solid var(--Stock, #E2E2EA);
+            background: rgba(0, 172, 182, 0.05);
+            height: 40px;
+            color: $primary;
+            padding: 0px 15px;
+
+            @media #{$max1199} {
+                height: 36px;
+            }
+        }
+    }
+
+    .ic-student-exam-footer {
+        @include d-flex();
+        @include align-items(center);
+        justify-content: space-between;
+        border-top: 1px solid $stock;
+        padding-top: 35px;
+        gap: 10px;
+
+        @media #{$max575} {
+                padding-top: 20px;
+            }
+
+        .ic-next-prev {
+            display: flex;
+            gap: 15px;
+
+            button {
+                // border-radius: 50px;
+                // border: 1px solid var(--Stock, #E2E2EA);
+                // background: var(--white, #FFF);
+                // box-shadow: 0px 10px 20px 0px rgba(36, 156, 181, 0.05);
+                // height: 50px;
+                // padding: 0px 25px;
+                // @include d-flex();
+                // @include align-items(center);
+                // color: $primary;
+                // @include transition(0.4s);
+
+                // @media #{$max1199} {
+                //     height: 50px;
+                // }
+                &:focus {
+                    border: 2px solid;
+                }
+
+                &:hover {
+                    background: $primary;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.ic_data_not_found {
+    text-align: center;
+    padding: 40px 0;
+    img {
+        max-width: 300px;
+    }
+}

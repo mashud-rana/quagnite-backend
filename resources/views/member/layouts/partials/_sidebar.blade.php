@@ -1,0 +1,66 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+
+    <div data-simplebar class="h-100">
+        <div class="navbar-brand-box">
+            <a href="{{route('front.home')}}" class="logo logo-dark">
+                <span class="logo-sm">
+                    <img src="{{asset('admin/images/logo.png')}}" alt="" height="22">
+                </span>
+                <span class="logo-lg">
+                    <img src="{{asset('admin/images/logo.png')}}" alt="" height="17">
+                </span>
+            </a>
+
+            <a href="{{route('front.home')}}" class="logo logo-light">
+                <span class="logo-sm">
+                    <img src="{{asset('admin/images/logo.png')}}" alt="" height="20">
+                </span>
+                <span class="logo-lg">
+                    <img src="{{asset('admin/images/logo.png')}}" alt="" height="60">
+                </span>
+            </a>
+        </div>
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="">
+                    <a href="{{route('member.dashboard')}}"
+                        class="{{ request()->is('member/dashboard') ? 'active' : '' }}">
+                        <i class="ri-home-smile-2-line"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{{route('member.subscription')}}"
+                        class="{{ request()->is('member/subscription') ? 'active' : '' }}">
+                        <i class="ri-price-tag-3-line"></i>
+                        <span>Subscription</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{{route('member.ticket.index')}}"
+                       class="{{ request()->is('member/ticket.*') ? 'active' : '' }}">
+                       <i class="ri-coupon-3-line"></i>
+                        <span>Support Ticket</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a onclick="event.preventDefault(); this.closest('form').submit();" class="waves-effect"
+                            href="javascript:void(0)">
+                            <i class="ri-logout-circle-r-line"></i>
+                            <span>Logout</span>
+                        </a>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->

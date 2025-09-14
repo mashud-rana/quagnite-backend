@@ -1,0 +1,123 @@
+//Font
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+//  open sans
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800&family=Rubik:wght@400;500;600;700;800;900&display=swap');
+
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+$font-rubik: 'Rubik', sans-serif;
+$font-lexend: 'Lexend', sans-serif;
+// $font-rubik: 'Open Sans', sans-serif;
+
+.ff-lexend {
+  font-family: $font-lexend;
+}
+
+$primary      : #00ACB6;
+$gradient     : linear-gradient(180deg, #2EB7D3 0.01%, #06738A 100%);
+$purple       : #22223B;
+$white        : #FFFFFF;
+$orange       : #F47820;
+$black        : #1F2029;
+$black-600    : #454A54;
+$stock        : #E2E2EA;
+$gray         : #6C757D;
+$gray2        : #42526B;
+$gray-100     : #F8F9FA;
+$red          : #E8543E;
+$w-shade      : #F3F3F3;
+$g-shade      : #E7EDEE;
+$text-color   : #6B7177;
+$bg-4         : #F3F5F6;
+$green        : #2FBD77;
+$gradient1    : linear-gradient(114.26deg, #089D52 9.63%, #6BE99E 90.37%);
+$gradient2    : linear-gradient(45.77deg, #9358F7 4.96%, #7B78F2 28.31%, #6197EE 49.96%, #45B5E9 73.87%, #00C5D0 94.85%);
+$gradient3    : linear-gradient(224.85deg, #73CCD8 2.91%, #2B6B9F 94.62%), #008CA9;
+$gradient4    : linear-gradient(134.36deg, #F47820 4.45%, #FFB249 90.87%);
+$shadow-1     : 0px 54px 55px rgba(51, 168, 190, 0.08);
+
+$gradient-new: linear-gradient(0deg, #158DA7 0%, #158DA7 100%), #00ACB6;
+
+// background color
+.bg-primary {
+  background-color: $primary!important;
+}
+.bg-shade {
+  background-color: $w-shade!important;
+}
+.bg-g-shade {
+  background-color: $g-shade!important;
+}
+.bg-white {
+  background-color: $white!important;
+}
+.bg-green {
+  background-color: $green!important;
+}
+.bg-red {
+  background-color: $red!important;
+}
+.bg-gradient-new {
+  background: $gradient-new;
+}
+
+// color 
+.primary {
+  color: $primary;
+}
+.gradient {
+  color: $gradient;
+}
+.purple {
+  color: $purple;
+}
+.white {
+  color: $white;
+}
+.orange {
+  color: $orange;
+}
+.black {
+  color: $black;
+}
+.stock {
+  color: $stock;
+}
+.gray {
+  color: $gray!important;
+}
+.text-red {
+  color: $red;
+}
+.black-600 {
+  color: $black-600;
+}
+.gray-light-bg {
+  background-color: rgba(47, 180, 209, 0.03);
+}
+.bg-gray-1 {
+  background-color: $gray!important;
+}
+.bg-gray {
+  background-color: #F7F8FD;
+}
+//Media Query
+
+$max1920: "only screen and (max-width: 1920px)";
+// $max1850: "only screen and (max-width: 1850px)";
+$max1800: "only screen and (max-width: 1800px)";
+$max1760: "only screen and (max-width: 1760px)";
+$max1650: "only screen and (max-width: 1650px)";
+$max1440: "only screen and (max-width: 1440px)";
+$max1399: "only screen and (max-width: 1399.98px)";
+$max1366: "only screen and (max-width: 1366px)";
+$max1280: "only screen and (max-width: 1280px)";
+$max1199: "only screen and (max-width: 1199.98px)";
+$max1024: "only screen and (max-width: 1024px)";
+$max991: "only screen and (max-width: 991.98px)";
+$max767: "only screen and (max-width: 767.98px)";   
+$max575: "only screen and (max-width: 575.98px)";
+$max480: "only screen and (max-width: 480px)";
+$max414: "only screen and (max-width: 414px)";
+$max374: "only screen and (max-width: 374.98px)";

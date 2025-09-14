@@ -1,0 +1,16 @@
+table.dataTable>tbody>tr td{
+    padding: 8px 5px;
+}
+table.dataTable{
+    padding: 5px 0;
+}
+table.dataTable th {
+    font-weight: 500;
+}
+table.dataTable td, table.dataTable th {
+    border: 1px solid #eee;
+    padding: 8px 5px;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    height: 40px;
+}

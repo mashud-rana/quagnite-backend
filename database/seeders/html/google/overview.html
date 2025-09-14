@@ -1,0 +1,111 @@
+<div>
+    <strong>What Is GCP (Google Cloud Platform)?<br /></strong><br />
+</div>
+<div>
+    Nowadays, almost everything runs on the Internet. We have millions of apps,
+    websites, and online services. And they all need computers to do their work.
+    That's why billions of dollars are spent on
+    <em>cloud computing</em> services. And Google Cloud Platform is just one of
+    these cloud computing companies.<br /><br />
+</div>
+<div>
+    But what can you do with GCP? Let's say you're a company that builds apps.
+    How can cloud computing help you? Well, your apps will need to use things
+    like:<br /><br />
+</div>
+<ul>
+    <li>Databases</li>
+    <li>Servers</li>
+    <li>Storage space for files</li>
+    <li>Containers running on Kubernetes clusters</li>
+    <li>And so on</li>
+</ul>
+<div>
+    Google Cloud lets you access such resources. You can pick between computing
+    hardware or services. Here's an example of hardware vs. service. For
+    example, you want a Kubernetes cluster. You have two options:<br /><br />
+</div>
+<ul>
+    <li>
+        You rent a few virtual servers from Google Cloud. You pick how many CPU
+        cores each server has. You choose the amount of RAM you need. And you
+        also pick how many GB of storage space you want. Then you install
+        Kubernetes software on all servers. Finally, you connect them with each
+        other to form that cluster.
+    </li>
+    <li>
+        It's a long process to create a cluster manually. So you might want an
+        easier way. On GCP you can buy Kubernetes as a service instead.
+        Basically, you get access to a Kubernetes cluster, directly. You don't
+        need to rent servers and configure them yourself. Google takes care of
+        the server details, behind the scenes. You just buy the GKE service
+        (Google Kubernetes Engine) and you get a ready-made cluster.
+    </li>
+</ul>
+<div>
+    like these. And this can be overwhelming for beginners. It's hard to
+    understand what each product, or service does. It's hard to figure out how
+    to configure each one. And that's why we created KodeKloud Playgrounds.<br /><br />
+</div>
+<div>
+    <strong>KodeKloud Google Cloud Playground<br /></strong><br />
+</div>
+<div>
+    You can read about Google Cloud on the Internet. You can check out
+    tutorials. But with theory alone, it's still hard to understand GCP. So we
+    created the Google Cloud Playground to let you get some hands-on experience.
+    You will be able to use the cloud-compute platform directly. And you'll
+    launch and configure services yourself. This will help you understand Google
+    Cloud much faster. And you can test things, risk-free. No risk of receiving
+    a huge bill for the services. No risk of breaking anything as it's just a
+    temporary environment. You can reset and recreate it if you need to start
+    over.<br /><br />
+</div>
+<div>
+    One click and you can
+    <strong>start learning about Google Cloud</strong>.<br /><br />
+</div>
+<div>
+    <strong>Quick Start Guide<br /></strong><br />
+</div>
+<div>
+    Please read about each component you want to use. If you encounter any
+    problems, the tips below may help (see stuff marked in
+    <strong>bold text</strong>). Here's what we currently support in our GCP
+    playground:<br /><br />
+</div>
+<div>
+    <strong>Compute Engine<br /></strong><br />
+</div>
+<div>These are basically virtual machines, or virtual servers.<br /><br /></div>
+<ul>
+    <li>
+        Under <strong>Machine Configuration</strong>, for the CPU, use
+        <strong>E2 </strong>or<strong> N1 Series</strong> with
+        <strong>e2-medium</strong> type <strong>or smaller</strong> ,
+        <strong>n1-standard-2 </strong>type or smaller.
+    </li>
+    <li>
+        Make sure the <strong>region</strong> you pick is:
+        <strong>US Central</strong> or <strong>US West 1</strong>.
+    </li>
+    <li>
+        You can use a maximum number of <strong>5vCPU cores</strong> for the
+        entire project. For example, you could have two virtual machines with
+        2vCPU cores each, and 1 machine with 1vCPU, for a total of 5.
+    </li>
+    <li>
+        The <strong>maximum disk/storage </strong>space<strong> is 50GB</strong>
+        for the entire project (total of all machines). Use
+        <strong>Standard Persistent Disk</strong>.
+    </li>
+</ul>
+<div>
+    <strong>Kubernetes Engine (GKE - Google Kubernetes Engine)<br /></strong
+    ><br />
+</div>
+<div>
+    If you already have virtual machines running, first delete those. Otherwise
+    you might not be able to launch this cluster. It would exceed the maximum
+    number of 5 CPU cores you can use per project.<br /><br />
+</div>

@@ -1,0 +1,35 @@
+/* all student enrolment */
+.ic-all-student-enrolement {
+    thead{
+        tr{
+            th{
+                background: $primary !important;
+                color: white !important;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                &:first-child{
+                    img{
+                        width: 40px;
+                        height: 40px;
+                        border: 1px solid $stock;
+                        border-radius: 50px;
+                        
+                    }
+                }
+                &:last-child {
+                    min-width: 150px;
+                }
+            }
+        }
+    }
+
+    .ic-eye-delete-btn {
+        @include d-flex();
+        @include justify-content(center);
+        gap: 10px;
+    }
+}

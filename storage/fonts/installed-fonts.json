@@ -1,0 +1,25 @@
+{
+    "glyphicons halflings": {
+        "normal": "glyphicons_halflings_normal_5eb770d49f33dc5cbd8e4ba1244adab4"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_b9be68b0c5f28a446c6cb0ef95254567"
+    },
+    "imperial script": {
+        "normal": "imperial_script_normal_ce704f04113ca87601d7957f5d0678ea"
+    },
+    "lexend": {
+        "300": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_300_5d8de131e99886379e028057599b4c83",
+        "normal": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_normal_21725dcd7bbf2c5a4b76f9784fe3b412",
+        "500": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_500_c0392616398a479b415ab2f06a42ff16",
+        "600": "lexend_600_e0b2244d3e93c4d7a4432eec51e6fc48",
+        "bold": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_bold_736b8f014a674dd1beec0561792161fc"
+    },
+    "rubik": {
+        "300": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_300_82a112de692d08b55c2b11842e5a67fc",
+        "normal": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_normal_b6ec54c36a02fb811d72194115ec42db",
+        "500": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_500_c5ab0af2d954c4140f26e728dad090b3",
+        "600": "rubik_600_5d61a1f1e601158e12a385b1e07b6a27",
+        "bold": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_bold_98a50ec8225be60b521143fc843a3c06"
+    }
+}

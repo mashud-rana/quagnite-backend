@@ -1,0 +1,110 @@
+.ic-exam-result {
+    .ic-tabs-links {
+        ul {
+            li {
+
+                .ic-discription-links {
+                    &.unanswered {
+                        color: $red ;
+
+                        &::after {
+                            background-color: $red ;
+                        }
+                    }
+
+                    &.answered {
+                        color: $green;
+
+                        &::after {
+                            background-color: $green;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ic-exam-test-result {
+    padding-top: 20px;
+}
+
+
+.ic-exam-result-all-show {
+    ul {
+        li {
+            padding: 20px 0 20px 58px;
+            @include d-flex();
+            gap: 10px;
+            @include transition(0.4s);
+
+            &:hover {
+                background-color: #fff;
+            }
+
+            &:first-child {
+                border-top: 1px solid #E2E2EA;
+            }
+
+            border-bottom: 1px solid #E2E2EA;
+
+            &.right-answerer {
+                p {
+                    color: #61B146;
+                }
+            }
+
+            &.wrong-answerer {
+                p {
+                    color: #F35F5D;
+                }
+            }
+
+            p {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 21px;
+
+                span {
+                    display: block;
+                    color: #70798B;
+                }
+            }
+        }
+    }
+}
+
+.ic-exam-scrore {
+    margin-top: 20px;
+    border: 1px solid #E2E2EA;
+    background: #fff;
+    @include bd-radius(5px);
+    .ic-exam-scrore-items {
+        padding: 31px 0;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #E2E2EA;
+        }
+
+        &:nth-child(1) {
+            background: rgba(0, 172, 182, 0.05);
+            border-radius: 5px 5px 0px 0px;
+        }
+
+        ul {
+            @include d-flex();
+            @include align-items(center);
+            @include justify-content(center);
+            gap: 20px;
+            li {
+                @include d-flex();
+                @include align-items(center);
+                @include justify-content(center);
+                gap: 15px;
+                i {
+                    color: $primary;
+                }
+            }
+        }
+    }
+}

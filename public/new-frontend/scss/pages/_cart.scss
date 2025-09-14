@@ -1,0 +1,104 @@
+
+.cart-display {
+    padding-top: 25px;
+
+    .ic-coupon {
+        border: 1px dashed $stock;
+        padding-left: 24px;
+        padding-right: 24px;
+        @include bd-radius(6px);
+        @include d-flex();
+        flex-wrap: nowrap;
+        height: 55px;
+        background-color: $w-shade;
+        input {
+            background-color: $w-shade;
+        }
+        button {
+            white-space: nowrap;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    }
+    .ic-btn {
+        height: 55px;
+    }
+}
+
+.car-table {
+    border-radius: 6px;
+    border: 1px solid $stock;
+    border-collapse: separate;
+    thead {
+        tr {
+            th {
+                padding: 24px 30px;
+                &:first-child {
+                    border-radius: 6px 0px 0px 0px;
+                }
+                &:last-child {
+                    border-radius: 0px 6px 0px 0px;
+                }
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                .ic-cart-pages {
+                    width: 553px;
+                }
+                padding: 29px 30px;
+                .product-left {
+                    padding-left:30px ;
+                }
+            }
+            &:last-child {
+                border-radius: 0ex 0px 6px 6px;
+                td{
+                    &:first-child {
+                        border-radius: 0ex 0px 6px 6px;
+                    }
+                }
+            }
+        }
+    }
+}
+.closed {
+    i {
+        font-size: 30px;
+        color: $red;
+    }
+}
+
+.ic-order-summery {
+    .summary-header {
+        background: $gradient-new;
+        border-radius: 5px 5px 0px 0px;
+        text-align: center;
+        padding: 22px 30px;
+        p {
+            color: $white;
+        }
+    }
+    .summer-body {
+        border: 1px solid $stock;
+        border-top: 0;
+        border-radius: 0px 0px 5px 5px;
+        padding: 30px;
+        ul {
+            li {
+                @include d-flex();
+                justify-content: space-between;
+                padding-bottom: 16px;
+                &:last-child {
+                    border-top: 1px solid $stock;
+                    padding-top: 16px;
+                    p {
+                        font-weight: 500!important;
+                    }
+                }
+            }
+        }
+    }
+}

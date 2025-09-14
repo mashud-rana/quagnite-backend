@@ -1,0 +1,237 @@
+// 
+// authentication.scss
+//
+
+
+// login-1
+
+.account-pages {
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 154px;
+    padding-bottom: 157px;
+    @media #{$max1650} {
+        padding-top: 140px;
+        padding-bottom: 140px;
+    }
+    @media #{$max1399} {
+        padding-top: 140px;
+        padding-bottom: 140px;
+    }
+    @media #{$max1024} {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    // @media #{$max767} {
+    //     padding-top: 100px;
+    //     padding-bottom: 100px;
+    // }
+    .inner-account-pages {
+        @media #{$max1024} {
+            display: flex;
+            align-items: center;
+            height: 100vh;
+        }
+        .inner-account-cards {
+            width: 586px;
+            margin: 0 auto;
+            @media #{$max1399} {
+                width: 500px;
+            }
+            @media #{$max575} {
+                width: 100%;
+            }
+            .first-vector {
+                position: absolute;
+                top: -32px;
+                left: -67px;
+
+                @media #{$max767} {
+                    display: none;
+                }
+            }
+
+            .second-vector {
+                position: absolute;
+                bottom: -26px;
+                right: -70px;
+
+                @media #{$max767} {
+                    display: none;
+                }
+            }
+
+            .ic__create--account {
+                padding-top: 24px;
+                color: #8F95B2;
+
+                a {
+                    text-decoration: underline !important;
+                }
+            }
+
+            .card {
+                z-index: 1;
+                box-shadow: 10.4767px 30.6818px 74.8336px rgba(49, 89, 211, 0.12);
+                backdrop-filter: blur(3.78391px);
+            }
+
+            .logo {
+                img {
+
+                    margin-bottom: 48px;
+
+                    @media #{$max1399} {
+                        max-width: 200px;
+                    }
+
+                    @media #{$max1280} {
+                        max-width: 180px;
+                    }
+                }
+            }
+
+            .logo {
+                @media #{$max1199} {
+                    img {
+                        max-width: 200px;
+                    }
+                }
+
+                @media #{$max480} {
+                    img {
+                        max-width: 170px;
+                    }
+                }
+            }
+
+            .icons-inputs {
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    left: 16px;
+                    transform: translateY(-50%);
+                }
+
+                .eye-btn {
+                    position: absolute;
+                    top: 50%;
+                    right: 16px;
+                    transform: translateY(-50%);
+                    font-size: 20px;
+                    color: #8F95B2;
+                    cursor: pointer;
+                }
+            }
+
+            .ic--form-group {
+                margin-bottom: 19px;
+
+                .form-control {
+                    padding-left: 56px;
+                    &::placeholder {
+                        color: #081735;
+                    }
+                }
+            }
+
+            .card-body {
+                padding: 60px 50px 74px 50px;
+                box-shadow: 10.4767px 30.6818px 74.8336px rgba(49, 89, 211, 0.12);
+                backdrop-filter: blur(3.78391px);
+
+                @media #{$max1399} {
+                    padding: 46px 46px;
+                }
+                @media #{$max575} {
+                    padding: 46px 26px;
+                }
+            }
+        }
+    }
+}
+
+//  login-2
+
+.accountbg {
+    position: absolute;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+.account-page-full {
+    left: 0;
+    position: absolute;
+    height: 100%;
+    margin: 0;
+    width: 420px;
+    background-color: $card-bg;
+
+    .card {
+        border: none;
+    }
+}
+
+.account-copyright {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+
+
+// authentication home icon
+.home-btn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
+
+//  Maintenance
+
+.maintenance-img {
+    img {
+        max-width: 320px;
+    }
+}
+
+
+// Coundown
+
+/*------------ Subscriber --------------*/
+
+
+.coming-soon-search-form {
+    input {
+        padding: 15px 20px;
+        width: 100%;
+        color: $gray-800;
+        border: 2px solid $gray-200;
+        outline: none !important;
+        padding-right: 180px;
+        padding-left: 30px;
+        border-radius: 30px;
+        background-color: $card-bg;
+    }
+
+    button {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+        outline: none !important;
+        border-radius: 30px;
+        padding: 9px 30px;
+    }
+
+    form {
+        position: relative;
+        max-width: 600px;
+        margin: 0px auto;
+    }
+}

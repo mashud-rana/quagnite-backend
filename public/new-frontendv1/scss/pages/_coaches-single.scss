@@ -1,0 +1,1500 @@
+/* == Descover section sass */
+
+.ic-discover-section {
+    background: linear-gradient(180deg, rgba(21, 141, 167, 0.00) 0.02%, rgba(21, 141, 167, 0.18) 99.98%), #FFF9F1;
+
+}
+
+.ic-coaches-section-title {
+    width: 100%;
+    max-width: 756px;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 60px;
+
+    @media #{$max1199} {
+        padding-bottom: 40px;
+    }
+
+    @media #{$max991} {
+        padding-bottom: 20px;
+    }
+
+
+
+    h1 {
+        font-size: 45px;
+        font-style: normal;
+        line-height: 135%;
+
+        @media #{$max1650} {
+            font-size: 40px;
+        }
+
+        @media #{$max1399} {
+            font-size: 38px;
+            line-height: 1.2;
+        }
+
+        @media #{$max1199} {
+            font-size: 30px;
+        }
+
+        @media #{$max991} {
+            font-size: 30px;
+        }
+
+        @media #{$max767} {
+            font-size: 26px;
+        }
+
+        @media #{$max480} {
+            font-size: 21px;
+        }
+    }
+}
+
+.ic-caoches-single-card-area {
+    .ic-discover-card {
+        text-align: center;
+        padding: 60px 50px;
+        background: $white;
+        border-radius: 10px;
+        height: 100%;
+
+        @media #{$max1650} {
+            padding: 40px 30px;
+        }
+
+        @media #{$max1399} {
+            padding: 35px 25px;
+        }
+
+        @media #{$max1199} {
+            padding: 25px 18px;
+        }
+
+        @media #{$max991} {
+            padding: 20px 18px;
+        }
+
+        .ic-disc-card-img {
+            margin-bottom: 32px;
+
+            @media #{$max1650} {
+                margin-bottom: 28px;
+            }
+
+            @media #{$max1399} {
+                margin-bottom: 24px;
+            }
+
+            @media #{$max1199} {
+                margin-bottom: 20px;
+            }
+
+            @media #{$max991} {
+                margin-bottom: 20px;
+                max-width: 80px;
+                display: block;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            @media #{$max767} {
+                margin-bottom: 16px;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+        }
+
+        .ic-card-title {
+            margin-bottom: 10px;
+
+            h2 {
+                color: $black;
+                font-size: 28px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 135%;
+
+                @media #{$max991} {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .ic-card-text {
+            color: $gray-deep;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 28px;
+
+        }
+    }
+}
+
+
+
+
+/* ic-freelance-coach-section */
+
+.ic-freelance-coach-section {
+    position: relative;
+    background: #E8F8FC;
+    padding: 100px 0px 225px 0px;
+
+    @media #{$max1199} {
+        padding: 60px 0px 190px 0px;
+    }
+
+    @media #{$max991} {
+        padding: 40px 0px 160px 0px;
+    }
+
+    @media #{$max575} {
+        padding: 30px 0px 45px 0px;
+    }
+
+    .ic-freelance-bg-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        @media #{$max991} {
+            display: none;
+        }
+    }
+
+    .ic-freelance-bg-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        @media #{$max991} {
+            display: none;
+        }
+    }
+
+    .ic-coaches-section-title {
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        span {
+            font-weight: 400;
+        }
+
+        .ic-tagline {
+            font-style: normal;
+            font-weight: 300;
+            line-height: 26px;
+            color: $gray-deep;
+            width: 100%;
+            max-width: 480px;
+            margin: auto;
+
+            @media #{$max1199} {
+                line-height: normal;
+            }
+        }
+    }
+
+    .ic-bg-freelance-coach-left {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .ic-bg-freelance-coach-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+.ic-freelance-coach-content-wrapper {
+    position: relative;
+    z-index: 9;
+}
+
+.ic-freelance-coach-card-wrapper {
+
+    @include d-flex();
+    gap: 11px;
+    position: relative;
+
+    .ic-coach-img {
+        width: calc(100% / 4 - 11px + 11px / 4);
+
+        @media #{$max991} {
+            width: calc(100% / 2 - 11px + 11px / 2);
+        }
+
+        @media #{$max575} {
+            width: 100%;
+            @include d-flex();
+            @include justify-content(center);
+
+        }
+
+        img {
+            border-radius: 10px;
+            width: 100%;
+        }
+    }
+
+    .ic-freelance-desc {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 80%;
+        width: 100%;
+        max-width: 872px;
+        margin: auto;
+        background: white;
+        padding: 30px 30px 55px;
+        border: 1px solid $stock;
+        border-radius: 10px;
+        text-align: center;
+        color: $gray-deep;
+        font-weight: 300;
+
+        @media #{$max991} {
+            max-width: 489px;
+            padding: 20px;
+            padding-bottom: 25px;
+            top: 95%;
+        }
+
+        @media #{$max575} {
+            position: unset;
+            max-width: 328px;
+            padding: 15px;
+            padding-bottom: 20px;
+        }
+
+        .btn-div {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+/* community review section sass */
+.ic-communiny-review-section {
+    padding-top: 90px;
+    padding-bottom: 105px;
+
+    @media #{$max1199} {
+        padding: 60px 0;
+    }
+
+    @media #{$max991} {
+        padding: 40px 0;
+    }
+
+    @media #{$max575} {
+        padding: 30px 0;
+    }
+}
+
+.ic-community-review-content {
+
+    // position: relative;
+    // z-index: 9;
+    .ic-coaches-section-title {
+        h1 {
+            color: white;
+        }
+    }
+}
+
+.ic-community-review-wrapper {
+    width: 100%;
+    max-width: 630px;
+    margin: auto;
+
+    @media #{$max1199} {
+        width: 500px;
+    }
+
+    @media #{$max575} {
+        width: 290px;
+    }
+
+}
+
+.ic-community-user-review {
+
+    @include d-flex();
+    @include flex-direction(column);
+    @include align-items(center);
+    color: white;
+    text-align: center;
+
+    .ic-user-img {
+        position: relative;
+        // @include d-flex();
+        // @include justify-content(center);
+        width: 98px;
+        height: 98px;
+        margin: auto;
+        margin-bottom: 38px;
+
+        @media #{$max767} {
+            @include d-flex();
+            @include justify-content(center);
+            margin-bottom: 10px;
+        }
+
+    }
+
+    img {
+        width: 98px;
+        height: 98px;
+        border-radius: 100%;
+
+        @media #{$max1199} {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    .ic-user-badge {
+        position: absolute;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        background: var(--Gradiant, linear-gradient(180deg, #2EB7D3 0.01%, #06738A 100%));
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        top: 0;
+        left: -15px;
+        color: white;
+
+        @media #{$max991} {
+            width: 30px;
+            height: 30px;
+            left: -10px;
+        }
+    }
+
+    .ic-review-title {
+        margin-bottom: 20px;
+
+        h2 {
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+    }
+
+    .ic-review-text {
+        margin-bottom: 30px;
+
+        @media #{$max767} {
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-family: $font-lexend;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 30px;
+
+            @media #{$max1199} {
+                font-size: 16px;
+            }
+
+            @media #{$max575} {
+                font-size: 13px;
+                line-height: 25px;
+            }
+        }
+    }
+
+    .ic-user-info {
+        p {
+            font-family: $font-lexend;
+
+            &:first-child {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 30px;
+            }
+
+            &:last-child {
+                font-weight: 400;
+            }
+        }
+    }
+
+}
+
+// .slick-dots {
+//     @include d-flex();
+//     @include justify-content(center);
+
+//     @media #{$max767} {
+//         margin-top: 20px;
+//     }
+
+
+//     li {
+//         padding: 0 30px;
+//         opacity: 0.5;
+//         position: absolute;
+
+//         @media #{$max767} {
+//             position: unset;
+//             padding: 0 5px;
+//         }
+
+//         &:first-child {
+//             top: 60px;
+//             left: -125px;
+
+//             // @media #{$max1199} {
+//             //     left: -94px;
+//             // }
+
+//             // @media #{$max991} {
+//             //     top: 0;
+//             //     left: 45px;
+//             // }
+//         }
+
+//         &:nth-child(2) {
+//             top: 138px;
+//             left: -214px;
+
+//             // @media #{$max1199} {
+//             //     left: -172px;
+//             // }
+
+//             // @media #{$max991} {
+//             //     top: 0;
+//             //     left: -32px;
+//             // }
+//         }
+
+//         &:nth-child(3) {
+//             top: 241px;
+//             left: -130px;
+
+//             // @media #{$max1199} {
+//             //     left: -100px;
+//             // }
+
+//             // @media #{$max991} {
+//             //     top: 0;
+//             //     left: -111px;
+//             // }
+//         }
+
+//         &:nth-child(4) {
+//             top: 61px;
+//             right: -138px;
+
+//             // @media #{$max1199} {
+//             //     right: -104px;
+//             // }
+
+//             // @media #{$max991} {
+//             //     top: 0;
+//             //     right: 45px;
+//             // }
+//         }
+
+//         &:nth-child(5) {
+//             top: 154px;
+//             right: -209px;
+
+//             // @media #{$max1199} {
+//             //     right: -165px;
+
+//             // }
+
+//             // @media #{$max991} {
+//             //     top: 0;
+//             //     right: -32px;
+//             // }
+//         }
+
+//         &:last-child {
+//             top: 251px;
+//             right: -143px;
+
+//             // @media #{$max1199} {
+//             //     right: -112px;
+//             // }
+
+//             // @media #{$max991} {
+//             //     top: 0;
+//             //     right: -111px;
+//             // }
+//         }
+
+//         button {
+//             // content: url({{asset('new-frontendv1/images/coaches-single/bg-community.png')}});
+//             // background: url({{asset('new-frontendv1/images/coaches-single/client_1.png')}});
+//             background-position: center !important;
+//             background-size: cover !important;
+//             text-indent: -9999px;
+//             overflow: hidden;
+//             width: 60px;
+//             height: 60px;
+//             border-radius: 50px;
+//             // border: 4px solid #dee2e6;
+
+//             @media #{$max991} {
+//                 width: 40px;
+//                 height: 40px;
+//             }
+
+//             @media #{$max575} {
+//                 width: 30px;
+//                 height: 30px;
+//             }
+//         }
+//     }
+
+//     .slick-active {
+//         opacity: 1;
+//     }
+// }
+
+/* coaches single count section */
+.ic-coaches-single-count-section {
+    padding-top: 100px;
+    padding-bottom: 90px;
+    background-color: #ECF8FB;
+    border-bottom: 2px solid $stock;
+
+    @media #{$max991} {
+        padding: 30px 0;
+    }
+
+}
+
+.ic-counter-wrapper {
+    @include d-flex();
+    gap: 100px;
+
+    @media #{$max991} {
+        gap: 24px;
+    }
+
+    .ic-counter-item {
+        white-space: nowrap;
+        width: calc(100% / 4 - 100px + 100px / 4);
+
+        @media #{$max991} {
+            width: calc(100% / 2 - 24px + 24px / 2);
+        }
+
+        @media #{$max374} {
+            width: 100%;
+        }
+    }
+}
+
+.ic-counter-box {
+    text-align: center;
+
+    .ic-conter-number {
+        margin-bottom: 7px;
+
+        @media #{$max575} {
+            margin-bottom: 5px;
+        }
+
+        &:hover {
+            @include transition(0.4s);
+            color: $primary;
+        }
+
+        font-family: Lexend;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+
+        @media #{$max991} {
+            font-size: 30px;
+        }
+
+        @media #{$max767} {
+            font-size: 18px;
+        }
+
+        span {}
+    }
+
+    .ic-counter-text {
+        color: $gray-deep;
+        font-family: Lexend;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+
+        @media #{$max767} {
+            font-size: 13px;
+        }
+    }
+}
+
+.ic-conter-content {
+    padding: 0px 83px;
+
+    @media #{$max1440} {
+        padding: 0px;
+    }
+}
+
+/* coaches train  */
+.ic-coaches-train-section {
+    padding: 100px 0;
+    background-color: #ECF8FB;
+
+    @media #{$max1440} {
+        padding: 80px 0;
+    }
+
+    @media #{$max1399} {
+        padding: 60px 0;
+    }
+
+    @media #{$max1199} {
+        padding: 50px 0;
+    }
+
+    @media #{$max991} {
+        padding: 40px 0;
+    }
+
+    @media #{$max575} {
+        padding: 30px 0;
+    }
+
+    .ic-train-wrapper {
+        @include d-flex();
+        gap: 142px;
+
+        @media #{$max1440} {
+            gap: 40px;
+        }
+
+        @media #{$max991} {
+            gap: 30px;
+        }
+
+        @media #{$max767} {
+            gap: 20px;
+        }
+
+        @media #{$max575} {
+            gap: 10px;
+        }
+
+        @media #{$max1199} {
+            @include align-items(center);
+        }
+
+        @media #{$max767} {
+            @include flex-direction(column);
+        }
+    }
+
+    .ic-train-img {
+        width: 405px;
+        height: 405px;
+        background: $primary;
+        border-radius: 100%;
+        position: relative;
+
+        @media #{$max1440} {
+            width: 350px;
+            height: 350px;
+        }
+
+        @media #{$max1199} {
+            width: 260px;
+            height: 260px;
+        }
+
+        @media #{$max767} {
+            width: 200px;
+            height: 200px;
+        }
+
+        img {
+            border-radius: 100%;
+            height: 405px;
+            width: 405px;
+            object-fit: cover;
+            position: absolute;
+            top: -37px;
+            left: -37px;
+
+            @media #{$max1440} {
+                width: 350px;
+                height: 350px;
+            }
+
+            @media #{$max1199} {
+                width: 260px;
+                height: 260px;
+                top: -15px;
+                left: -15px;
+            }
+
+            @media #{$max767} {
+                width: 200px;
+                height: 200px;
+
+            }
+        }
+    }
+
+    .ic-train-left {
+        @media #{$max991} {
+            // display: none;
+        }
+    }
+
+    .ic-train-right {
+        flex: 1;
+    }
+
+    .ic-coaches-section-title {
+        text-align: start;
+        padding-bottom: 23px;
+
+        span {
+            font-weight: 300;
+        }
+    }
+
+    .ic-train-tag {
+        color: $primary;
+        font-size: 20px;
+        font-family: $font-lexend;
+        margin-bottom: 22px;
+
+        @media #{$max1199} {
+            margin-bottom: 10px;
+        }
+    }
+
+    .ic-train-des {
+        color: $gray-deep;
+        margin-bottom: 40px;
+
+        @media #{$max1199} {
+            margin-bottom: 20px;
+        }
+
+        @media #{$max991} {
+            margin-bottom: 15px;
+        }
+    }
+
+
+}
+
+/* Oline learning section */
+.ic-online-learning-section {
+    position: relative;
+    padding: 100px 0px 524px 0;
+
+    @media #{$max1199} {
+        padding: 80px 0px 524px 0;
+    }
+
+    @media #{$max991} {
+        padding: 60px 0px 524px 0;
+    }
+
+    @media #{$max767} {
+        padding: 40px 0px 524px 0;
+    }
+
+
+    .ic-coaches-section-title {
+        @media #{$max1199} {
+            padding-bottom: 20px;
+        }
+
+        @media #{$max767} {
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        span {
+            font-weight: 400;
+        }
+    }
+}
+
+.ic-online-learning-content-wrapper {
+    margin-top: -523px;
+    position: relative;
+
+    .ic-img-wrapper {
+        @media #{$max1199} {
+            // @include d-flex();
+            // flex-wrap: nowrap;
+        }
+    }
+
+    .ic-classroom-box {
+        @media #{$max575} {
+            @include d-flex();
+            flex-direction: column-reverse;
+
+            .ic-text-box {
+                @media #{$max991} {
+                    border-radius: 0px 10px 0px 0px;
+                }
+            }
+        }
+    }
+
+    .ic-bootcamp-box {
+        @media #{$max575} {
+            @include d-flex();
+            @include flex-direction(column);
+            // gap: 15px;
+            margin-top: 15px;
+        }
+    }
+
+    .ic-img-box {
+        @media #{$max575} {
+            text-align: center;
+        }
+
+        .learner-img-1 {
+            border-radius: 10px 0px 0px 0px;
+        }
+
+        .learner-img-2 {
+            border-radius: 0px 0px 0px 10px;
+
+            @media #{$max991} {
+                border-radius: 10px 0px 0px 0px;
+            }
+
+            @media #{$max575} {
+                border-radius: 0;
+            }
+        }
+
+        .learner-img-3 {
+            border-radius: 0px 10px 0px 0px;
+
+            @media #{$max991} {
+                border-radius: 0px 0px 10px 0px;
+            }
+
+            @media #{$max575} {
+                border-radius: 0;
+            }
+        }
+
+        .learner-img-4 {
+            border-radius: 0px 0px 10px 0px;
+        }
+    }
+
+    img {
+        width: 100%;
+
+
+    }
+
+
+    .ic-text-box {
+        background: white;
+        padding: 58px 35px;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media #{$max1650} {
+            padding: 54px 32px;
+        }
+
+        @media #{$max1399} {
+            padding: 50px 30px;
+        }
+
+        @media #{$max1199} {
+            padding: 45px 28px;
+        }
+
+        @media #{$max991} {
+            padding: 40px 26px;
+        }
+
+        @media #{$max767} {
+            padding: 35px 24px;
+        }
+
+        @media #{$max575} {
+            padding: 25px 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 33.347px;
+            margin-bottom: 20px;
+
+
+            @media #{$max1650} {
+                font-size: 26px;
+                margin-bottom: 18px;
+            }
+
+            @media #{$max1399} {
+                font-size: 24px;
+                margin-bottom: 16px;
+            }
+
+            @media #{$max1199} {
+                font-size: 22px;
+                margin-bottom: 14px;
+            }
+
+            @media #{$max991} {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+
+            @media #{$max767} {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            @media #{$max575} {
+                margin-bottom: 8px;
+            }
+
+            span {
+                font-weight: 700;
+            }
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 18px;
+            color: $gray-deep;
+            margin-bottom: 11px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            @media #{$max1650} {
+                font-size: 17px;
+            }
+
+            @media #{$max1399} {
+                font-size: 16px;
+            }
+
+            @media #{$max1199} {
+                font-size: 15px;
+            }
+
+            @media #{$max767} {
+                font-size: 14px;
+            }
+        }
+
+        a {
+            color: $primary;
+            text-decoration: revert;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .ic-classroom-box {
+        .ic-text-box {
+            @media #{$max991} {
+                border-radius: 0px 10px 0px 0px;
+            }
+
+            @media #{$max575} {
+                border-radius: 0;
+            }
+        }
+    }
+
+    .ic-bootcamp-box {
+        .ic-text-box {
+            @media #{$max991} {
+                border-radius: 0px 0px 0px 10px;
+            }
+
+            @media #{$max575} {
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+/* coaches-achieve-section */
+// .ic-coaches-achieve-section {
+//     background: linear-gradient(180deg, #FFF 0%, #D3EDF3 100%);
+// }
+
+.ic-achieve-card {
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    position: relative;
+
+    h3 {
+        font-weight: 600;
+        font-size: 28px;
+
+    }
+
+    p {
+        padding: 22px 0;
+        font-weight: 300;
+        color: $gray-deep;
+    }
+
+    .ic-coach-img {
+        position: absolute;
+        bottom: 0;
+        right: 30px;
+    }
+}
+
+
+.ic__testimonial--slider {
+    position: relative;
+
+    .ic__testimonial--nav {
+        position: relative;
+        min-height: 400px;
+
+        @media #{$max991} {
+            min-height: 380px;
+        }
+
+        @media #{$max991} {
+            @include d-flex;
+            @include justify-content(center);
+            //    gap: 14px;
+
+
+        }
+
+        li {
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            @media #{$max991} {
+                height: 100%;
+            }
+
+            // &:nth-of-type(1) {
+            //     order: 3;
+            // }
+
+            // &:nth-of-type(3) {
+            //     order: 1;
+            // }
+
+            // &:nth-of-type(4) {
+            //     order: 2;
+            // }
+
+            // &:nth-of-type(5) {
+            //     order: 4;
+            // }
+
+            // &:nth-of-type(2) {
+            //     order: 5;
+            // }
+
+            .ic__testimonial--avatar {
+                width: 97px;
+                height: 97px;
+                position: relative;
+                @include bd-radius(50%);
+
+                img {
+                    width: 100%;
+                    @include bd-radius(50%);
+                }
+
+                &.avatar-1 {
+                    position: absolute;
+                    top: 0%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    box-shadow: 0px 0px 14.9963px rgba(118, 169, 214, 0.1);
+
+                    @media #{$max991} {
+                        top: 90px;
+                    }
+
+                    .ic-user-img {
+                        position: relative;
+
+                        .ic-user-badge {
+                            position: absolute;
+                            width: 46px;
+                            height: 46px;
+                            display: flex;
+                            background: linear-gradient(180deg, #2EB7D3 0.01%, #06738A 100%);
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50px;
+                            top: 0;
+                            left: -15px;
+                            color: white;
+
+                            @media #{$max991} {
+                                width: 30px;
+                                height: 30px;
+                                left: -10px;
+                            }
+                        }
+                    }
+                }
+
+                &.avatar-2,
+                &.avatar-3,
+                &.avatar-4,
+                &.avatar-5,
+                &.avatar-6,
+                &.avatar-7 {
+                    width: 87px;
+                    height: 87px;
+                    opacity: 0.6;
+
+                    @media #{$max1650} {
+                        width: 80px;
+                        height: 80px;
+                    }
+
+                    @media #{$max1399} {
+                        width: 75px;
+                        height: 75px;
+                    }
+
+                    @media #{$max1199} {
+                        width: 70px;
+                        height: 70px;
+                    }
+
+                    @media #{$max991} {
+                        width: 60px;
+                        height: 60px;
+                    }
+
+                    @media #{$max767} {
+                        width: 55px;
+                        height: 55px;
+                    }
+
+                    @media #{$max575} {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+
+                &.avatar-2 {
+                    position: absolute;
+                    top: 12%;
+                    right: 0;
+
+
+
+                    @media #{$max991} {
+                        position: unset;
+                        top: unset;
+                        right: unset;
+                    }
+                }
+
+                &.avatar-3 {
+
+                    position: absolute;
+                    top: 50%;
+                    right: 10%;
+                    transform: translateY(-50%);
+
+                    @media #{$max991} {
+                        position: unset;
+                        top: unset;
+                        right: unset;
+                        transform: unset;
+                    }
+                }
+
+                &.avatar-4 {
+
+                    position: absolute;
+                    bottom: 12%;
+                    right: 0;
+
+                    @media #{$max991} {
+                        position: unset;
+                        bottom: unset;
+                        right: unset;
+                    }
+                }
+
+                &.avatar-5 {
+                    position: absolute;
+                    top: 12%;
+                    left: 10%;
+
+                    @media #{$max991} {
+                        position: unset;
+                        top: unset;
+                        left: unset;
+                    }
+                }
+
+                &.avatar-6 {
+
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+
+                    @media #{$max991} {
+                        position: unset;
+                        top: unset;
+                        left: unset;
+                        transform: unset;
+                    }
+                }
+
+                &.avatar-7 {
+                    position: absolute;
+                    bottom: 12%;
+                    left: 10%;
+
+                    @media #{$max991} {
+                        position: unset;
+                        bottom: unset;
+                        left: unset;
+                    }
+                }
+
+
+
+
+            }
+        }
+    }
+
+    .ic__testimonial--tabs--container {
+
+        position: absolute;
+        top: 140px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        @media #{$max991} {
+            top: 200px;
+        }
+
+        @media #{$max767} {
+            width: 100%;
+        }
+
+        .ic__testimonial--tabs {
+            width: 630px;
+            text-align: center;
+            display: none;
+
+            @media #{$max1399} {
+                width: 550px;
+            }
+
+            @media #{$max1199} {
+                width: 500px;
+            }
+
+            @media #{$max767} {
+                width: unset;
+            }
+
+            &.active {
+                display: block;
+            }
+
+            .ic-review-title {
+                margin-bottom: 20px;
+
+                @media #{$max1399} {
+                    margin-bottom: 19px;
+                }
+
+                @media #{$max1199} {
+                    margin-bottom: 18px;
+                }
+
+                @media #{$max991} {
+                    margin-bottom: 17px;
+                }
+
+                @media #{$max767} {
+                    margin-bottom: 16px;
+                }
+
+                @media #{$max575} {
+                    margin-bottom: 14px;
+                }
+
+                h2 {
+                    color: $white;
+                    font-size: 28px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+
+                    @media #{$max1650} {
+                        font-size: 26px;
+                    }
+
+                    @media #{$max1399} {
+                        font-size: 24x;
+                    }
+
+                    @media #{$max1199} {
+                        font-size: 22px;
+                    }
+
+                    @media #{$max991} {
+                        font-size: 20px;
+                        line-height: normal;
+                    }
+
+                    @media #{$max767} {
+                        font-size: 18px;
+                    }
+
+                    @media #{$max575} {
+                        font-size: 17px;
+                    }
+                }
+            }
+
+            .ic-review-text {
+                margin-bottom: 30px;
+
+                @media #{$max1650} {
+                    margin-bottom: 25px;
+                }
+
+                @media #{$max1399} {
+                    margin-bottom: 20px;
+                }
+
+                @media #{$max767} {
+                    margin-bottom: 15px;
+                }
+
+                p {
+                    color: $white;
+                    font-family: $font-lexend;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: 30px;
+
+                    @media #{$max1650} {
+                        font-size: 18px;
+                    }
+
+                    @media #{$max1399} {
+                        font-size: 17x;
+                    }
+
+                    @media #{$max1199} {
+                        font-size: 15px;
+                    }
+
+                    @media #{$max991} {
+                        font-size: 14px;
+                        line-height: normal;
+                    }
+                }
+            }
+
+            .ic-user-info {
+                p {
+                    color: $white;
+                    font-family: $font-lexend;
+
+                    &:first-child {
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                        margin-bottom: 4px;
+                    }
+
+                    &:last-child {
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* caoches section */
+.ic-caoches-section {
+    background: var(--Background, linear-gradient(180deg, #FFF 0%, #D3EDF3 100%));
+
+    .ic-achive-wrapper {
+        .ic-headers {
+            h2 {
+                color: black;
+            }
+        }
+    }
+}

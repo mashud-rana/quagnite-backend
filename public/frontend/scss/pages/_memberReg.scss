@@ -1,0 +1,292 @@
+.ic__member_reg--part {
+    @include background(no-repeat, cover, center);
+    
+
+    .ic_login_wrapper {
+        max-width: 656px;
+        background: #FFFFFF;
+        box-shadow: 0px 39px 48px rgba(75, 49, 147, 0.06);
+        border-radius: 25px;
+        margin-top: 62px;
+        padding: 40px;
+
+        @media #{$max1440} {
+            max-width: 550px;
+        }
+
+        @media #{$max1280} {
+            max-width: 500px;
+        }
+        @media #{$max575} {
+            width: 100%;
+            max-width: auto;
+        }
+
+        @media #{$max575} {
+            padding: 25px 15px;
+        }
+
+        .logo {
+            img {
+                max-width: 100%;
+                height: auto;
+                @media #{$max1280} {
+                    max-width: 180px;
+                }
+
+                @media #{$max991} {
+                    max-width: 150px;
+                }
+
+                @media #{$max767} {
+                    max-width: 140px;
+                }
+            }
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 26px;
+            line-height: 57px;
+            text-align: center;
+            color: #22223B;
+            @media #{$max1440} {
+                line-height: 41px;
+            }
+            @media #{$max1399} {
+                line-height: 30px;
+                font-size: 22px;
+            }
+        }
+
+        .top_abs {
+            position: absolute;
+            top: -30px;
+            left: -70px;
+            z-index: -1;
+
+            @media #{$max1024} {
+                display: none;
+            }
+        }
+
+        .bottom_abs {
+            position: absolute;
+            bottom: -30px;
+            right: -70px;
+            z-index: -1;
+
+            @media #{$max1024} {
+                display: none;
+            }
+        }
+
+        .ic_google_signin {
+            button {
+                margin-bottom: 27px;
+                border: 1px solid #D8DAE5;
+                border-radius: 8px;
+                background-color: transparent;
+                width: 100%;
+                padding: 12px;
+
+                @media #{$max1650} {
+                    margin-bottom: 25px;
+                }
+
+                @media #{$max1399} {
+                    margin-bottom: 20px;
+                }
+
+                @media #{$max767} {
+                    margin-bottom: 15px;
+                }
+
+                span {
+                    font-weight: 700;
+                    font-size: 16px;
+                    color: #081735;
+                    ;
+                }
+
+                &:hover {
+                    border: 1px solid rgba(69, 252, 219, 0.8);
+                    background-color: rgba(123, 117, 168, 0.1);;
+                }
+
+
+            }
+        }
+
+        .ic_signin_with_email {
+            h5 {
+                border-bottom: 1px solid #E6E8F0;
+                line-height: 0.1em;
+                margin-bottom: 27px;
+
+                @media #{$max1650} {
+                    margin-bottom: 25px;
+                }
+
+                @media #{$max1399} {
+                    margin-bottom: 20px;
+                }
+
+                @media #{$max767} {
+                    margin-bottom: 15px;
+                }
+            }
+
+            span {
+                border: 0 !important;
+                background: white;
+                padding: 0px 10px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #8F95B2;
+            }
+
+
+
+
+        }
+
+        .ic_input_group {
+            label {
+                color: #081735;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                font-family: $font-rubik;
+            }
+
+            .input-group {
+                margin-bottom: 27px;
+                box-shadow: 53.695px 50.3901px 214.78px rgba(39, 42, 119, 0.13);
+                border: 1px solid #D8DAE5;
+                border-radius: 8px;
+
+                &:hover {
+                    border: 1px solid rgba(69, 252, 219, 0.8);
+                    background-color: rgba(123, 117, 168, 0.1);;
+                }
+
+                @media #{$max1650} {
+                    margin-bottom: 25px;
+                }
+
+                @media #{$max1399} {
+                    margin-bottom: 20px;
+                }
+
+                @media #{$max767} {
+                    margin-bottom: 15px;
+                }
+
+                .input-group-text {
+                    border: 0;
+                    background-color: transparent;
+                    color: $dark-blue;
+                    font-size: 12px;
+                    border-radius: 8px 0 0 8px;
+                    padding: 13px 18px;
+
+                }
+
+                .form-control {
+                    border: 0;
+                    background-color: transparent;
+                    color: #081735;
+                    font-size: 12px;
+                    border-radius: 0 8px 8px 0 !important;
+                    padding: 18px 0;
+                    @media #{$max1440} {
+                        height: 50px;
+                    }
+                    &::placeholder {
+                        color: #70798B;
+                    }
+
+                    &:-ms-input-placeholder {
+                        color: #70798B;
+                    }
+
+                    &::-ms-input-placeholder {
+                        color: #70798B;
+                    }
+                }
+
+                i {
+                    right: 20px;
+                    z-index: 5;
+                    color: #70798B;
+                    cursor: pointer;
+                }
+            }
+
+            svg {
+                max-height: 22px;
+            }
+        }
+
+        .ic_remember_me {
+
+            .form-check {
+                .form-check-input {
+                    box-shadow: none;
+                    border-radius: 4px;
+
+                    &:checked {
+                        background-color: $dark-blue;
+                        border: 1px solid $dark-blue !important;
+                    }
+
+                    &:focus {
+                        border: 1px solid rgba(0, 0, 0, .25);
+                    }
+                }
+
+
+            }
+
+            label {
+                color: #081735;
+                font-weight: 500;
+                line-height: 20px;
+                font-family: $font-rubik;
+            }
+
+            a {
+                color: #2B9CB4;
+                font-weight: 400;
+                line-height: 20px;
+                font-family: $font-rubik;
+            }
+        }
+
+        .login_btn {
+            .ic-btn {
+                width: 100%;
+                border-radius: 8px;
+
+                @media #{$max1440} {
+                    height: 50px
+                }
+
+                @media #{$max1280} {
+                    height: 40px
+                }
+            }
+        }
+
+        .ic_create_acc {
+            small {
+                color: #8F95B2;
+            }
+
+            a {
+                color: #2B9CB4;
+            }
+        }
+    }
+}

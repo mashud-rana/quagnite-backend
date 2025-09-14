@@ -1,0 +1,93 @@
+.ic-dropdown {
+  .icon-dropdown {
+    padding: 0px 0px;
+    border: none !important;
+    color: $color-aluminium;
+    &::after {
+      display: none;
+    }
+
+    &::before {
+      display: none;
+    }
+    &:hover {
+      color: $color-blue;
+    }
+
+    i {
+      font-size: 24px;
+      @include transition(0.5s);
+    }
+
+    &.icon-circle {
+      @include box(28px, 28px);
+      @include box-circle();
+      background-color: $color-aluminium;
+      @include align-center();
+      color: $color-white;
+      @include transition(0.5s);
+
+      &:hover {
+        background-color: $color-blue;
+      }
+      @media #{$max1399} {
+        @include box(25px, 25px);
+      }
+      i {
+        font-size: 20px;
+        @media #{$max1399} {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .dropdown-menu {
+    background-color: $color-white;
+    @include bd-radius(10px);
+    @include box-shadow2($shadow-3);
+    border: none;
+    padding: 16px 0px;
+    z-index: 9999;
+  }
+  li {
+    &:first-child {
+      .dropdown-item {
+        padding-top: 0px;
+      }
+    }
+    &:last-child {
+      .dropdown-item {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+  }
+  .dropdown-item {
+    padding: 10px 16px;
+    border-bottom: 1px solid $color-porcelain;
+    color: $color-aluminium;
+    font-size: 14px;
+    @include d-flex();
+    @include align-items(center);
+    @include transition(0.5s);
+    &:hover {
+      &.delete {
+        color: $color-red;
+      }
+
+      &.edit {
+        color: $color-blue;
+      }
+      color: $color-blue;
+    }
+
+    i {
+      font-size: 16px;
+      margin-right: 8px;
+    }
+
+    &:hover {
+      background-color: $color-white;
+    }
+  }
+}

@@ -1,0 +1,152 @@
+.ic-billing-wrapper {
+    @include bd-radius(10px);
+    background-color: #fff;
+    padding: 24px;
+    .ic-billing-body {
+        border: 1px solid $stock;
+        .ic-billing-header {
+            padding: 25px 24px 20px 24px;
+            border-bottom: 1px solid $stock;
+        }
+        .ic-billing-main {
+            @include d-flex();
+            @media #{$max767} {
+                flex-direction: column;
+            }
+            .ic-billing-left {
+                width: 50%;
+                border-right: 1px solid $stock;
+                padding: 15px 24px 24px 24px;
+                @media #{$max767} {
+                    width: 100%;
+                    border-right: 0;
+                    border-bottom: 1px solid $stock;
+                }
+                .left-billing {
+                    .bootstrap-select {
+                        .dropdown-toggle {
+                            background-color: #fff;
+                            height: 50px;
+                            .filter-option-inner-inner {
+                                font-weight: 300;
+                                font-size: 16px;
+                                line-height: 25px;
+                                color: #70798B;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            .ic-billing-right {
+                width: 50%;
+                padding: 15px 24px 24px 24px;
+                @media #{$max767} {
+                    width: 100%;
+                }
+                .billing-story {
+                    li {
+                        &.product-item {
+                            background-color: #F9F9F9;
+                            p {
+                                color: $primary;
+                                font-weight: 500;
+                                + p {
+                                    font-weight: 400;
+                                    span {
+                                        color: $black;
+                                    }
+                                    color: $gray;
+                                }
+                            }
+                        }
+                        p {
+                            color: $black;
+                            font-weight: 500;
+                        }
+                        border-top: 1px solid $stock;
+                        padding: 10px 10px;
+                        @include d-flex();
+                        @include align-items(center);
+                        @include justify-content(space-between);
+                    }
+                }
+            }
+        }
+    }
+}
+ 
+.ic__payment-methodSelect {
+    @include d-flex();
+    @include align-items(center);
+    padding-bottom: 20px;
+    @include justify-content(space-between);
+    row-gap: 10px;
+
+    @media #{$max991} {
+        @include justify-content(center);
+        gap: 10px;
+    }
+
+    >div {
+        width: 60px;
+        flex: 0 0 auto;
+
+        @media #{$max1399} {
+            width: 57px;
+        }
+
+        input[type="radio"] {
+            display: none;
+
+            &:checked {
+                +label {
+                    border: 1px solid #2AA6C0;
+                }
+            }
+        }
+
+        label {
+            cursor: pointer;
+            background: #FFFFFF;
+            border: 1px solid rgba(6, 115, 138, 0.13);
+            @include bd-radius(5px);
+            height: 32px;
+            padding: 0 10px;
+            display: inline-flex;
+            line-height: 28px;
+            align-items: center;
+
+            @media #{$max1399} {
+                padding: 0 5px;
+            }
+
+            img {
+                max-width: 40px;
+            }
+        }
+    }
+}
+
+.payment-form {
+    padding-top: 30px;
+    border-top: 1px solid $stock;
+    margin-top: 27px;
+}
+
+.ic-new-payment-method {
+    @include d-flex();
+    @include justify-content(space-between);
+    @include align-items(center);
+    padding-bottom: 24px;
+    .ic__payment-methodSelect {
+        gap: 10px;
+        padding-bottom: 0;
+        @media #{$max1399} {
+            gap: 3px;
+        }
+        @media #{$max1199} {
+            margin-top: 10px;
+        }
+    }
+}
