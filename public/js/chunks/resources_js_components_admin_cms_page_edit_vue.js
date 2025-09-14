@@ -451,6 +451,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     };
   },
   methods: {
+    onEditorChange: function onEditorChange(event) {
+      console.log('Editor change event:', event);
+      // const data = event.editor.getData();
+      // console.log('Editor content changed:', data);
+    },
     addSEOData: function addSEOData(inputName, event) {
       console.log('inputName', inputName, event.target.value);
       if (inputName != 'meta_title' && inputName != 'meta_description') {
@@ -460,83 +465,106 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     addCmsContent: function addCmsContent(inputName, event, module_name) {
+      console.log('inputName', inputName, event, module_name);
       this.page_contents.forEach(function (content) {
         // Hero Section
-        if (content.module_name === module_name) {
+        if (content.module_name === 'hero_section' || content.module_name === 'about_section' || content.module_name === 'school_section' || content.module_name === 'industries_section') {
           if (inputName === 'status') {
             content.status = event.target.checked ? 'active' : 'inactive';
-          } else if (inputName === 'title' || inputName === 'sub_title' || inputName === 'button_text' || inputName === 'button_url') {
-            content.content[inputName] = event.target.value;
-          }
-        }
-        if (content.module_name === module_name) {
-          if (inputName === 'status') {
-            content.status = event.target.checked ? 'active' : 'inactive';
-          } else if (inputName === 'title' || inputName === 'content') {
-            content.content[inputName] = event.target.value;
           }
         }
       });
     },
-    removeSchool: function removeSchool(schoolIndex) {
-      // console.log('schoolIndex', schoolIndex);
-      var content = this.page_contents.find(function (content) {
-        var _content$content;
-        return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content = content.content) === null || _content$content === void 0 ? void 0 : _content$content.schools);
-      });
-      if (content) {
-        content.content.schools.splice(schoolIndex, 1);
+    removeSchool: function removeSchool(module_name) {
+      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      console.log('remove module name', module_name);
+      if (module_name === 'school_section') {
+        var content = this.page_contents.find(function (content) {
+          var _content$content;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content = content.content) === null || _content$content === void 0 ? void 0 : _content$content.schools);
+        });
+        if (content) {
+          content.content.schools.splice(index, 1);
+        }
+      }
+      if (module_name === 'industries_section') {
+        var _content = this.page_contents.find(function (content) {
+          var _content$content2;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'industries_section' && (content === null || content === void 0 ? void 0 : (_content$content2 = content.content) === null || _content$content2 === void 0 ? void 0 : _content$content2.industries_card);
+        });
+        if (_content) {
+          _content.content.industries_card.splice(index, 1);
+        }
       }
     },
     addMoreSchoolSection: function addMoreSchoolSection() {
-      var schoolSection = {
-        image: '',
-        // Placeholder image
-        title: '',
-        description: '',
-        button_text: '',
-        button_url: ''
-      };
-      var content = this.page_contents.find(function (content) {
-        var _content$content2;
-        return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content2 = content.content) === null || _content$content2 === void 0 ? void 0 : _content$content2.schools);
-      });
-      if (content) {
-        content.content.schools.push(schoolSection);
+      var module_name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      if (module_name === 'school_section') {
+        var schoolSection = {
+          image: '',
+          // Placeholder image
+          title: '',
+          description: '',
+          button_text: '',
+          button_url: ''
+        };
+        var content = this.page_contents.find(function (content) {
+          var _content$content3;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content3 = content.content) === null || _content$content3 === void 0 ? void 0 : _content$content3.schools);
+        });
+        if (content) {
+          content.content.schools.push(schoolSection);
+        }
+      }
+      if (module_name === 'industries_section') {
+        var industries_section = {
+          image: '',
+          // Placeholder image
+          title: ''
+        };
+        var _content2 = this.page_contents.find(function (content) {
+          var _content$content4;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === module_name && (content === null || content === void 0 ? void 0 : (_content$content4 = content.content) === null || _content$content4 === void 0 ? void 0 : _content$content4.industries_card);
+        });
+        if (_content2) {
+          _content2.content.industries_card.push(industries_section);
+        }
       }
     },
-    uploadFileSchoolSectionCms: function uploadFileSchoolSectionCms(event) {
-      var _this = this;
+    uploadFileSchoolSectionCms: function uploadFileSchoolSectionCms(event, moduleName) {
+      var _arguments = arguments,
+        _this = this;
       return _asyncToGenerator(/*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var file, allowedTypes, formData, response, content;
+        var index, file, allowedTypes, formData, response, content, _content3;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                index = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : null;
                 console.log('File upload function called', event);
                 file = event.target.files[0];
                 if (file) {
-                  _context.next = 4;
+                  _context.next = 5;
                   break;
                 }
                 return _context.abrupt("return");
-              case 4:
+              case 5:
                 // Validate file type
                 allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
                 if (allowedTypes.includes(file.type)) {
-                  _context.next = 8;
+                  _context.next = 9;
                   break;
                 }
                 _this.showSomethingWrong('Please select a valid image file (JPEG, PNG, GIF, WEBP)');
                 return _context.abrupt("return");
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 // Create FormData for file upload
                 formData = new FormData();
-                formData.append('school_logo', file);
+                formData.append('image', file);
 
                 // Make API call to upload file
-                _context.next = 13;
+                _context.next = 14;
                 return axios.post('/admin/cms/upload-file-school-section', formData, {
                   headers: {
                     'Content-Type': 'multipart/form-data'
@@ -546,46 +574,49 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     console.log('Upload progress:', percentCompleted + '%');
                   }
                 });
-              case 13:
+              case 14:
                 response = _context.sent;
-                if (response.data.success) {
-                  // Update the school image in the data
-                  content = _this.page_contents.find(function (content) {
-                    var _content$content3;
-                    return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content3 = content.content) === null || _content$content3 === void 0 ? void 0 : _content$content3.schools);
-                  });
-                  if (content && content.content.schools[schoolIndex]) {
-                    content.content.schools[schoolIndex].image = response.data.image_url;
+                console.log('Upload response:', moduleName, response);
+                if (response.data) {
+                  console.log('Upload response:', response.data.file_url);
+                  if (moduleName === 'school_section' && index !== null) {
+                    // Update the school image in the data
+                    content = _this.page_contents.find(function (content) {
+                      var _content$content5;
+                      return (content === null || content === void 0 ? void 0 : content.module_name) === moduleName && (content === null || content === void 0 ? void 0 : (_content$content5 = content.content) === null || _content$content5 === void 0 ? void 0 : _content$content5.schools);
+                    });
+                    if (content && content.content.schools[index]) {
+                      content.content.schools[index].image = response.data.file_url;
+                    }
                   }
-                  _this.$toast.success('Image uploaded successfully!');
-                } else {
-                  _this.$toast.error(response.data.message || 'Upload failed');
-                }
-                _context.next = 21;
-                break;
-              case 17:
-                _context.prev = 17;
-                _context.t0 = _context["catch"](8);
-                console.error('Upload error:', _context.t0);
-                if (_context.t0.response && _context.t0.response.data && _context.t0.response.data.message) {
-                  _this.$toast.error(_context.t0.response.data.message);
-                } else {
-                  _this.$toast.error('Failed to upload image. Please try again.');
-                }
-              case 21:
-                _context.prev = 21;
-                // Clear uploading state
-                _this.$delete(_this.uploadingFiles, schoolIndex);
+                  if (moduleName === 'industries_section' && index !== null) {
+                    // Update the school image in the data
+                    _content3 = _this.page_contents.find(function (content) {
+                      var _content$content6;
+                      return (content === null || content === void 0 ? void 0 : content.module_name) === moduleName && (content === null || content === void 0 ? void 0 : (_content$content6 = content.content) === null || _content$content6 === void 0 ? void 0 : _content$content6.industries_card);
+                    });
+                    console.log('industries_section content', _content3, index);
+                    if (_content3 && _content3.content.industries_card[index]) {
+                      _content3.content.industries_card[index].image = response.data.file_url;
+                    }
+                  }
 
-                // Clear the input value so same file can be selected again
-                event.target.value = '';
-                return _context.finish(21);
-              case 25:
+                  // this.$toast.success('Image uploaded successfully!');
+                } else {
+                  // this.$toast.error(response.data.message || 'Upload failed');
+                }
+                _context.next = 22;
+                break;
+              case 19:
+                _context.prev = 19;
+                _context.t0 = _context["catch"](9);
+                console.error('Upload error:', _context.t0);
+              case 22:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[8, 17, 21, 25]]);
+        }, _callee, null, [[9, 19]]);
       }))();
     }
   },
@@ -657,9 +688,6 @@ var render = function render() {
       value: _vm.title
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("title", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.title = $event.target.value;
@@ -687,9 +715,6 @@ var render = function render() {
       value: _vm.slug
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("slug", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.slug = $event.target.value;
@@ -717,9 +742,6 @@ var render = function render() {
       value: _vm.meta_author
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_author", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.meta_author = $event.target.value;
@@ -747,9 +769,6 @@ var render = function render() {
       value: _vm.meta_title.en
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_title", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.meta_title, "en", $event.target.value);
@@ -776,9 +795,6 @@ var render = function render() {
       value: _vm.meta_description.en
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_description", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.meta_description, "en", $event.target.value);
@@ -806,16 +822,13 @@ var render = function render() {
       value: _vm.meta_keywords
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_keyword", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.meta_keywords = $event.target.value;
       }
     }
   })])]), _vm._v(" "), _c("h2", [_vm._v("Page Content")]), _vm._v(" "), _vm._l(_vm.page_contents, function (page_content, index) {
-    var _page_content$content;
+    var _page_content$content, _page_content$content2, _page_content$content3;
     return _c("div", {
       key: index
     }, [_c("div", {
@@ -868,9 +881,6 @@ var render = function render() {
         value: page_content.content.title
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("title", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
           _vm.$set(page_content.content, "title", $event.target.value);
@@ -884,8 +894,8 @@ var render = function render() {
       directives: [{
         name: "model",
         rawName: "v-model",
-        value: page_content.content.sub_title,
-        expression: "page_content.content.sub_title"
+        value: page_content.content.subtitle,
+        expression: "page_content.content.subtitle"
       }],
       staticClass: "form-control",
       attrs: {
@@ -895,15 +905,12 @@ var render = function render() {
         placeholder: "Sub Title"
       },
       domProps: {
-        value: page_content.content.sub_title
+        value: page_content.content.subtitle
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("sub_title", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
-          _vm.$set(page_content.content, "sub_title", $event.target.value);
+          _vm.$set(page_content.content, "subtitle", $event.target.value);
         }
       }
     })])]), _vm._v(" "), _c("div", {
@@ -928,9 +935,6 @@ var render = function render() {
         value: page_content.content.button_text
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("button_text", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
           _vm.$set(page_content.content, "button_text", $event.target.value);
@@ -958,9 +962,6 @@ var render = function render() {
         value: page_content.content.button_url
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("button_url", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
           _vm.$set(page_content.content, "button_url", $event.target.value);
@@ -981,11 +982,6 @@ var render = function render() {
       },
       domProps: {
         checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
-      },
-      on: {
-        change: function change($event) {
-          return _vm.addCmsContent("status", $event, "hero_section");
-        }
       }
     }), _vm._v(" "), _c("label", {
       staticClass: "form-label",
@@ -1004,12 +1000,8 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_vm._m(10, true), _vm._v(" "), _c("ckeditor", {
       attrs: {
-        config: _vm.editorConfig
-      },
-      on: {
-        change: function change($event) {
-          return _vm.addCmsContent("title", $event, "about_section");
-        }
+        config: _vm.editorConfig,
+        id: page_content.module_name + "_1"
       },
       model: {
         value: page_content.content.title,
@@ -1024,12 +1016,8 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_vm._m(11, true), _vm._v(" "), _c("ckeditor", {
       attrs: {
-        config: _vm.editorConfig
-      },
-      on: {
-        change: function change($event) {
-          return _vm.addCmsContent("content", $event, "about_section");
-        }
+        config: _vm.editorConfig,
+        id: page_content.module_name + "_2"
       },
       model: {
         value: page_content.content.content,
@@ -1085,7 +1073,7 @@ var render = function render() {
         },
         on: {
           click: function click($event) {
-            return _vm.removeSchool(schoolIndex);
+            return _vm.removeSchool("school_section", schoolIndex);
           }
         }
       }, [_c("i", {
@@ -1114,12 +1102,12 @@ var render = function render() {
         attrs: {
           type: "file",
           name: "school_logo",
-          accept: "",
+          accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
           required: ""
         },
         on: {
           change: function change($event) {
-            return _vm.uploadFileSchoolSectionCms($event);
+            return _vm.uploadFileSchoolSectionCms($event, "school_section", schoolIndex);
           }
         }
       })])]), _vm._v(" "), _c("div", {
@@ -1142,9 +1130,6 @@ var render = function render() {
           value: school.title
         },
         on: {
-          change: function change($event) {
-            return _vm.addCmsContent("title", $event, "school_section", schoolIndex);
-          },
           input: function input($event) {
             if ($event.target.composing) return;
             _vm.$set(school, "title", $event.target.value);
@@ -1154,7 +1139,8 @@ var render = function render() {
         staticClass: "col-md-12"
       }, [_vm._m(14, true), _vm._v(" "), _c("ckeditor", {
         attrs: {
-          config: _vm.editorConfig
+          config: _vm.editorConfig,
+          id: page_content.module_name + "_" + schoolIndex
         },
         model: {
           value: school.description,
@@ -1220,9 +1206,266 @@ var render = function render() {
         type: "button"
       },
       on: {
-        click: _vm.addMoreSchoolSection
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("school_section");
+        }
       }
-    }, [_vm._v("+ Add More")])], 2) : _vm._e()])])])]);
+    }, [_vm._v("+ Add More")])], 2) : _vm._e(), _vm._v(" "), page_content.module_name === "industries_section" ? _c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(17, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.title,
+        expression: "page_content.content.title"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "title",
+        required: "",
+        placeholder: "Title"
+      },
+      domProps: {
+        value: page_content.content.title
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "title", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _vm._l(page_content === null || page_content === void 0 ? void 0 : (_page_content$content2 = page_content.content) === null || _page_content$content2 === void 0 ? void 0 : _page_content$content2.industries_card, function (industries, industriesIndex) {
+      return _c("div", {
+        key: industriesIndex,
+        staticClass: "mb-4"
+      }, [_c("div", {
+        staticClass: "position-relative p-4 border rounded-3 shadow-sm bg-white"
+      }, [_c("button", {
+        staticClass: "btn btn-sm btn-danger position-absolute",
+        staticStyle: {
+          top: "0.5rem",
+          right: "0.5rem"
+        },
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.removeSchool("industries_section", industriesIndex);
+          }
+        }
+      }, [_c("i", {
+        staticClass: "mdi mdi-trash-can-outline"
+      })]), _vm._v(" "), _c("h6", {
+        staticClass: "mb-3 text-primary fw-semibold"
+      }, [_vm._v("\n                                                    Industries " + _vm._s(industriesIndex + 1) + "\n                                                ")]), _vm._v(" "), _c("div", {
+        staticClass: "row g-3 align-items-center"
+      }, [_c("div", {
+        staticClass: "col-md-6 d-flex align-items-center"
+      }, [_c("div", [_c("img", {
+        staticClass: "border rounded",
+        staticStyle: {
+          width: "60px",
+          height: "60px",
+          "object-fit": "cover"
+        },
+        attrs: {
+          src: industries.image,
+          alt: "Industries Logo"
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "me-3"
+      }, [_vm._m(18, true), _vm._v(" "), _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "file",
+          name: "school_logo",
+          accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
+          required: ""
+        },
+        on: {
+          change: function change($event) {
+            return _vm.uploadFileSchoolSectionCms($event, "industries_section", industriesIndex);
+          }
+        }
+      })])]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-6"
+      }, [_vm._m(19, true), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: industries.title,
+          expression: "industries.title"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "title",
+          required: "",
+          placeholder: "Enter school title"
+        },
+        domProps: {
+          value: industries.title
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+            _vm.$set(industries, "title", $event.target.value);
+          }
+        }
+      })])])])]);
+    })], 2), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-info btn-sm",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("industries_section");
+        }
+      }
+    }, [_vm._v("+ Add More")])]) : _vm._e(), _vm._v(" "), page_content.module_name === "why_us_section" ? _c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(20, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.title,
+        expression: "page_content.content.title"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "title",
+        required: "",
+        placeholder: "Title"
+      },
+      domProps: {
+        value: page_content.content.title
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "title", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _vm._l(page_content === null || page_content === void 0 ? void 0 : (_page_content$content3 = page_content.content) === null || _page_content$content3 === void 0 ? void 0 : _page_content$content3.reasons, function (reasons, reasonsIndex) {
+      return _c("div", {
+        key: reasonsIndex,
+        staticClass: "mb-4"
+      }, [_c("div", {
+        staticClass: "position-relative p-4 border rounded-3 shadow-sm bg-white"
+      }, [_c("button", {
+        staticClass: "btn btn-sm btn-danger position-absolute",
+        staticStyle: {
+          top: "0.5rem",
+          right: "0.5rem"
+        },
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.removeSchool("why_us_section", reasonsIndex);
+          }
+        }
+      }, [_c("i", {
+        staticClass: "mdi mdi-trash-can-outline"
+      })]), _vm._v(" "), _c("h6", {
+        staticClass: "mb-3 text-primary fw-semibold"
+      }, [_vm._v("\n                                                    Why us section " + _vm._s(reasonsIndex + 1) + "\n                                                ")]), _vm._v(" "), _c("div", {
+        staticClass: "row g-3 align-items-center"
+      }, [_c("div", {
+        staticClass: "col-md-6"
+      }, [_vm._m(21, true), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: reasons.title,
+          expression: "reasons.title"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "tab_name",
+          required: "",
+          placeholder: "Tap Name"
+        },
+        domProps: {
+          value: reasons.title
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+            _vm.$set(reasons, "title", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-6"
+      }, [_vm._m(22, true), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: reasons.title,
+          expression: "reasons.title"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "title",
+          required: "",
+          placeholder: "Enter school title"
+        },
+        domProps: {
+          value: reasons.title
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+            _vm.$set(reasons, "title", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-12"
+      }, [_c("div", {
+        staticClass: "mb-3"
+      }, [_vm._m(23, true), _vm._v(" "), _c("ckeditor", {
+        attrs: {
+          config: _vm.editorConfig,
+          id: (page_content === null || page_content === void 0 ? void 0 : page_content.content) + "_1"
+        },
+        model: {
+          value: reasons.description,
+          callback: function callback($$v) {
+            _vm.$set(reasons, "description", $$v);
+          },
+          expression: "reasons.description"
+        }
+      })], 1)])])])]);
+    })], 2), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-info btn-sm",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("why_us_section");
+        }
+      }
+    }, [_vm._v("+ Add More")])]) : _vm._e()])])])]);
   })], 2)]);
 };
 var staticRenderFns = [function () {
@@ -1360,6 +1603,62 @@ var staticRenderFns = [function () {
     staticClass: "form-label"
   }, [_vm._v("Button URL "), _c("span", {
     staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label d-block"
+  }, [_vm._v("Industries Logo "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Tap Name "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Description "), _c("span", {
+    staticClass: "error"
   }, [_vm._v("*")])]);
 }];
 render._withStripped = true;
