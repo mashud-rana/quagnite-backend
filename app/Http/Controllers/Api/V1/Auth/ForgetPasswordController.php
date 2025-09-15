@@ -27,7 +27,7 @@ class ForgetPasswordController extends Controller
                 'string',
                 'email',
                 Rule::exists('users', 'email')->where(function ($query) {
-                    $query->whereIn('user_type', [USER_TYPE_ADMIN, USER_TYPE_STUDENT, USER_TYPE_COACH, USER_TYPE_TEACHER, USER_TYPE_MEMBER]);
+                    $query->whereIn('user_type', [ USER_TYPE_STUDENT, USER_TYPE_COACH, USER_TYPE_TEACHER, USER_TYPE_MEMBER]);
                 }),
             ],
         ]);
@@ -45,7 +45,7 @@ class ForgetPasswordController extends Controller
             $this->passwordResetOnEmail($user);
 
             DB::commit();
-            return $this->success($user, 'Verification link sent successfully.');
+            return $this->success($user, 'Password reset link sent successfully. Please check your email.');
 
         } catch (\Exception $e) {
             DB::rollBack();

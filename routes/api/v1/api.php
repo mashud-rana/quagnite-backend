@@ -65,10 +65,12 @@ if (app()->environment('local', 'staging')) {
     Route::post('user-auth/refresh', [UserAuthController::class, 'refresh']);
 
     //forget password
-    Route::controller(ForgetPasswordController::class)->prefix('forget-password')->group(function () {
-        Route::post('/', 'forgetPassword');
-        Route::get('/reset-password/{token}', 'verifyToken');
-    });
+    // Route::controller(ForgetPasswordController::class)->prefix('forget-password')->group(function () {
+    //     Route::post('/', 'forgetPassword');
+    //     Route::get('/reset-password/{token}/verify', 'verifyToken');
+    // });
+    Route::get('/forget-password', [ForgetPasswordController::class, 'forgetPassword']);
+    Route::get('/reset-password/{token}/verify', [ForgetPasswordController::class, 'verifyToken']);
     Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword']);
 
     Route::middleware(['auth:sanctum'])->group(function () {
