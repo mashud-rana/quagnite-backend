@@ -67,10 +67,9 @@ if (app()->environment('local', 'staging')) {
     //forget password
     Route::controller(ForgetPasswordController::class)->prefix('forget-password')->group(function () {
         Route::post('/', 'forgetPassword');
-        Route::post('/otp-verify', 'otpVerify');
-        Route::post('/otp-generate-again', 'otpAgainGenerate');
-        Route::post('/password-update', 'otpPasswordUpdate');
+        Route::get('/reset-password/{token}', 'verifyToken');
     });
+    Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword']);
 
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('user-auth/me', [UserAuthController::class, 'me']);
