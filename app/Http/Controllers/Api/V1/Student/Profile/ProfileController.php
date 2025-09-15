@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Validation\Rules\Password;
 use App\Services\Api\V1\Student\ProfileService;
-use App\Http\Resources\Api\V1\Student\UserResource;
+use App\Http\Resources\Api\V1\UserResource;
 use App\Http\Requests\Api\V1\Student\ProfileRequest;
+use App\Http\Resources\Api\V1\Student\StudentResource;
 
 class ProfileController extends Controller
 {
@@ -30,13 +31,13 @@ class ProfileController extends Controller
     {
 
         $user = auth()->user();
-
+        $user= $user->load('student');
         try {
 
             if (!$user) {
                 return $this->error('User not found', 404);
             }
-            return $this->success(new UserResource($user));
+            return $this->success(new StudentResource($user));
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
@@ -66,6 +67,22 @@ class ProfileController extends Controller
         }
     }
 
+    public function updateProfilePhoto(Request $request, $id)
+    {
+        $request->validate([
+            'avatar'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        try {
+            $this->profileService->storeOrUpdate($request->all(), $id);
+            $user = User::find($id);
+
+            return $this->success(new UserResource($user), 'Profile Photo Update Successfully.');
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
     public function updatePassword(Request $request, $id)
     {
 
@@ -79,17 +96,23 @@ class ProfileController extends Controller
                     ->symbols(),
             ],
             'new_password_confirmation' => ['required', Password::min(8)],
-            'avatar'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'avatar'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'email'         => "required|email|unique:users,email,{$id}",
         ]);
 
 
         try {
+
             $this->profileService->storeOrUpdate([
-                'avatar' => $request->avatar ?? null,
-                'password' => Hash::make($request->new_password)
+                'email' => $request->email ?? null,
+                'password' => Hash::make($request->new_password),
+                //   'avatar' => $request->avatar ?? null,
             ], $id);
 
-            return $this->success( message: 'Profile Password Change Successfully.');
+            $user = User::find($id);
+
+            return $this->success(new UserResource($user), 'Profile Password Change Successfully.');
+
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());

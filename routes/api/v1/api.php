@@ -62,6 +62,7 @@ if (app()->environment('local', 'staging')) {
 
     Route::post('user-auth/register', [UserAuthController::class, 'register']);
     Route::post('user-auth/login', [UserAuthController::class, 'login']);
+    Route::post('user-auth/refresh', [UserAuthController::class, 'refresh']);
 
     //forget password
     Route::controller(ForgetPasswordController::class)->prefix('forget-password')->group(function () {
@@ -72,7 +73,7 @@ if (app()->environment('local', 'staging')) {
     });
 
     Route::middleware(['auth:sanctum'])->group(function () {
-
+        Route::get('user-auth/me', [UserAuthController::class, 'me']);
         Route::post('auth/logout', LogoutController::class);
 
         Route::get('/test/purchase-plan', [PurchaseController::class, 'purchaseAPlan']);

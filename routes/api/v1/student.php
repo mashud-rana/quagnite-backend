@@ -18,6 +18,7 @@ Route::prefix('student')->name('student.')->group(function () {
         //------------- Profile ----------------------------
         Route::get('/get-profile-details', [ProfileController::class, "show"]);
         Route::put('/update-profile/{id}', [ProfileController::class, "updateProfile"]);
+        Route::put('/update-profile-photo/{id}', [ProfileController::class, "updateProfilePhoto"]);
         Route::put('/password/update/{id}', [ProfileController::class, 'updatePassword']);
 
         //------------- End Profile -------------------------
