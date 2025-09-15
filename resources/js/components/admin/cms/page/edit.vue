@@ -1,6 +1,6 @@
 <template>
     <div>
-<!--        <form  method="post" enctype="multipart/form-data">-->
+       <form @submit.prevent="handleSubmit" method="post" ref="form">
 
             <div class="row">
                 <h2>Page SEO</h2>
@@ -20,8 +20,8 @@
 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label class="form-label">Meta Author <span class="error">*</span></label>
-                        <input type="text" v-model="meta_author"  name="meta_author" class="form-control" required="" placeholder="Meta Author" >
+                        <label class="form-label">Meta Author </label>
+                        <input type="text" v-model="meta_author"  name="meta_author" class="form-control"  placeholder="Meta Author" >
                     </div>
                 </div>
 
@@ -41,13 +41,12 @@
 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label class="form-label">Meta keyword (Make it comma separate) <span class="error">*</span></label>
-                        <input type="text" v-model="meta_keywords"    name="meta_keyword" class="form-control" required="" placeholder="Meta Keyword" >
+                        <label class="form-label">Meta keyword (Make it comma separate) </label>
+                        <input type="text" v-model="meta_keywords"    name="meta_keyword" class="form-control" placeholder="Meta Keyword" >
                     </div>
                 </div>
 
                 <h2>Page Content</h2>
-
                 <div v-for="(page_content, index) in page_contents" :key="index">
 
                     <div class="accordion mt-2" :id="page_content?.module_name">
@@ -104,42 +103,41 @@
                                 <!-- hero_section  End -->
 
                                 <!-- about_section  Start -->
-                                <div class="accordion-body" v-if="page_content.module_name === 'about_section'">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Title <span class="error">*</span></label>
-                                                <ckeditor
-                                                    v-model="page_content.content.title"
-                                                    :config="editorConfig"
-                                                    :id="page_content.module_name + '_1'"
-                                                >
-                                                </ckeditor>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Content <span class="error">*</span></label>
-                                                <ckeditor
-                                                    v-model="page_content.content.content"
-                                                    :config="editorConfig"
-                                                    :id="page_content.module_name + '_2'"
-                                                >
-                                                </ckeditor>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Show </label>
-                                                <br>
-                                                <input class="form-check form-switch" @change="addCmsContent('status', $event, 'about_section')" type="checkbox" :id="'switch' + index"
-                                                       :checked="page_content?.status === 'active'" switch="none">
-                                                <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                    <div class="accordion-body" v-if="page_content.module_name === 'about_section'">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Title <span class="error">*</span></label>
+                                                    <ckeditor
+                                                        v-model="page_content.content.title"
+                                                        :key="page_content.module_name + '_title'"
+                                                    >
+                                                    </ckeditor>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Content <span class="error">*</span></label>
+                                                    <ckeditor
+                                                        v-model="page_content.content.content"
+                                                        :key="page_content.module_name + '_content'"
+                                                    >
+                                                    </ckeditor>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Show </label>
+                                                    <br>
+                                                    <input class="form-check form-switch" @change="addCmsContent('status', $event, 'about_section')" type="checkbox" :id="'switch' + index"
+                                                        :checked="page_content?.status === 'active'" switch="none">
+                                                    <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 <!-- about_section  End -->
 
                                 <!-- school_section  Start -->
@@ -151,7 +149,7 @@
 
                                         <div class="position-relative p-4 border rounded-3 shadow-sm bg-white">
 
-                                            <!-- Delete button -->
+
                                             <button type="button"
                                                     class="btn btn-sm btn-danger position-absolute"
                                                     style="top: 0.5rem; right: 0.5rem;"
@@ -164,9 +162,9 @@
                                             </h6>
 
                                             <div class="row g-3 align-items-center">
-                                                <!-- School Logo -->
+
                                                 <div class="col-md-6 d-flex align-items-center">
-                                                    <!-- Logo Preview -->
+
                                                     <div>
                                                         <img :src="school.image"
                                                              alt="School Logo"
@@ -186,7 +184,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Title -->
+
                                                 <div class="col-md-6">
                                                     <label class="form-label">Title <span class="text-danger">*</span></label>
                                                     <input type="text"
@@ -197,18 +195,17 @@
                                                            placeholder="Enter school title">
                                                 </div>
 
-                                                <!-- Description -->
+
                                                 <div class="col-md-12">
                                                     <label class="form-label">Description <span class="text-danger">*</span></label>
                                                     <ckeditor
-                                                        :config="editorConfig"
                                                         v-model="school.description"
-                                                        :id="page_content.module_name+'_'+schoolIndex"
+                                                        :key="page_content.module_name+'_'+schoolIndex"
                                                     >
                                                     </ckeditor>
                                                 </div>
 
-                                                <!-- Button Text -->
+
                                                 <div class="col-md-6">
                                                     <label class="form-label">Button Text <span class="text-danger">*</span></label>
                                                     <input type="text"
@@ -219,7 +216,7 @@
                                                            placeholder="Enter button text">
                                                 </div>
 
-                                                <!-- Button URL -->
+
                                                 <div class="col-md-6">
                                                     <label class="form-label">Button URL <span class="text-danger">*</span></label>
                                                     <input type="url"
@@ -234,6 +231,17 @@
 
                                     </div>
                                     <button @click="addMoreSchoolSection('school_section')" class="btn btn-info btn-sm" type="button">+ Add More</button>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Show </label>
+                                            <br>
+                                            <input class="form-check form-switch" @change="addCmsContent('status', $event, 'school_section')" type="checkbox" :id="'switch' + index"
+                                                :checked="page_content?.status === 'active'" switch="none">
+                                            <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                        </div>
+                                    </div>
+                                
                                 </div>
                                 <!-- school_section  End -->
 
@@ -306,7 +314,16 @@
 
                                     </div>
                                     <button @click="addMoreSchoolSection('industries_section')" class="btn btn-info btn-sm" type="button">+ Add More</button>
-
+                                    
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Show </label>
+                                            <br>
+                                            <input class="form-check form-switch" @change="addCmsContent('status', $event, 'industries_section')" type="checkbox" :id="'switch' + index"
+                                                :checked="page_content?.status === 'active'" switch="none">
+                                            <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- industries_section  End -->
 
@@ -327,7 +344,7 @@
 
                                             <div class="position-relative p-4 border rounded-3 shadow-sm bg-white">
 
-                                                <!-- Delete button -->
+
                                                 <button type="button"
                                                         class="btn btn-sm btn-danger position-absolute"
                                                         style="top: 0.5rem; right: 0.5rem;"
@@ -341,7 +358,7 @@
 
                                                 <div class="row g-3 align-items-center">
 
-                                                    <!-- Tap name -->
+
                                                     <div class="col-md-6">
                                                         <label class="form-label">Tap Name <span class="text-danger">*</span></label>
                                                         <input type="text"
@@ -352,7 +369,7 @@
                                                                placeholder="Tap Name">
                                                     </div>
 
-                                                    <!-- Title -->
+
                                                     <div class="col-md-6">
                                                         <label class="form-label">Title <span class="text-danger">*</span></label>
                                                         <input type="text"
@@ -363,14 +380,13 @@
                                                                placeholder="Enter school title">
                                                     </div>
 
-                                                    <!-- Description -->
+
                                                     <div class="col-md-12">
                                                         <div class="mb-3">
                                                             <label class="form-label">Description <span class="error">*</span></label>
                                                             <ckeditor
-                                                                :config="editorConfig"
                                                                 v-model="reasons.description"
-                                                                :id="page_content?.content+'_'+reasonsIndex"
+                                                                :key="page_content?.content+'_'+reasonsIndex"
                                                             >
                                                             </ckeditor>
                                                         </div>
@@ -382,20 +398,286 @@
 
                                     </div>
                                     <button @click="addMoreSchoolSection('why_us_section')" class="btn btn-info btn-sm" type="button">+ Add More</button>
-
+                                    
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Show </label>
+                                            <br>
+                                            <input class="form-check form-switch" @change="addCmsContent('status', $event, 'why_us_section')" type="checkbox" :id="'switch' + index"
+                                                :checked="page_content?.status === 'active'" switch="none">
+                                            <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- why_us_section  End -->
 
+                                <!-- section_space_section  Start -->
+                                <div class="accordion-body" v-if="page_content.module_name === 'section_space_section'">
 
+                                    <div v-for="(sectionSpace, sectionSpaceIndex) in page_content?.content"
+                                         :key="sectionSpaceIndex"
+                                         class="mb-4">
+
+                                        <div class="position-relative p-4 border rounded-3 shadow-sm bg-white">
+
+
+                                            <button type="button"
+                                                    class="btn btn-sm btn-danger position-absolute"
+                                                    style="top: 0.5rem; right: 0.5rem;"
+                                                    @click="removeSchool('section_space_section', sectionSpaceIndex)">
+                                                <i class="mdi mdi-trash-can-outline"></i>
+                                            </button>
+
+                                            <h6 class="mb-3 text-primary fw-semibold">
+                                                Section Space {{ sectionSpaceIndex + 1 }}
+                                            </h6>
+
+                                            <div class="row g-3 align-items-center">
+
+                                                <div class="col-md-6 d-flex align-items-center">
+
+                                                    <div>
+                                                        <img :src="sectionSpace.image"
+                                                             alt="section Space Logo"
+                                                             class="border rounded"
+                                                             style="width: 60px; height: 60px; object-fit: cover;"
+                                                        >
+                                                    </div>
+                                                    <div class="me-3">
+                                                        <label class="form-label d-block">School Logo <span class="text-danger">*</span></label>
+                                                        <input type="file"
+                                                               @change="uploadFileSchoolSectionCms($event, 'section_space_section',sectionSpaceIndex)"
+                                                               name="school_logo"
+                                                               class="form-control"
+                                                               accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+                                                               required
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button @click="addMoreSchoolSection('section_space_section')" class="btn btn-info btn-sm" type="button">+ Add More</button>
+                                
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Show </label>
+                                            <br>
+                                            <input class="form-check form-switch" @change="addCmsContent('status', $event, 'section_space_section')" type="checkbox" :id="'switch' + index"
+                                                :checked="page_content?.status === 'active'" switch="none">
+                                            <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- section_space_section  End -->
+
+
+                                <!-- why_quagnite_section  Start -->
+                                <div class="accordion-body" v-if="page_content.module_name === 'why_quagnite_section'">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Title <span class="error">*</span></label>
+                                                <input type="text" v-model="page_content.content.title"   name="title" class="form-control" required="" placeholder="Title" >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Subtitle <span class="error">*</span></label>
+                                                <ckeditor
+                                                    v-model="page_content.content.subtitle"
+                                                    :key="page_content?.content+'_'+page_content.module_name"
+                                                >
+                                                </ckeditor>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-4 d-flex align-items-center">
+
+                                            <div>
+                                                <img :src="page_content.content.left_image"
+                                                        alt="section Space Logo"
+                                                        class="border rounded"
+                                                        style="width: 60px; height: 60px; object-fit: cover;"
+                                                >
+                                            </div>
+                                            <div class="me-3">
+                                                <label class="form-label d-block">Left Side Image <span class="text-danger">*</span></label>
+                                                <input type="file"
+                                                        @change="uploadFileSchoolSectionCms($event, 'section_space_section',sectionSpaceIndex)"
+                                                        name="school_logo"
+                                                        class="form-control"
+                                                        accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+                                                        required
+                                                >
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-4 d-flex align-items-center">
+
+                                            <div>
+                                                <img :src="page_content.content.center_image"
+                                                        alt="section Space Logo"
+                                                        class="border rounded"
+                                                        style="width: 60px; height: 60px; object-fit: cover;"
+                                                >
+                                            </div>
+                                            <div class="me-3">
+                                                <label class="form-label d-block">Center Side Image <span class="text-danger">*</span></label>
+                                                <input type="file"
+                                                        @change="uploadFileSchoolSectionCms($event, 'section_space_section',sectionSpaceIndex)"
+                                                        name="school_logo"
+                                                        class="form-control"
+                                                        accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+                                                        required
+                                                >
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4 d-flex align-items-center">
+
+                                            <div>
+                                                <img :src="page_content.content.right_image"
+                                                        alt="section Space Logo"
+                                                        class="border rounded"
+                                                        style="width: 60px; height: 60px; object-fit: cover;"
+                                                >
+                                            </div>
+                                            <div class="me-3">
+                                                <label class="form-label d-block">Right Side Image <span class="text-danger">*</span></label>
+                                                <input type="file"
+                                                        @change="uploadFileSchoolSectionCms($event, 'section_space_section',sectionSpaceIndex)"
+                                                        name="school_logo"
+                                                        class="form-control"
+                                                        accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+                                                        required
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div v-for="(whyQuagnite, whyQuagniteFeatureIndex) in page_content?.content?.why_quagnite_feature_item"
+                                             :key="whyQuagniteFeatureIndex"
+                                             class="mt-4 mb-4">
+
+                                            <div class="position-relative p-4 border rounded-3 shadow-sm bg-white">
+
+                                                <!-- Delete button -->
+                                                <button type="button"
+                                                        class="btn btn-sm btn-danger position-absolute"
+                                                        style="top: 0.5rem; right: 0.5rem;"
+                                                        @click="removeSchool('why_quagnite_section', whyQuagniteFeatureIndex)">
+                                                    <i class="mdi mdi-trash-can-outline"></i>
+                                                </button>
+
+                                                <h6 class="mb-3 text-primary fw-semibold">
+                                                    Why Quagnite {{ whyQuagniteFeatureIndex + 1 }}
+                                                </h6>
+
+                                                <!-- Title -->
+                                                <div class="col-md-12">
+                                                    <label class="form-label">Title <span class="text-danger">*</span></label>
+                                                    <input type="text"
+                                                            v-model="whyQuagnite.title"
+                                                            name="title"
+                                                            class="form-control"
+                                                            required
+                                                            placeholder="Enter school title">
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Description <span class="error">*</span></label>
+                                                        <ckeditor
+                                                            v-model="whyQuagnite.description"
+                                                            :key="page_content?.content+'_'+page_content.module_name"
+                                                        >
+                                                        </ckeditor>
+                                                    </div>
+                                                </div>
+
+                                                </div>
+                                        </div>
+
+                                        </div>
+                                        <button @click="addMoreSchoolSection('why_quagnite_section')" class="btn btn-info btn-sm" type="button">+ Add More</button>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Show </label>
+                                                <br>
+                                                <input class="form-check form-switch" @change="addCmsContent('status', $event, 'why_quagnite_section')" type="checkbox" :id="'switch' + index"
+                                                    :checked="page_content?.status === 'active'" switch="none">
+                                                <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- why_quagnite_section  End -->
+
+
+                                    <!-- hire_section  Start -->
+                                    <div class="accordion-body" v-if="page_content.module_name === 'hire_section'">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                            <div class="mb-3">
+                                                    <label class="form-label">Title <span class="error">*</span></label>
+                                                    <input type="text" v-model="page_content.content.title"   name="title" class="form-control" required="" placeholder="Title" >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Description <span class="error">*</span></label>
+                                                    <ckeditor
+                                                        v-model="page_content.content.description"
+                                                        :key="page_content.module_name + '_content'"
+                                                    >
+                                                    </ckeditor>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button Text <span class="error">*</span></label>
+                                                    <input type="text" v-model="page_content.content.button_text" name="sub_title" class="form-control" required="" placeholder="Sub Title" >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button URL <span class="error">*</span></label>
+                                                    <input type="text" v-model="page_content.content.button_url"  name="sub_title" class="form-control" required="" placeholder="Sub Title" >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Show </label>
+                                                    <br>
+                                                    <input class="form-check form-switch" @change="addCmsContent('status', $event, 'hire_section')" type="checkbox" :id="'switch' + index"
+                                                        :checked="page_content?.status === 'active'" switch="none">
+                                                    <label class="form-label" :for="'switch'+index" data-on-label="On" data-off-label="Off"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- hire_section  End -->
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
-<!--        </form>-->
+            
+            <button type="submit" class="btn btn-primary">Save</button>
+       </form>
 
     </div>
 </template>
@@ -407,21 +689,6 @@ export default {
     props: ["page"],
     data() {
         return {
-            editorConfig: {
-                height: 80,
-                toolbar: [
-                    { name: "basicstyles", items: ["Bold", "Italic", "Underline", "TextColor", "BGColor"] },
-                    { name: "paragraph", items: ["NumberedList", "BulletedList"] },
-                    { name: "links", items: ["Link", "Unlink"] },
-                ],
-                extraPlugins: "colorbutton,font,colordialog", // 'colordialog' adds advanced color picker
-                removePlugins: "elementspath",
-
-                // Optional: allow full color picker with custom hex input
-                colorButton_enableAutomatic: true
-            },
-
-
             title: "",
             slug: "",
             seo_slug: "",
@@ -442,21 +709,6 @@ export default {
     },
 
     methods: {
-        onEditorChange(event)
-        {
-            console.log('Editor change event:', event);
-            // const data = event.editor.getData();
-            // console.log('Editor content changed:', data);
-        },
-        addSEOData(inputName, event) {
-            console.log('inputName', inputName, event.target.value)
-            if(inputName != 'meta_title' &&  inputName != 'meta_description')
-            {
-                this[inputName] = event.target.value;
-            }else{
-                this[inputName].en = event.target.value;
-            }
-        },
 
         addCmsContent(inputName, event, module_name) {
             console.log('inputName', inputName, event, module_name);
@@ -467,7 +719,13 @@ export default {
                 if(content.module_name === 'hero_section' ||
                     content.module_name === 'about_section' ||
                     content.module_name === 'school_section' ||
-                    content.module_name === 'industries_section'
+                    content.module_name === 'industries_section' ||
+                    content.module_name === 'hire_section' ||
+                    content.module_name === 'why_quagnite_section' ||
+                    content.module_name === 'section_space_section' ||
+                    content.module_name === 'why_us_section' || 
+                    content.module_name === 'industries_section' || 
+                    content.module_name === 'school_section'
                 ) {
                     if(inputName === 'status')
                     {
@@ -505,7 +763,32 @@ export default {
                 }
             }
 
+            if(module_name === 'section_space_section')
+            {
+                const content = this.page_contents.find(content =>
+                    content?.module_name === 'section_space_section' &&
+                    content?.content
+                );
+
+                if (content) {
+                    content.content.splice(index, 1);
+                }
+            }
+
+            if(module_name === 'why_quagnite_section')
+            {
+                const content = this.page_contents.find(content =>
+                    content?.module_name === 'why_quagnite_section' &&
+                    content?.content?.why_quagnite_feature_item
+                );
+
+                if (content) {
+                    content.content.why_quagnite_feature_item.splice(index, 1);
+                }
+            }
+
         },
+
         addMoreSchoolSection(module_name=null) {
 
             if(module_name === 'school_section')
@@ -542,6 +825,39 @@ export default {
 
                 if (content) {
                     content.content.industries_card.push(industries_section);
+                }
+            }
+
+            if(module_name === 'section_space_section')
+            {
+                let section_space = {
+                    image: '', // Placeholder image
+                };
+
+                const content = this.page_contents.find(content =>
+                    content?.module_name === module_name &&
+                    content?.content
+                );
+
+                if (content) {
+                    content.content.push(section_space);
+                }
+            }
+
+            if(module_name === 'why_quagnite_section')
+            {
+                let section_space = {
+                    title: '',
+                    description: ''
+                };
+
+                const content = this.page_contents.find(content =>
+                    content?.module_name === module_name &&
+                    content?.content?.why_quagnite_feature_item
+                );
+
+                if (content) {
+                    content.content.why_quagnite_feature_item.push(section_space);
                 }
             }
 
@@ -612,6 +928,21 @@ export default {
                         }
                     }
 
+                    if(moduleName === 'section_space_section' && index !== null)
+                    {
+                        // Update the school image in the data
+                        const content = this.page_contents.find(content =>
+                            content?.module_name === moduleName &&
+                            content?.content
+                        );
+
+                        console.log('industries_section content', content, index);
+
+                        if (content && content.content[index]) {
+                            content.content[index].image = response.data.file_url;
+                        }
+                    }
+
 
                     // this.$toast.success('Image uploaded successfully!');
                 } else {
@@ -623,22 +954,36 @@ export default {
             }
         },
 
+        handleSubmit() {
+            const form = this.$refs.form;
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            // ✅ safe to submit
+            console.log("Form Submitted", this.form);
+        }
+
     },
 
     mounted() {
-        console.log('Component mounted. Page data', this.page)
-        // set value
-        const { title, slug, seo_slug, meta_title, meta_description, meta_keywords, meta_robots, meta_author, status, page_contents } = this.page;
-        this.title = title;
-        this.slug = slug;
-        this.seo_slug = seo_slug;
-        this.meta_title = meta_title;
-        this.meta_description = meta_description;
-        this.meta_keywords = meta_keywords;
-        this.meta_robots = meta_robots;
-        this.meta_author = meta_author;
-        this.status = status;
-        this.page_contents = page_contents;
+        if (this.page) {
+            const { title, slug, seo_slug, meta_title, meta_description, meta_keywords, meta_robots, meta_author, status, page_contents } = this.page;
+            this.title = title;
+            this.slug = slug;
+            this.seo_slug = seo_slug;
+            this.meta_title = meta_title;
+            this.meta_description = meta_description;
+            this.meta_keywords = meta_keywords;
+            this.meta_robots = meta_robots;
+            this.meta_author = meta_author;
+            this.status = status;
+            this.page_contents = page_contents; // ready before DOM render
+        }
+    },
+    created() {
+
     }
+
 }
 </script>

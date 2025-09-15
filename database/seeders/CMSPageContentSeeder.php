@@ -184,6 +184,10 @@ class CMSPageContentSeeder extends Seeder
                     'why_quagnite_section' => [
                         'title' => 'Education suitable to you',
                         'subtitle' => "Quagnite offers an efficient process from education to employment. Join a pipeline of training and education that opens up opportunities for a better future.",
+
+                        'left_image' => asset('frontend/images/cms_default_image/why_quarnite_left.webp'),
+                        'center_image' => asset('frontend/images/cms_default_image/why_quarnite_center.webp'),
+                        'right_image' => asset('frontend/images/cms_default_image/why_quarnite_right.webp'),
                         'why_quagnite_feature_item' => [
                             [
                                 'title' => 'Education',
@@ -198,9 +202,7 @@ class CMSPageContentSeeder extends Seeder
                                 'description' => 'Stronger together. Quagnite students gain instant networking opportunities and can have their skills displayed directly to potential employers.'
                             ],
                         ],
-                        'left_image' => asset('frontend/images/cms_default_image/why_quarnite_left.webp'),
-                        'center_image' => asset('frontend/images/cms_default_image/why_quarnite_center.webp'),
-                        'right_image' => asset('frontend/images/cms_default_image/why_quarnite_right.webp'),
+
                     ],
                     'hire_section' => [
                         'title' => 'HIRE FROM US',
