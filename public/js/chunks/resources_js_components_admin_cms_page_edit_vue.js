@@ -415,24 +415,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   props: ["page"],
   data: function data() {
     return {
-      editorConfig: {
-        height: 80,
-        toolbar: [{
-          name: "basicstyles",
-          items: ["Bold", "Italic", "Underline", "TextColor", "BGColor"]
-        }, {
-          name: "paragraph",
-          items: ["NumberedList", "BulletedList"]
-        }, {
-          name: "links",
-          items: ["Link", "Unlink"]
-        }],
-        extraPlugins: "colorbutton,font,colordialog",
-        // 'colordialog' adds advanced color picker
-        removePlugins: "elementspath",
-        // Optional: allow full color picker with custom hex input
-        colorButton_enableAutomatic: true
-      },
       title: "",
       slug: "",
       seo_slug: "",
@@ -451,92 +433,148 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     };
   },
   methods: {
-    addSEOData: function addSEOData(inputName, event) {
-      console.log('inputName', inputName, event.target.value);
-      if (inputName != 'meta_title' && inputName != 'meta_description') {
-        this[inputName] = event.target.value;
-      } else {
-        this[inputName].en = event.target.value;
-      }
-    },
     addCmsContent: function addCmsContent(inputName, event, module_name) {
+      console.log('inputName', inputName, event, module_name);
       this.page_contents.forEach(function (content) {
         // Hero Section
-        if (content.module_name === module_name) {
+        if (content.module_name === 'hero_section' || content.module_name === 'about_section' || content.module_name === 'school_section' || content.module_name === 'industries_section' || content.module_name === 'hire_section' || content.module_name === 'why_quagnite_section' || content.module_name === 'section_space_section' || content.module_name === 'why_us_section' || content.module_name === 'industries_section' || content.module_name === 'school_section') {
           if (inputName === 'status') {
             content.status = event.target.checked ? 'active' : 'inactive';
-          } else if (inputName === 'title' || inputName === 'sub_title' || inputName === 'button_text' || inputName === 'button_url') {
-            content.content[inputName] = event.target.value;
-          }
-        }
-        if (content.module_name === module_name) {
-          if (inputName === 'status') {
-            content.status = event.target.checked ? 'active' : 'inactive';
-          } else if (inputName === 'title' || inputName === 'content') {
-            content.content[inputName] = event.target.value;
           }
         }
       });
     },
-    removeSchool: function removeSchool(schoolIndex) {
-      // console.log('schoolIndex', schoolIndex);
-      var content = this.page_contents.find(function (content) {
-        var _content$content;
-        return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content = content.content) === null || _content$content === void 0 ? void 0 : _content$content.schools);
-      });
-      if (content) {
-        content.content.schools.splice(schoolIndex, 1);
+    removeSchool: function removeSchool(module_name) {
+      var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      console.log('remove module name', module_name);
+      if (module_name === 'school_section') {
+        var content = this.page_contents.find(function (content) {
+          var _content$content;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content = content.content) === null || _content$content === void 0 ? void 0 : _content$content.schools);
+        });
+        if (content) {
+          content.content.schools.splice(index, 1);
+        }
+      }
+      if (module_name === 'industries_section') {
+        var _content = this.page_contents.find(function (content) {
+          var _content$content2;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'industries_section' && (content === null || content === void 0 ? void 0 : (_content$content2 = content.content) === null || _content$content2 === void 0 ? void 0 : _content$content2.industries_card);
+        });
+        if (_content) {
+          _content.content.industries_card.splice(index, 1);
+        }
+      }
+      if (module_name === 'section_space_section') {
+        var _content2 = this.page_contents.find(function (content) {
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'section_space_section' && (content === null || content === void 0 ? void 0 : content.content);
+        });
+        if (_content2) {
+          _content2.content.splice(index, 1);
+        }
+      }
+      if (module_name === 'why_quagnite_section') {
+        var _content3 = this.page_contents.find(function (content) {
+          var _content$content3;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'why_quagnite_section' && (content === null || content === void 0 ? void 0 : (_content$content3 = content.content) === null || _content$content3 === void 0 ? void 0 : _content$content3.why_quagnite_feature_item);
+        });
+        if (_content3) {
+          _content3.content.why_quagnite_feature_item.splice(index, 1);
+        }
       }
     },
     addMoreSchoolSection: function addMoreSchoolSection() {
-      var schoolSection = {
-        image: '',
-        // Placeholder image
-        title: '',
-        description: '',
-        button_text: '',
-        button_url: ''
-      };
-      var content = this.page_contents.find(function (content) {
-        var _content$content2;
-        return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content2 = content.content) === null || _content$content2 === void 0 ? void 0 : _content$content2.schools);
-      });
-      if (content) {
-        content.content.schools.push(schoolSection);
+      var module_name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      if (module_name === 'school_section') {
+        var schoolSection = {
+          image: '',
+          // Placeholder image
+          title: '',
+          description: '',
+          button_text: '',
+          button_url: ''
+        };
+        var content = this.page_contents.find(function (content) {
+          var _content$content4;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content4 = content.content) === null || _content$content4 === void 0 ? void 0 : _content$content4.schools);
+        });
+        if (content) {
+          content.content.schools.push(schoolSection);
+        }
+      }
+      if (module_name === 'industries_section') {
+        var industries_section = {
+          image: '',
+          // Placeholder image
+          title: ''
+        };
+        var _content4 = this.page_contents.find(function (content) {
+          var _content$content5;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === module_name && (content === null || content === void 0 ? void 0 : (_content$content5 = content.content) === null || _content$content5 === void 0 ? void 0 : _content$content5.industries_card);
+        });
+        if (_content4) {
+          _content4.content.industries_card.push(industries_section);
+        }
+      }
+      if (module_name === 'section_space_section') {
+        var section_space = {
+          image: '' // Placeholder image
+        };
+        var _content5 = this.page_contents.find(function (content) {
+          return (content === null || content === void 0 ? void 0 : content.module_name) === module_name && (content === null || content === void 0 ? void 0 : content.content);
+        });
+        if (_content5) {
+          _content5.content.push(section_space);
+        }
+      }
+      if (module_name === 'why_quagnite_section') {
+        var _section_space = {
+          title: '',
+          description: ''
+        };
+        var _content6 = this.page_contents.find(function (content) {
+          var _content$content6;
+          return (content === null || content === void 0 ? void 0 : content.module_name) === module_name && (content === null || content === void 0 ? void 0 : (_content$content6 = content.content) === null || _content$content6 === void 0 ? void 0 : _content$content6.why_quagnite_feature_item);
+        });
+        if (_content6) {
+          _content6.content.why_quagnite_feature_item.push(_section_space);
+        }
       }
     },
-    uploadFileSchoolSectionCms: function uploadFileSchoolSectionCms(event) {
-      var _this = this;
+    uploadFileSchoolSectionCms: function uploadFileSchoolSectionCms(event, moduleName) {
+      var _arguments = arguments,
+        _this = this;
       return _asyncToGenerator(/*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var file, allowedTypes, formData, response, content;
+        var index, file, allowedTypes, formData, response, content, _content7, _content8;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                index = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : null;
                 console.log('File upload function called', event);
                 file = event.target.files[0];
                 if (file) {
-                  _context.next = 4;
+                  _context.next = 5;
                   break;
                 }
                 return _context.abrupt("return");
-              case 4:
+              case 5:
                 // Validate file type
                 allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
                 if (allowedTypes.includes(file.type)) {
-                  _context.next = 8;
+                  _context.next = 9;
                   break;
                 }
                 _this.showSomethingWrong('Please select a valid image file (JPEG, PNG, GIF, WEBP)');
                 return _context.abrupt("return");
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 // Create FormData for file upload
                 formData = new FormData();
-                formData.append('school_logo', file);
+                formData.append('image', file);
 
                 // Make API call to upload file
-                _context.next = 13;
+                _context.next = 14;
                 return axios.post('/admin/cms/upload-file-school-section', formData, {
                   headers: {
                     'Content-Type': 'multipart/form-data'
@@ -546,74 +584,97 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     console.log('Upload progress:', percentCompleted + '%');
                   }
                 });
-              case 13:
+              case 14:
                 response = _context.sent;
-                if (response.data.success) {
-                  // Update the school image in the data
-                  content = _this.page_contents.find(function (content) {
-                    var _content$content3;
-                    return (content === null || content === void 0 ? void 0 : content.module_name) === 'school_section' && (content === null || content === void 0 ? void 0 : (_content$content3 = content.content) === null || _content$content3 === void 0 ? void 0 : _content$content3.schools);
-                  });
-                  if (content && content.content.schools[schoolIndex]) {
-                    content.content.schools[schoolIndex].image = response.data.image_url;
+                console.log('Upload response:', moduleName, response);
+                if (response.data) {
+                  console.log('Upload response:', response.data.file_url);
+                  if (moduleName === 'school_section' && index !== null) {
+                    // Update the school image in the data
+                    content = _this.page_contents.find(function (content) {
+                      var _content$content7;
+                      return (content === null || content === void 0 ? void 0 : content.module_name) === moduleName && (content === null || content === void 0 ? void 0 : (_content$content7 = content.content) === null || _content$content7 === void 0 ? void 0 : _content$content7.schools);
+                    });
+                    if (content && content.content.schools[index]) {
+                      content.content.schools[index].image = response.data.file_url;
+                    }
                   }
-                  _this.$toast.success('Image uploaded successfully!');
-                } else {
-                  _this.$toast.error(response.data.message || 'Upload failed');
-                }
-                _context.next = 21;
-                break;
-              case 17:
-                _context.prev = 17;
-                _context.t0 = _context["catch"](8);
-                console.error('Upload error:', _context.t0);
-                if (_context.t0.response && _context.t0.response.data && _context.t0.response.data.message) {
-                  _this.$toast.error(_context.t0.response.data.message);
-                } else {
-                  _this.$toast.error('Failed to upload image. Please try again.');
-                }
-              case 21:
-                _context.prev = 21;
-                // Clear uploading state
-                _this.$delete(_this.uploadingFiles, schoolIndex);
+                  if (moduleName === 'industries_section' && index !== null) {
+                    // Update the school image in the data
+                    _content7 = _this.page_contents.find(function (content) {
+                      var _content$content8;
+                      return (content === null || content === void 0 ? void 0 : content.module_name) === moduleName && (content === null || content === void 0 ? void 0 : (_content$content8 = content.content) === null || _content$content8 === void 0 ? void 0 : _content$content8.industries_card);
+                    });
+                    console.log('industries_section content', _content7, index);
+                    if (_content7 && _content7.content.industries_card[index]) {
+                      _content7.content.industries_card[index].image = response.data.file_url;
+                    }
+                  }
+                  if (moduleName === 'section_space_section' && index !== null) {
+                    // Update the school image in the data
+                    _content8 = _this.page_contents.find(function (content) {
+                      return (content === null || content === void 0 ? void 0 : content.module_name) === moduleName && (content === null || content === void 0 ? void 0 : content.content);
+                    });
+                    console.log('industries_section content', _content8, index);
+                    if (_content8 && _content8.content[index]) {
+                      _content8.content[index].image = response.data.file_url;
+                    }
+                  }
 
-                // Clear the input value so same file can be selected again
-                event.target.value = '';
-                return _context.finish(21);
-              case 25:
+                  // this.$toast.success('Image uploaded successfully!');
+                } else {
+                  // this.$toast.error(response.data.message || 'Upload failed');
+                }
+                _context.next = 22;
+                break;
+              case 19:
+                _context.prev = 19;
+                _context.t0 = _context["catch"](9);
+                console.error('Upload error:', _context.t0);
+              case 22:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[8, 17, 21, 25]]);
+        }, _callee, null, [[9, 19]]);
       }))();
+    },
+    handleSubmit: function handleSubmit() {
+      var form = this.$refs.form;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      // ✅ safe to submit
+      console.log("Form Submitted", this.form);
     }
   },
   mounted: function mounted() {
-    console.log('Component mounted. Page data', this.page);
-    // set value
-    var _this$page = this.page,
-      title = _this$page.title,
-      slug = _this$page.slug,
-      seo_slug = _this$page.seo_slug,
-      meta_title = _this$page.meta_title,
-      meta_description = _this$page.meta_description,
-      meta_keywords = _this$page.meta_keywords,
-      meta_robots = _this$page.meta_robots,
-      meta_author = _this$page.meta_author,
-      status = _this$page.status,
-      page_contents = _this$page.page_contents;
-    this.title = title;
-    this.slug = slug;
-    this.seo_slug = seo_slug;
-    this.meta_title = meta_title;
-    this.meta_description = meta_description;
-    this.meta_keywords = meta_keywords;
-    this.meta_robots = meta_robots;
-    this.meta_author = meta_author;
-    this.status = status;
-    this.page_contents = page_contents;
-  }
+    if (this.page) {
+      var _this$page = this.page,
+        title = _this$page.title,
+        slug = _this$page.slug,
+        seo_slug = _this$page.seo_slug,
+        meta_title = _this$page.meta_title,
+        meta_description = _this$page.meta_description,
+        meta_keywords = _this$page.meta_keywords,
+        meta_robots = _this$page.meta_robots,
+        meta_author = _this$page.meta_author,
+        status = _this$page.status,
+        page_contents = _this$page.page_contents;
+      this.title = title;
+      this.slug = slug;
+      this.seo_slug = seo_slug;
+      this.meta_title = meta_title;
+      this.meta_description = meta_description;
+      this.meta_keywords = meta_keywords;
+      this.meta_robots = meta_robots;
+      this.meta_author = meta_author;
+      this.status = status;
+      this.page_contents = page_contents; // ready before DOM render
+    }
+  },
+  created: function created() {}
 });
 
 /***/ }),
@@ -633,7 +694,18 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("div", {
+  return _c("div", [_c("form", {
+    ref: "form",
+    attrs: {
+      method: "post"
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.handleSubmit.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
     staticClass: "row"
   }, [_c("h2", [_vm._v("Page SEO")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
@@ -657,9 +729,6 @@ var render = function render() {
       value: _vm.title
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("title", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.title = $event.target.value;
@@ -687,9 +756,6 @@ var render = function render() {
       value: _vm.slug
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("slug", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.slug = $event.target.value;
@@ -699,7 +765,9 @@ var render = function render() {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
-  }, [_vm._m(2), _vm._v(" "), _c("input", {
+  }, [_c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Meta Author ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -710,16 +778,12 @@ var render = function render() {
     attrs: {
       type: "text",
       name: "meta_author",
-      required: "",
       placeholder: "Meta Author"
     },
     domProps: {
       value: _vm.meta_author
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_author", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.meta_author = $event.target.value;
@@ -729,7 +793,7 @@ var render = function render() {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
-  }, [_vm._m(3), _vm._v(" "), _c("input", {
+  }, [_vm._m(2), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -747,9 +811,6 @@ var render = function render() {
       value: _vm.meta_title.en
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_title", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.meta_title, "en", $event.target.value);
@@ -759,7 +820,7 @@ var render = function render() {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
-  }, [_vm._m(4), _vm._v(" "), _c("textarea", {
+  }, [_vm._m(3), _vm._v(" "), _c("textarea", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -776,9 +837,6 @@ var render = function render() {
       value: _vm.meta_description.en
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_description", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.meta_description, "en", $event.target.value);
@@ -788,7 +846,9 @@ var render = function render() {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
-  }, [_vm._m(5), _vm._v(" "), _c("input", {
+  }, [_c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Meta keyword (Make it comma separate) ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -799,23 +859,19 @@ var render = function render() {
     attrs: {
       type: "text",
       name: "meta_keyword",
-      required: "",
       placeholder: "Meta Keyword"
     },
     domProps: {
       value: _vm.meta_keywords
     },
     on: {
-      change: function change($event) {
-        return _vm.addSEOData("meta_keyword", $event);
-      },
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.meta_keywords = $event.target.value;
       }
     }
   })])]), _vm._v(" "), _c("h2", [_vm._v("Page Content")]), _vm._v(" "), _vm._l(_vm.page_contents, function (page_content, index) {
-    var _page_content$content;
+    var _page_content$content, _page_content$content2, _page_content$content3, _page_content$content4;
     return _c("div", {
       key: index
     }, [_c("div", {
@@ -836,7 +892,7 @@ var render = function render() {
         "aria-expanded": "true",
         "aria-controls": "collapse" + index
       }
-    }, [_vm._v("\n                                    " + _vm._s(_vm.cmsCheckChangeKey(page_content === null || page_content === void 0 ? void 0 : page_content.module_name)) + "\n                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                " + _vm._s(_vm.cmsCheckChangeKey(page_content === null || page_content === void 0 ? void 0 : page_content.module_name)) + "\n                            ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse show",
       attrs: {
         id: "collapse" + index,
@@ -850,7 +906,7 @@ var render = function render() {
       staticClass: "col-md-6"
     }, [_c("div", {
       staticClass: "mb-3"
-    }, [_vm._m(6, true), _vm._v(" "), _c("input", {
+    }, [_vm._m(4, true), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -868,9 +924,6 @@ var render = function render() {
         value: page_content.content.title
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("title", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
           _vm.$set(page_content.content, "title", $event.target.value);
@@ -880,12 +933,12 @@ var render = function render() {
       staticClass: "col-md-6"
     }, [_c("div", {
       staticClass: "mb-3"
-    }, [_vm._m(7, true), _vm._v(" "), _c("input", {
+    }, [_vm._m(5, true), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model",
-        value: page_content.content.sub_title,
-        expression: "page_content.content.sub_title"
+        value: page_content.content.subtitle,
+        expression: "page_content.content.subtitle"
       }],
       staticClass: "form-control",
       attrs: {
@@ -895,22 +948,19 @@ var render = function render() {
         placeholder: "Sub Title"
       },
       domProps: {
-        value: page_content.content.sub_title
+        value: page_content.content.subtitle
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("sub_title", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
-          _vm.$set(page_content.content, "sub_title", $event.target.value);
+          _vm.$set(page_content.content, "subtitle", $event.target.value);
         }
       }
     })])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-6"
     }, [_c("div", {
       staticClass: "mb-3"
-    }, [_vm._m(8, true), _vm._v(" "), _c("input", {
+    }, [_vm._m(6, true), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -928,9 +978,6 @@ var render = function render() {
         value: page_content.content.button_text
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("button_text", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
           _vm.$set(page_content.content, "button_text", $event.target.value);
@@ -940,7 +987,7 @@ var render = function render() {
       staticClass: "col-md-6"
     }, [_c("div", {
       staticClass: "mb-3"
-    }, [_vm._m(9, true), _vm._v(" "), _c("input", {
+    }, [_vm._m(7, true), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -958,9 +1005,6 @@ var render = function render() {
         value: page_content.content.button_url
       },
       on: {
-        change: function change($event) {
-          return _vm.addCmsContent("button_url", $event, "hero_section");
-        },
         input: function input($event) {
           if ($event.target.composing) return;
           _vm.$set(page_content.content, "button_url", $event.target.value);
@@ -981,11 +1025,6 @@ var render = function render() {
       },
       domProps: {
         checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
-      },
-      on: {
-        change: function change($event) {
-          return _vm.addCmsContent("status", $event, "hero_section");
-        }
       }
     }), _vm._v(" "), _c("label", {
       staticClass: "form-label",
@@ -1002,15 +1041,8 @@ var render = function render() {
       staticClass: "col-md-6"
     }, [_c("div", {
       staticClass: "mb-3"
-    }, [_vm._m(10, true), _vm._v(" "), _c("ckeditor", {
-      attrs: {
-        config: _vm.editorConfig
-      },
-      on: {
-        change: function change($event) {
-          return _vm.addCmsContent("title", $event, "about_section");
-        }
-      },
+    }, [_vm._m(8, true), _vm._v(" "), _c("ckeditor", {
+      key: page_content.module_name + "_title",
       model: {
         value: page_content.content.title,
         callback: function callback($$v) {
@@ -1022,15 +1054,8 @@ var render = function render() {
       staticClass: "col-md-6"
     }, [_c("div", {
       staticClass: "mb-3"
-    }, [_vm._m(11, true), _vm._v(" "), _c("ckeditor", {
-      attrs: {
-        config: _vm.editorConfig
-      },
-      on: {
-        change: function change($event) {
-          return _vm.addCmsContent("content", $event, "about_section");
-        }
-      },
+    }, [_vm._m(9, true), _vm._v(" "), _c("ckeditor", {
+      key: page_content.module_name + "_content",
       model: {
         value: page_content.content.content,
         callback: function callback($$v) {
@@ -1085,14 +1110,14 @@ var render = function render() {
         },
         on: {
           click: function click($event) {
-            return _vm.removeSchool(schoolIndex);
+            return _vm.removeSchool("school_section", schoolIndex);
           }
         }
       }, [_c("i", {
         staticClass: "mdi mdi-trash-can-outline"
       })]), _vm._v(" "), _c("h6", {
         staticClass: "mb-3 text-primary fw-semibold"
-      }, [_vm._v("\n                                                School " + _vm._s(schoolIndex + 1) + "\n                                            ")]), _vm._v(" "), _c("div", {
+      }, [_vm._v("\n                                            School " + _vm._s(schoolIndex + 1) + "\n                                        ")]), _vm._v(" "), _c("div", {
         staticClass: "row g-3 align-items-center"
       }, [_c("div", {
         staticClass: "col-md-6 d-flex align-items-center"
@@ -1109,22 +1134,22 @@ var render = function render() {
         }
       })]), _vm._v(" "), _c("div", {
         staticClass: "me-3"
-      }, [_vm._m(12, true), _vm._v(" "), _c("input", {
+      }, [_vm._m(10, true), _vm._v(" "), _c("input", {
         staticClass: "form-control",
         attrs: {
           type: "file",
           name: "school_logo",
-          accept: "",
+          accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
           required: ""
         },
         on: {
           change: function change($event) {
-            return _vm.uploadFileSchoolSectionCms($event);
+            return _vm.uploadFileSchoolSectionCms($event, "school_section", schoolIndex);
           }
         }
       })])]), _vm._v(" "), _c("div", {
         staticClass: "col-md-6"
-      }, [_vm._m(13, true), _vm._v(" "), _c("input", {
+      }, [_vm._m(11, true), _vm._v(" "), _c("input", {
         directives: [{
           name: "model",
           rawName: "v-model",
@@ -1142,9 +1167,6 @@ var render = function render() {
           value: school.title
         },
         on: {
-          change: function change($event) {
-            return _vm.addCmsContent("title", $event, "school_section", schoolIndex);
-          },
           input: function input($event) {
             if ($event.target.composing) return;
             _vm.$set(school, "title", $event.target.value);
@@ -1152,10 +1174,8 @@ var render = function render() {
         }
       })]), _vm._v(" "), _c("div", {
         staticClass: "col-md-12"
-      }, [_vm._m(14, true), _vm._v(" "), _c("ckeditor", {
-        attrs: {
-          config: _vm.editorConfig
-        },
+      }, [_vm._m(12, true), _vm._v(" "), _c("ckeditor", {
+        key: page_content.module_name + "_" + schoolIndex,
         model: {
           value: school.description,
           callback: function callback($$v) {
@@ -1165,7 +1185,7 @@ var render = function render() {
         }
       })], 1), _vm._v(" "), _c("div", {
         staticClass: "col-md-6"
-      }, [_vm._m(15, true), _vm._v(" "), _c("input", {
+      }, [_vm._m(13, true), _vm._v(" "), _c("input", {
         directives: [{
           name: "model",
           rawName: "v-model",
@@ -1190,7 +1210,7 @@ var render = function render() {
         }
       })]), _vm._v(" "), _c("div", {
         staticClass: "col-md-6"
-      }, [_vm._m(16, true), _vm._v(" "), _c("input", {
+      }, [_vm._m(14, true), _vm._v(" "), _c("input", {
         directives: [{
           name: "model",
           rawName: "v-model",
@@ -1220,10 +1240,803 @@ var render = function render() {
         type: "button"
       },
       on: {
-        click: _vm.addMoreSchoolSection
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("school_section");
+        }
       }
-    }, [_vm._v("+ Add More")])], 2) : _vm._e()])])])]);
-  })], 2)]);
+    }, [_vm._v("+ Add More")]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_c("label", {
+      staticClass: "form-label"
+    }, [_vm._v("Show ")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
+      staticClass: "form-check form-switch",
+      attrs: {
+        type: "checkbox",
+        id: "switch" + index,
+        "switch": "none"
+      },
+      domProps: {
+        checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
+      },
+      on: {
+        change: function change($event) {
+          return _vm.addCmsContent("status", $event, "school_section");
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-label",
+      attrs: {
+        "for": "switch" + index,
+        "data-on-label": "On",
+        "data-off-label": "Off"
+      }
+    })])])], 2) : _vm._e(), _vm._v(" "), page_content.module_name === "industries_section" ? _c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(15, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.title,
+        expression: "page_content.content.title"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "title",
+        required: "",
+        placeholder: "Title"
+      },
+      domProps: {
+        value: page_content.content.title
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "title", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _vm._l(page_content === null || page_content === void 0 ? void 0 : (_page_content$content2 = page_content.content) === null || _page_content$content2 === void 0 ? void 0 : _page_content$content2.industries_card, function (industries, industriesIndex) {
+      return _c("div", {
+        key: industriesIndex,
+        staticClass: "mb-4"
+      }, [_c("div", {
+        staticClass: "position-relative p-4 border rounded-3 shadow-sm bg-white"
+      }, [_c("button", {
+        staticClass: "btn btn-sm btn-danger position-absolute",
+        staticStyle: {
+          top: "0.5rem",
+          right: "0.5rem"
+        },
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.removeSchool("industries_section", industriesIndex);
+          }
+        }
+      }, [_c("i", {
+        staticClass: "mdi mdi-trash-can-outline"
+      })]), _vm._v(" "), _c("h6", {
+        staticClass: "mb-3 text-primary fw-semibold"
+      }, [_vm._v("\n                                                Industries " + _vm._s(industriesIndex + 1) + "\n                                            ")]), _vm._v(" "), _c("div", {
+        staticClass: "row g-3 align-items-center"
+      }, [_c("div", {
+        staticClass: "col-md-6 d-flex align-items-center"
+      }, [_c("div", [_c("img", {
+        staticClass: "border rounded",
+        staticStyle: {
+          width: "60px",
+          height: "60px",
+          "object-fit": "cover"
+        },
+        attrs: {
+          src: industries.image,
+          alt: "Industries Logo"
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "me-3"
+      }, [_vm._m(16, true), _vm._v(" "), _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "file",
+          name: "school_logo",
+          accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
+          required: ""
+        },
+        on: {
+          change: function change($event) {
+            return _vm.uploadFileSchoolSectionCms($event, "industries_section", industriesIndex);
+          }
+        }
+      })])]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-6"
+      }, [_vm._m(17, true), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: industries.title,
+          expression: "industries.title"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "title",
+          required: "",
+          placeholder: "Enter school title"
+        },
+        domProps: {
+          value: industries.title
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+            _vm.$set(industries, "title", $event.target.value);
+          }
+        }
+      })])])])]);
+    })], 2), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-info btn-sm",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("industries_section");
+        }
+      }
+    }, [_vm._v("+ Add More")]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_c("label", {
+      staticClass: "form-label"
+    }, [_vm._v("Show ")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
+      staticClass: "form-check form-switch",
+      attrs: {
+        type: "checkbox",
+        id: "switch" + index,
+        "switch": "none"
+      },
+      domProps: {
+        checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
+      },
+      on: {
+        change: function change($event) {
+          return _vm.addCmsContent("status", $event, "industries_section");
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-label",
+      attrs: {
+        "for": "switch" + index,
+        "data-on-label": "On",
+        "data-off-label": "Off"
+      }
+    })])])]) : _vm._e(), _vm._v(" "), page_content.module_name === "why_us_section" ? _c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(18, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.title,
+        expression: "page_content.content.title"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "title",
+        required: "",
+        placeholder: "Title"
+      },
+      domProps: {
+        value: page_content.content.title
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "title", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _vm._l(page_content === null || page_content === void 0 ? void 0 : (_page_content$content3 = page_content.content) === null || _page_content$content3 === void 0 ? void 0 : _page_content$content3.reasons, function (reasons, reasonsIndex) {
+      return _c("div", {
+        key: reasonsIndex,
+        staticClass: "mb-4"
+      }, [_c("div", {
+        staticClass: "position-relative p-4 border rounded-3 shadow-sm bg-white"
+      }, [_c("button", {
+        staticClass: "btn btn-sm btn-danger position-absolute",
+        staticStyle: {
+          top: "0.5rem",
+          right: "0.5rem"
+        },
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.removeSchool("why_us_section", reasonsIndex);
+          }
+        }
+      }, [_c("i", {
+        staticClass: "mdi mdi-trash-can-outline"
+      })]), _vm._v(" "), _c("h6", {
+        staticClass: "mb-3 text-primary fw-semibold"
+      }, [_vm._v("\n                                                Why us section " + _vm._s(reasonsIndex + 1) + "\n                                            ")]), _vm._v(" "), _c("div", {
+        staticClass: "row g-3 align-items-center"
+      }, [_c("div", {
+        staticClass: "col-md-6"
+      }, [_vm._m(19, true), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: reasons.title,
+          expression: "reasons.title"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "tab_name",
+          required: "",
+          placeholder: "Tap Name"
+        },
+        domProps: {
+          value: reasons.title
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+            _vm.$set(reasons, "title", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-6"
+      }, [_vm._m(20, true), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: reasons.title,
+          expression: "reasons.title"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "title",
+          required: "",
+          placeholder: "Enter school title"
+        },
+        domProps: {
+          value: reasons.title
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+            _vm.$set(reasons, "title", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-12"
+      }, [_c("div", {
+        staticClass: "mb-3"
+      }, [_vm._m(21, true), _vm._v(" "), _c("ckeditor", {
+        key: (page_content === null || page_content === void 0 ? void 0 : page_content.content) + "_" + reasonsIndex,
+        model: {
+          value: reasons.description,
+          callback: function callback($$v) {
+            _vm.$set(reasons, "description", $$v);
+          },
+          expression: "reasons.description"
+        }
+      })], 1)])])])]);
+    })], 2), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-info btn-sm",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("why_us_section");
+        }
+      }
+    }, [_vm._v("+ Add More")]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_c("label", {
+      staticClass: "form-label"
+    }, [_vm._v("Show ")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
+      staticClass: "form-check form-switch",
+      attrs: {
+        type: "checkbox",
+        id: "switch" + index,
+        "switch": "none"
+      },
+      domProps: {
+        checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
+      },
+      on: {
+        change: function change($event) {
+          return _vm.addCmsContent("status", $event, "why_us_section");
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-label",
+      attrs: {
+        "for": "switch" + index,
+        "data-on-label": "On",
+        "data-off-label": "Off"
+      }
+    })])])]) : _vm._e(), _vm._v(" "), page_content.module_name === "section_space_section" ? _c("div", {
+      staticClass: "accordion-body"
+    }, [_vm._l(page_content === null || page_content === void 0 ? void 0 : page_content.content, function (sectionSpace, sectionSpaceIndex) {
+      return _c("div", {
+        key: sectionSpaceIndex,
+        staticClass: "mb-4"
+      }, [_c("div", {
+        staticClass: "position-relative p-4 border rounded-3 shadow-sm bg-white"
+      }, [_c("button", {
+        staticClass: "btn btn-sm btn-danger position-absolute",
+        staticStyle: {
+          top: "0.5rem",
+          right: "0.5rem"
+        },
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.removeSchool("section_space_section", sectionSpaceIndex);
+          }
+        }
+      }, [_c("i", {
+        staticClass: "mdi mdi-trash-can-outline"
+      })]), _vm._v(" "), _c("h6", {
+        staticClass: "mb-3 text-primary fw-semibold"
+      }, [_vm._v("\n                                            Section Space " + _vm._s(sectionSpaceIndex + 1) + "\n                                        ")]), _vm._v(" "), _c("div", {
+        staticClass: "row g-3 align-items-center"
+      }, [_c("div", {
+        staticClass: "col-md-6 d-flex align-items-center"
+      }, [_c("div", [_c("img", {
+        staticClass: "border rounded",
+        staticStyle: {
+          width: "60px",
+          height: "60px",
+          "object-fit": "cover"
+        },
+        attrs: {
+          src: sectionSpace.image,
+          alt: "section Space Logo"
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "me-3"
+      }, [_vm._m(22, true), _vm._v(" "), _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "file",
+          name: "school_logo",
+          accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
+          required: ""
+        },
+        on: {
+          change: function change($event) {
+            return _vm.uploadFileSchoolSectionCms($event, "section_space_section", sectionSpaceIndex);
+          }
+        }
+      })])])])])]);
+    }), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-info btn-sm",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("section_space_section");
+        }
+      }
+    }, [_vm._v("+ Add More")]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_c("label", {
+      staticClass: "form-label"
+    }, [_vm._v("Show ")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
+      staticClass: "form-check form-switch",
+      attrs: {
+        type: "checkbox",
+        id: "switch" + index,
+        "switch": "none"
+      },
+      domProps: {
+        checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
+      },
+      on: {
+        change: function change($event) {
+          return _vm.addCmsContent("status", $event, "section_space_section");
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-label",
+      attrs: {
+        "for": "switch" + index,
+        "data-on-label": "On",
+        "data-off-label": "Off"
+      }
+    })])])], 2) : _vm._e(), _vm._v(" "), page_content.module_name === "why_quagnite_section" ? _c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-md-12"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(23, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.title,
+        expression: "page_content.content.title"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "title",
+        required: "",
+        placeholder: "Title"
+      },
+      domProps: {
+        value: page_content.content.title
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "title", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-12"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(24, true), _vm._v(" "), _c("ckeditor", {
+      key: (page_content === null || page_content === void 0 ? void 0 : page_content.content) + "_" + page_content.module_name,
+      model: {
+        value: page_content.content.subtitle,
+        callback: function callback($$v) {
+          _vm.$set(page_content.content, "subtitle", $$v);
+        },
+        expression: "page_content.content.subtitle"
+      }
+    })], 1)]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-4 d-flex align-items-center"
+    }, [_c("div", [_c("img", {
+      staticClass: "border rounded",
+      staticStyle: {
+        width: "60px",
+        height: "60px",
+        "object-fit": "cover"
+      },
+      attrs: {
+        src: page_content.content.left_image,
+        alt: "section Space Logo"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "me-3"
+    }, [_vm._m(25, true), _vm._v(" "), _c("input", {
+      staticClass: "form-control",
+      attrs: {
+        type: "file",
+        name: "school_logo",
+        accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
+        required: ""
+      },
+      on: {
+        change: function change($event) {
+          return _vm.uploadFileSchoolSectionCms($event, "section_space_section", _vm.sectionSpaceIndex);
+        }
+      }
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-4 d-flex align-items-center"
+    }, [_c("div", [_c("img", {
+      staticClass: "border rounded",
+      staticStyle: {
+        width: "60px",
+        height: "60px",
+        "object-fit": "cover"
+      },
+      attrs: {
+        src: page_content.content.center_image,
+        alt: "section Space Logo"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "me-3"
+    }, [_vm._m(26, true), _vm._v(" "), _c("input", {
+      staticClass: "form-control",
+      attrs: {
+        type: "file",
+        name: "school_logo",
+        accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
+        required: ""
+      },
+      on: {
+        change: function change($event) {
+          return _vm.uploadFileSchoolSectionCms($event, "section_space_section", _vm.sectionSpaceIndex);
+        }
+      }
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-4 d-flex align-items-center"
+    }, [_c("div", [_c("img", {
+      staticClass: "border rounded",
+      staticStyle: {
+        width: "60px",
+        height: "60px",
+        "object-fit": "cover"
+      },
+      attrs: {
+        src: page_content.content.right_image,
+        alt: "section Space Logo"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "me-3"
+    }, [_vm._m(27, true), _vm._v(" "), _c("input", {
+      staticClass: "form-control",
+      attrs: {
+        type: "file",
+        name: "school_logo",
+        accept: "image/png, image/jpeg, image/jpg, image/gif, image/webp",
+        required: ""
+      },
+      on: {
+        change: function change($event) {
+          return _vm.uploadFileSchoolSectionCms($event, "section_space_section", _vm.sectionSpaceIndex);
+        }
+      }
+    })])]), _vm._v(" "), _vm._l(page_content === null || page_content === void 0 ? void 0 : (_page_content$content4 = page_content.content) === null || _page_content$content4 === void 0 ? void 0 : _page_content$content4.why_quagnite_feature_item, function (whyQuagnite, whyQuagniteFeatureIndex) {
+      return _c("div", {
+        key: whyQuagniteFeatureIndex,
+        staticClass: "mt-4 mb-4"
+      }, [_c("div", {
+        staticClass: "position-relative p-4 border rounded-3 shadow-sm bg-white"
+      }, [_c("button", {
+        staticClass: "btn btn-sm btn-danger position-absolute",
+        staticStyle: {
+          top: "0.5rem",
+          right: "0.5rem"
+        },
+        attrs: {
+          type: "button"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.removeSchool("why_quagnite_section", whyQuagniteFeatureIndex);
+          }
+        }
+      }, [_c("i", {
+        staticClass: "mdi mdi-trash-can-outline"
+      })]), _vm._v(" "), _c("h6", {
+        staticClass: "mb-3 text-primary fw-semibold"
+      }, [_vm._v("\n                                                Why Quagnite " + _vm._s(whyQuagniteFeatureIndex + 1) + "\n                                            ")]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-12"
+      }, [_vm._m(28, true), _vm._v(" "), _c("input", {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: whyQuagnite.title,
+          expression: "whyQuagnite.title"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          name: "title",
+          required: "",
+          placeholder: "Enter school title"
+        },
+        domProps: {
+          value: whyQuagnite.title
+        },
+        on: {
+          input: function input($event) {
+            if ($event.target.composing) return;
+            _vm.$set(whyQuagnite, "title", $event.target.value);
+          }
+        }
+      })]), _vm._v(" "), _c("div", {
+        staticClass: "col-md-12"
+      }, [_c("div", {
+        staticClass: "mb-3"
+      }, [_vm._m(29, true), _vm._v(" "), _c("ckeditor", {
+        key: (page_content === null || page_content === void 0 ? void 0 : page_content.content) + "_" + page_content.module_name,
+        model: {
+          value: whyQuagnite.description,
+          callback: function callback($$v) {
+            _vm.$set(whyQuagnite, "description", $$v);
+          },
+          expression: "whyQuagnite.description"
+        }
+      })], 1)])])]);
+    })], 2), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-info btn-sm",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.addMoreSchoolSection("why_quagnite_section");
+        }
+      }
+    }, [_vm._v("+ Add More")]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_c("label", {
+      staticClass: "form-label"
+    }, [_vm._v("Show ")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
+      staticClass: "form-check form-switch",
+      attrs: {
+        type: "checkbox",
+        id: "switch" + index,
+        "switch": "none"
+      },
+      domProps: {
+        checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
+      },
+      on: {
+        change: function change($event) {
+          return _vm.addCmsContent("status", $event, "why_quagnite_section");
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-label",
+      attrs: {
+        "for": "switch" + index,
+        "data-on-label": "On",
+        "data-off-label": "Off"
+      }
+    })])])]) : _vm._e(), _vm._v(" "), page_content.module_name === "hire_section" ? _c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-md-12"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(30, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.title,
+        expression: "page_content.content.title"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "title",
+        required: "",
+        placeholder: "Title"
+      },
+      domProps: {
+        value: page_content.content.title
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "title", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-12"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(31, true), _vm._v(" "), _c("ckeditor", {
+      key: page_content.module_name + "_content",
+      model: {
+        value: page_content.content.description,
+        callback: function callback($$v) {
+          _vm.$set(page_content.content, "description", $$v);
+        },
+        expression: "page_content.content.description"
+      }
+    })], 1)]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(32, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.button_text,
+        expression: "page_content.content.button_text"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "sub_title",
+        required: "",
+        placeholder: "Sub Title"
+      },
+      domProps: {
+        value: page_content.content.button_text
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "button_text", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_vm._m(33, true), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: page_content.content.button_url,
+        expression: "page_content.content.button_url"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        name: "sub_title",
+        required: "",
+        placeholder: "Sub Title"
+      },
+      domProps: {
+        value: page_content.content.button_url
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(page_content.content, "button_url", $event.target.value);
+        }
+      }
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-6"
+    }, [_c("div", {
+      staticClass: "mb-3"
+    }, [_c("label", {
+      staticClass: "form-label"
+    }, [_vm._v("Show ")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
+      staticClass: "form-check form-switch",
+      attrs: {
+        type: "checkbox",
+        id: "switch" + index,
+        "switch": "none"
+      },
+      domProps: {
+        checked: (page_content === null || page_content === void 0 ? void 0 : page_content.status) === "active"
+      },
+      on: {
+        change: function change($event) {
+          return _vm.addCmsContent("status", $event, "hire_section");
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      staticClass: "form-label",
+      attrs: {
+        "for": "switch" + index,
+        "data-on-label": "On",
+        "data-off-label": "Off"
+      }
+    })])])])]) : _vm._e()])])])]);
+  })], 2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Save")])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -1246,14 +2059,6 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label"
-  }, [_vm._v("Meta Author "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    staticClass: "form-label"
   }, [_vm._v("Meta Title "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
@@ -1263,14 +2068,6 @@ var staticRenderFns = [function () {
   return _c("label", {
     staticClass: "form-label"
   }, [_vm._v("Meta Description "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    staticClass: "form-label"
-  }, [_vm._v("Meta keyword (Make it comma separate) "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -1360,6 +2157,158 @@ var staticRenderFns = [function () {
     staticClass: "form-label"
   }, [_vm._v("Button URL "), _c("span", {
     staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label d-block"
+  }, [_vm._v("Industries Logo "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Tap Name "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Description "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label d-block"
+  }, [_vm._v("School Logo "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Subtitle "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label d-block"
+  }, [_vm._v("Left Side Image "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label d-block"
+  }, [_vm._v("Center Side Image "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label d-block"
+  }, [_vm._v("Right Side Image "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Description "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Title "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Description "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Button Text "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Button URL "), _c("span", {
+    staticClass: "error"
   }, [_vm._v("*")])]);
 }];
 render._withStripped = true;

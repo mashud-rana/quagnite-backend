@@ -60872,7 +60872,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/chunks/" + chunkId + ".js?id=" + "fcee6b8859bd8529" + "";
+/******/ 			return "js/chunks/" + chunkId + ".js?id=" + "cd2a573bdd1209a7" + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

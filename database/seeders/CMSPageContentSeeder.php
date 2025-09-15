@@ -41,43 +41,43 @@ class CMSPageContentSeeder extends Seeder
                         'schools' => [
                             [
                                 'image' => asset('frontend/images/cms_default_image/school_default_image.webp'),
-                                'title' => 'Cloud Computing',
-                                'description' => 'Learn about cloud computing, including cloud architecture, services, and deployment models.',
+                                'title' => 'Cloud Computing 1',
+                                'description' => '1 Learn about cloud computing, including cloud architecture, services, and deployment models.',
                                 'button_text' => 'Learn More',
                                 'button_url' => '#',
                             ],
                             [
                                 'image' => asset('frontend/images/cms_default_image/school_default_image.webp'),
-                                'title' => 'Cloud Computing',
-                                'description' => 'Learn about cloud computing, including cloud architecture, services, and deployment models.',
+                                'title' => 'Cloud Computing 2',
+                                'description' => '2 Learn about cloud computing, including cloud architecture, services, and deployment models.',
                                 'button_text' => 'Learn More',
                                 'button_url' => '#',
                             ],
                             [
                                 'image' => asset('frontend/images/cms_default_image/school_default_image.webp'),
-                                'title' => 'Cloud Computing',
-                                'description' => 'Learn about cloud computing, including cloud architecture, services, and deployment models.',
+                                'title' => 'Cloud Computing 3',
+                                'description' => '3 Learn about cloud computing, including cloud architecture, services, and deployment models.',
                                 'button_text' => 'Learn More',
                                 'button_url' => '#',
                             ],
                             [
                                 'image' => asset('frontend/images/cms_default_image/school_default_image.webp'),
-                                'title' => 'Cloud Computing',
-                                'description' => 'Learn about cloud computing, including cloud architecture, services, and deployment models.',
+                                'title' => 'Cloud Computing 4',
+                                'description' => '4 Learn about cloud computing, including cloud architecture, services, and deployment models.',
                                 'button_text' => 'Learn More',
                                 'button_url' => '#',
                             ],
                             [
                                 'image' => asset('frontend/images/cms_default_image/school_default_image.webp'),
-                                'title' => 'Cloud Computing',
-                                'description' => 'Learn about cloud computing, including cloud architecture, services, and deployment models.',
+                                'title' => 'Cloud Computing 5',
+                                'description' => '5 Learn about cloud computing, including cloud architecture, services, and deployment models.',
                                 'button_text' => 'Learn More',
                                 'button_url' => '#',
                             ],
                             [
                                 'image' => asset('frontend/images/cms_default_image/school_default_image.webp'),
-                                'title' => 'Cloud Computing',
-                                'description' => 'Learn about cloud computing, including cloud architecture, services, and deployment models.',
+                                'title' => 'Cloud Computing 6',
+                                'description' => '6 Learn about cloud computing, including cloud architecture, services, and deployment models.',
                                 'button_text' => 'Learn More',
                                 'button_url' => '#',
                             ],
@@ -184,6 +184,10 @@ class CMSPageContentSeeder extends Seeder
                     'why_quagnite_section' => [
                         'title' => 'Education suitable to you',
                         'subtitle' => "Quagnite offers an efficient process from education to employment. Join a pipeline of training and education that opens up opportunities for a better future.",
+
+                        'left_image' => asset('frontend/images/cms_default_image/why_quarnite_left.webp'),
+                        'center_image' => asset('frontend/images/cms_default_image/why_quarnite_center.webp'),
+                        'right_image' => asset('frontend/images/cms_default_image/why_quarnite_right.webp'),
                         'why_quagnite_feature_item' => [
                             [
                                 'title' => 'Education',
@@ -198,9 +202,7 @@ class CMSPageContentSeeder extends Seeder
                                 'description' => 'Stronger together. Quagnite students gain instant networking opportunities and can have their skills displayed directly to potential employers.'
                             ],
                         ],
-                        'left_image' => asset('frontend/images/cms_default_image/why_quarnite_left.webp'),
-                        'center_image' => asset('frontend/images/cms_default_image/why_quarnite_center.webp'),
-                        'right_image' => asset('frontend/images/cms_default_image/why_quarnite_right.webp'),
+
                     ],
                     'hire_section' => [
                         'title' => 'HIRE FROM US',

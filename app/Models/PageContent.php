@@ -15,6 +15,8 @@ class PageContent extends Model
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
 
+    const CMS_FILE_PATH = 'cms';
+
     protected $casts = [
         'content' => 'array',
     ];
