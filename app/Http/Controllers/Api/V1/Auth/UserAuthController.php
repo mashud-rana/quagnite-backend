@@ -86,11 +86,11 @@ class UserAuthController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required'],
+            'agree_to_terms' => ['required', 'boolean', 'accepted'],
         ]);
-        // dd($request->all());
+
         $user = User::create([
             'first_name' => $request->first_name,
-            // 'last_name' => $request->last_name,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -102,13 +102,13 @@ class UserAuthController extends Controller
 
         event(new Registered($user));
 
-        $device = substr($request->userAgent() ?? '', 0, 255);
-
-        $token = $user->createToken($device);
+        $accessToken = $user->createToken('access-token', ['*'], now()->addMinutes(config('session.lifetime')))->plainTextToken;
+        $refreshToken = $user->createToken('refresh-token', ['*'], now()->addDays(7))->plainTextToken;
 
         return response()->json([
-            'access_token' => $token->plainTextToken,
-            'user' => $user
-        ], Response::HTTP_CREATED);
+            'user' => new UserResource($user),
+            'access_token' => $accessToken,
+            'refresh_token' => $refreshToken,
+        ]); // HttpOnly
     }
 }

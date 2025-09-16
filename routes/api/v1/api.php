@@ -56,20 +56,16 @@ Route::middleware(['auth:sanctum', 'log_api_call'])->group(function () {
 
 // Routes only accessible in local or staging environment
 
-if (app()->environment('local', 'staging')) {
+// if (app()->environment('local', 'staging')) {
     Route::post('auth/register', RegisterController::class);
     Route::post('auth/login', LoginController::class);
 
-    Route::post('user-auth/register', [UserAuthController::class, 'register']);
-    Route::post('user-auth/login', [UserAuthController::class, 'login']);
-    Route::post('user-auth/refresh', [UserAuthController::class, 'refresh']);
+    Route::post('/user-auth/login', [UserAuthController::class, 'login']);
+    Route::post('/user-auth/refresh', [UserAuthController::class, 'refresh']);
+    Route::post('/user-auth/register', [UserAuthController::class, 'register']);
 
     //forget password
-    // Route::controller(ForgetPasswordController::class)->prefix('forget-password')->group(function () {
-    //     Route::post('/', 'forgetPassword');
-    //     Route::get('/reset-password/{token}/verify', 'verifyToken');
-    // });
-    Route::get('/forget-password', [ForgetPasswordController::class, 'forgetPassword']);
+    Route::post('/forget-password', [ForgetPasswordController::class, 'forgetPassword']);
     Route::get('/reset-password/{token}/verify', [ForgetPasswordController::class, 'verifyToken']);
     Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword']);
 
@@ -79,4 +75,4 @@ if (app()->environment('local', 'staging')) {
 
         Route::get('/test/purchase-plan', [PurchaseController::class, 'purchaseAPlan']);
     });
-}
+// }
