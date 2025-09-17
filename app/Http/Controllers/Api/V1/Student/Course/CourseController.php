@@ -24,8 +24,10 @@ use App\Http\Requests\Api\V1\Student\ProfileRequest;
 use App\Http\Resources\Api\V1\Student\EnrollCourseResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseResource;
 use App\Http\Resources\Api\V1\Student\CourseSubjectResource;
+use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
+use App\Http\Resources\Api\V1\Student\CourseCategory\CourseCategoryResource;
 
 class CourseController extends Controller
 {
@@ -39,8 +41,9 @@ class CourseController extends Controller
 
     public function myCourses(Request $request)
     {
-
+        // dd($request->all());
         $enrolledCourses = $this->courseService->getMyCourses();
+
         try {
             if (!$enrolledCourses) {
                 return $this->error('No enrolled courses found', 404);
@@ -58,6 +61,7 @@ class CourseController extends Controller
     {
 
         $enrolledCourses = $this->courseService->getEnrolledCoursesSubjects(withRelations:['course']);
+
         $is_paginate = $request->get('is_paginate', false);
         try {
             if (!$enrolledCourses) {
@@ -303,6 +307,17 @@ class CourseController extends Controller
         }
     }
 
+    public function getFiltersData(){
+        $categories = $this->courseService->getCourseCategories();
+        $difficulties = $this->courseService->getDifficultyLevels();
+        $enrolledCourses = $this->courseService->getEnrolledCoursesSubjects(withRelations:['course']);
+
+        return $this->success([
+            'categories' => CourseCategoryResource::collection($categories),
+            'difficulties' =>DifficultyLevelResource::collection($difficulties),
+            'course_subjects_ids' =>  CourseSubjectResource::collection($enrolledCourses),
+        ], 'Course filters retrieved successfully');
+    }
 
 
 }

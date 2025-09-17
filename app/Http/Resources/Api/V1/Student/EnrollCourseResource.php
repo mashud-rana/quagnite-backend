@@ -17,6 +17,7 @@ class EnrollCourseResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'course_image' =>getStoreFile($this->course->image, $this->course->storage_type) ,
             'course_title' => $this->course?->title,
             'course_subtitle' => $this->course?->subtitle,
             'course_description' => $this->course?->description,

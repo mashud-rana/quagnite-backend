@@ -32,11 +32,12 @@ class CourseService extends BaseService
         $request = request();
 
         $per_page = $request->get('per_page', 10);
-        $course_ids = array_filter((array) $request->get('course_ids')) ?? [];
-        $category_ids = array_filter((array) $request->get('category_ids')) ?? [];
-        $difficulty_level_ids = array_filter((array) $request->get('difficulty_level_ids')) ?? [];
+
+        $course_subjects_ids = $request->get('course_subjects_ids') ? array_filter(explode(',', $request->get('course_subjects_ids'))) : null;
+        $category_ids = $request->get('category_ids') ? array_filter(explode(',', $request->get('category_ids'))) : null;
+        $difficulty_level_ids = $request->get('difficulty_level_ids') ? array_filter(explode(',', $request->get('difficulty_level_ids'))) : null;
         $type = $request->get('type', 'all'); // 'in_progress' , 'complete','all'
-        // dd($type);
+        // dd($category_ids);
         $relationships = [];
 
         foreach($withRelations as $relation){
@@ -56,9 +57,9 @@ class CourseService extends BaseService
                 return $query;
             })
             ->orderBy('id','desc')
-            ->when(!empty($course_ids), function ($query) use ($course_ids) {
-                return $query->whereHas('course', function ($query) use ($course_ids) {
-                    return $query->whereIn('id', $course_ids);
+            ->when(!empty($course_subjects_ids), function ($query) use ($course_subjects_ids) {
+                return $query->whereHas('course', function ($query) use ($course_subjects_ids) {
+                    return $query->whereIn('id', $course_subjects_ids);
                 });
             })
             ->when(!empty($category_ids), function ($query) use ($category_ids) {

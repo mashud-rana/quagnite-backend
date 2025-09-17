@@ -16,7 +16,7 @@ class CourseSubjectResource extends JsonResource
     {
 
         return [
-            'id' => $this->id,
+            'id' => $this->course?->id,
             'course_title' => $this->course?->title,
             'course_subtitle' => $this->course?->subtitle,
 

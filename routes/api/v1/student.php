@@ -28,9 +28,10 @@ Route::prefix('student')->name('student.')->group(function () {
             //-------------- enrolled courses --------------
             Route::get('/get-my-courses', [CourseController::class, "myCourses"]);
             Route::get('/get-my-courses-subjects', [CourseController::class, "myCoursesSubjects"]);
-            //--------------End enrolled courses --------------
+            Route::get('/get-filters-data', [CourseController::class, "getFiltersData"]);
+            //-----------End enrolled courses --------------
             //-------------- Start Course Details --------------
-            Route::get('/{slug}/show    ', [CourseController::class, "courseDetails"]);
+            Route::get('/{slug}/show', [CourseController::class, "courseDetails"]);
             Route::post('/submit-review', [CourseController::class, 'reviewSubmit']);
             Route::post('/submit-discussion', [CourseController::class, 'discussionSubmit']);
             Route::post('/submit-discussion-comment', [CourseController::class, 'discussionCommentSubmit']);
