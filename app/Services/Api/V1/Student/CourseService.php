@@ -39,6 +39,7 @@ class CourseService extends BaseService
         $type = $request->get('type', 'all'); // 'in_progress' , 'complete','all'
         // dd($category_ids);
         $relationships = [];
+        $search = $request->get('search', null);
 
         foreach($withRelations as $relation){
             $relationships[] = $relation;
@@ -70,6 +71,11 @@ class CourseService extends BaseService
             ->when(!empty($difficulty_level_ids), function ($query) use ($difficulty_level_ids) {
                 return $query->whereHas('course', function ($query) use ($difficulty_level_ids) {
                     return $query->whereIn('difficulty_level_id', $difficulty_level_ids);
+                });
+            })
+            ->when(!empty($search), function ($query) use ($search) {
+                return $query->whereHas('course', function ($query) use ($search) {
+                    return $query->where('title', 'like', '%'.$search.'%');
                 });
             })
             ->paginate($per_page);
