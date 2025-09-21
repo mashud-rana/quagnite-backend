@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\Course\NoteController;
 use App\Http\Controllers\Api\V1\Student\Course\CourseController;
 use App\Http\Controllers\Api\V1\Student\Profile\ProfileController;
+use App\Http\Controllers\Api\V1\Student\Bootcamp\BootcampController;
 use App\Http\Controllers\Api\V1\Student\Difficulty\DifficultyController;
 use App\Http\Controllers\Api\V1\Student\Category\CourseCategoryController;
 
@@ -25,22 +26,36 @@ Route::prefix('student')->name('student.')->group(function () {
 
         //------------- My Courses -------------------------
         Route::prefix('courses')->name('courses.')->group(function () {
-            //-------------- enrolled courses --------------
-            Route::get('/get-my-courses', [CourseController::class, "myCourses"]);
-            Route::get('/get-my-courses-subjects', [CourseController::class, "myCoursesSubjects"]);
-            Route::get('/get-filters-data', [CourseController::class, "getFiltersData"]);
-            //-----------End enrolled courses --------------
+
             //-------------- Start Course Details --------------
-            Route::get('/{slug}/show', [CourseController::class, "courseDetails"]);
-            Route::post('/submit-review', [CourseController::class, 'reviewSubmit']);
-            Route::post('/submit-discussion', [CourseController::class, 'discussionSubmit']);
-            Route::post('/submit-discussion-comment', [CourseController::class, 'discussionCommentSubmit']);
-            Route::post('/post-note', [CourseController::class, 'storeCourseNote']);
-            Route::post('/lesson-lecture-preview', [CourseController::class, 'lecturePreview']);
-            Route::get('/lesson-quiz-preview', [CourseController::class, 'quizPreview']);
-            //--------------End Start Course Details --------------
+            Route::controller(CourseController::class)->group(function () {
+                //-------------- enrolled courses --------------
+                Route::get('/get-my-courses', "myCourses");
+                Route::get('/get-my-courses-subjects', "myCoursesSubjects");
+                Route::get('/get-filters-data', "getFiltersData");
+                //-----------End enrolled courses --------------
+
+                Route::get('/{slug}/show', "courseDetails");
+                Route::post('/submit-review', 'reviewSubmit');
+                Route::post('/submit-discussion', 'discussionSubmit');
+                Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
+                Route::post('/post-note', 'storeCourseNote');
+                Route::post('/lesson-lecture-preview', 'lecturePreview');
+                Route::get('/lesson-quiz-preview', 'quizPreview');
+            });
+            //--------------End  Course Details --------------
+
 
         });
+
+        //-------------- Start Bootcamp --------------
+        Route::prefix('bootcamp')->group(function () {
+            Route::controller(BootcampController::class)->group(function () {
+                Route::get('/get-my-bootcamps', "myBootcamps");
+            });
+        });
+
+            //-------------End Bootcamp --------------
         //------------- End My Courses -------------------------
         //-------------  Courses Category-------------------------
         Route::get('/get-courses-category', [CourseCategoryController::class, "getCategories"]);
