@@ -47,22 +47,9 @@ class CourseResource extends JsonResource
         }
 
         if ($this->relationLoaded('reviews') && $this->reviews) {
-            $reviews = $this->whenLoaded('reviews');
-            $resource_data['review_data']['is_reviewed'] = $reviews->where('user_id', auth()->id())->exists() ? true : false;
-            $resource_data['review_data']['average_rating'] = round($reviews->avg('rating'), 1);
-            $resource_data['review_data']['reviews_count'] = $reviews->count();
+            $reviews = $this->reviews;
 
-            $ratingsCount = $reviews->groupBy('rating')
-                ->map(function ($group) {
-                    return $group->count();
-                });
-            $resource_data['review_data']['ratingsCount'] = $ratingsCount;
-            $resource_data['review_data']['percentageRatings'] = [];
-            for ($i = 1; $i <= 5; $i++) {
-                $percentage = $resource_data['review_data']['ratingsCount']->has($i) ? ($resource_data['review_data']['ratingsCount'][$i] / $resource_data['review_data']['reviews_count']) * 100 : 0;
-                $resource_data['review_data']['percentageRatings'][$i] = (int) $percentage;
-            }
-
+            $resource_data['review_data'] = prepareReviewData($reviews);
             $resource_data['reviews'] = ReviewResource::collection($reviews);
         }
         if ($this->relationLoaded('course_tags') && $this->course_tags) {

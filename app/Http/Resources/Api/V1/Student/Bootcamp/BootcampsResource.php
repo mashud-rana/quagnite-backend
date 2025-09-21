@@ -4,7 +4,12 @@ namespace App\Http\Resources\Api\V1\Student\Bootcamp;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Api\V1\Student\TagResource;
 use App\Http\Resources\Api\V1\Student\StudentResource;
+use App\Http\Resources\Api\V1\Student\Review\ReviewResource;
+use App\Http\Resources\Api\V1\Student\Teacher\TeacherResource;
+use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsResource;
+use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampLessonsResource;
 
 class BootcampsResource extends JsonResource
 {
@@ -17,7 +22,7 @@ class BootcampsResource extends JsonResource
     public function toArray($request)
     {
 
-        $resourceData = [
+        $resource_data = [
             'id' => $this->id,
             'uuid' => $this->uuid,
             'title' => $this->title,
@@ -32,10 +37,50 @@ class BootcampsResource extends JsonResource
             'price' => $this->price,
             'old_price' => $this->old_price,
             'learner_accessibility' => $this->learner_accessibility,
+            'image_url' => getStoreFile($this->image, $this->storage_type),
+            'storage_type' => $this->storage_type,
+            'video' => $this->video,
+            'video_link' => $this->video_link,
+            'intro_video_check' => $this->intro_video_check,
+            'access_period' => $this->access_period,
+            'status' => $this->status == APPROVED ? 'Approved' : ($this->status == PENDING ? 'Pending' : (
+                $this->status == WAITING ? 'Waiting' : ($this->status == HOLD ? 'Hold' : 'Rejected')
+            )),
+            'average_rating' => $this->average_rating,
+            'total_review' => $this->total_review,
+            'total_enrolled_students' => $this->total_enrolled_students,
+            'enrolled_students' => $this->enrolled_students,
 
         ];
+        if ($this->relationLoaded('user') && $this->user) {
+            $user = $this->whenLoaded('user');
+            $resource_data['teacher'] = new TeacherResource($user);
+        }
 
-        return $resourceData;
+        if ($this->resource->relationLoaded('reviews') && $this->reviews) {
+            $reviews = $this->reviews;
+
+            $resource_data['review_data'] = prepareReviewData($reviews);
+            $resource_data['reviews'] = ReviewResource::collection($reviews);
+
+        }
+
+        if ($this->relationLoaded('lessons') && $this->lessons) {
+            $lessons = $this->whenLoaded('lessons');
+            $resource_data['lessons'] = BootcampLessonsResource::collection($lessons);
+        }
+
+        if ($this->relationLoaded('tags') && $this->tags) {
+            $tags = $this->whenLoaded('tags');
+            $resource_data['tags'] = TagResource::collection($tags);
+        }
+
+        if ($this->relationLoaded('discussions') && $this->discussions) {
+            $discussions = $this->whenLoaded('discussions');
+            $resource_data['discussions'] = DiscussionsResource::collection($discussions);
+        }
+
+        return $resource_data;
 
     }
 }

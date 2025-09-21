@@ -8,9 +8,10 @@ use App\Models\Student;
 use App\Models\CourseNote;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use App\Models\EnrollBootcamp;
 use App\Rules\MatchOldPassword;
-use App\Models\DiscussionComment;
 
+use App\Models\DiscussionComment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,7 @@ use App\Http\Resources\Api\V1\Student\CourseSubjectResource;
 use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
+use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampsResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\EnrolledBootcampsResource;
 use App\Http\Resources\Api\V1\Student\CourseCategory\CourseCategoryResource;
 
@@ -57,6 +59,35 @@ class BootcampController extends Controller
             logger($e->getMessage());
             return $this->error($e->getMessage());
         }
+    }
+
+    public function bootcampDetails($slug)
+    {
+        $enrolledBootCamp = $this->getEnrolledBootcampBySlug($slug);
+        if (!$enrolledBootCamp) {
+            return $this->error('You are not enrolled in this bootcamp', 403);
+        }
+        $bootcampDetails = $this->bootcampService->getBootcampDetailsBySlug($slug, withRelations: ['user.teacher','lessons.lecture','difficulty','tags.tag','reviews.user','discussions.comments','discussions.user']);
+        if (!$bootcampDetails) {
+            return $this->error('Course not found', 404);
+        }
+        // return $bootcampDetails;
+        return $this->success(new BootcampsResource($bootcampDetails));
+    }
+
+    /**
+     * Get the enrolled bootcamp for the authenticated user by slug.
+     *
+     * @param string $slug
+     * @return EnrollBootcamp|null
+     */
+    protected function getEnrolledBootcampBySlug($slug)
+    {
+        return EnrollBootcamp::where('user_id', auth()->id())
+            ->whereHas('bootcamp', function ($q) use ($slug) {
+                $q->where('slug', $slug);
+            })
+            ->first();
     }
 
 }

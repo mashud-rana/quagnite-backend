@@ -52,6 +52,7 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::prefix('bootcamp')->group(function () {
             Route::controller(BootcampController::class)->group(function () {
                 Route::get('/get-my-bootcamps', "myBootcamps");
+                Route::get('/{slug}', "bootcampDetails");
             });
         });
 

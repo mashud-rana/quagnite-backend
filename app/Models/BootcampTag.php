@@ -11,4 +11,9 @@ class BootcampTag extends Model
     use HasFactory;
 
     protected $guarded = ['id',];
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class, 'tag_id', 'id');
+    }
 }

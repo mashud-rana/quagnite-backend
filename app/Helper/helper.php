@@ -830,3 +830,27 @@ if (!function_exists('formatDate')) {
         return Carbon::parse($datetime)->format($format);
     }
 }
+if (!function_exists('prepareReviewData')) {
+     function prepareReviewData($reviews)
+    {
+        $reviewData = [];
+
+        $reviewData['is_reviewed'] = $reviews->contains('user_id', auth()->id());
+        $reviewData['average_rating'] = round($reviews->avg('rating'), 1);
+        $reviewData['reviews_count'] = $reviews->count();
+
+        $ratingsCount = $reviews->groupBy('rating')
+            ->map(fn($group) => $group->count());
+        $reviewData['ratingsCount'] = $ratingsCount;
+        $reviewData['percentageRatings'] = [];
+
+        for ($i = 1; $i <= 5; $i++) {
+            $percentage = $ratingsCount->has($i) && $reviewData['reviews_count'] > 0
+                ? ($ratingsCount[$i] / $reviewData['reviews_count']) * 100
+                : 0;
+            $reviewData['percentageRatings'][$i] = (int) $percentage;
+        }
+
+        return $reviewData;
+    }
+}

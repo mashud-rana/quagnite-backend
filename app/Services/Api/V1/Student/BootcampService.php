@@ -5,6 +5,7 @@ namespace App\Services\Api\V1\Student;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Bootcamp;
 use App\Models\CourseLesson;
 use App\Models\EnrollCourse;
 use App\Models\CourseLecture;
@@ -58,6 +59,17 @@ class BootcampService extends BaseService
         }
 
         return $query->paginate($perPage);
+    }
+
+    public function getBootcampDetailsBySlug($slug,
+        array $selectedFields = ['*'],
+        array $withRelations = []
+    ){
+        $bootcamp = Bootcamp::where('slug', $slug)->with($withRelations)->first();
+
+        return $bootcamp;
+
+
     }
 
 
