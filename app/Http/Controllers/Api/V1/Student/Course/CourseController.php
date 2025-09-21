@@ -41,7 +41,7 @@ class CourseController extends Controller
 
     public function myCourses(Request $request)
     {
-        // dd($request->all());
+
         $enrolledCourses = $this->courseService->getMyCourses();
 
         try {
