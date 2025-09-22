@@ -56,6 +56,7 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::post('/submit-review', 'reviewSubmit');
                 Route::post('/submit-discussion', 'discussionSubmit');
                 Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
+                Route::post('/post-note', 'storeNote');
             });
         });
             //-------------End Bootcamp --------------

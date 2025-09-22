@@ -8,9 +8,10 @@ use App\Models\Student;
 use App\Models\Bootcamp;
 use App\Models\CourseNote;
 use App\Traits\ApiResponse;
+use App\Models\BootcampNote;
 use Illuminate\Http\Request;
-use App\Models\EnrollBootcamp;
 
+use App\Models\EnrollBootcamp;
 use App\Rules\MatchOldPassword;
 use App\Models\DiscussionComment;
 use App\Http\Controllers\Controller;
@@ -74,6 +75,7 @@ class BootcampController extends Controller
             'difficulty',
             'tags.tag',
             'reviews.user',
+            'notes',
             'discussions' => function($query) {
                 $query->orderBy('created_at', 'desc')->with([
                     'user',
@@ -172,6 +174,35 @@ class BootcampController extends Controller
             return $this->error($e->getMessage());
         }
 
+    }
+
+
+    public function storeNote(Request $request)
+    {
+        $request->validate([
+            'bootcamp_id' => 'required',
+            'note' => 'required',
+            'title' => 'required',
+        ]);
+
+        try {
+            $note = BootcampNote::create([
+                'user_id' => auth()->id(),
+                'bootcamp_id' => $request->bootcamp_id,
+                'note' => $request->note,
+                'title' => $request->title,
+            ]);
+
+            if ($note) {
+                $noteResource = new CourseNoteResource($note);
+                return $this->success($noteResource, 'Course Note Added Successfully');
+            } else {
+                return $this->error('Failed to add course note.', 500);
+            }
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
     }
 
 

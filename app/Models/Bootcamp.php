@@ -140,6 +140,11 @@ class Bootcamp extends Model
         return $this->getRelation('enrolledStudents')->count();
     }
 
+    public function notes()
+    {
+        return $this->hasMany(BootcampNote::class, 'bootcamp_id');
+    }
+
     public static function boot()
     {
         parent::boot();

@@ -8,6 +8,7 @@ use App\Http\Resources\Api\V1\Student\TagResource;
 use App\Http\Resources\Api\V1\Student\StudentResource;
 use App\Http\Resources\Api\V1\Student\Review\ReviewResource;
 use App\Http\Resources\Api\V1\Student\Teacher\TeacherResource;
+use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
 use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampLessonsResource;
 
@@ -63,6 +64,11 @@ class BootcampsResource extends JsonResource
             $resource_data['review_data'] = prepareReviewData($reviews);
             $resource_data['reviews'] = ReviewResource::collection($reviews);
 
+        }
+
+        if ($this->relationLoaded('notes') && $this->notes) {
+            $notes = $this->whenLoaded('notes');
+            $resource_data['notes'] = CourseNoteResource::collection($notes);
         }
 
         if ($this->relationLoaded('lessons') && $this->lessons) {
