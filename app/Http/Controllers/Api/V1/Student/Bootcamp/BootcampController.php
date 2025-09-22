@@ -68,7 +68,21 @@ class BootcampController extends Controller
         if (!$enrolledBootCamp) {
             return $this->error('You are not enrolled in this bootcamp', 403);
         }
-        $bootcampDetails = $this->bootcampService->getBootcampDetailsBySlug($slug, withRelations: ['user.teacher','lessons.lecture','difficulty','tags.tag','reviews.user','discussions.comments','discussions.user']);
+        $bootcampDetails = $this->bootcampService->getBootcampDetailsBySlug($slug, withRelations: [
+            'user.teacher',
+            'lessons.lecture',
+            'difficulty',
+            'tags.tag',
+            'reviews.user',
+            'discussions' => function($query) {
+                $query->orderBy('created_at', 'desc')->with([
+                    'user',
+                    'comments' => function($query) {
+                        $query->orderBy('created_at', 'desc')->with('user');
+                    }
+                ]);
+            }
+        ]);
         if (!$bootcampDetails) {
             return $this->error('Course not found', 404);
         }
@@ -112,6 +126,52 @@ class BootcampController extends Controller
             logger($e->getMessage());
             return $this->error($e->getMessage());
         }
+    }
+
+    public function discussionSubmit(Request $request)
+    {
+        $request->validate([
+            'bootcamp_id' => 'required',
+            'description' => 'required',
+        ]);
+
+        try {
+            $bootcamp = Bootcamp::findOrFail($request->bootcamp_id);
+
+            $discussion = $bootcamp->discussions()->create([
+                'user_id' => auth()->id(),
+                'description' => $request->description,
+            ]);
+
+            return $this->success($discussion, 'Discussion Added Successfully');
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function discussionCommentSubmit(Request $request)
+    {
+        $request->validate([
+            'discussion_id' => 'required',
+            'comment' => 'required',
+        ]);
+
+        try {
+
+            $discussionComment = DiscussionComment::create([
+                'discussion_id' => $request->discussion_id,
+                'user_id' => auth()->id(),
+                'comment' => $request->comment,
+            ]);
+
+
+            return $this->success($discussionComment,'Discussion Comment Added Successfully');
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+
     }
 
 

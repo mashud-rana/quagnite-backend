@@ -54,9 +54,10 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::get('/get-my-bootcamps', "myBootcamps");
                 Route::get('/{slug}', "bootcampDetails");
                 Route::post('/submit-review', 'reviewSubmit');
+                Route::post('/submit-discussion', 'discussionSubmit');
+                Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
             });
         });
-
             //-------------End Bootcamp --------------
         //------------- End My Courses -------------------------
         //-------------  Courses Category-------------------------
