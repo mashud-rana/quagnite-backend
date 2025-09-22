@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Api\V1\Student\Bootcamp;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\Bootcamp;
 use App\Models\CourseNote;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use App\Models\EnrollBootcamp;
-use App\Rules\MatchOldPassword;
 
+use App\Rules\MatchOldPassword;
 use App\Models\DiscussionComment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -89,5 +90,29 @@ class BootcampController extends Controller
             })
             ->first();
     }
+
+    public function reviewSubmit(Request $request)
+    {
+        $request->validate([
+            'bootcamp_id' => 'required',
+            'rating' => 'required',
+        ]);
+
+        try {
+            $bootcamp = Bootcamp::findOrFail($request->bootcamp_id);
+
+            $bootcamp->reviews()->create([
+                'user_id' => auth()->id(),
+                'rating' => $request->rating,
+                'comment' => $request->comment,
+            ]);
+
+            return $this->success('Review Added Successfully');
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
 
 }

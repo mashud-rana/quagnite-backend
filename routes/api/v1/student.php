@@ -53,6 +53,7 @@ Route::prefix('student')->name('student.')->group(function () {
             Route::controller(BootcampController::class)->group(function () {
                 Route::get('/get-my-bootcamps', "myBootcamps");
                 Route::get('/{slug}', "bootcampDetails");
+                Route::post('/submit-review', 'reviewSubmit');
             });
         });
 
