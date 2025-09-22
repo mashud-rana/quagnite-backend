@@ -66,6 +66,7 @@ class BootcampController extends Controller
         $request->validate([
             'bootcamp_id' => 'required',
             'rating' => 'required',
+            'comment' => 'nullable|string',
         ]);
 
         $bootcamp = Bootcamp::findOrFail($request->bootcamp_id);

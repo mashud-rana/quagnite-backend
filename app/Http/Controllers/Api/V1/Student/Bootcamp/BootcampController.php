@@ -101,13 +101,13 @@ class BootcampController extends Controller
         try {
             $bootcamp = Bootcamp::findOrFail($request->bootcamp_id);
 
-            $bootcamp->reviews()->create([
+            $review = $bootcamp->reviews()->create([
                 'user_id' => auth()->id(),
                 'rating' => $request->rating,
                 'comment' => $request->comment,
             ]);
 
-            return $this->success('Review Added Successfully');
+            return $this->success($review->load('user'), 'Review Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
