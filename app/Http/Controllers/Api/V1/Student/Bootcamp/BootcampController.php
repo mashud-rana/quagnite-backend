@@ -12,8 +12,10 @@ use App\Models\BootcampNote;
 use Illuminate\Http\Request;
 
 use App\Models\EnrollBootcamp;
+use App\Models\BootcampLecture;
 use App\Rules\MatchOldPassword;
 use App\Models\DiscussionComment;
+use App\Services\Utils\ZoomService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -39,11 +41,14 @@ class BootcampController extends Controller
 {
     use ApiResponse, PaginatedResourceTrait;
     protected $bootcampService;
+    protected $zoomService;
 
-    public function __construct(BootcampService $bootcampService)
+    public function __construct(BootcampService $bootcampService, ZoomService $zoomService)
     {
         $this->bootcampService = $bootcampService;
+        $this->zoomService = $zoomService;
     }
+
 
     public function myBootcamps(Request $request)
     {
@@ -203,6 +208,21 @@ class BootcampController extends Controller
             logger($e->getMessage());
             return $this->error($e->getMessage());
         }
+    }
+
+    public function joinClass($uuid)
+    {
+        $lecture = BootcampLecture::whereUuid($uuid)->firstOrFail();
+
+        $meeting['signature'] = $this->zoomService->generateSignature($lecture->meeting_id, 0);
+        $meeting['leaveUrl'] = route('student.bootcamps');
+        $meeting['userEmail'] = auth()->user()->email;
+        $meeting['userName'] = auth()->user()->full_name;
+        $meeting['password'] = $lecture->password;
+        $meeting['meetingNumber'] = $lecture->meeting_id;
+        $meeting['key'] = $this->zoomService->web_client_id;
+
+        return $this->success($meeting, 'Meeting Details Retrieved Successfully');
     }
 
 

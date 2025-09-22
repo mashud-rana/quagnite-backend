@@ -57,8 +57,10 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::post('/submit-discussion', 'discussionSubmit');
                 Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
                 Route::post('/post-note', 'storeNote');
+                Route::get('/join/lecture/{uuid}', 'joinClass');
             });
         });
+
             //-------------End Bootcamp --------------
         //------------- End My Courses -------------------------
         //-------------  Courses Category-------------------------
