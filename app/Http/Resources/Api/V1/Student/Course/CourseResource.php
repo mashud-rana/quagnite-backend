@@ -34,6 +34,7 @@ class CourseResource extends JsonResource
             'price' => $this->price,
             'old_price' => $this->old_price,
             'image_url' => getStoreFile($this->image, $this->storage_type),
+            'total_enrolled_students' => $this->total_enrolled_students,
 
         ];
 
@@ -73,11 +74,13 @@ class CourseResource extends JsonResource
             $resource_data['teacher'] = new TeacherResource($user);
         }
         if ($this->relationLoaded('lessons') && $this->lessons) {
-            $lessons = $this->whenLoaded('lessons');
+            $lessons = $this->lessons;
             $sum_duration = $lessons->sum('lecture_sum_file_duration_second');
 
             $resource_data['lessons_total_duration'] = totalSecToHourMin($sum_duration);
             $resource_data['lessons'] = LessonsResource::collection($lessons);
+            $resource_data['lectures_count'] = $lessons->sum('lecture_count');
+            $resource_data['lectures_video_duration'] = totalSecToHourMin($lessons->sum('lecture_sum_file_duration_second') ?? 0);
         }
         //
         return $resource_data;

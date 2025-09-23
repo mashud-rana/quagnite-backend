@@ -39,6 +39,10 @@ class TeacherResource extends JsonResource
             $teacher = $this->whenLoaded('teacher');
             $resource_data['teacher_details'] = new TeacherDetailsResource($teacher);
         }
+        if ($this->relationLoaded('teacher_category') && $this->teacher_category) {
+            $teacher_category = $this->whenLoaded('teacher_category');
+            $resource_data['teacher_category'] = $teacher_category;
+        }
 
         return $resource_data;
 

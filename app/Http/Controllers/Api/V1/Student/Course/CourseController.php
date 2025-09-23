@@ -85,57 +85,80 @@ class CourseController extends Controller
     public function courseDetails(Request $request, $slug)
     {
         try {
-            $courseDetails = $this->courseService->getCourseDetailsBySlug($slug);
+            $courseDetails = $this->courseService->getCourseDetailsBySlug($slug, withRelations:[
+                'lessons.lecture',
+                'lessons'=> function($query){
+                    $query->withCount('lecture')
+                    ->withSum('lecture', 'file_duration_second');
+                },
+                'difficulty',
+                'language',
+                'category',
+                'course_tags',
+                'reviews'=> function($query){
+                    $query->with('user')->orderBy('id','desc');
+                },
+                'discussions' => function ($query) {
+                    $query->orderBy('id', 'desc');
+                },
+                'discussions.comments' => function ($query) {
+                    $query->orderBy('id', 'desc');
+                },
+                'discussions.comments.user',
+                'discussions.user',
+                'course_notes',
+                'user.teacher.teacher_category'
+            ]);
             if (!$courseDetails) {
                 return $this->error('Course not found', 404);
             }
-            $load_data_type = $request->get('load_data_type', 'course_content');
-            switch($load_data_type){
-                case 'course_content':
-                    $courseDetails->load(['lessons.lecture.users','lessons.questions','lessons'=> function($query){
-                        $query->withCount('lecture')
-                        ->withCount('questions')
-                        ->withSum('lecture', 'file_duration_second');
-                    }]);
-                    break;
-                case 'course_overview':
-                    $courseDetails->load(['difficulty', 'language', 'category','lessons.lecture.users','course_tags','lessons'=> function($query){
-                        $query->withCount('lecture')
-                        ->withCount('questions')
-                        ->withSum('lecture', 'file_duration_second');
-                    }]);
-                    break;
-                case 'course_announcements':
-                    $courseDetails->load(['difficulty', 'language', 'category','lessons.lecture.users','course_tags','lessons'=> function($query){
-                        $query->withCount('lecture')
-                        ->withCount('questions')
-                        ->withSum('lecture', 'file_duration_second');
-                    }]);
-                    break;
-                case 'course_reviews':
-                    $courseDetails->load(['reviews'=> function($query){
-                        $query->with('user')->orderBy('id','desc');
-                    }]);
-                    break;
-                case 'course_discussions':
-                    $courseDetails->load([
-                        'discussions' => function ($query) {
-                            $query->orderBy('id', 'desc');
-                        },
-                        'discussions.comments' => function ($query) {
-                            $query->orderBy('id', 'desc');
-                        },
-                        'discussions.comments.user',
-                        'discussions.user'
-                    ]);
+            // $load_data_type = $request->get('load_data_type', 'course_content');
+            // switch($load_data_type){
+            //     case 'course_content':
+            //         $courseDetails->load(['lessons.lecture.users','lessons.questions','lessons'=> function($query){
+            //             $query->withCount('lecture')
+            //             ->withCount('questions')
+            //             ->withSum('lecture', 'file_duration_second');
+            //         }]);
+            //         break;
+            //     case 'course_overview':
+            //         $courseDetails->load(['difficulty', 'language', 'category','lessons.lecture.users','course_tags','lessons'=> function($query){
+            //             $query->withCount('lecture')
+            //             ->withCount('questions')
+            //             ->withSum('lecture', 'file_duration_second');
+            //         }]);
+            //         break;
+            //     case 'course_announcements':
+            //         $courseDetails->load(['difficulty', 'language', 'category','lessons.lecture.users','course_tags','lessons'=> function($query){
+            //             $query->withCount('lecture')
+            //             ->withCount('questions')
+            //             ->withSum('lecture', 'file_duration_second');
+            //         }]);
+            //         break;
+            //     case 'course_reviews':
+            //         $courseDetails->load(['reviews'=> function($query){
+            //             $query->with('user')->orderBy('id','desc');
+            //         }]);
+            //         break;
+            //     case 'course_discussions':
+            //         $courseDetails->load([
+            //             'discussions' => function ($query) {
+            //                 $query->orderBy('id', 'desc');
+            //             },
+            //             'discussions.comments' => function ($query) {
+            //                 $query->orderBy('id', 'desc');
+            //             },
+            //             'discussions.comments.user',
+            //             'discussions.user'
+            //         ]);
 
-                    break;
-                case 'course_notes':
-                    $courseDetails->load(['course_notes']);
-                    break;
-                default:
-                    $courseDetails->load(['difficulty', 'language', 'category', 'lessons.lecture.users', 'reviews.user','lessons.questions','course_tags','discussions.comments','course_notes']);
-            }
+            //         break;
+            //     case 'course_notes':
+            //         $courseDetails->load(['course_notes']);
+            //         break;
+            //     default:
+            //         $courseDetails->load(['difficulty', 'language', 'category', 'lessons.lecture.users', 'reviews.user','lessons.questions','course_tags','discussions.comments','course_notes']);
+            // }
 
             // return $this->success($courseDetails);
 

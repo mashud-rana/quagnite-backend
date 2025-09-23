@@ -223,11 +223,14 @@ class CourseService extends BaseService
 
     public function getCourseDetailsBySlug($slug,
         array $selectedFields = ['*'],
-        array $withRelations = ['user.teacher.teacher_category']
+        array $withRelations = ['user.teacher.teacher_category'],
+        array $withCounts = []
     ){
         $course = Course::where('slug', $slug)
 
             ->with($withRelations)
+            ->withCount($withCounts)
+            ->select($selectedFields)
             ->first();
 
         return $course;

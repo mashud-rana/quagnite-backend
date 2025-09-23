@@ -841,14 +841,17 @@ if (!function_exists('prepareReviewData')) {
 
         $ratingsCount = $reviews->groupBy('rating')
             ->map(fn($group) => $group->count());
+
         $reviewData['ratingsCount'] = $ratingsCount;
         $reviewData['percentageRatings'] = [];
 
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 5; $i >= 1; $i--) {
             $percentage = $ratingsCount->has($i) && $reviewData['reviews_count'] > 0
                 ? ($ratingsCount[$i] / $reviewData['reviews_count']) * 100
                 : 0;
-            $reviewData['percentageRatings'][$i] = (int) $percentage;
+            $reviewData['percentageRatings'][$i]['percentage'] = (int) $percentage;
+            $reviewData['percentageRatings'][$i]['count'] = $ratingsCount->get($i, 0);
+            $reviewData['percentageRatings'][$i]['stars'] = $i;
         }
 
         return $reviewData;
