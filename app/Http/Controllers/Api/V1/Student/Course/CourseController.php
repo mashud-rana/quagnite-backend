@@ -24,11 +24,13 @@ use App\Http\Requests\Api\V1\Student\ProfileRequest;
 use App\Http\Resources\Api\V1\Student\EnrollCourseResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseResource;
 use App\Http\Resources\Api\V1\Student\CourseSubjectResource;
+use App\Http\Resources\Api\V1\Student\Review\ReviewResource;
 use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
 use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsResource;
 use App\Http\Resources\Api\V1\Student\CourseCategory\CourseCategoryResource;
+use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsCommentResource;
 
 class CourseController extends Controller
 {
@@ -191,13 +193,13 @@ class CourseController extends Controller
                 return $this->error('You have already submitted a review for this course.', 400);
             }
 
-            $course->reviews()->create([
+            $review = $course->reviews()->create([
                 'user_id' => auth()->id(),
                 'rating' => $request->rating,
                 'comment' => $request->comment,
             ]);
 
-            return $this->success('Review Added Successfully');
+            return $this->success(new ReviewResource($review->load('user')),'Review Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
@@ -219,7 +221,7 @@ class CourseController extends Controller
                 'description' => $validated['description'],
             ]);
 
-            return $this->success(new DiscussionsResource($discussions),'Discussion Added Successfully');
+            return $this->success(new DiscussionsResource($discussions->load('comments','comments.user','user')), 'Discussion Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
@@ -240,7 +242,7 @@ class CourseController extends Controller
                 'comment' => $request->comment,
             ]);
 
-            return $this->success($discussionComment,'Discussion Comment Added Successfully');
+            return $this->success(new DiscussionsCommentResource($discussionComment->load(['user'])),'Discussion Comment Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
