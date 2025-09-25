@@ -37,11 +37,16 @@ Route::prefix('student')->name('student.')->group(function () {
 
                 Route::get('/{slug}/show', "courseDetails");
                 Route::post('/submit-review', 'reviewSubmit');
+                // ---------- discussion --------------//
                 Route::post('/submit-discussion', 'discussionSubmit');
                 Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
-                Route::post('/post-note', 'storeCourseNote');
                 Route::post('/lesson-lecture-preview', 'lecturePreview');
                 Route::get('/lesson-quiz-preview', 'quizPreview');
+                //notes
+                Route::get('/note/{note_id}', 'getCourseNote');
+                Route::post('/post-note', 'storeCourseNote');
+                Route::delete('/delete-note/{note_id}', 'destroyCourseNote');
+                Route::put('/note/{note_id}/update', 'updateCourseNote');
             });
             //--------------End  Course Details --------------
 

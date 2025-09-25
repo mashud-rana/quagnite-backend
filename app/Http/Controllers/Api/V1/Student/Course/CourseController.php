@@ -27,6 +27,7 @@ use App\Http\Resources\Api\V1\Student\CourseSubjectResource;
 use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
+use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsResource;
 use App\Http\Resources\Api\V1\Student\CourseCategory\CourseCategoryResource;
 
 class CourseController extends Controller
@@ -106,7 +107,9 @@ class CourseController extends Controller
                 },
                 'discussions.comments.user',
                 'discussions.user',
-                'course_notes',
+                'course_notes'=> function($query){
+                    $query->orderBy('id','desc');
+                },
                 'user.teacher.teacher_category'
             ]);
             if (!$courseDetails) {
@@ -211,12 +214,12 @@ class CourseController extends Controller
         try {
             $course = Course::findOrFail($validated['course_id']);
 
-            $course->discussions()->create([
+            $discussions = $course->discussions()->create([
                 'user_id' => auth()->id(),
                 'description' => $validated['description'],
             ]);
 
-            return $this->success('Discussion Added Successfully');
+            return $this->success(new DiscussionsResource($discussions),'Discussion Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
@@ -270,6 +273,90 @@ class CourseController extends Controller
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
+        }
+    }
+
+
+    public function updateCourseNote(Request $request, $note_id)
+    {
+        $request->validate([
+            'course_id' => 'required',
+            'note' => 'required',
+            'title' => 'required',
+        ]);
+
+        try {
+            $note = CourseNote::findOrFail($note_id);
+
+            if ($note->user_id != auth()->id()) {
+                return $this->error('Unauthorized', 401);
+            }
+
+            $note->note = $request->note;
+            $note->title = $request->title;
+            $note->save();
+
+            $noteResource = new CourseNoteResource($note);
+            return $this->success($noteResource, 'Course Note Updated Successfully');
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function getCourseNote($note_id)
+    {
+        $validator = Validator::make(
+            ['note_id' => $note_id],
+            ['note_id' => 'required'],
+            ['note_id.required' => 'Note ID is required']
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['messages' => $validator->messages(), 'status' => 422]);
+        }
+
+        $note = CourseNote::find($note_id);
+        if(!$note){
+            return $this->error('Note Not Found', 400);
+        }
+        if($note->user_id != auth()->id()){
+            return $this->error('Unauthorized', 401);
+        }
+
+        if ($note) {
+            $noteResource = new CourseNoteResource($note);
+            return $this->success($noteResource, 'Course Note Retrieved Successfully');
+        } else {
+            return $this->error('Note Not Found', 400);
+        }
+    }
+
+    public function destroyCourseNote($note_id)
+    {
+        $validator = Validator::make(
+            ['note_id' => $note_id],
+            ['note_id' => 'required'],
+            ['note_id.required' => 'Note ID is required']
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['messages' => $validator->messages(), 'status' => 422]);
+        }
+
+        $note = CourseNote::find($note_id);
+        if(!$note){
+            return $this->error('Note Not Found', 400);
+        }
+        if($note->user_id != auth()->id()){
+            return $this->error('Unauthorized', 401);
+        }
+
+        if ($note) {
+            $note->delete();
+            return $this->success($note, 'Course Note Deleted Successfully');
+        } else {
+            return $this->error('Note Not Found', 400);
         }
     }
 

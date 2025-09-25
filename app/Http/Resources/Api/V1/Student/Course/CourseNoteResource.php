@@ -22,6 +22,7 @@ class CourseNoteResource extends JsonResource
 
         $resource_data = [
             'id' => $this->id,
+            'user_id' => $this->user_id,
             'title' => $this->title,
             'note' => $this->note,
 
