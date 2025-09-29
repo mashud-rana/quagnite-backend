@@ -34,7 +34,7 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::get('/get-my-courses-subjects', "myCoursesSubjects");
                 Route::get('/get-filters-data', "getFiltersData");
                 //-----------End enrolled courses --------------
-
+                Route::get('/{slug}/enrolled-check', "enrolledCheck");
                 Route::get('/{slug}/show', "courseDetails");
                 Route::post('/submit-review', 'reviewSubmit');
                 // ---------- discussion --------------//

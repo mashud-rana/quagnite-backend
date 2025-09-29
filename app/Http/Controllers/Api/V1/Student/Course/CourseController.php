@@ -7,10 +7,11 @@ use App\Models\Course;
 use App\Models\Student;
 use App\Models\CourseNote;
 use App\Traits\ApiResponse;
+use App\Models\EnrollCourse;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
-use App\Models\DiscussionComment;
 
+use App\Models\DiscussionComment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -84,9 +85,28 @@ class CourseController extends Controller
             return $this->error($e->getMessage());
         }
     }
-
+    public function enrolledCheck($slug){
+        $check = EnrollCourse::where('user_id', auth()->id())
+            ->whereHas('course', function ($query) use ($slug) {
+                $query->where('slug', $slug);
+            })
+            ->exists();
+        if($check){
+            return $this->success(['enrolled' => true], 'User is enrolled in the course');
+        } else {
+            return $this->error('User is not enrolled in the course');
+        }
+    }
     public function courseDetails(Request $request, $slug)
     {
+        $check = EnrollCourse::where('user_id', auth()->id())
+            ->whereHas('course', function ($query) use ($slug) {
+                $query->where('slug', $slug);
+            })
+            ->exists();
+        if(!$check){
+            return $this->error('User is not enrolled in the course', 403);
+        }
         try {
             $courseDetails = $this->courseService->getCourseDetailsBySlug($slug, withRelations:[
                 'lessons.lecture',
