@@ -57,7 +57,7 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::prefix('bootcamp')->group(function () {
             Route::controller(BootcampController::class)->group(function () {
                 Route::get('/get-my-bootcamps', "myBootcamps");
-                Route::get('/{slug}', "bootcampDetails");
+                Route::get('/{slug}/show', "bootcampDetails");
                 Route::post('/submit-review', 'reviewSubmit');
                 Route::post('/submit-discussion', 'discussionSubmit');
                 Route::post('/submit-discussion-comment', 'discussionCommentSubmit');

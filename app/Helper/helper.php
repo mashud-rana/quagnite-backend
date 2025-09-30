@@ -777,20 +777,30 @@ if (!function_exists('totalSecToHourMin')) {
      * @param  int  $totalSeconds
      * @return string
      */
-    function totalSecToHourMin($totalSeconds): string
+    function totalSecToHourMin($totalSeconds, $formate='hi'): string
     {
         if($totalSeconds == 0){
-            return '0m';
+            if($formate == 'hi'){
+                return '0m';
+            }
+            return '0:0';
         }
         if(empty($totalSeconds) || is_null($totalSeconds)){
-            return '0m';
+            if($formate == 'hi'){
+                return '0m';
+            }
+            return '0:0';
         }
         $hours   = floor($totalSeconds / 3600);
         $minutes = floor(($totalSeconds % 3600) / 60);
-
+        if($formate == 'hi'){
+            return trim(
+                ($hours > 0 ? "{$hours}h " : '') .
+                ($minutes > 0 ? "{$minutes}m" : '')
+            );
+        }
         return trim(
-            ($hours > 0 ? "{$hours}h " : '') .
-            ($minutes > 0 ? "{$minutes}m" : '')
+            ($hours > 0 ? "{$hours}:" : '0:').($minutes > 0 ? "{$minutes}" : '')
         );
     }
 }

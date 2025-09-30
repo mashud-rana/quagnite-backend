@@ -28,6 +28,7 @@ class BootcampLessonsResource extends JsonResource
 
         if ($this->relationLoaded('lecture') && $this->lecture) {
             $lectures = $this->whenLoaded('lecture');
+            $resource_data['lessons_total_duration'] = totalSecToHourMin((float)$this->lecture_sum_duration * 60,'h:i');
             $resource_data['lectures'] = BootcampLectureResource::collection($lectures);
         }
         return $resource_data;

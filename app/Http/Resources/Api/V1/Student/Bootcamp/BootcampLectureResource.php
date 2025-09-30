@@ -34,7 +34,7 @@ class BootcampLectureResource extends JsonResource
 
 
         ];
-
+        $resource_data['lessons_duration'] = totalSecToHourMin((float)$this->duration * 60,'h:i');
 
         return $resource_data;
 

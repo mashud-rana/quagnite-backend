@@ -88,6 +88,9 @@ class BootcampController extends Controller
                         $query->orderBy('created_at', 'desc')->with('user');
                     }
                 ]);
+            },
+            'lessons' => function($query){
+                $query->orderBy('id','desc')->withSum('lecture','duration');
             }
         ]);
         if (!$bootcampDetails) {
