@@ -35,8 +35,10 @@ use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampsResource;
+use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\EnrolledBootcampsResource;
 use App\Http\Resources\Api\V1\Student\CourseCategory\CourseCategoryResource;
+use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsCommentResource;
 
 class BootcampController extends Controller
 {
@@ -174,7 +176,8 @@ class BootcampController extends Controller
                 'description' => $request->description,
             ]);
 
-            return $this->success($discussion, 'Discussion Added Successfully');
+            // return $this->success($discussion, 'Discussion Added Successfully');
+             return $this->success(new DiscussionsResource($discussion->load('comments','comments.user','user')), 'Discussion Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
@@ -197,7 +200,8 @@ class BootcampController extends Controller
             ]);
 
 
-            return $this->success($discussionComment,'Discussion Comment Added Successfully');
+            // return $this->success($discussionComment,'Discussion Comment Added Successfully');
+             return $this->success(new DiscussionsCommentResource($discussionComment->load(['user'])),'Discussion Comment Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
