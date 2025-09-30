@@ -30,6 +30,7 @@ use App\Http\Requests\Api\V1\Student\ProfileRequest;
 use App\Http\Resources\Api\V1\Student\EnrollCourseResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseResource;
 use App\Http\Resources\Api\V1\Student\CourseSubjectResource;
+use App\Http\Resources\Api\V1\Student\Review\ReviewResource;
 use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
@@ -79,7 +80,9 @@ class BootcampController extends Controller
             'lessons.lecture',
             'difficulty',
             'tags.tag',
-            'reviews.user',
+            'reviews' => function($query) {
+                $query->orderBy('id', 'desc')->with('user');
+            },
             'notes',
             'discussions' => function($query) {
                 $query->orderBy('created_at', 'desc')->with([
@@ -117,26 +120,44 @@ class BootcampController extends Controller
 
     public function reviewSubmit(Request $request)
     {
-        $request->validate([
-            'bootcamp_id' => 'required',
-            'rating' => 'required',
+        $validated = $request->validate([
+            'bootcamp_id' => 'required|exists:bootcamps,id',
+            'rating'      => 'required|integer|min:1|max:5',
+            'comment'     => 'nullable|string|min:5',
         ]);
 
         try {
-            $bootcamp = Bootcamp::findOrFail($request->bootcamp_id);
+            $bootcamp = Bootcamp::findOrFail($validated['bootcamp_id'])->load('reviews');
+
+            $existingReview = $bootcamp->reviews()
+            ->where('user_id', auth()->id())
+            ->exists();
+
+             if ($existingReview) {
+                return $this->error('You have already submitted a review for this course.', 400);
+            }
 
             $review = $bootcamp->reviews()->create([
                 'user_id' => auth()->id(),
-                'rating' => $request->rating,
-                'comment' => $request->comment,
+                'rating'  => $validated['rating'],
+                'comment' => $validated['comment'] ?? null,
             ]);
 
-            return $this->success($review->load('user'), 'Review Added Successfully');
-        } catch (\Exception $e) {
-            logger($e->getMessage());
-            return $this->error($e->getMessage());
+            // Refresh bootcamp with reviews relation
+            $bootcamp->load('reviews');
+
+            return $this->success([
+                // 'review'   => $review->load('user'),
+                'review'   => new ReviewResource($review->load('user')),
+                'data' => new BootcampsResource($bootcamp),
+            ], 'Review Added Successfully');
+        } catch (\Throwable $e) {
+            logger()->error("Review submission failed: " . $e->getMessage());
+
+            return $this->error('Something went wrong. Please try again later.');
         }
     }
+
 
     public function discussionSubmit(Request $request)
     {

@@ -9,6 +9,7 @@ use App\Http\Resources\Api\V1\Student\StudentResource;
 use App\Http\Resources\Api\V1\Student\Review\ReviewResource;
 use App\Http\Resources\Api\V1\Student\Teacher\TeacherResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
+use App\Http\Resources\Api\V1\Student\Difficulty\DifficultyResource;
 use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampLessonsResource;
 
@@ -86,6 +87,10 @@ class BootcampsResource extends JsonResource
             $resource_data['discussions'] = DiscussionsResource::collection($discussions);
         }
 
+        if ($this->relationLoaded('difficulty') && $this->difficulty) {
+            $difficulty = $this->whenLoaded('difficulty');
+            $resource_data['difficulty'] = new DifficultyResource($difficulty);
+        }
         return $resource_data;
 
     }

@@ -219,7 +219,14 @@ class CourseController extends Controller
                 'comment' => $request->comment,
             ]);
 
-            return $this->success(new ReviewResource($review->load('user')),'Review Added Successfully');
+            // Refresh course with reviews relation
+            $course->load('reviews');
+
+            return $this->success([
+                'review'   => new ReviewResource($review->load('user')),
+                'data' => new CourseResource($course),
+            ], 'Review Added Successfully');
+            // return $this->success(new ReviewResource($review->load('user')),'Review Added Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());
