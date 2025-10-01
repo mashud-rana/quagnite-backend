@@ -35,6 +35,7 @@ use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampsResource;
+use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampNoteResource;
 use App\Http\Resources\Api\V1\Student\Discussions\DiscussionsResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\EnrolledBootcampsResource;
 use App\Http\Resources\Api\V1\Student\CourseCategory\CourseCategoryResource;
@@ -85,7 +86,9 @@ class BootcampController extends Controller
             'reviews' => function($query) {
                 $query->orderBy('id', 'desc')->with('user');
             },
-            'notes',
+            'notes'=>function($query){
+                $query->where('user_id',auth()->id())->orderBy('id','desc');
+            },
             'discussions' => function($query) {
                 $query->orderBy('created_at', 'desc')->with([
                     'user',
@@ -227,11 +230,66 @@ class BootcampController extends Controller
             ]);
 
             if ($note) {
-                $noteResource = new CourseNoteResource($note);
+                $noteResource = new BootcampNoteResource($note);
                 return $this->success($noteResource, 'Course Note Added Successfully');
             } else {
                 return $this->error('Failed to add course note.', 500);
             }
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
+      public function destroyCourseNote($note_id)
+    {
+        $validator = Validator::make(
+            ['note_id' => $note_id],
+            ['note_id' => 'required'],
+            ['note_id.required' => 'Note ID is required']
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['messages' => $validator->messages(), 'status' => 422]);
+        }
+
+        $note = BootcampNote::find($note_id);
+        if(!$note){
+            return $this->error('Note Not Found', 400);
+        }
+        if($note->user_id != auth()->id()){
+            return $this->error('Unauthorized', 401);
+        }
+
+        if ($note) {
+            $note->delete();
+            return $this->success($note, 'Course Note Deleted Successfully');
+        } else {
+            return $this->error('Note Not Found', 400);
+        }
+    }
+
+     public function updateCourseNote(Request $request, $note_id)
+    {
+        $request->validate([
+            'bootcamp_id' => 'required',
+            'note' => 'required',
+            'title' => 'required',
+        ]);
+
+        try {
+            $note = BootcampNote::findOrFail($note_id);
+
+            if ($note->user_id != auth()->id()) {
+                return $this->error('Unauthorized', 401);
+            }
+
+            $note->note = $request->note;
+            $note->title = $request->title;
+            $note->save();
+
+            $noteResource = new BootcampNoteResource($note);
+            return $this->success($noteResource, 'Bootcamp Note Updated Successfully');
         } catch (\Exception $e) {
             logger($e->getMessage());
             return $this->error($e->getMessage());

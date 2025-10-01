@@ -61,8 +61,11 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::post('/submit-review', 'reviewSubmit');
                 Route::post('/submit-discussion', 'discussionSubmit');
                 Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
-                Route::post('/post-note', 'storeNote');
                 Route::get('/join/lecture/{uuid}', 'joinClass');
+                //--------------- notes --------------
+                Route::post('/post-note', 'storeNote');
+                Route::delete('/delete-note/{note_id}', 'destroyCourseNote');
+                Route::put('/note/{note_id}/update', 'updateCourseNote');
             });
         });
 

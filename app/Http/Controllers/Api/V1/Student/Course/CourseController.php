@@ -130,7 +130,7 @@ class CourseController extends Controller
                 'discussions.comments.user',
                 'discussions.user',
                 'course_notes'=> function($query){
-                    $query->orderBy('id','desc');
+                    $query->orderBy('id','desc')->where('user_id',auth()->id());
                 },
                 'user.teacher.teacher_category'
             ]);
