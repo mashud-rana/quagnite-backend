@@ -99,7 +99,8 @@ class BootcampController extends Controller
             },
             'lessons' => function($query){
                 $query->orderBy('id','desc')->withSum('lecture','duration');
-            }
+            },
+            'category'
         ]);
         if (!$bootcampDetails) {
             return $this->error('Course not found', 404);
@@ -120,6 +121,7 @@ class BootcampController extends Controller
             ->whereHas('bootcamp', function ($q) use ($slug) {
                 $q->where('slug', $slug);
             })
+            ->where('user_id',auth()->id())
             ->first();
     }
 

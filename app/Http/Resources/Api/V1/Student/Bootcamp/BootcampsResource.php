@@ -2,10 +2,12 @@
 
 namespace App\Http\Resources\Api\V1\Student\Bootcamp;
 
+
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Api\V1\Student\TagResource;
 use App\Http\Resources\Api\V1\Student\StudentResource;
+use App\Http\Resources\Api\V1\Student\CategoryResource;
 use App\Http\Resources\Api\V1\Student\Review\ReviewResource;
 use App\Http\Resources\Api\V1\Student\Teacher\TeacherResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseNoteResource;
@@ -90,6 +92,11 @@ class BootcampsResource extends JsonResource
         if ($this->relationLoaded('difficulty') && $this->difficulty) {
             $difficulty = $this->whenLoaded('difficulty');
             $resource_data['difficulty'] = new DifficultyResource($difficulty);
+        }
+         if ($this->relationLoaded('category')) {
+            $category = $this->whenLoaded('category');
+
+            $resource_data['category'] = new CategoryResource($category);
         }
         return $resource_data;
 
