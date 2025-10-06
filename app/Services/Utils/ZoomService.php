@@ -2,6 +2,7 @@
 
 namespace App\Services\Utils;
 
+
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Exception\RequestException;

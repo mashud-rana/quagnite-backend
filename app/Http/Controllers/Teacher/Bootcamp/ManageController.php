@@ -86,7 +86,37 @@ class ManageController extends Controller
         return back();
     }
 
+    //NOTE: OLD CODE
+    // public function joinClass($uuid)
+    // {
+    //     $lecture = BootcampLecture::whereUuid($uuid)->firstOrFail();
 
+    //     $response = $this->zoomService->getZak();
+
+    //     if ($response['status']) {
+
+    //         $meeting['zak'] = $response['data']['token'];
+
+    //         $meeting['signature'] = $this->zoomService->generateSignature($lecture->meeting_id, 1);
+    //         $meeting['leaveUrl'] = route('teacher.bootcamp.index');
+    //         $meeting['userEmail'] = auth()->user()->email;
+    //         $meeting['userName'] = auth()->user()->full_name;
+    //         $meeting['password'] = $lecture->password;
+    //         $meeting['meetingNumber'] = $lecture->meeting_id;
+    //         $meeting['key'] = config('settings.zoom_client_id');
+    //     } else {
+    //         record_deleted_flash('Somethings went wrong!');
+    //         return back();
+    //     }
+
+    //     info($meeting);
+    //     // dd($meeting);
+    //     return view('common.zoom.host', [
+    //         'meeting' => $meeting,
+    //     ]);
+    // }
+
+    //NOTE: NEW CODE
     public function joinClass($uuid)
     {
         $lecture = BootcampLecture::whereUuid($uuid)->firstOrFail();
@@ -103,14 +133,15 @@ class ManageController extends Controller
             $meeting['userName'] = auth()->user()->full_name;
             $meeting['password'] = $lecture->password;
             $meeting['meetingNumber'] = $lecture->meeting_id;
-            $meeting['key'] = $this->zoomService->web_client_id;
+            //old code
+            // $meeting['key'] = config('settings.zoom_client_id');
         } else {
             record_deleted_flash('Somethings went wrong!');
             return back();
         }
 
         info($meeting);
-
+        // dd($meeting);
         return view('common.zoom.host', [
             'meeting' => $meeting,
         ]);
