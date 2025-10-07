@@ -82,6 +82,7 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::prefix('ebooks')->group(function () {
             Route::controller(EbookController::class)->group(function () {
                 Route::get('/get-my-ebooks', "myEbooks");
+                Route::get('my-ebooks/download/{uuid}', "download");
 
             });
         });

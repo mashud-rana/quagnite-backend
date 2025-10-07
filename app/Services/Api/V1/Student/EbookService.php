@@ -41,7 +41,7 @@ class EbookService extends BaseService
 
         $query = EnrollEbook::where('user_id', auth()->id())
             ->select($selectedFields)
-            ->with($withRelations);
+            ->with($withRelations)->latest();
 
         return $query->paginate($perPage);
     }
