@@ -19,6 +19,11 @@ class Ebook extends Model
         return $this->belongsTo(EbookCategory::class, 'ebook_category_id', 'id');
     }
 
+     public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function scopePublished($query)
     {
         return $query->whereStatus(PUBLISHED);

@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\Course\NoteController;
 use App\Http\Controllers\Api\V1\Student\Course\CourseController;
@@ -7,8 +8,7 @@ use App\Http\Controllers\Api\V1\Student\Profile\ProfileController;
 use App\Http\Controllers\Api\V1\Student\Bootcamp\BootcampController;
 use App\Http\Controllers\Api\V1\Student\Difficulty\DifficultyController;
 use App\Http\Controllers\Api\V1\Student\Category\CourseCategoryController;
-
-
+use App\Http\Controllers\Api\V1\Student\Ebook\EbookController;
 
 Route::prefix('student')->name('student.')->group(function () {
 
@@ -77,6 +77,14 @@ Route::prefix('student')->name('student.')->group(function () {
         //-------------  Courses difficulty-------------------------
         Route::get('/get-difficulty-level', [DifficultyController::class, "getDifficulties"]);
         //-------------End  Courses difficulty-------------------------
+
+         //-------------- Start E-book --------------
+        Route::prefix('ebooks')->group(function () {
+            Route::controller(EbookController::class)->group(function () {
+                Route::get('/get-my-ebooks', "myEbooks");
+
+            });
+        });
 
     });
 });
