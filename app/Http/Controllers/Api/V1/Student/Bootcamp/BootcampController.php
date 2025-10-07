@@ -300,18 +300,39 @@ class BootcampController extends Controller
 
     public function joinClass($uuid)
     {
+        $check = EnrollBootcamp::where('user_id',auth()->id())
+        ->whereHas('bootcamp.lessons',function($q) use($uuid){
+            $q->whereHas('lecture',function($q2) use($uuid){
+                $q2->where('uuid',$uuid);
+            });
+        })->first();
+        if(!$check){
+            return $this->error('You are not enrolled in this bootcamp', 403);
+        }
+         // --- IGNORE ---
         $lecture = BootcampLecture::whereUuid($uuid)->firstOrFail();
 
-        $meeting['signature'] = $this->zoomService->generateSignature($lecture->meeting_id, 0);
-        $meeting['leaveUrl'] = route('student.bootcamps');
-        $meeting['userEmail'] = auth()->user()->email;
-        $meeting['userName'] = auth()->user()->full_name;
-        $meeting['password'] = $lecture->password;
-        $meeting['meetingNumber'] = $lecture->meeting_id;
-        $meeting['key'] = $this->zoomService->web_client_id;
+        $response = $this->zoomService->getZak();
 
-        return $this->success($meeting, 'Meeting Details Retrieved Successfully');
+        if ($response['status']) {
+
+            $meeting['zak'] = $response['data']['token'];
+
+            $meeting['signature'] = $this->zoomService->generateSignature($lecture->meeting_id, 0);
+            $meeting['leaveUrl'] = route('teacher.bootcamp.index');
+            $meeting['userEmail'] = auth()->user()->email;
+            $meeting['userName'] = auth()->user()->full_name;
+            $meeting['password'] = $lecture->password;
+            $meeting['meetingNumber'] = $lecture->meeting_id;
+            $meeting['sdkKey'] = $this->zoomService->web_client_id;
+
+            return $this->success($meeting, 'Meeting Join Data Retrieved Successfully');
+        } else {
+            record_deleted_flash('Somethings went wrong!');
+            return back();
+        }
     }
+
 
 
 }

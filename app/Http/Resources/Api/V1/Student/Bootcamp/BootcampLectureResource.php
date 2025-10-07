@@ -30,12 +30,12 @@ class BootcampLectureResource extends JsonResource
             'meeting_id' => $this->meeting_id,
             'formatted_start_time' => Carbon::parse($this->start_time)->format('h:i A'),
             'formatted_start_date' => Carbon::parse($this->start_time)->format('d/m/Y'),
-
-
-
         ];
+        $startTime = Carbon::parse($this->start_time);
         $resource_data['lesson_duration_hours_minutes'] = totalSecToHourMin((float)$this->duration * 60,'h:i');
         $resource_data['lesson_duration_formatted'] = totalSecToHourMin((float)$this->duration * 60);
+        $resource_data['left_for'] = $startTime->diffForHumans(Carbon::now(), true);
+
 
         return $resource_data;
 

@@ -5,10 +5,9 @@
     <meta charset="utf-8">
     <title>Mcdns Live</title>
 
-
     <!-- For Client View -->
-    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/4.0.0/css/bootstrap.css" />
-    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/4.0.0/css/react-select.css" />
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/3.1.0/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/3.1.0/css/react-select.css" />
 
     <style>
         html,
@@ -66,16 +65,17 @@
         <button onClick="startMeeting()">Join Meeting</button>
     </main> --}}
 
-     <script src="https://source.zoom.us/4.0.0/lib/vendor/react.min.js"></script>
-    <script src="https://source.zoom.us/4.0.0/lib/vendor/react-dom.min.js"></script>
-    <script src="https://source.zoom.us/4.0.0/lib/vendor/redux.min.js"></script>
-    <script src="https://source.zoom.us/4.0.0/lib/vendor/redux-thunk.min.js"></script>
-    <script src="https://source.zoom.us/4.0.0/lib/vendor/lodash.min.js"></script>
+    <!-- For Component and Client View -->
+    <script src="https://source.zoom.us/3.1.0/lib/vendor/react.min.js"></script>
+    <script src="https://source.zoom.us/3.1.0/lib/vendor/react-dom.min.js"></script>
+    <script src="https://source.zoom.us/3.1.0/lib/vendor/redux.min.js"></script>
+    <script src="https://source.zoom.us/3.1.0/lib/vendor/redux-thunk.min.js"></script>
+    <script src="https://source.zoom.us/3.1.0/lib/vendor/lodash.min.js"></script>
 
     <!-- For Client View -->
-    <script src="https://source.zoom.us/zoom-meeting-4.0.0.min.js"></script>
+    <script src="https://source.zoom.us/zoom-meeting-3.1.0.min.js"></script>
     <script type="text/javascript">
-        ZoomMtg.setZoomJSLib('https://source.zoom.us/4.0.0/lib', '/av')
+        ZoomMtg.setZoomJSLib('https://source.zoom.us/3.1.0/lib', '/av')
 
         ZoomMtg.preLoadWasm()
         ZoomMtg.prepareWebSDK()
@@ -93,16 +93,16 @@
 
                 success: (success) => {
 
-                    console.log('[success:]' + success)
+                    console.log(success)
 
                     ZoomMtg.join({
-
+                        sdkKey: "{{ $meeting['key'] }}",
                         signature: "{{ $meeting['signature'] }}",
                         meetingNumber: "{{ $meeting['meetingNumber'] }}",
                         passWord: "{{ $meeting['password'] }}",
                         userName: "{{ $meeting['userName'] }}",
                         userEmail: "{{ $meeting['userEmail'] }}",
-
+                        // tk: registrantToken,
                         success: (success) => {
                             console.log(success)
                         },
@@ -119,8 +119,6 @@
 
         startMeeting();
     </script>
-
-
 </body>
 
 </html>
