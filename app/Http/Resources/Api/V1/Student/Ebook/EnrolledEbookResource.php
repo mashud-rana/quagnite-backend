@@ -20,6 +20,7 @@ class EnrolledEbookResource extends JsonResource
         $resourceData = [
             'id' => $this->id,
             'status' => $this->status == PENDING ? 'Pending' : ($this->status == INPROGRESS ? 'In Progress' : 'Complete'),
+            'created_at_formatted' => $this->created_at->format('Y-m-d'),
 
         ];
         // dd($this->student);

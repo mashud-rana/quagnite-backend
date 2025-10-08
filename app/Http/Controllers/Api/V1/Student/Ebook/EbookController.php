@@ -61,7 +61,8 @@ class EbookController extends Controller
     public function myEbooks(Request $request)
     {
 
-        $ebooks = $this->ebookService->getMyEbooks(withRelations: ['ebook.category','student','ebook.user']);
+        // $ebooks = $this->ebookService->getMyEbooks(withRelations: ['ebook.category','student','ebook.user']);
+         $ebooks = $this->ebookService->getMyEbooks(withRelations: ['ebook']);
         // return $ebooks;
         try {
             if (!$ebooks) {
