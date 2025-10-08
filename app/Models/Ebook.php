@@ -46,6 +46,15 @@ class Ebook extends Model
         ];
     }
 
+    public function enroll_ebooks()
+    {
+        return $this->hasMany(EnrollEbook::class, 'ebook_id', 'id');
+    }
+    public function enroll_ebook()
+    {
+        return $this->hasOne(EnrollEbook::class, 'ebook_id', 'id')->where('user_id', auth()->id());
+    }
+
     public static function boot()
     {
         parent::boot();

@@ -8,6 +8,7 @@ use App\Http\Resources\Api\V1\Student\StudentResource;
 use App\Http\Resources\Api\V1\Student\CategoryResource;
 use App\Http\Resources\Api\V1\Student\Teacher\TeacherResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampsResource;
+use App\Http\Resources\Api\V1\Student\Ebook\EnrolledEbookResource;
 
 class EbookResource extends JsonResource
 {
@@ -40,6 +41,10 @@ class EbookResource extends JsonResource
 
         ];
 
+        if ($this->relationLoaded('enroll_ebook') && $this->enroll_ebook) {
+            $enroll_ebook = $this->whenLoaded('enroll_ebook');
+            $resourceData['enroll_ebook'] = new EnrolledEbookResource($enroll_ebook);
+        }
         if ($this->relationLoaded('user') && $this->user) {
             $user = $this->whenLoaded('user');
             $resourceData['teacher'] = new TeacherResource($user);

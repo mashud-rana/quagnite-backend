@@ -30,6 +30,7 @@ use App\Services\Api\V1\Student\ProfileService;
 use App\Services\Api\V1\Student\BootcampService;
 use App\Http\Resources\Api\V1\Student\UserResource;
 use App\Http\Requests\Api\V1\Student\ProfileRequest;
+use App\Http\Resources\Api\V1\Student\Ebook\EbookResource;
 use App\Http\Resources\Api\V1\Student\EnrollCourseResource;
 use App\Http\Resources\Api\V1\Student\Course\CourseResource;
 use App\Http\Resources\Api\V1\Student\CourseSubjectResource;
@@ -60,16 +61,17 @@ class EbookController extends Controller
 
     public function myEbooks(Request $request)
     {
-
+        // return $request->highest;
         // $ebooks = $this->ebookService->getMyEbooks(withRelations: ['ebook.category','student','ebook.user']);
-         $ebooks = $this->ebookService->getMyEbooks(withRelations: ['ebook']);
+         $ebooks = $this->ebookService->getMyEbooks(withRelations: ['enroll_ebook']);
         // return $ebooks;
         try {
             if (!$ebooks) {
                 return $this->error('No ebooks found', 404);
             }
 
-            $resource =  $this->paginatedResponse($ebooks, EnrolledEbookResource::class);
+            // $resource =  $this->paginatedResponse($ebooks, EnrolledEbookResource::class);
+            $resource =  $this->paginatedResponse($ebooks, EbookResource::class);
             return $this->success($resource);
         } catch (\Exception $e) {
             logger($e->getMessage());
