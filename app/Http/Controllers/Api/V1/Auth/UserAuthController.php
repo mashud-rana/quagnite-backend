@@ -40,6 +40,58 @@ class UserAuthController extends Controller
         ]); // HttpOnly
     }
 
+    public function socialLogin(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'first_name' => ['required'],
+            'social_id' => ['required'],
+            'social_provider' => ['required'],
+        ]);
+
+        $user = User::where('email', $request->email)
+            ->first();
+
+        if (!$user) {
+
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'email' => $request->email,
+                'social_id' => $request->social_id,
+                'social_provider' => explode('.', $request->social_provider)[0],
+                'agreed_terms' => 1,
+                'user_type' => USER_TYPE_STUDENT,  // Need to change when member panel is ready
+                'status' => ACTIVE,
+                'email_verified_at' => now(),
+            ]);
+
+            event(new Registered($user));
+
+            $device = substr($request->userAgent() ?? '', 0, 255);
+
+            $token = $user->createToken($device);
+
+            return response()->json([
+                'access_token' => $token->plainTextToken,
+                'user' => $user
+            ], Response::HTTP_CREATED);
+        }else{
+            if($user->status != ACTIVE){
+                throw ValidationException::withMessages([
+                    'email' => ['The user account is not active. Please contact support.'],
+                ]);
+            }else{
+                $accessToken = $user->createToken('access-token', ['*'], now()->addMinutes(config('session.lifetime')))->plainTextToken;
+                $refreshToken = $user->createToken('refresh-token', ['*'], now()->addDays(7))->plainTextToken;
+                return response()->json([
+                    'user' => new UserResource($user),
+                    'access_token' => $accessToken,
+                    'refresh_token' => $refreshToken,
+                ]); // HttpOnly
+            }
+        }
+    }
+
     public function refresh(Request $request)
     {
         $refreshToken = $request->bearerToken() ?? $request->input('refresh_token');
