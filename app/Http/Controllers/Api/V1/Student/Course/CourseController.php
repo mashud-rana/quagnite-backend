@@ -99,6 +99,7 @@ class CourseController extends Controller
     }
     public function courseDetails(Request $request, $slug)
     {
+
         $check = EnrollCourse::where('user_id', auth()->id())
             ->whereHas('course', function ($query) use ($slug) {
                 $query->where('slug', $slug);
@@ -127,13 +128,19 @@ class CourseController extends Controller
                     ->orderBy('id','desc');
                 },
                 'discussions' => function ($query) {
-                    $query->orderBy('id', 'desc');
+                    $query->orderBy('id', 'desc')->with([
+                        'user',
+                        'my_vote'
+                    ]) ->withCount(['helpful_votes']);
                 },
                 'discussions.comments' => function ($query) {
-                    $query->orderBy('id', 'desc');
+                    $query->orderBy('id', 'desc')->with([
+                        'user',
+                        'my_vote'
+                    ])->withCount(['helpful_votes']);
                 },
-                'discussions.comments.user',
-                'discussions.user',
+                // 'discussions.comments.user',
+                // 'discussions.user',
                 'course_notes'=> function($query){
                     $query->orderBy('id','desc')->where('user_id',auth()->id());
                 },

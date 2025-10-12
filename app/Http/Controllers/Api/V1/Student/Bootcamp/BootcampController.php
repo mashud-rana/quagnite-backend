@@ -83,19 +83,37 @@ class BootcampController extends Controller
             'lessons.lecture',
             'difficulty',
             'tags.tag',
-            'reviews' => function($query) {
-                $query->orderBy('id', 'desc')->with('user');
-            },
+
+            'reviews'=> function($query){
+                    $query->with([
+                        'user',
+                        'my_vote'
+                    ])
+                     ->withCount(['helpful_votes'])
+                    ->orderBy('id','desc');
+                },
             'notes'=>function($query){
                 $query->where('user_id',auth()->id())->orderBy('id','desc');
             },
-            'discussions' => function($query) {
-                $query->orderBy('created_at', 'desc')->with([
+            // 'discussions' => function($query) {
+            //     $query->orderBy('created_at', 'desc')->with([
+            //         'user',
+            //         'comments' => function($query) {
+            //             $query->orderBy('created_at', 'desc')->with('user');
+            //         }
+            //     ]);
+            // },
+            'discussions' => function ($query) {
+                $query->orderBy('id', 'desc')->with([
                     'user',
-                    'comments' => function($query) {
-                        $query->orderBy('created_at', 'desc')->with('user');
-                    }
-                ]);
+                    'my_vote'
+                ]) ->withCount(['helpful_votes']);
+            },
+            'discussions.comments' => function ($query) {
+                $query->orderBy('id', 'desc')->with([
+                    'user',
+                    'my_vote'
+                ])->withCount(['helpful_votes']);
             },
             'lessons' => function($query){
                 $query->orderBy('id','desc')->withSum('lecture','duration');

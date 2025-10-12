@@ -90,6 +90,27 @@ class VoteController extends Controller
             ])
             ->findOrFail($request->votable_id);
             $votable = new ReviewResource($votable);
+        }else  if($request->votable_type == 'discussion'){
+            // ✅ Now fetch the updated model properly
+            $votable = $modelClass::with([
+                'user',
+                'my_vote',
+            ])
+            ->withCount([
+                'helpful_votes as helpful_votes_count'
+            ])
+            ->findOrFail($request->votable_id);
+            $votable = new DiscussionsResource($votable);
+        }
+        else  if($request->votable_type == 'discussion_comment'){
+            // ✅ Now fetch the updated model properly
+            $votable = $modelClass::with([
+                'user',
+                'my_vote',
+            ])
+            ->withCount(['helpful_votes'])
+            ->findOrFail($request->votable_id);
+
         }
 
 

@@ -25,6 +25,7 @@ class DiscussionsResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'created_at' => $this->created_at,
+            'helpful_votes_count' => $this->helpful_votes_count,
 
         ];
         if ($this->relationLoaded('comments') && $this->comments) {
@@ -34,6 +35,10 @@ class DiscussionsResource extends JsonResource
         if ($this->relationLoaded('user') && $this->user) {
             $user = $this->whenLoaded('user');
             $resource_data['user'] = new UserResource($user);
+        }
+        if ($this->relationLoaded('my_vote') ) {
+            $my_vote = $this->whenLoaded(relationship: 'my_vote');
+            $resource_data['my_vote'] = $my_vote;
         }
 
         return $resource_data;
