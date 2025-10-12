@@ -7,6 +7,7 @@ use App\Http\Controllers\Student\Course\NoteController;
 use App\Http\Controllers\Api\V1\Student\ReviewVoteController;
 use App\Http\Controllers\Api\V1\Student\Ebook\EbookController;
 use App\Http\Controllers\Api\V1\Student\Course\CourseController;
+use App\Http\Controllers\Api\V1\Student\Billing\BillingController;
 use App\Http\Controllers\Api\V1\Student\Profile\ProfileController;
 use App\Http\Controllers\Api\V1\Student\Bootcamp\BootcampController;
 use App\Http\Controllers\Api\V1\Student\Difficulty\DifficultyController;
@@ -23,6 +24,8 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::put('/update-profile/{id}', [ProfileController::class, "updateProfile"]);
         Route::put('/update-profile-photo/{id}', [ProfileController::class, "updateProfilePhoto"]);
         Route::put('/password/update/{id}', [ProfileController::class, 'updatePassword']);
+        Route::get('/get-user-infos', [ProfileController::class, "getUserInfos"]);
+        Route::put('/update-user-infos', [ProfileController::class, "updateUserInfos"]);
 
         //------------- End Profile -------------------------
 
@@ -88,6 +91,8 @@ Route::prefix('student')->name('student.')->group(function () {
 
             });
         });
+        //--------------End  E-book --------------
+
 
     });
 });
