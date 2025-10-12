@@ -2,13 +2,15 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Student\VoteController;
 use App\Http\Controllers\Student\Course\NoteController;
+use App\Http\Controllers\Api\V1\Student\ReviewVoteController;
+use App\Http\Controllers\Api\V1\Student\Ebook\EbookController;
 use App\Http\Controllers\Api\V1\Student\Course\CourseController;
 use App\Http\Controllers\Api\V1\Student\Profile\ProfileController;
 use App\Http\Controllers\Api\V1\Student\Bootcamp\BootcampController;
 use App\Http\Controllers\Api\V1\Student\Difficulty\DifficultyController;
 use App\Http\Controllers\Api\V1\Student\Category\CourseCategoryController;
-use App\Http\Controllers\Api\V1\Student\Ebook\EbookController;
 
 Route::prefix('student')->name('student.')->group(function () {
 
@@ -49,9 +51,9 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::put('/note/{note_id}/update', 'updateCourseNote');
             });
             //--------------End  Course Details --------------
-
-
         });
+        // Review Vote
+        Route::post('/vote', [VoteController::class, 'vote']);
 
         //-------------- Start Bootcamp --------------
         Route::prefix('bootcamp')->group(function () {

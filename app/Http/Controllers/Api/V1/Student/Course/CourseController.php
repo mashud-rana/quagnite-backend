@@ -119,7 +119,12 @@ class CourseController extends Controller
                 'category',
                 'course_tags',
                 'reviews'=> function($query){
-                    $query->with('user')->orderBy('id','desc');
+                    $query->with([
+                        'user',
+                        'my_vote'
+                    ])
+                     ->withCount(['helpful_votes'])
+                    ->orderBy('id','desc');
                 },
                 'discussions' => function ($query) {
                     $query->orderBy('id', 'desc');
@@ -132,8 +137,9 @@ class CourseController extends Controller
                 'course_notes'=> function($query){
                     $query->orderBy('id','desc')->where('user_id',auth()->id());
                 },
-                'user.teacher.teacher_category'
+                'user.teacher.teacher_category',
             ]);
+            // return $courseDetails;
             if (!$courseDetails) {
                 return $this->error('Course not found', 404);
             }

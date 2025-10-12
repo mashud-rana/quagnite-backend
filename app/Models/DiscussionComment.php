@@ -21,4 +21,8 @@ class DiscussionComment extends Model
     {
         return days_ago_from_now($value);
     }
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'votable');
+    }
 }
