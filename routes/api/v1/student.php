@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\Student\ReviewVoteController;
 use App\Http\Controllers\Api\V1\Student\Ebook\EbookController;
 use App\Http\Controllers\Api\V1\Student\Course\CourseController;
 use App\Http\Controllers\Api\V1\Student\Billing\BillingController;
+use App\Http\Controllers\Api\V1\Student\Invoice\InvoiceController;
 use App\Http\Controllers\Api\V1\Student\Profile\ProfileController;
 use App\Http\Controllers\Api\V1\Student\Bootcamp\BootcampController;
 use App\Http\Controllers\Api\V1\Student\Difficulty\DifficultyController;
@@ -92,6 +93,14 @@ Route::prefix('student')->name('student.')->group(function () {
             });
         });
         //--------------End  E-book --------------
+        //-------------- Start Invoice --------------
+        Route::prefix('invoices')->group(function () {
+            Route::controller(InvoiceController::class)->group(function () {
+                Route::get('/get-my-invoices', "myInvoices");
+                Route::get('/my-invoices/download/{id}', "download");
+            });
+        });
+        //--------------End  Invoice --------------
 
 
     });
