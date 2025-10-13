@@ -74,9 +74,12 @@ class DatabaseSeeder extends Seeder
 //            PlaygroundConfigurationSeeder::class,
 
 //            cms Seeders
-            CMSTemplateSeeder::class,
-            CMSPageSeeder::class,
-            CMSPageContentSeeder::class
+//            CMSTemplateSeeder::class,
+//            CMSPageSeeder::class,
+//            CMSPageContentSeeder::class
+
+//        Benfits Seeder
+//            BenefitsSeeder::class,
         ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\V1\Teacher\Announcement\AnnouncementController;
 use App\Http\Controllers\Api\V1\Teacher\Course\CourseCategory\CourseCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,5 +14,9 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
 
         Route::get('course/categories', [CourseCategoryController::class, 'categoryList']);
         Route::get('/course/categories/{id}/sub-categories',[CourseCategoryController::class, 'courseSubCategoryItem']);
+
+
+//        Resource Routes
+        Route::apiResource('announcements', AnnouncementController::class);
     });
 });
