@@ -32,6 +32,7 @@ class InvoiceResource extends JsonResource
             'payment_type' => $this->payment_type,
             'notes' => $this->notes,
             'status' => $this->status,
+            'date' => $this->updated_at->format('d/m/Y'),
 
         ];
 

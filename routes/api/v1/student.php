@@ -98,6 +98,7 @@ Route::prefix('student')->name('student.')->group(function () {
             Route::controller(InvoiceController::class)->group(function () {
                 Route::get('/get-my-invoices', "myInvoices");
                 Route::get('/my-invoices/download/{id}', "download");
+                Route::get('/my-invoices/view/{id}', "viewInvoice");
             });
         });
         //--------------End  Invoice --------------

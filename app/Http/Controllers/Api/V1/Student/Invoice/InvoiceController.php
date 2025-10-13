@@ -47,26 +47,47 @@ class InvoiceController extends Controller
     }
 
 
-public function download($id)
-{
-    try {
-        $invoice = Invoice::with('items')->findOrFail($id);
-        $student = auth()->user();
+    public function download($id)
+    {
+        try {
+            $invoice = Invoice::with('items')->findOrFail($id);
+            $student = auth()->user();
 
-        // Generate the PDF
-        $pdf = Pdf::loadView('student.invoice.invoice', compact('invoice', 'student'));
-        $fileName = $invoice->invoice_id . '.pdf';
+            // Generate the PDF
+            $pdf = Pdf::loadView('student.invoice.invoice', compact('invoice', 'student'));
+            $fileName = $invoice->invoice_id . '.pdf';
 
-        // Return proper response for browser download
-        return response($pdf->output(), 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-        ]);
-    } catch (\Exception $e) {
-        logger()->error('Invoice download error: ' . $e->getMessage());
-        return response()->json(['error' => 'Something went wrong'], 500);
+            // Return proper response for browser download
+        return response($pdf->output(), 200)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"')
+            ->header('Access-Control-Expose-Headers', 'Content-Disposition');
+
+        } catch (\Exception $e) {
+            logger()->error('Invoice download error: ' . $e->getMessage());
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
     }
-}
+    public function viewInvoice($id)
+    {
+        try {
+            $invoice = Invoice::with('items')->findOrFail($id);
+            $student = auth()->user();
+
+            $pdf = PDF::loadView('student.invoice.invoice', compact('invoice', 'student'));
+            $fileName = $invoice->invoice_id . '.pdf';
+
+            return response($pdf->output(), 200)
+                ->header('Content-Type', 'application/pdf')
+                ->header('Content-Disposition', 'inline; filename="' . $fileName . '"')
+                ->header('Access-Control-Expose-Headers', 'Content-Disposition');
+        } catch (\Exception $e) {
+            logger()->error('Invoice view error: ' . $e->getMessage());
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
+    }
+
+
 
 
 
