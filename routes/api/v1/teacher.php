@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\V1\Teacher\Announcement\AnnouncementController;
+use App\Http\Controllers\Api\V1\Teacher\Benefits\BenefitsController;
 use App\Http\Controllers\Api\V1\Teacher\Course\CourseCategory\CourseCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
 
 
 //        Resource Routes
-        Route::apiResource('announcements', AnnouncementController::class);
+        Route::apiResource('announcements', AnnouncementController::class)->only(['index']);
+        Route::apiResource('benefits', BenefitsController::class)->only(['index']);
+
     });
 });
