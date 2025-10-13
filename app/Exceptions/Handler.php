@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -38,4 +39,22 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    /**
+     * Handle unauthenticated exceptions for Sanctum / API routes.
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access. Please provide a valid API token.'
+            ], 401);
+        }
+
+        // For web requests, redirect to login page
+        return redirect()->guest(route('auth.login'));
+    }
+
+
 }

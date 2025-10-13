@@ -24,6 +24,26 @@ use App\Http\Controllers\Api\V1\Auth\ForgetPasswordController;
 |
 */
 
+Route::post('auth/register', RegisterController::class);
+Route::post('auth/login', LoginController::class);
+Route::post('auth/social-login', [UserAuthController::class, 'socialLogin']);
+
+Route::post('/user-auth/login', [UserAuthController::class, 'login']);
+Route::post('/user-auth/refresh', [UserAuthController::class, 'refresh']);
+Route::post('/user-auth/register', [UserAuthController::class, 'register']);
+
+//forget password
+Route::post('/forget-password', [ForgetPasswordController::class, 'forgetPassword']);
+Route::get('/reset-password/{token}/verify', [ForgetPasswordController::class, 'verifyToken']);
+Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('user-auth/me', [UserAuthController::class, 'me']);
+    Route::post('auth/logout', LogoutController::class);
+
+    Route::get('/test/purchase-plan', [PurchaseController::class, 'purchaseAPlan']);
+});
+
 
 Route::middleware(['auth:sanctum', 'log_api_call'])->group(function () {
 
@@ -57,22 +77,5 @@ Route::middleware(['auth:sanctum', 'log_api_call'])->group(function () {
 // Routes only accessible in local or staging environment
 
 // if (app()->environment('local', 'staging')) {
-    Route::post('auth/register', RegisterController::class);
-    Route::post('auth/login', LoginController::class);
 
-    Route::post('/user-auth/login', [UserAuthController::class, 'login']);
-    Route::post('/user-auth/refresh', [UserAuthController::class, 'refresh']);
-    Route::post('/user-auth/register', [UserAuthController::class, 'register']);
-
-    //forget password
-    Route::post('/forget-password', [ForgetPasswordController::class, 'forgetPassword']);
-    Route::get('/reset-password/{token}/verify', [ForgetPasswordController::class, 'verifyToken']);
-    Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword']);
-
-    Route::middleware(['auth:sanctum'])->group(function () {
-        Route::get('user-auth/me', [UserAuthController::class, 'me']);
-        Route::post('auth/logout', LogoutController::class);
-
-        Route::get('/test/purchase-plan', [PurchaseController::class, 'purchaseAPlan']);
-    });
 // }

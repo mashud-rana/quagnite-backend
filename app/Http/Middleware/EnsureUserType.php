@@ -16,6 +16,7 @@ class EnsureUserType
      */
     public function handle(Request $request, Closure $next, string $user_type)
     {
+
         $user = $request->user(); // sanctum auth user
         if (!$user || $user->user_type !== $user_type) {
             abort(403, 'Forbidden');

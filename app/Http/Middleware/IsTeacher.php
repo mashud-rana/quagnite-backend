@@ -22,6 +22,11 @@ class IsTeacher
                 return $next($request);
             }
         }
-        return redirect('/');
+        return [
+            'status' => false,
+            'message' => 'You are not authorized to access this resource.',
+            'data' => null,
+            'errors' => ['Unauthorized access']
+        ];
     }
 }
