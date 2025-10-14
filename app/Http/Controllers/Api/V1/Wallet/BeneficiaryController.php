@@ -50,13 +50,22 @@ class BeneficiaryController extends Controller
             return $this->error('Failed to update user info', 500);
         }
     }
+    public function update(BeneficiaryRequest $request, $uuid)
+    {
+        try {
+            $data = $request->validated(); // ✅ convert to array
+            $beneficiary = $this->walletService->beneficiaryStoreOrUpdate($data, $uuid);
+            return $this->success(message: 'Beneficiary updated successfully');
+        } catch (\Exception $e) {
+            logger()->error('User info update failed: ' . $e->getMessage());
+            return $this->error('Failed to update user info', 500);
+        }
+    }
 
     public function delete($uuid)
     {
         Beneficiary::whereUuid($uuid)->firstOrFail()->delete();
 
-        record_deleted_flash();
-
-        return redirect()->back();
+       return $this->success(message: 'Beneficiary deleted successfully');
     }
 }

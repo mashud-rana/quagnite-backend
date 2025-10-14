@@ -21,15 +21,15 @@ class WalletService
          $this->fileService = $fileService;
     }
 
-   public function beneficiaryStoreOrUpdate($data, $id = null)
+   public function beneficiaryStoreOrUpdate($data, $uuid = null)
     {
         try {
-
+            // dd($data, Beneficiary::whereUuid($uuid)->firstOrFail());
             // Upload image
             if (isset($data['image']) && $data['image'] != null) {
                 $user_type = auth()->user()->user_type;
-                if ($id) {
-                    $item = Beneficiary::find($id);
+                if ($uuid) {
+                    $item = Beneficiary::whereUuid($uuid)->firstOrFail();
                     if ($item->image) {
                         $this->fileService->delete($item->image);
                     }
@@ -44,8 +44,8 @@ class WalletService
             }
 
             // Save or update
-            if ($id) {
-                return Beneficiary::findOrFail($id)->update($data);
+            if ($uuid) {
+                return Beneficiary::whereUuid($uuid)->firstOrFail()->update($data);
             } else {
                 return Beneficiary::create($data);
             }
