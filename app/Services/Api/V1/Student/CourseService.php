@@ -191,35 +191,7 @@ class CourseService extends BaseService
         return $courseCategories;
     }
 
-    public function getDifficultyLevels(
-        array $selectedFields = ['*'],
-        array $withRelations = []
-    )
-    {
-        $request = request();
 
-        $per_page = $request->get('per_page', 10);
-        $is_paginate = $request->get('is_paginate', false);
-
-        $relationships = [];
-
-        foreach($withRelations as $relation){
-            $relationships[] = $relation;
-
-        }
-
-        $difficulties =  DifficultyLevel::query()
-            ->with($relationships)
-            ->select($selectedFields)
-            ->orderBy('id','desc')
-            ->when($is_paginate, function ($query) use ($per_page) {
-                return $query->paginate($per_page);
-            }, function ($query) {
-                return $query->get();
-            });
-
-        return $difficulties;
-    }
 
     public function getCourseDetailsBySlug($slug,
         array $selectedFields = ['*'],

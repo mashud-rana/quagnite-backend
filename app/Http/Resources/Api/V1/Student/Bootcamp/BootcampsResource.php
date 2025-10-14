@@ -5,7 +5,7 @@ namespace App\Http\Resources\Api\V1\Student\Bootcamp;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Api\V1\Student\TagResource;
+use App\Http\Resources\Api\V1\Student\BootcampTagResource;
 use App\Http\Resources\Api\V1\Student\StudentResource;
 use App\Http\Resources\Api\V1\Student\CategoryResource;
 use App\Http\Resources\Api\V1\Student\Review\ReviewResource;
@@ -81,7 +81,7 @@ class BootcampsResource extends JsonResource
 
         if ($this->relationLoaded('tags') && $this->tags) {
             $tags = $this->whenLoaded('tags');
-            $resource_data['tags'] = TagResource::collection($tags);
+            $resource_data['tags'] = BootcampTagResource::collection($tags);
         }
 
         if ($this->relationLoaded('discussions') && $this->discussions) {

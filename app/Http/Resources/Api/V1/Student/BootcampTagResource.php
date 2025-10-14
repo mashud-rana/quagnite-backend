@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Api\V1\Student\Lecture\LectureResource;
 use App\Http\Resources\Api\V1\Student\Teacher\TeacherResource;
 
-class TagResource extends JsonResource
+class BootcampTagResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

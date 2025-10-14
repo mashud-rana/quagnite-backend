@@ -31,7 +31,7 @@ class ChunkFileService
             try {
                 $contents = Storage::disk('public')->get($uploadedPath);
                 $response = Storage::disk('s3')->put($movePath, $contents);
-                
+
                 // delete uploaded file
                 Storage::disk('public')->delete($uploadedPath);
 
@@ -40,7 +40,7 @@ class ChunkFileService
                 }else{
                     return false;
                 }
-                
+
             } catch (\Exception $e) {
                 logger($e->getMessage());
                 return false;
@@ -56,7 +56,6 @@ class ChunkFileService
 
         $folder = uniqid() . '-' . now()->timestamp;
         $path = storage_path($storeDir  . $folder);
-
         if( $request->header('Upload-Length') < FILE_CHUNK_SIZE){
 
             $newFileName = Str::random(25) . "." . $request->file('file')->getClientOriginalExtension();
@@ -77,7 +76,7 @@ class ChunkFileService
             // Create the file.part inside the new directory for chunk uploads
             file_put_contents($path . '/file.part', '');
         }
-        
+
         return $folder;
     }
 
@@ -93,9 +92,9 @@ class ChunkFileService
 
             if (filesize($path) == $request->header('Upload-Length')) {
                 $name = $request->header('Upload-Name');
-    
+
                 File::move($path, storage_path($storeDir . $request->query('patch') . '/' . $name));
-    
+
                 session()->put('chunk_uploaded_file_name', $name);
             }
 
@@ -104,7 +103,7 @@ class ChunkFileService
 
             return false;
         }
-        
+
         return true;
     }
 

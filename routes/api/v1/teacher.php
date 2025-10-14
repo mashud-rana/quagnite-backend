@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\api\V1\Teacher\Announcement\AnnouncementController;
+use App\Http\Controllers\Api\V1\Course\CourseController;
+use App\Http\Controllers\Api\V1\Teacher\Announcement\AnnouncementController;
 use App\Http\Controllers\Api\V1\Teacher\Benefits\BenefitsController;
 use App\Http\Controllers\Api\V1\Teacher\Course\CourseCategory\CourseCategoryController;
+use App\Http\Controllers\Api\V1\Teacher\Difficulty\DifficultyController;
 use App\Http\Controllers\Api\V1\Teacher\Language\LanguageController;
+use App\Http\Controllers\Api\V1\Teacher\Tag\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('teacher')->name('teacher.')->group(function () {
@@ -22,6 +25,15 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::apiResource('announcements', AnnouncementController::class)->only(['index']);
         Route::apiResource('benefits', BenefitsController::class)->only(['index']);
         Route::apiResource('languages', LanguageController::class)->only(['index']);
+        Route::apiResource('difficulty', DifficultyController::class)->only(['index']);
+        Route::apiResource('tags', TagController::class)->only(['index']);
+
+        Route::prefix('course')->group(function () {
+            // Chunk uploads
+            Route::post('chunk-upload', [CourseController::class, 'storeChunkFile']);
+            Route::patch('chunk-upload', [CourseController::class, 'updateChunkFile']);
+            Route::delete('chunk-upload', [CourseController::class, 'deleteChunkFile']);
+        });
 
     });
 });

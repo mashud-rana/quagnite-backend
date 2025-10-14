@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Student\Difficulty;
 
 
+use App\Services\Api\V1\DifficultyService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
@@ -15,17 +16,16 @@ use App\Http\Resources\Api\V1\Student\DifficultyLevelResource;
 class DifficultyController extends Controller
 {
     use ApiResponse, PaginatedResourceTrait;
-    protected $courseService;
+    public $difficultyService;
 
-    public function __construct(CourseService $courseService)
+    public function __construct(DifficultyService $difficultyService)
     {
-        $this->courseService = $courseService;
+        $this->difficultyService = $difficultyService;
     }
 
     public function getDifficulties(Request $request)
     {
-
-        $difficulties = $this->courseService->getDifficultyLevels();
+        $difficulties = $this->difficultyService->getDifficultyLevels();
         $is_paginate = $request->get('is_paginate', false);
         try {
             if (!$difficulties) {

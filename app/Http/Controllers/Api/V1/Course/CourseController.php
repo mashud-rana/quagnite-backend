@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Course;
 
 use App\Models\Course;
+use App\Services\Utils\ChunkFileService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Course\CourseResource;
@@ -14,6 +15,13 @@ use App\Http\Resources\Course\CourseResource;
  */
 class CourseController extends Controller
 {
+    public $chunkFileSevice;
+
+    public function __construct(ChunkFileService $chunkFileService)
+    {
+        $this->chunkFileSevice = $chunkFileService;
+    }
+
     /**
      * Get All Courses
      *
@@ -97,4 +105,42 @@ class CourseController extends Controller
     // {
     //     //
     // }
+
+
+    public function storeChunkFile(Request $request)
+    {
+        $tmpDir = $this->tmpDirectory();
+
+        return $this->chunkFileSevice->storeFileInServer($request, $tmpDir);
+    }
+
+    public function updateChunkFile(Request $request)
+    {
+        $tmpDir = $this->tmpDirectory();
+
+        if ($this->chunkFileSevice->updateFileInServer($request, $tmpDir)) {
+            return response()->json(['uploaded' => true]);
+        } else {
+            return response()->json(['uploaded' => false], 404);
+        }
+    }
+
+    public function deleteChunkFile()
+    {
+        $tmpDir = $this->tmpDirectory();
+
+        $response = $this->chunkFileSevice->deleteFileFromServer($tmpDir);
+
+        if ($response) {
+
+            return response()->json(['deleted' => true]);
+        }
+
+        return response()->json(['deleted' => false, 'error' => 'Directory not found'], 404);
+    }
+
+    private function tmpDirectory()
+    {
+        return 'uploads/tmp/' . date('m-d-Y') . '/' . auth()->id() . '/';
+    }
 }
