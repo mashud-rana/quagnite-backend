@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\V1\Teacher\Announcement\AnnouncementController;
 use App\Http\Controllers\Api\V1\Teacher\Benefits\BenefitsController;
 use App\Http\Controllers\Api\V1\Teacher\Course\CourseCategory\CourseCategoryController;
+use App\Http\Controllers\Api\V1\Teacher\Language\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('teacher')->name('teacher.')->group(function () {
@@ -20,6 +21,7 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
 //        Resource Routes
         Route::apiResource('announcements', AnnouncementController::class)->only(['index']);
         Route::apiResource('benefits', BenefitsController::class)->only(['index']);
+        Route::apiResource('languages', LanguageController::class)->only(['index']);
 
     });
 });
