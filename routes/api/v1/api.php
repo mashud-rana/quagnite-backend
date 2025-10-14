@@ -56,6 +56,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::prefix('beneficiaries')->group(function () {
             Route::controller(BeneficiaryController::class)->group(function () {
                 Route::get('/', 'index');
+                Route::get('/{uuid}/show', 'show');
                 Route::post('/', 'store');
                 Route::put('/{uuid}/update', 'update');
                 Route::delete('/{uuid}/delete', 'delete');

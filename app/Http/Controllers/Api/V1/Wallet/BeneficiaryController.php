@@ -24,7 +24,7 @@ class BeneficiaryController extends Controller
 
 
         $beneficiaries = $this->walletService->getBeneficiaries(
-            withRelations:['user']
+            // withRelations:['user']
         );
         try {
             if (!$beneficiaries) {
@@ -67,5 +67,10 @@ class BeneficiaryController extends Controller
         Beneficiary::whereUuid($uuid)->firstOrFail()->delete();
 
        return $this->success(message: 'Beneficiary deleted successfully');
+    }
+    public function show($uuid)
+    {
+        $beneficiary = Beneficiary::whereUuid($uuid)->firstOrFail();
+        return $this->success(new BeneficiaryResource($beneficiary));
     }
 }
