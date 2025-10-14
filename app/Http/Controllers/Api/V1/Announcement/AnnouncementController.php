@@ -51,8 +51,14 @@ class AnnouncementController extends Controller
     }
 
     // Mark a single announcement as read
-    public function markAsRead($id)
+    public function markAsRead(Request $request)
     {
+        $request->validate([
+            'announcement_id' => 'required|exists:announcements,id',
+        ]);
+
+        $id = $request->announcement_id;
+
        $read = $this->announcementService->markAsRead($id);
        if(!$read){
         return $this->error('Announcement not found', 404);
