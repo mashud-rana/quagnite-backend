@@ -11,8 +11,10 @@ use App\Http\Controllers\Api\V1\Auth\UserAuthController;
 use App\Http\Controllers\Api\V1\Course\CourseController;
 use App\Http\Controllers\Api\V1\Plan\PurchaseController;
 use App\Http\Controllers\Api\V1\Bootcamp\BootcampController;
+use App\Http\Controllers\Api\V1\Wallet\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Auth\ForgetPasswordController;
 use App\Http\Controllers\Api\V1\Announcement\AnnouncementController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(AnnouncementController::class)->group(function () {
             Route::get('/get-all', "myAnnouncements");
             Route::post('/read', "markAsRead");
+        });
+    });
+    Route::prefix('wallet')->group(function () {
+        Route::prefix('beneficiaries')->group(function () {
+            Route::controller(BeneficiaryController::class)->group(function () {
+                Route::get('/', 'index');
+                Route::post('/', 'store');
+                // Route::delete('/{uuid}', 'delete')->name('beneficiaries.delete');
+            });
         });
     });
 });
