@@ -177,6 +177,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UserCard::class, 'user_id', 'id');
     }
 
+    public function announcement_reads()
+    {
+        return $this->morphMany(AnnouncementRead::class, 'readable');
+    }
+
 
     public static function boot()
     {

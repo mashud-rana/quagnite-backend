@@ -14,14 +14,11 @@ class Announcement extends Model
     protected $guarded = ['id'];
 
     //============== Relationships ==============
-    public function reads()
-    {
-        return $this->morphMany(AnnouncementRead::class, 'readable');
-    }
+
 
     public function myself_read()
     {
-        return $this->morphOne(AnnouncementRead::class, 'readable')->where('readable_id', auth()->id());
+        return $this->hasOne(AnnouncementRead::class,'announcement_id','id')->where('readable_id',auth()->id());
     }
 
     public static function boot()

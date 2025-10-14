@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AnnouncementRead extends Model
 {
-    use HasFactory, SoftDeletes, ModelBootHandler;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = ['id',];
 
@@ -22,13 +22,5 @@ class AnnouncementRead extends Model
     public function readable()
     {
         return $this->morphTo();
-    }
-
-
-     public static function boot()
-    {
-        parent::boot();
-
-        static::enableSlugBootHandler();
     }
 }
