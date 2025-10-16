@@ -37,19 +37,63 @@ class CertificateService extends BaseService
     public function getMyStudentCertificates(
         array $selectedFields = ['*'],
         array $withRelations = []
-    )
-    {
+    ) {
         $perPage = request('per_page', 10);
+        $search = request('search');
+        $certifiable_types = request('certifiable_types');
 
         $query = StudentCertificate::query()
-            ->whereHasMorph('certifiable', [EnrollCourse::class, ExamResult::class])
             ->where('user_id', auth()->id())
+            ->whereHasMorph(
+                'certifiable',
+                [EnrollCourse::class, ExamResult::class],
+                function ($q, $type) use ($search) {
+                    if ($search) {
+                        if ($type === EnrollCourse::class) {
+                            $q->whereHas('course', function ($sub) use ($search) {
+                                $sub->where('title', 'like', "%{$search}%");
+                            });
+                        }
+
+                        if ($type === ExamResult::class) {
+                            $q->whereHas('exam', function ($sub) use ($search) {
+                                $sub->where('title', 'like', "%{$search}%");
+                            });
+                        }
+                    }
+                }
+            )
+            ->when($certifiable_types, function ($q) use ($certifiable_types) {
+                $types = explode(',', $certifiable_types);
+                $mappedTypes = [];
+
+                if (in_array('course', $types)) {
+                    $mappedTypes[] = EnrollCourse::class;
+                }
+                if (in_array('exam', $types)) {
+                    $mappedTypes[] = ExamResult::class;
+                }
+
+                if (!empty($mappedTypes)) {
+                    $q->whereIn('certifiable_type', $mappedTypes);
+                }
+            })
             ->select($selectedFields)
             ->latest()
+            // ->with([
+            //     'certifiable' => function ($morphTo) {
+            //         $morphTo->morphWith([
+            //             EnrollCourse::class => ['course'],
+            //             ExamResult::class   => ['exam'],
+            //         ]);
+            //     },
+            // ]);
             ->with($withRelations);
 
         return $query->paginate($perPage);
     }
+
+
 
     public function generateCourseCertificates($enroll_course_id)
     {
