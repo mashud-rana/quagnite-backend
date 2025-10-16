@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\Auth\UserAuthController;
-use App\Http\Controllers\Api\V1\Exam\ExamController;
+use App\Http\Controllers\Api\V1\Auth\ForgetPasswordController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
-use App\Http\Controllers\Api\V1\Ebook\EbookController;
-use App\Http\Controllers\Api\V1\Forum\ForumController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
-use App\Http\Controllers\Api\V1\Course\CourseController;
-use App\Http\Controllers\Api\V1\Plan\PurchaseController;
+use App\Http\Controllers\Api\V1\Auth\UserAuthController;
 use App\Http\Controllers\Api\V1\Bootcamp\BootcampController;
-use App\Http\Controllers\Api\V1\Auth\ForgetPasswordController;
+use App\Http\Controllers\Api\V1\Ebook\EbookController;
+use App\Http\Controllers\Api\V1\Exam\ExamController;
+use App\Http\Controllers\Api\V1\Forum\ForumController;
+use App\Http\Controllers\Api\V1\Plan\PurchaseController;
+use App\Http\Controllers\Api\V1\Teacher\Course\CourseController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

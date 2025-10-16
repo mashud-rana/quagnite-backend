@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\V1\Course\CourseController;
 use App\Http\Controllers\Api\V1\Teacher\Announcement\AnnouncementController;
 use App\Http\Controllers\Api\V1\Teacher\Benefits\BenefitsController;
 use App\Http\Controllers\Api\V1\Teacher\Course\CourseCategory\CourseCategoryController;
+use App\Http\Controllers\Api\V1\Teacher\Course\CourseController;
 use App\Http\Controllers\Api\V1\Teacher\Difficulty\DifficultyController;
 use App\Http\Controllers\Api\V1\Teacher\Language\LanguageController;
 use App\Http\Controllers\Api\V1\Teacher\Tag\TagController;
@@ -29,6 +29,9 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::apiResource('tags', TagController::class)->only(['index']);
 
         Route::prefix('course')->group(function () {
+//            Course Create
+            Route::post('create', [CourseController::class, 'store']);
+
             // Chunk uploads
             Route::post('chunk-upload', [CourseController::class, 'storeChunkFile']);
             Route::patch('chunk-upload', [CourseController::class, 'updateChunkFile']);

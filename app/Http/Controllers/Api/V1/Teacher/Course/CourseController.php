@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Course;
+namespace App\Http\Controllers\Api\V1\Teacher\Course;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\Teacher\CourseRequest;
+use App\Http\Resources\Course\CourseResource;
 use App\Models\Course;
 use App\Services\Utils\ChunkFileService;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\Course\CourseResource;
 
 /**
  * @group Courses
@@ -53,10 +54,13 @@ class CourseController extends Controller
     //  * @param  \Illuminate\Http\Request  $request
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+     public function store(CourseRequest $request)
+     {
+         $data = $request->validated();
+
+         logger('course create',[$data]);
+//         dd('test', $data);
+     }
 
     /**
      * Get A Course

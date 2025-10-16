@@ -12,6 +12,7 @@ class FileService
 
     public function __construct()
     {
+        logger(config('settings.storage_driver'));
         $this->disk = config('settings.storage_driver');
     }
 

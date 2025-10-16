@@ -15,8 +15,11 @@ use App\Http\Controllers\Frontend\Home\HomeController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Teacher\Wallet\BeneficiaryController;
 use App\Http\Controllers\Teacher\Wallet\WalletController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
+use Stripe\Stripe;
+use Stripe\StripeClient;
 
 // Front End Pages
 Route::get('/', [HomeController::class, 'index'])->name('front.home');
@@ -100,5 +103,115 @@ Route::get('/dispatch-job', function () {
 
 // book demo
 Route::post('book-your-demo', [HomeController::class, 'bookYourDemo'])->name('bookYourDemo');
+
+
+Route::get('stripe-test', function () {
+    $stripe = new StripeClient(config('settings.stripe_secret'));
+
+    $paymentMethod = $stripe->paymentMethods->create([
+        'type' => 'card',
+        'card' => [
+            'number' => '4242424242424242',
+            'exp_month' => 12,
+            'exp_year' => 2026,
+            'cvc' => '123',
+        ],
+    ]);
+
+
+    $paymentMethodId = $paymentMethod->id;
+    Stripe::setApiKey(config('settings.stripe_secret'));
+    $user= user::first();
+    $stripe = new StripeClient(config('settings.stripe_secret'));
+    $stripeCustomerId = null;
+    // If user has no stripe_customer_id, create one
+
+        $customer = $stripe->customers->create([
+            'email' => $user->email,
+        ]);
+
+        $stripeCustomerId = $customer->id;
+
+    // Attach card
+    $stripe->paymentMethods->attach(
+        $paymentMethodId, // from Stripe.js
+        ['customer' => $stripeCustomerId]
+    );
+
+    // Set as default
+    $stripe->customers->update($stripeCustomerId, [
+        'invoice_settings' => [
+            'default_payment_method' => $paymentMethodId,
+        ],
+    ]);
+
+    dd($stripeCustomerId,$paymentMethodId);
+
+
+
+});
+
+
+Route::get('stripe-bye-product',function(){
+    Stripe::setApiKey(config('settings.stripe_secret'));
+    $stripe = new StripeClient(config('settings.stripe_secret'));
+
+
+
+    $amount = 500; // $10 in cents
+
+    $paymentIntent = $stripe->paymentIntents->create([
+        'amount' => $amount,
+        'currency' => 'usd',
+        'customer' => 'cus_TEunntDBcEmAs1',
+        'payment_method' => 'pm_1SIQxnRT3L59VBqrLrlArGH5',
+        'off_session' => true,
+        'confirm' => true,
+//        'transfer_data' => [
+////            'destination' => 'acct_1SIRbxREoR6lMDCt', // admin’s connected account
+//            'destination' => 'acct_1SISPdInX4IXvJdY', // admin’s connected Stanred account
+//        ],
+    ]);
+
+    return response()->json([
+        'message' => 'Payment successful',
+        'payment_id' => $paymentIntent->id
+    ]);
+});
+
+Route::get('get-stripe-account',function(){
+    Stripe::setApiKey(config('settings.stripe_secret'));
+    $stripe = new StripeClient(config('settings.stripe_secret'));
+
+    // Create an Express account for the admin
+//    $account = $stripe->accounts->create([
+//        'type' => 'standard', // or 'standard'
+//        'country' => 'US', // change if needed
+//        'email' => 'admin@app.com', // admin’s email
+//        'capabilities' => [
+//            'card_payments' => ['requested' => true],
+//            'transfers' => ['requested' => true],
+//        ],
+//    ]);
+//    dd($account);
+    $accountLink = $stripe->accountLinks->create([
+        'account' => 'acct_1SISPdInX4IXvJdY',
+        'refresh_url' => url('/reauth'),
+        'return_url' => url('/dashboard'),
+        'type' => 'account_onboarding',
+    ]);
+
+    dd($accountLink);
+
+//    Check status
+    $account = $stripe->accounts->retrieve('acct_1SIRbxREoR6lMDCt');
+    dd($account->capabilities);
+
+    return response()->json([
+        'message' => 'Connected account created',
+        'stripe_account_id' => 'acct_1SIRbxREoR6lMDCt'
+    ]);
+});
+
 
 
