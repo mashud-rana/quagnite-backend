@@ -52,7 +52,7 @@ class CourseController extends Controller
             if (!$enrolledCourses) {
                 return $this->error('No enrolled courses found', 404);
             }
-            $this->courseService->calculateCoursesCompletion($enrolledCourses);
+            // $this->courseService->calculateCoursesCompletion($enrolledCourses);
             // return $this->success($enrolledCourses);
             $resource =  $this->paginatedResponse($enrolledCourses, EnrollCourseResource::class);
             return $this->success($resource);
@@ -428,6 +428,9 @@ class CourseController extends Controller
                     'lesson_id' => $lecture->course_lesson_id,
                 ],
             ]);
+
+            //single course completion
+            $this->courseService->calculateSingleCourseCompletion($lecture->course_id, $user->id);
 
             // Optionally, you may want to return a resource instead of the raw model
             return $this->success(new LectureResource($lecture), 'Lecture marked as completed successfully');

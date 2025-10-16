@@ -887,3 +887,17 @@ if (!function_exists('maskCardNumber')) {
         return '**** **** **** ' . $lastFour;
     }
 }
+if (!function_exists('generateUniqueCertificateNumber')) {
+
+    function generateUniqueCertificateNumber() {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $codeLength = 12;
+
+        $certificateNumber = '';
+        for ($i = 0; $i < $codeLength; $i++) {
+            $certificateNumber .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $certificateNumber;
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\V1\Student;
 
+use App\Http\Resources\Api\V1\Student\Course\CourseResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EnrollCourseResource extends JsonResource
@@ -15,7 +16,7 @@ class EnrollCourseResource extends JsonResource
     public function toArray($request)
     {
 
-        return [
+        $resourceData= [
             'id' => $this->id,
             'course_image' =>getStoreFile($this->course->image, $this->course->storage_type) ,
             'course_slug' => $this->course?->slug,
@@ -34,6 +35,12 @@ class EnrollCourseResource extends JsonResource
                 'total_review' => $this->course?->reviews?->count(),
             ] : null,
         ];
+        if ($this->relationLoaded('course') && $this->course) {
+            $course = $this->whenLoaded('course');
+            $resourceData['course'] = new CourseResource($course);
+        }
+
+        return $resourceData;
 
     }
 }

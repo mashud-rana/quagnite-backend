@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\Student\Billing\BillingController;
 use App\Http\Controllers\Api\V1\Student\Invoice\InvoiceController;
 use App\Http\Controllers\Api\V1\Student\Profile\ProfileController;
 use App\Http\Controllers\Api\V1\Student\Bootcamp\BootcampController;
+use App\Http\Controllers\Api\V1\Student\Invoice\CertificateController;
 use App\Http\Controllers\Api\V1\Student\Difficulty\DifficultyController;
 use App\Http\Controllers\Api\V1\Student\Category\CourseCategoryController;
 
@@ -99,6 +100,15 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::get('/get-my-invoices', "myInvoices");
                 Route::get('/my-invoices/download/{id}', "download");
                 Route::get('/my-invoices/view/{id}', "viewInvoice");
+            });
+        });
+        //--------------End  Invoice --------------
+        //-------------- Start Certificate --------------
+        Route::prefix('certificates')->group(function () {
+            Route::controller(CertificateController::class)->group(function () {
+                Route::get('/get-my-certificates', "myCertificates");
+                // Route::get('/my-certificates/download/{id}', "download");
+                // Route::get('/my-certificates/view/{id}', "viewCertificate");
             });
         });
         //--------------End  Invoice --------------

@@ -173,9 +173,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserInfo::class, 'user_id', 'id');
     }
 
-    public function user_cards(){
-        return $this->hasMany(UserCard::class, 'user_id', 'id');
-    }
 
     public function announcement_reads()
     {
