@@ -92,17 +92,17 @@
                                                 <div class="form-group">
                                                     <label for="#">Course title</label>
                                                     <input name="title" type="text" class="form-control"
-                                                        value="{{ old('title') }}" placeholder="Course Title">
+                                                           value="{{ old('title') }}" placeholder="Course Title">
                                                 </div>
                                                 @error('title')
-                                                    <p class="error">{{ $message }}</p>
+                                                <p class="error">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="#">Course Subtitle</label>
                                                     <input name="subtitle" type="text" class="form-control"
-                                                        value="{{ old('subtitle') }}" placeholder="Course Subtitle">
+                                                           value="{{ old('subtitle') }}" placeholder="Course Subtitle">
                                                 </div>
                                             </div>
                                             {{-- <div class="col-lg-6">
@@ -123,7 +123,7 @@
                                                 <div class="form-group">
                                                     <label for="">Description</label>
                                                     <input id="inputTrix" type="hidden" name="description"
-                                                        value="{{ old('description') }}">
+                                                           value="{{ old('description') }}">
                                                     <trix-editor class="trix-editor" input="inputTrix"></trix-editor>
                                                 </div>
                                             </div>
@@ -199,7 +199,7 @@
                                                 <div class="form-group">
                                                     <label for="#">Course Access Period</label>
                                                     <input name="access_period" value="0" type="number"
-                                                        class="form-control">
+                                                           class="form-control">
                                                     <span class="color-deep-gray ff-lexend fs-12 fw-200">Enrollment will
                                                         expire after
                                                         this
@@ -210,7 +210,7 @@
                                                 <div class="form-group">
                                                     <label for="#">Learners Accessibility</label>
                                                     <select name="learner_accessibility" class="selectpicker"
-                                                        id="learner_accessibility">
+                                                            id="learner_accessibility">
                                                         <option selected disabled>Select Accessibility</option>
                                                         <option
                                                             {{ COURSE_ACCESS_FREE === old('learner_accessibility') ? 'selected' : '' }}
@@ -227,14 +227,14 @@
                                                         <div class="form-group">
                                                             <label for="#">Course Price</label>
                                                             <input name="price" type="text" class="form-control"
-                                                                value="{{ old('price') }}" placeholder="Price">
+                                                                   value="{{ old('price') }}" placeholder="Price">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label for="#">Old Price</label>
                                                             <input name="old_price" type="text" class="form-control"
-                                                                value="{{ old('old_price') }}" placeholder="Old Price">
+                                                                   value="{{ old('old_price') }}" placeholder="Old Price">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,7 +278,7 @@
                                                 <div>
                                                     <label for="">Course Thumbnail Image</label>
                                                     <input name="image" class="form-control" type="file"
-                                                        id="image" accept="image/*" required>
+                                                           id="image" accept="image/*" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 ">
@@ -290,10 +290,10 @@
                                                         <li>
                                                             <div class="form-check">
                                                                 <input name="thumb_type" value="upload"
-                                                                    class="form-check-input" type="radio"
-                                                                    id="flexRadioDefault1" />
+                                                                       class="form-check-input" type="radio"
+                                                                       id="flexRadioDefault1" />
                                                                 <label class="form-check-label fw-300 ff-lexend gray"
-                                                                    for="flexRadioDefault1">
+                                                                       for="flexRadioDefault1">
                                                                     Video Upload
                                                                 </label>
                                                             </div>
@@ -301,10 +301,10 @@
                                                         <li>
                                                             <div class="form-check">
                                                                 <input name="thumb_type" value="link"
-                                                                    class="form-check-input" type="radio"
-                                                                    id="flexRadioDefault2">
+                                                                       class="form-check-input" type="radio"
+                                                                       id="flexRadioDefault2">
                                                                 <label class="form-check-label fw-300 ff-lexend gray"
-                                                                    for="flexRadioDefault2" />
+                                                                       for="flexRadioDefault2" />
                                                                 Video URL
                                                                 </label>
                                                             </div>
@@ -312,8 +312,8 @@
                                                     </ul>
                                                     <div class="form-group mt-3 d-none" id="thumbVideoLinkInput">
                                                         <input name="video_link" value="{{ old('video_link') }}"
-                                                            type="text" class="form-control"
-                                                            placeholder="Type your video URL">
+                                                               type="text" class="form-control"
+                                                               placeholder="Type your video URL">
                                                     </div>
                                                     <div class="form-group mt-3 d-none" id="thumbVideoInput">
                                                         <input name="video" type="file" id="courseIntroVideo">
@@ -342,12 +342,12 @@
 
     <!-- CSS -->
     <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet'
-        type='text/css' />
+          type='text/css' />
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     {{-- File Pond --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.31.1/filepond.min.css"
-        integrity="sha512-TtQdiqlFBF4xOf9GCawalT4FQ7qihYm+EMYxpor3WzndeGC+NflmNd/P5AN8vvRH4XqTjoNrIeJRbZcifEMbWA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+          integrity="sha512-TtQdiqlFBF4xOf9GCawalT4FQ7qihYm+EMYxpor3WzndeGC+NflmNd/P5AN8vvRH4XqTjoNrIeJRbZcifEMbWA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         .filepond--credits {
@@ -370,8 +370,8 @@
 
     {{-- File pond --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.31.1/filepond.min.js"
-        integrity="sha512-UlakzTkpbSDfqJ7iKnPpXZ3HwcCnFtxYo1g95pxZxQXrcCLB0OP9+uUaFEj5vpX7WwexnUqYXIzplbxq9KSatw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            integrity="sha512-UlakzTkpbSDfqJ7iKnPpXZ3HwcCnFtxYo1g95pxZxQXrcCLB0OP9+uUaFEj5vpX7WwexnUqYXIzplbxq9KSatw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(function() {
 

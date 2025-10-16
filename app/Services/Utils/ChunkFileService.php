@@ -64,6 +64,7 @@ class ChunkFileService
                 $newFileName,
                 'public'
             );
+
             session()->put('chunk_uploaded_file_name', $newFileName);
 
         }else{
@@ -76,7 +77,6 @@ class ChunkFileService
             // Create the file.part inside the new directory for chunk uploads
             file_put_contents($path . '/file.part', '');
         }
-
         return $folder;
     }
 
@@ -86,6 +86,7 @@ class ChunkFileService
 
         $path = storage_path($storeDir . $request->query('patch') . '/file.part');
 
+        logger('chunk upload file',[$path]);
         try{
 
             File::append($path, $request->getContent());

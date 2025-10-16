@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Api\V1\Teacher\Course;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Teacher\CourseRequest;
+use App\Http\Requests\Api\V1\Teacher\CourseUpdateRequest;
 use App\Http\Resources\Course\CourseResource;
 use App\Models\Course;
+use App\Services\Api\V1\Teacher\Course\CourseCreateService;
 use App\Services\Utils\ChunkFileService;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -16,11 +19,15 @@ use Illuminate\Http\Request;
  */
 class CourseController extends Controller
 {
-    public $chunkFileSevice;
+    use ApiResponse;
 
-    public function __construct(ChunkFileService $chunkFileService)
+    public $chunkFileSevice;
+    public $courseCreateService;
+
+    public function __construct(ChunkFileService $chunkFileService, CourseCreateService $courseCreateService)
     {
         $this->chunkFileSevice = $chunkFileService;
+        $this->courseCreateService = $courseCreateService;
     }
 
     /**
@@ -57,9 +64,17 @@ class CourseController extends Controller
      public function store(CourseRequest $request)
      {
          $data = $request->validated();
+         $response  = $this->courseCreateService->storeCourse($request, $this->tmpDirectory());
 
-         logger('course create',[$data]);
-//         dd('test', $data);
+         return $this->success($response, 'Course created successfully');
+     }
+
+    public function updateCourse(CourseUpdateRequest $request)
+    {
+        $data = $request->validated();
+        $response  = $this->courseCreateService->updateCourse($request, $this->tmpDirectory());
+
+        return $this->success($response, 'Course update successfully');
      }
 
     /**
@@ -113,6 +128,7 @@ class CourseController extends Controller
 
     public function storeChunkFile(Request $request)
     {
+        logger('store chunk file 1', [$request]);
         $tmpDir = $this->tmpDirectory();
 
         return $this->chunkFileSevice->storeFileInServer($request, $tmpDir);
@@ -120,6 +136,8 @@ class CourseController extends Controller
 
     public function updateChunkFile(Request $request)
     {
+
+        logger('update chunk file 2', [$request]);
         $tmpDir = $this->tmpDirectory();
 
         if ($this->chunkFileSevice->updateFileInServer($request, $tmpDir)) {
@@ -131,6 +149,7 @@ class CourseController extends Controller
 
     public function deleteChunkFile()
     {
+        logger('delete chunk file');
         $tmpDir = $this->tmpDirectory();
 
         $response = $this->chunkFileSevice->deleteFileFromServer($tmpDir);

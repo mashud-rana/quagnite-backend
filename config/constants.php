@@ -116,7 +116,7 @@ return [
     'EBOOK_TYPE_VIDEO' => 'video',
 
     // File Upload
-    'FILE_CHUNK_SIZE' => 5000000,
+    'FILE_CHUNK_SIZE' => 5000000,  // 5 MB
 
     // Cart Item Type
     'CART_TYPE_COURSE' => 'course',
