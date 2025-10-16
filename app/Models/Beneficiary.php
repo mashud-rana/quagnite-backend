@@ -13,9 +13,16 @@ class Beneficiary extends Model
 
     protected $guarded = ['id',];
 
+    protected $appends = ['image_url'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+     public function getImageUrlAttribute()
+    {
+        return getStoreFile($this->image, 'public');
     }
 
     public static function boot()

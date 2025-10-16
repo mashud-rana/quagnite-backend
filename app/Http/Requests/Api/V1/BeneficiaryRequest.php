@@ -24,7 +24,7 @@ class BeneficiaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'image'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|file|mimes:jpg,png,jpeg',
             'beneficiary_name' => 'required',
             'type' => 'required',
             'card_number' => 'required_if:type,1',

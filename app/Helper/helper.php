@@ -867,3 +867,23 @@ if (!function_exists('prepareReviewData')) {
         return $reviewData;
     }
 }
+
+
+if (!function_exists('maskCardNumber')) {
+    /**
+     * Calculate total lecture duration and format as "1h 10m" or "45m"
+     *
+     * @param  \Illuminate\Support\Collection|array  $lectures
+     * @return string
+     */
+    function maskCardNumber($cardNumber) {
+        // Remove any spaces just in case
+        $cleanNumber = preg_replace('/\s+/', '', $cardNumber);
+
+        // Get last 4 digits
+        $lastFour = substr($cleanNumber, -4);
+
+        // Return formatted masked number
+        return '**** **** **** ' . $lastFour;
+    }
+}

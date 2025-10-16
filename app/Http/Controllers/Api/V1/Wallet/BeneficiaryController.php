@@ -26,6 +26,7 @@ class BeneficiaryController extends Controller
         $beneficiaries = $this->walletService->getBeneficiaries(
             // withRelations:['user']
         );
+        // return $beneficiaries;
         try {
             if (!$beneficiaries) {
                 return $this->error('No beneficiaries found', 404);
@@ -37,14 +38,13 @@ class BeneficiaryController extends Controller
             return $this->error($e->getMessage());
         }
     }
-
     public function store(BeneficiaryRequest $request)
     {
         try {
             $data = $request->validated(); // ✅ convert to array
             $beneficiary = $this->walletService->beneficiaryStoreOrUpdate($data);
 
-            return $this->success(new BeneficiaryResource($beneficiary));
+            return $this->success(new BeneficiaryResource($beneficiary),"Beneficiary Added Successfully");
         } catch (\Exception $e) {
             logger()->error('User info update failed: ' . $e->getMessage());
             return $this->error('Failed to update user info', 500);

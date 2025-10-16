@@ -20,7 +20,8 @@ class BeneficiaryResource extends JsonResource
         $resourceData = [
             'id' => $this->id,
             'uuid' => $this->uuid,
-            'image' => "",
+            'image' => $this->image,
+            'image_url' => $this->image_url,
             'beneficiary_name' => $this->beneficiary_name,
             'type' => match ($this->type) {
                 1 => 'Card',
@@ -29,6 +30,7 @@ class BeneficiaryResource extends JsonResource
                 default => 'Unknown',
             },
             'card_number' => $this->card_number,
+            'mask_card_number' => $this->card_number ? maskCardNumber($this->card_number) : null,
             'card_holder_name' => $this->card_holder_name,
             'expire_month' => $this->expire_month,
             'expire_year' => $this->expire_year,
