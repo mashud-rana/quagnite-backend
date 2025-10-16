@@ -107,8 +107,8 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::prefix('certificates')->group(function () {
             Route::controller(CertificateController::class)->group(function () {
                 Route::get('/get-my-certificates', "myCertificates");
-                // Route::get('/my-certificates/download/{id}', "download");
-                // Route::get('/my-certificates/view/{id}', "viewCertificate");
+                Route::get('/my-certificates/download/{uuid}', "download");
+                Route::get('/my-certificates/view/{uuid}', "viewCertificate");
             });
         });
         //--------------End  Invoice --------------

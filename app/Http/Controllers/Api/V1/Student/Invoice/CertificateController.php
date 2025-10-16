@@ -6,10 +6,12 @@ namespace App\Http\Controllers\Api\V1\Student\Invoice;
 use App\Models\Ebook;
 use App\Models\Invoice;
 use App\Models\ExamResult;
+use App\Models\Certificate;
 use App\Traits\ApiResponse;
 use App\Models\EnrollCourse;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\StudentCertificate;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\PaginatedResourceTrait;
@@ -45,8 +47,7 @@ class CertificateController extends Controller
                 }
             ]
         );
-        // withRelations: ['certifiable.course','certifiable.exam']
-        // return $certificates;
+
         try {
             if (!$certificates) {
                 return $this->error('No certificates found', 404);
@@ -61,18 +62,27 @@ class CertificateController extends Controller
     }
 
 
-    public function download($id)
+    public function download($uuid)
     {
         try {
-            $invoice = Invoice::with('items')->findOrFail($id);
-            $student = auth()->user();
 
-            // Generate the PDF
-            $pdf = Pdf::loadView('student.invoice.invoice', compact('invoice', 'student'));
-            $fileName = $invoice->invoice_id . '.pdf';
+            $student = Auth::user();
+            $certificate = StudentCertificate::with('certifiable')->where('uuid', $uuid)
+                ->where('user_id', $student->id)
+                ->firstOrFail();
+            if(!$certificate){
+                return $this->error('Certificate not found', 404);
+            }
+            $certificate_text = Certificate::firstOrFail();
+
+            $pdf = PDF::loadView('student.certificate.certificate', compact('certificate', 'student', 'certificate_text'));
+
+            $fileName = $certificate->certificate_number . '.pdf';
+
+
 
             // Return proper response for browser download
-        return response($pdf->output(), 200)
+            return response($pdf->output(), 200)
             ->header('Content-Type', 'application/pdf')
             ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"')
             ->header('Access-Control-Expose-Headers', 'Content-Disposition');
@@ -82,14 +92,23 @@ class CertificateController extends Controller
             return response()->json(['error' => 'Something went wrong'], 500);
         }
     }
-    public function viewInvoice($id)
+    public function viewCertificate($uuid)
     {
         try {
-            $invoice = Invoice::with('items')->findOrFail($id);
-            $student = auth()->user();
+            $student = Auth::user();
+            $certificate = StudentCertificate::with('certifiable')->where('uuid', $uuid)
+                ->where('user_id', $student->id)
+                ->firstOrFail();
+            if(!$certificate){
+                return $this->error('Certificate not found', 404);
+            }
+            $certificate_text = Certificate::firstOrFail();
 
-            $pdf = PDF::loadView('student.invoice.invoice', compact('invoice', 'student'));
-            $fileName = $invoice->invoice_id . '.pdf';
+            $pdf = PDF::loadView('student.certificate.certificate', compact('certificate', 'student', 'certificate_text'));
+
+            $fileName = $certificate->certificate_number . '.pdf';
+
+
 
             return response($pdf->output(), 200)
                 ->header('Content-Type', 'application/pdf')
