@@ -80,7 +80,6 @@ class CertificateController extends Controller
             $fileName = $certificate->certificate_number . '.pdf';
 
 
-
             // Return proper response for browser download
             return response($pdf->output(), 200)
             ->header('Content-Type', 'application/pdf')

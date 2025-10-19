@@ -34,9 +34,70 @@ class CertificateService extends BaseService
 
 
 
+    // public function getMyStudentCertificates(
+    //     array $selectedFields = ['*'],
+    //     array $withRelations = []
+    // ) {
+    //     $perPage = request('per_page', 10);
+    //     $search = request('search');
+    //     $certifiable_types = request('certifiable_types');
+
+    //     $query = StudentCertificate::query()
+    //         ->where('user_id', auth()->id())
+    //         ->whereHasMorph(
+    //             'certifiable',
+    //             [EnrollCourse::class, ExamResult::class],
+    //             function ($q, $type) use ($search) {
+    //                 if ($search) {
+    //                     if ($type === EnrollCourse::class) {
+    //                         $q->whereHas('course', function ($sub) use ($search) {
+    //                             $sub->where('title', 'like', "%{$search}%");
+    //                         });
+    //                     }
+
+    //                     if ($type === ExamResult::class) {
+    //                         $q->whereHas('exam', function ($sub) use ($search) {
+    //                             $sub->where('title', 'like', "%{$search}%");
+    //                         });
+    //                     }
+    //                 }
+    //             }
+    //         )
+
+    //         ->when($certifiable_types, function ($q) use ($certifiable_types) {
+    //             $types = explode(',', $certifiable_types);
+    //             $mappedTypes = [];
+
+    //             if (in_array('course', $types)) {
+    //                 $mappedTypes[] = EnrollCourse::class;
+    //             }
+    //             if (in_array('exam', $types)) {
+    //                 $mappedTypes[] = ExamResult::class;
+    //             }
+
+    //             if (!empty($mappedTypes)) {
+    //                 $q->whereIn('certifiable_type', $mappedTypes);
+    //             }
+    //         })
+    //         ->select($selectedFields)
+    //         ->latest()
+    //         // ->with([
+    //         //     'certifiable' => function ($morphTo) {
+    //         //         $morphTo->morphWith([
+    //         //             EnrollCourse::class => ['course'],
+    //         //             ExamResult::class   => ['exam'],
+    //         //         ]);
+    //         //     },
+    //         // ]);
+    //         ->with($withRelations);
+
+    //     return $query->paginate($perPage);
+    // }
+
+
     public function getMyStudentCertificates(
-        array $selectedFields = ['*'],
-        array $withRelations = []
+    array $selectedFields = ['*'],
+    array $withRelations = []
     ) {
         $perPage = request('per_page', 10);
         $search = request('search');
@@ -44,25 +105,34 @@ class CertificateService extends BaseService
 
         $query = StudentCertificate::query()
             ->where('user_id', auth()->id())
-            ->whereHasMorph(
-                'certifiable',
-                [EnrollCourse::class, ExamResult::class],
-                function ($q, $type) use ($search) {
-                    if ($search) {
-                        if ($type === EnrollCourse::class) {
-                            $q->whereHas('course', function ($sub) use ($search) {
-                                $sub->where('title', 'like', "%{$search}%");
-                            });
-                        }
+            ->when($search, function ($q) use ($search) {
+                $q->where(function ($subQuery) use ($search) {
+                    // 1️⃣ certificate_number match
+                    $subQuery->where('certificate_number', 'like', "%{$search}%")
 
-                        if ($type === ExamResult::class) {
-                            $q->whereHas('exam', function ($sub) use ($search) {
-                                $sub->where('title', 'like', "%{$search}%");
-                            });
-                        }
-                    }
-                }
-            )
+                        // 2️⃣ EnrollCourse -> course.title match
+                        ->orWhereHasMorph(
+                            'certifiable',
+                            [EnrollCourse::class],
+                            function ($morphQuery) use ($search) {
+                                $morphQuery->whereHas('course', function ($courseQuery) use ($search) {
+                                    $courseQuery->where('title', 'like', "%{$search}%");
+                                });
+                            }
+                        )
+
+                        // 3️⃣ ExamResult -> exam.title match
+                        ->orWhereHasMorph(
+                            'certifiable',
+                            [ExamResult::class],
+                            function ($morphQuery) use ($search) {
+                                $morphQuery->whereHas('exam', function ($examQuery) use ($search) {
+                                    $examQuery->where('title', 'like', "%{$search}%");
+                                });
+                            }
+                        );
+                });
+            })
             ->when($certifiable_types, function ($q) use ($certifiable_types) {
                 $types = explode(',', $certifiable_types);
                 $mappedTypes = [];
@@ -79,20 +149,11 @@ class CertificateService extends BaseService
                 }
             })
             ->select($selectedFields)
-            ->latest()
-            // ->with([
-            //     'certifiable' => function ($morphTo) {
-            //         $morphTo->morphWith([
-            //             EnrollCourse::class => ['course'],
-            //             ExamResult::class   => ['exam'],
-            //         ]);
-            //     },
-            // ]);
-            ->with($withRelations);
+            ->with($withRelations)
+            ->latest();
 
         return $query->paginate($perPage);
     }
-
 
 
     public function generateCourseCertificates($enroll_course_id)

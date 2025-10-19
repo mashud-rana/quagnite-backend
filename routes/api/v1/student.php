@@ -7,6 +7,7 @@ use App\Http\Controllers\Student\Course\NoteController;
 use App\Http\Controllers\Api\V1\Student\ReviewVoteController;
 use App\Http\Controllers\Api\V1\Student\Ebook\EbookController;
 use App\Http\Controllers\Api\V1\Student\Course\CourseController;
+use App\Http\Controllers\Api\V1\Student\Resume\ResumeController;
 use App\Http\Controllers\Api\V1\Student\Billing\BillingController;
 use App\Http\Controllers\Api\V1\Student\Invoice\InvoiceController;
 use App\Http\Controllers\Api\V1\Student\Profile\ProfileController;
@@ -112,6 +113,16 @@ Route::prefix('student')->name('student.')->group(function () {
             });
         });
         //--------------End  Invoice --------------
+        //-------------- Start Resumes --------------
+        Route::prefix('resumes')->group(function () {
+            Route::controller(ResumeController::class)->group(function () {
+                Route::get('/get-my-resumes', "myResumes");
+                Route::get('/my-resumes/download/{uuid}', "download");
+                Route::post('/resume-upload', 'uploadResume');
+                Route::delete('/my-resumes/{uuid}/delete', 'deleteResume');
+            });
+        });
+        //--------------End  Resumes --------------
 
 
     });
