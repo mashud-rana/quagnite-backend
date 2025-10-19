@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Teacher\CourseRequest;
 use App\Http\Requests\Api\V1\Teacher\CourseUpdateRequest;
 use App\Http\Resources\Course\CourseResource;
+use App\Http\Resources\Api\V1\Teacher\Course\CourseResource as ApiCourseResource;
 use App\Models\Course;
 use App\Services\Api\V1\Teacher\Course\CourseCreateService;
 use App\Services\Utils\ChunkFileService;
@@ -50,6 +51,12 @@ class CourseController extends Controller
         );
 
         return CourseResource::collection($courses);
+    }
+
+    public function courseList()
+    {
+        $response = $this->courseCreateService->getTeacherAllCourse();
+        return $this->success(ApiCourseResource::collection($response), 'Course list fetched successfully');
     }
 
     // /**

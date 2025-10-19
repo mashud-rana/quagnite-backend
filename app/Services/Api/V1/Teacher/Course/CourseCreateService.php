@@ -142,4 +142,10 @@ class CourseCreateService extends BaseService
     {
         return Course::findOrFail($id);
     }
+
+    public function getTeacherAllCourse()
+    {
+        $course = Course::whereUserId(auth()->user()->id)->withCount('lectures')->withSum('lectures', 'file_duration_second')->get();
+        return $course;
+    }
 }
