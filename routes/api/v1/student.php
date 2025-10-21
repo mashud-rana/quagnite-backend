@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\Student\VoteController;
 use App\Http\Controllers\Student\Course\NoteController;
+use App\Http\Controllers\Api\V1\Student\Exam\ExamController;
 use App\Http\Controllers\Api\V1\Student\ReviewVoteController;
 use App\Http\Controllers\Api\V1\Student\Ebook\EbookController;
 use App\Http\Controllers\Api\V1\Student\Course\CourseController;
@@ -35,28 +36,28 @@ Route::prefix('student')->name('student.')->group(function () {
         //------------- My Courses -------------------------
         Route::prefix('courses')->name('courses.')->group(function () {
 
-            //-------------- Start Course Details --------------
-            Route::controller(CourseController::class)->group(function () {
-                //-------------- enrolled courses --------------
-                Route::get('/get-my-courses', "myCourses");
-                Route::get('/get-my-courses-subjects', "myCoursesSubjects");
-                Route::get('/get-filters-data', "getFiltersData");
-                //-----------End enrolled courses --------------
-                Route::get('/{slug}/enrolled-check', "enrolledCheck");
-                Route::get('/{slug}/show', "courseDetails");
-                Route::post('/submit-review', 'reviewSubmit');
-                // ---------- discussion --------------//
-                Route::post('/submit-discussion', 'discussionSubmit');
-                Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
-                Route::post('/lesson-lecture-preview', 'lecturePreview');
-                Route::get('/lesson-quiz-preview', 'quizPreview');
-                //notes
-                Route::get('/note/{note_id}', 'getCourseNote');
-                Route::post('/post-note', 'storeCourseNote');
-                Route::delete('/delete-note/{note_id}', 'destroyCourseNote');
-                Route::put('/note/{note_id}/update', 'updateCourseNote');
-            });
-            //--------------End  Course Details --------------
+        //-------------- Start Course Details --------------
+        Route::controller(CourseController::class)->group(function () {
+            //-------------- enrolled courses --------------
+            Route::get('/get-my-courses', "myCourses");
+            Route::get('/get-my-courses-subjects', "myCoursesSubjects");
+            Route::get('/get-filters-data', "getFiltersData");
+            //-----------End enrolled courses --------------
+            Route::get('/{slug}/enrolled-check', "enrolledCheck");
+            Route::get('/{slug}/show', "courseDetails");
+            Route::post('/submit-review', 'reviewSubmit');
+            // ---------- discussion --------------//
+            Route::post('/submit-discussion', 'discussionSubmit');
+            Route::post('/submit-discussion-comment', 'discussionCommentSubmit');
+            Route::post('/lesson-lecture-preview', 'lecturePreview');
+            Route::get('/lesson-quiz-preview', 'quizPreview');
+            //notes
+            Route::get('/note/{note_id}', 'getCourseNote');
+            Route::post('/post-note', 'storeCourseNote');
+            Route::delete('/delete-note/{note_id}', 'destroyCourseNote');
+            Route::put('/note/{note_id}/update', 'updateCourseNote');
+        });
+        //--------------End  Course Details --------------
         });
         // Review Vote
         Route::post('/vote', [VoteController::class, 'vote']);
@@ -123,6 +124,16 @@ Route::prefix('student')->name('student.')->group(function () {
             });
         });
         //--------------End  Resumes --------------
+
+        //-------------- Start exam --------------
+        Route::prefix('exam')->group(function () {
+            Route::controller(ExamController::class)->group(function () {
+                Route::get('/get-my-exams', "myExams");
+
+            });
+        });
+
+            //-------------End exam --------------
 
 
     });
