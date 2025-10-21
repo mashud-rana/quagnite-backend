@@ -145,7 +145,16 @@ class CourseCreateService extends BaseService
 
     public function getTeacherAllCourse()
     {
-        $course = Course::whereUserId(auth()->user()->id)->withCount('lectures')->withSum('lectures', 'file_duration_second')->get();
+        $course = $this->model::whereUserId(auth()->user()->id)->withCount('lectures')->withSum('lectures', 'file_duration_second')->get();
+        return $course;
+    }
+
+    public function getSingleCourse($uuid = null)
+    {
+        if(!$uuid){
+            return null;
+        }
+        $course = $this->model::whereUserId(auth()->user()->id)->where('uuid', $uuid)->first();
         return $course;
     }
 }

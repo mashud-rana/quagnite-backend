@@ -59,6 +59,13 @@ class CourseController extends Controller
         return $this->success(ApiCourseResource::collection($response), 'Course list fetched successfully');
     }
 
+
+    public function courseItem($uuid)
+    {
+        $response = $this->courseCreateService->getSingleCourse($uuid);
+        return $this->success($response, 'Course item fetched successfully');
+    }
+
     // /**
     //  * Store Course
     //  *

@@ -31,6 +31,7 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::prefix('course')->group(function () {
 //            Course Create
             Route::get('/', [CourseController::class, 'courseList']);
+            Route::get('/{id}', [CourseController::class, 'courseItem']);
             Route::post('create', [CourseController::class, 'store']);
             Route::post('update', [CourseController::class, 'updateCourse']);
 
