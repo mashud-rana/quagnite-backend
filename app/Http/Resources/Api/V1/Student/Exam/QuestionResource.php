@@ -14,13 +14,19 @@ class QuestionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $resource_data = [
             'id' => $this->id,
             'title' => $this->title,
             'answer' => $this->answer,
             'hint' => $this->hint,
             'explanation' => $this->explanation,
-            'options' => OptionResource::collection($this->whenLoaded('options')),
+
         ];
+
+        if ($this->relationLoaded('options') && $this->options) {
+            $options = $this->whenLoaded('options');
+            $resource_data['options'] = OptionResource::collection($options);
+        }
+    return $resource_data;
     }
 }
