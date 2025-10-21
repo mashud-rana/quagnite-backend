@@ -33,6 +33,7 @@ class CourseRequest extends FormRequest
             'access_period' => ['required', 'integer'],
             'course_language_id' => ['required'],
             'tag_id' => ['nullable', 'string'],
+            'benefits_id' => ['nullable', 'string'],
             'difficulty_level_id' => ['required'],
             'learner_accessibility' => ['required'],
             'price' => ['required_if:learner_accessibility,paid'],

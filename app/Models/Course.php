@@ -80,6 +80,11 @@ class Course extends Model
         return $this->hasMany(CourseTag::class);
     }
 
+    public function benefits()
+    {
+        return $this->hasMany(BenefitCourse::class);
+    }
+
       public function course_tags(): HasManyThrough
     {
         return $this->hasManyThrough(

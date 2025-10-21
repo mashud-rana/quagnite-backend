@@ -41,10 +41,17 @@ class CourseCreateService extends BaseService
         $course = DB::transaction(function () use ($data) {
 
             if (isset($data['tag_id'])) {
-                $tags = $tagIds = explode(',', $data['tag_id']);;
+                $tags = explode(',', $data['tag_id']);;
                 unset($data['tag_id']);
             } else {
                 $tags = [];
+            }
+
+            if (isset($data['benefits_id'])) {
+                $benefits_ids = explode(',', $data['benefits_id']);;
+                unset($data['benefits_id']);
+            } else {
+                $benefits_ids = [];
             }
 
             if($data['learner_accessibility']  == 'free')
@@ -59,6 +66,12 @@ class CourseCreateService extends BaseService
             foreach ($tags as $tag) {
                 $course->tags()->create([
                     'tag_id' => $tag
+                ]);
+            }
+
+            foreach ($benefits_ids as $benefit) {
+                $course->benefits()->create([
+                    'benefit_id' => $benefit
                 ]);
             }
 
@@ -143,18 +156,18 @@ class CourseCreateService extends BaseService
         return Course::findOrFail($id);
     }
 
-    public function getTeacherAllCourse()
+    public function getTeacherAllCourse($with = [])
     {
-        $course = $this->model::whereUserId(auth()->user()->id)->withCount('lectures')->withSum('lectures', 'file_duration_second')->get();
+        $course = $this->model::whereUserId(auth()->user()->id)->withCount('lectures')->withSum('lectures', 'file_duration_second')->with($with)->get();
         return $course;
     }
 
-    public function getSingleCourse($uuid = null)
+    public function getSingleCourse($uuid = null, $with = [])
     {
         if(!$uuid){
             return null;
         }
-        $course = $this->model::whereUserId(auth()->user()->id)->where('uuid', $uuid)->first();
+        $course = $this->model::whereUserId(auth()->user()->id)->where('uuid', $uuid)->with($with)->first();
         return $course;
     }
 }

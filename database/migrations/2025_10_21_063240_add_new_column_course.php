@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->string('description')->nullable()->change();
-            $table->foreignId('course_category_id')->nullable()->after('course_category_id')->constrained('course_sub_categories')->onDelete('set null');
+            $table->mediumText('description')->nullable()->change();
+            $table->foreignId('course_subcategory_id')->nullable()->after('course_category_id')->constrained('course_sub_categories')->onDelete('set null');
+            $table->foreignId('course_announcement_id')->nullable()->after('course_subcategory_id')->constrained('announcements')->onDelete('set null');
 
         });
     }
@@ -27,6 +28,11 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('courses', function (Blueprint $table) {
+            $table->mediumText('description')->change();
+            $table->dropForeign(['course_subcategory_id', 'course_announcement_id']);
+            $table->dropColumn('course_subcategory_id');
+            $table->dropColumn('course_announcement_id');
+        });
     }
 };
