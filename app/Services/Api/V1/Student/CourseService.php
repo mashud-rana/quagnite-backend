@@ -12,16 +12,19 @@ use App\Models\CourseCategory;
 use App\Models\DifficultyLevel;
 use App\Services\Utils\FileService;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Api\V1\Student\CertificateService;
 
 class CourseService extends BaseService
 {
     protected $model;
     protected $fileService;
+    protected $certificateService;
 
-    public function __construct(FileService $fileService)
+    public function __construct(FileService $fileService, CertificateService $certificateService)
     {
         $this->model = EnrollCourse::class;
         $this->fileService = $fileService;
+        $this->certificateService = $certificateService;
     }
 
     public function getMyCourses(
@@ -125,41 +128,105 @@ class CourseService extends BaseService
 
 
 
-    public function calculateCoursesCompletion($enrolledCourses){
-        // Calculate completion percentage
+    // public function calculateCoursesCompletion($enrolledCourses){
+    //     // Calculate completion percentage
+    //     foreach ($enrolledCourses as $item) {
+
+    //         $lectures = $item?->course?->lectures;
+
+    //         // Calculate completed lectures count
+    //         $completedLecturesCount = $lectures->flatMap(function ($lecture) use ($item) {
+    //             return $lecture->users->map(function ($user) use ($item, $lecture) {
+    //                 return [
+    //                     'completed' => $user->id === $item->student->id && $user->pivot->completed,
+    //                     'lecture_id' => $lecture->id,
+    //                 ];
+    //             });
+    //         })->where('completed', true)->unique('lecture_id')->count();
+
+    //         // Total lectures count
+    //         $totalLecturesCount = $lectures->count();
+
+    //         // Calculate completion percentage
+    //         $completionPercentage = ($totalLecturesCount > 0) ? round(($completedLecturesCount / $totalLecturesCount) * 100) : 0;
+
+    //         // Update status based on completion percentage
+    //         if ($completionPercentage == 100) {
+    //             $item->update(['status' => COMPLETE]);
+
+    //         } else {
+    //             $item->update(['status' => INPROGRESS]);
+
+    //         }
+
+    //         // Assign completion percentage to enrollment object
+    //         $item->completionPercentage = (int) $completionPercentage;
+    //     }
+    // }
+
+
+    public function calculateCoursesCompletion($enrolledCourses)
+    {
         foreach ($enrolledCourses as $item) {
+            $this->calculateSingleCourseCompletion($item?->course?->id);
+        }
+    }
 
-            $lectures = $item->course->lectures;
+    public function calculateSingleCourseCompletion($course_id, $user_id = null)
+    {
+        $EnrollCourse = EnrollCourse::where('user_id', $user_id ?? Auth::id())
+            ->where('course_id', $course_id)
+            ->with(['course.lectures'])
+            ->first();
+        if(!$EnrollCourse){
+            return;
+        }
+        if($EnrollCourse->status == COMPLETE){
+            return;
+        }
+        $EnrollCourseId = $EnrollCourse->id;
+        $lectures = $EnrollCourse?->course?->lectures;
+        // dd($lectures);
 
-            // Calculate completed lectures count
-            $completedLecturesCount = $lectures->flatMap(function ($lecture) use ($item) {
-                return $lecture->users->map(function ($user) use ($item, $lecture) {
+        if (!$lectures || $lectures->isEmpty()) {
+            $EnrollCourse->update(['status' => INPROGRESS]);
+            $EnrollCourse->completionPercentage = 0;
+            return;
+        }
+
+        // ✅ Count completed lectures for this student's enrollment
+        $completedLecturesCount = $lectures
+            ->flatMap(function ($lecture) use ($EnrollCourse) {
+                return $lecture->users->map(function ($user) use ($EnrollCourse, $lecture) {
                     return [
-                        'completed' => $user->id === $item->student->id && $user->pivot->completed,
+                        'completed' => $user->id === $EnrollCourse->student->id && $user->pivot->completed,
                         'lecture_id' => $lecture->id,
                     ];
                 });
-            })->where('completed', true)->unique('lecture_id')->count();
+            })
+            ->where('completed', true)
+            ->unique('lecture_id')
+            ->count();
 
-            // Total lectures count
-            $totalLecturesCount = $lectures->count();
+        // ✅ Calculate total & percentage
+        $totalLecturesCount = $lectures->count();
+        $completionPercentage = ($totalLecturesCount > 0)
+            ? round(($completedLecturesCount / $totalLecturesCount) * 100)
+            : 0;
 
-            // Calculate completion percentage
-            $completionPercentage = ($totalLecturesCount > 0) ? round(($completedLecturesCount / $totalLecturesCount) * 100) : 0;
-
-            // Update status based on completion percentage
-            if ($completionPercentage == 100) {
-                $item->update(['status' => COMPLETE]);
-
-            } else {
-                $item->update(['status' => INPROGRESS]);
-
-            }
-
-            // Assign completion percentage to enrollment object
-            $item->completionPercentage = (int) $completionPercentage;
+        // ✅ Update status based on progress
+        $status = (int)$completionPercentage == 100 ? COMPLETE : INPROGRESS;
+        if((int)$completionPercentage == 100){
+            // Generate Certificate
         }
+
+        $EnrollCourse->update(['status' => $status]);
+        $this->certificateService->generateCourseCertificates($EnrollCourseId);
+
+        // ✅ Attach computed percentage (not saved in DB)
+        $EnrollCourse->completionPercentage = (int) $completionPercentage;
     }
+
 
     public function getCourseCategories(
         array $selectedFields = ['*'],

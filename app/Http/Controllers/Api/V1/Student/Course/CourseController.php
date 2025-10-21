@@ -52,7 +52,7 @@ class CourseController extends Controller
             if (!$enrolledCourses) {
                 return $this->error('No enrolled courses found', 404);
             }
-            $this->courseService->calculateCoursesCompletion($enrolledCourses);
+            // $this->courseService->calculateCoursesCompletion($enrolledCourses);
             // return $this->success($enrolledCourses);
             $resource =  $this->paginatedResponse($enrolledCourses, EnrollCourseResource::class);
             return $this->success($resource);
@@ -99,6 +99,7 @@ class CourseController extends Controller
     }
     public function courseDetails(Request $request, $slug)
     {
+
         $check = EnrollCourse::where('user_id', auth()->id())
             ->whereHas('course', function ($query) use ($slug) {
                 $query->where('slug', $slug);
@@ -119,21 +120,33 @@ class CourseController extends Controller
                 'category',
                 'course_tags',
                 'reviews'=> function($query){
-                    $query->with('user')->orderBy('id','desc');
+                    $query->with([
+                        'user',
+                        'my_vote'
+                    ])
+                     ->withCount(['helpful_votes'])
+                    ->orderBy('id','desc');
                 },
                 'discussions' => function ($query) {
-                    $query->orderBy('id', 'desc');
+                    $query->orderBy('id', 'desc')->with([
+                        'user',
+                        'my_vote'
+                    ]) ->withCount(['helpful_votes']);
                 },
                 'discussions.comments' => function ($query) {
-                    $query->orderBy('id', 'desc');
+                    $query->orderBy('id', 'desc')->with([
+                        'user',
+                        'my_vote'
+                    ])->withCount(['helpful_votes']);
                 },
-                'discussions.comments.user',
-                'discussions.user',
+                // 'discussions.comments.user',
+                // 'discussions.user',
                 'course_notes'=> function($query){
                     $query->orderBy('id','desc')->where('user_id',auth()->id());
                 },
-                'user.teacher.teacher_category'
+                'user.teacher.teacher_category',
             ]);
+            // return $courseDetails;
             if (!$courseDetails) {
                 return $this->error('Course not found', 404);
             }
@@ -415,6 +428,9 @@ class CourseController extends Controller
                     'lesson_id' => $lecture->course_lesson_id,
                 ],
             ]);
+
+            //single course completion
+            $this->courseService->calculateSingleCourseCompletion($lecture->course_id, $user->id);
 
             // Optionally, you may want to return a resource instead of the raw model
             return $this->success(new LectureResource($lecture), 'Lecture marked as completed successfully');

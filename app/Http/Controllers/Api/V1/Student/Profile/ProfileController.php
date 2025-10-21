@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Validation\Rules\Password;
-use App\Services\Api\V1\Student\ProfileService;
 use App\Http\Resources\Api\V1\UserResource;
+use App\Http\Resources\Api\V1\UserInfoResource;
+use App\Services\Api\V1\Student\ProfileService;
 use App\Http\Requests\Api\V1\Student\ProfileRequest;
 use App\Http\Resources\Api\V1\Student\StudentResource;
 
@@ -43,6 +44,47 @@ class ProfileController extends Controller
             return $this->error($e->getMessage());
         }
     }
+
+    public function getUserInfos(){
+        $user_info = auth()->user()->user_info ?? [];
+        try {
+
+            if (!$user_info) {
+                return $this->error('User info not found', 404);
+            }
+            return $this->success(new UserInfoResource($user_info));
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
+   public function updateUserInfos(Request $request)
+    {
+        $request->validate([
+            'billing_name'    => 'nullable|string|max:255',
+            'billing_email'   => 'nullable|email|max:255',
+            'billing_address' => 'nullable|string|max:255',
+            'billing_phone'   => 'nullable|string|max:20',
+        ]);
+
+        try {
+            $user = auth()->user();
+            $data = $request->except(['_method']);
+
+            // ✅ Use updateOrCreate on the model class, not instance
+            $user_info = \App\Models\UserInfo::updateOrCreate(
+                ['user_id' => $user->id],
+                $data
+            );
+
+            return $this->success(new UserInfoResource($user_info));
+        } catch (\Exception $e) {
+            logger()->error('User info update failed: ' . $e->getMessage());
+            return $this->error('Failed to update user info', 500);
+        }
+    }
+
 
     public function updateProfile(ProfileRequest $request, $id)
     {

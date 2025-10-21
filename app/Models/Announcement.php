@@ -13,6 +13,14 @@ class Announcement extends Model
 
     protected $guarded = ['id'];
 
+    //============== Relationships ==============
+
+
+    public function myself_read()
+    {
+        return $this->hasOne(AnnouncementRead::class,'announcement_id','id')->where('readable_id',auth()->id());
+    }
+
     public static function boot()
     {
         parent::boot();

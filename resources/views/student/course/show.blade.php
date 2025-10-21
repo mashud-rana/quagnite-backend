@@ -627,7 +627,7 @@
                         </div>
                         {{-- Discussions End --}}
                         <div class="ic-tabs-content-items" id="note">
-                            <student-note-component user_id="{{ auth()->id() }}" course_id="{{ $course->id }}" />
+                            {{-- <student-note-component user_id="{{ auth()->id() }}" course_id="{{ $course->id }}" /> --}}
                             {{-- <div class="ic-student-note">
                                 <div class="ic-students-notes">
                                     <div class="editors example"></div>

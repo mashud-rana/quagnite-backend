@@ -867,3 +867,37 @@ if (!function_exists('prepareReviewData')) {
         return $reviewData;
     }
 }
+
+
+if (!function_exists('maskCardNumber')) {
+    /**
+     * Calculate total lecture duration and format as "1h 10m" or "45m"
+     *
+     * @param  \Illuminate\Support\Collection|array  $lectures
+     * @return string
+     */
+    function maskCardNumber($cardNumber) {
+        // Remove any spaces just in case
+        $cleanNumber = preg_replace('/\s+/', '', $cardNumber);
+
+        // Get last 4 digits
+        $lastFour = substr($cleanNumber, -4);
+
+        // Return formatted masked number
+        return '**** **** **** ' . $lastFour;
+    }
+}
+if (!function_exists('generateUniqueCertificateNumber')) {
+
+    function generateUniqueCertificateNumber() {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $codeLength = 12;
+
+        $certificateNumber = '';
+        for ($i = 0; $i < $codeLength; $i++) {
+            $certificateNumber .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $certificateNumber;
+    }
+}

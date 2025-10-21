@@ -6,20 +6,20 @@
         "normal": "fontawesome_normal_b9be68b0c5f28a446c6cb0ef95254567"
     },
     "imperial script": {
-        "normal": "imperial_script_normal_ce704f04113ca87601d7957f5d0678ea"
+        "normal": "imperial_script_normal_c0aa0037d4c00e9a22e7859f03d2b962"
     },
     "lexend": {
-        "300": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_300_5d8de131e99886379e028057599b4c83",
-        "normal": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_normal_21725dcd7bbf2c5a4b76f9784fe3b412",
-        "500": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_500_c0392616398a479b415ab2f06a42ff16",
-        "600": "lexend_600_e0b2244d3e93c4d7a4432eec51e6fc48",
-        "bold": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/lexend_bold_736b8f014a674dd1beec0561792161fc"
+        "300": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/lexend_300_dfc78ddd17292e2f1951e7acd4d11a53",
+        "normal": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/lexend_normal_82793cb3f84605e4528b290880de047a",
+        "500": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/lexend_500_d81a15262cf6977bef2262faa8685f8f",
+        "600": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/lexend_600_704f4de86580215d42def5ff156ad992",
+        "bold": "lexend_bold_95a9ee89676a037d4faa29021895b299"
     },
     "rubik": {
-        "300": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_300_82a112de692d08b55c2b11842e5a67fc",
-        "normal": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_normal_b6ec54c36a02fb811d72194115ec42db",
-        "500": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_500_c5ab0af2d954c4140f26e728dad090b3",
-        "600": "rubik_600_5d61a1f1e601158e12a385b1e07b6a27",
-        "bold": "\/home\/itclan\/projects\/www\/mc-dns\/storage\/fonts\/rubik_bold_98a50ec8225be60b521143fc843a3c06"
+        "300": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/rubik_300_b49ac12c6bc88ebf55ace4005fd2937f",
+        "normal": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/rubik_normal_51ab1481362117fcbde7aff42d283b18",
+        "500": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/rubik_500_9502f9c064380e56d3145f9d590a42a5",
+        "600": "C:\\laragon\\www\\quagnite-backend\\storage\\fonts\/rubik_600_5b0127546c17c6067b09d175fc08717b",
+        "bold": "rubik_bold_23085734b061269c30687aa1650a6ed9"
     }
 }

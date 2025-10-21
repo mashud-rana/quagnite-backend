@@ -1,17 +1,20 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Auth\ForgetPasswordController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Exam\ExamController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Auth\UserAuthController;
 use App\Http\Controllers\Api\V1\Bootcamp\BootcampController;
 use App\Http\Controllers\Api\V1\Ebook\EbookController;
-use App\Http\Controllers\Api\V1\Exam\ExamController;
 use App\Http\Controllers\Api\V1\Forum\ForumController;
+use App\Http\Controllers\Api\V1\Course\CourseController;
 use App\Http\Controllers\Api\V1\Plan\PurchaseController;
-use App\Http\Controllers\Api\V1\Teacher\Course\CourseController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Wallet\BeneficiaryController;
+use App\Http\Controllers\Api\V1\Announcement\AnnouncementController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +45,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('auth/logout', LogoutController::class);
 
     Route::get('/test/purchase-plan', [PurchaseController::class, 'purchaseAPlan']);
+
+    Route::prefix('announcements')->group(function () {
+        Route::controller(AnnouncementController::class)->group(function () {
+            Route::get('/get-all', "myAnnouncements");
+            Route::post('/read', "markAsRead");
+        });
+    });
+    Route::prefix('wallet')->group(function () {
+        Route::prefix('beneficiaries')->group(function () {
+            Route::controller(BeneficiaryController::class)->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{uuid}/show', 'show');
+                Route::post('/', 'store');
+                Route::put('/{uuid}/update', 'update');
+                Route::delete('/{uuid}/delete', 'delete');
+            });
+        });
+    });
 });
 
 

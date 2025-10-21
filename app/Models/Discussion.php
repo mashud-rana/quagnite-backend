@@ -31,4 +31,25 @@ class Discussion extends Model
     {
         return days_ago_from_now($value);
     }
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'votable');
+    }
+
+    public function helpful_votes()
+    {
+        return $this->votes()->where('type', 'helpful');
+
+    }
+
+    public function unhelpful_votes()
+    {
+        return $this->votes()->where('type', 'unhelpful');
+    }
+
+    public function my_vote()
+    {
+        return $this->morphOne(Vote::class, 'votable')->where('user_id', auth()->id());
+    }
+
 }

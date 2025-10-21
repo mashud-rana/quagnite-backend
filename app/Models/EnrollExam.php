@@ -38,6 +38,11 @@ class EnrollExam extends Model
         return $query->where('status', COMPLETE);
     }
 
+    public function scopeNotCompleted($query)
+    {
+        return $query->where('status', '!=', COMPLETE);
+    }
+
     public function subscriptionList()
     {
         return $this->belongsTo(SubscriptionList::class, 'subscription_list_id');

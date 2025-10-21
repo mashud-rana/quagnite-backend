@@ -23,11 +23,16 @@ class DiscussionsCommentResource extends JsonResource
             'id' => $this->id,
             'comment' => $this->comment,
             'created_at' => $this->created_at,
+            'helpful_votes_count' => $this->helpful_votes_count,
 
         ];
         if ($this->relationLoaded('user') && $this->user) {
             $user = $this->whenLoaded('user');
             $resource_data['user'] = new UserResource($user);
+        }
+         if ($this->relationLoaded('my_vote') ) {
+            $my_vote = $this->whenLoaded(relationship: 'my_vote');
+            $resource_data['my_vote'] = $my_vote;
         }
 
         return $resource_data;
