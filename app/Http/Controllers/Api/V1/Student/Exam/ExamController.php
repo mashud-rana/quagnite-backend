@@ -6,14 +6,15 @@ namespace App\Http\Controllers\Api\V1\Student\Exam;
 use stdClass;
 use App\Models\Exam;
 use App\Models\EnrollExam;
+use App\Models\ExamResult;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Auth;
 
+
 use Illuminate\Support\Facades\Hash;
-
-
 use App\Traits\PaginatedResourceTrait;
 use App\Services\Api\V1\Student\ExamService;
 use App\Http\Resources\Api\V1\Student\Exam\ExamResource;
@@ -102,6 +103,35 @@ class ExamController extends Controller
        return $this->success($data, 'Exam started successfully');
     }
 
+    public function examSubmit(Request $request)
+    {
+        $request->validate([
+            'exam_id' => 'required',
+            'enroll_id' => 'required',
+            'score' => 'required',
+            'correct_ans' => 'required',
+            'wrong_ans' => 'required',
+            'total_qus' => 'required',
+        ]);
 
+        $this->examService->insertExamResult($request);
+
+        $passMark = Exam::findOrFail($request->exam_id)->pass_mark;
+        $isPassed = $request->score >= $passMark;
+        // Update the is_passed column in ExamResult table
+        $data = ExamResult::where('exam_id', $request->exam_id)
+            ->where('enroll_exam_id', $request->enroll_id)
+            ->update(['is_passed' => $isPassed]);
+
+        return $this->success(null, 'Exam submitted successfully');
+    }
+
+
+     public function getExamResults(Request $request)
+    {
+        $results = ExamResult::whereUserId(auth()->id())->whereEnrollExamId($request->enroll_id)->get();
+
+        return $this->success($results, 'Exam results fetched successfully');
+    }
 
 }

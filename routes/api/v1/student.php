@@ -130,7 +130,8 @@ Route::prefix('student')->name('student.')->group(function () {
             Route::controller(ExamController::class)->group(function () {
                 Route::get('/get-my-exams', "myExams");
                 Route::get('/start/{examuuid}/{enrolluuid}','examStart');
-
+                Route::post('/submit','examSubmit');
+                Route::post('/results', 'getExamResults');
             });
         });
 
