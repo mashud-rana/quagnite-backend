@@ -11,6 +11,7 @@ use App\Models\EnrollExam;
 use App\Models\ExamResult;
 use App\Models\CourseLesson;
 use App\Models\EnrollCourse;
+use Illuminate\Http\Request;
 use App\Models\CourseLecture;
 use App\Services\BaseService;
 use App\Models\CourseCategory;
@@ -121,6 +122,21 @@ class ExamService extends BaseService
         }
 
         return $responses;
+    }
+
+
+    public function uploadVideo(Request $request)
+    {
+        $uploadedFile = $request->file('video');
+
+        if (!$uploadedFile || !$uploadedFile->isValid()) {
+            throw new \Exception('Invalid or missing video file.');
+        }
+
+        // Store using your FileService
+        $filePath = $this->fileService->upload($uploadedFile, ExamResult::VIDEO_PATH);
+
+        return $filePath;
     }
 
 

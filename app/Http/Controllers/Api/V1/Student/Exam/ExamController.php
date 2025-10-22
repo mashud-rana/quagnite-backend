@@ -9,11 +9,13 @@ use App\Models\EnrollExam;
 use App\Models\ExamResult;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Log;
+
+
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Auth;
-
-
 use Illuminate\Support\Facades\Hash;
 use App\Traits\PaginatedResourceTrait;
 use App\Services\Api\V1\Student\ExamService;
@@ -106,24 +108,51 @@ class ExamController extends Controller
     public function examSubmit(Request $request)
     {
         $request->validate([
-            'exam_id' => 'required',
-            'enroll_id' => 'required',
-            'score' => 'required',
-            'correct_ans' => 'required',
-            'wrong_ans' => 'required',
-            'total_qus' => 'required',
+            'exam_id' => 'required|integer|exists:exams,id',
+            'enroll_id' => 'required|integer|exists:enroll_exams,id',
+            'score' => 'required|numeric',
+            'correct_ans' => 'required|integer',
+            'wrong_ans' => 'required|integer',
+            'total_qus' => 'required|integer',
+            'video' => 'required|file|mimetypes:video/webm,video/mp4|max:512000', // 500MB
         ]);
 
-        $this->examService->insertExamResult($request);
+        DB::beginTransaction();
 
-        $passMark = Exam::findOrFail($request->exam_id)->pass_mark;
-        $isPassed = $request->score >= $passMark;
-        // Update the is_passed column in ExamResult table
-        $data = ExamResult::where('exam_id', $request->exam_id)
-            ->where('enroll_exam_id', $request->enroll_id)
-            ->update(['is_passed' => $isPassed]);
+        try {
+            // Step 1: Insert exam result (or update if exists)
+            $this->examService->insertExamResult($request);
 
-        return $this->success(null, 'Exam submitted successfully');
+            // Step 2: Upload video file
+            $videoUrl = $this->examService->uploadVideo($request);
+
+            // Step 3: Determine pass/fail status
+            $exam = Exam::findOrFail($request->exam_id);
+            $isPassed = $request->score >= $exam->pass_mark;
+
+            // Step 4: Update ExamResult table
+            $updated = ExamResult::where('exam_id', $request->exam_id)
+                ->where('enroll_exam_id', $request->enroll_id)
+                ->update([
+                    'is_passed' => $isPassed,
+                    'video_url' => $videoUrl,
+                ]);
+
+            DB::commit();
+
+            return $this->success($updated, 'Exam submitted successfully.');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // Optional: Log the error for debugging
+            Log::error('Exam submission failed: ' . $e->getMessage(), [
+                'exam_id' => $request->exam_id ?? null,
+                'enroll_id' => $request->enroll_id ?? null,
+            ]);
+
+            return $this->error('Failed to submit exam. Please try again later.');
+        }
     }
 
 

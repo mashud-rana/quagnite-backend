@@ -13,6 +13,8 @@ class ExamResult extends Model
 
     protected $guarded = ['id',];
 
+    public const VIDEO_PATH='exam_results/videos';
+
 
     public function user()
     {
