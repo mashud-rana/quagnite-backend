@@ -53,10 +53,16 @@ class CourseController extends Controller
         return CourseResource::collection($courses);
     }
 
-    public function courseList()
+    public function courseList(Request $request)
     {
         $response = $this->courseCreateService->getTeacherAllCourse(['tags','benefits']);
         return $this->success(ApiCourseResource::collection($response), 'Course list fetched successfully');
+    }
+
+    public function destroy($id)
+    {
+        logger('delete course', [$id]);
+//        $response = $this->courseCreateService->deleteCourse($id);
     }
 
 

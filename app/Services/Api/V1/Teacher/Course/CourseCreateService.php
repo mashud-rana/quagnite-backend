@@ -5,6 +5,8 @@ namespace App\Services\Api\V1\Teacher\Course;
 use App\Http\Requests\Api\V1\Teacher\CourseRequest;
 use App\Http\Requests\Api\V1\Teacher\CourseUpdateRequest;
 use App\Models\Course;
+use App\Models\CourseLecture;
+use App\Models\CourseLesson;
 use App\Services\BaseService;
 use App\Services\Utils\ChunkFileService;
 use App\Services\Utils\FileService;
@@ -91,11 +93,9 @@ class CourseCreateService extends BaseService
         // upload image and video
         if ($request->hasFile('image')) {
             $data['image'] = $this->fileService->upload($request->file('image'), 'course/images');
+        }else{
+            $data['image'] = $course->image;
         }
-
-        // if ($request->hasFile('video')) {
-        //     $data['video'] = $this->fileService->upload($request->file('video'), 'course/videos');
-        // }
 
         if (isset($data['video']) && $fileName = session()->get('chunk_uploaded_file_name')) {
 
@@ -158,7 +158,9 @@ class CourseCreateService extends BaseService
 
     public function getTeacherAllCourse($with = [])
     {
-        $course = $this->model::whereUserId(auth()->user()->id)->withCount('lectures')->withSum('lectures', 'file_duration_second')->with($with)->get();
+        $page = request()->get('page', 1);
+        $limit = request()->get('limit', 10);
+        $course = $this->model::whereUserId(auth()->user()->id)->withCount('lectures')->withSum('lectures', 'file_duration_second')->with($with)->paginate($limit, ['*'], 'page', $page);
         return $course;
     }
 
@@ -169,5 +171,37 @@ class CourseCreateService extends BaseService
         }
         $course = $this->model::whereUserId(auth()->user()->id)->where('uuid', $uuid)->with($with)->first();
         return $course;
+    }
+
+    public function deleteCourse($id)
+    {
+        $course = $this->model::whereId($id)->firstOrFail();
+
+        $lessons = CourseLesson::whereCourseId($course->id)->get();
+
+        foreach ($lessons as $lesson) {
+
+            $lectures = CourseLecture::whereCourseLessonId($lesson->id)->get();
+
+            if (count($lectures) > 0) {
+
+                foreach ($lectures as $lecture) {
+
+                    $request = new CourseLectureDeleteRequest;
+
+                    $request->merge(['lecture_id' => $lecture->id]);
+
+                    $this->courseCreateService->deleteLecture($request);
+                }
+            }
+
+            $lesson->delete();
+        }
+
+        $course->delete();
+
+        record_deleted_flash();
+
+        return back();
     }
 }

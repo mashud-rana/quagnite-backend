@@ -34,6 +34,7 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
             Route::get('/{id}', [CourseController::class, 'courseItem']);
             Route::post('create', [CourseController::class, 'store']);
             Route::post('update', [CourseController::class, 'updateCourse']);
+            Route::delete('delete/{id}', [CourseController::class, 'destroy']);
 
 
             // Chunk uploads
