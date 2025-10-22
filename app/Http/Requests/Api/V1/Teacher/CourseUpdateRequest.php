@@ -38,7 +38,7 @@ class CourseUpdateRequest extends FormRequest
             'learner_accessibility' => ['required'],
             'price' => ['required_if:learner_accessibility,paid'],
             'old_price' => ['required_if:learner_accessibility,paid'],
-            'image' => ['required', 'image', 'max:2048'],
+            'image' => ['nullable', 'max:2048'],
             'video' => ['nullable', 'string'],
             'video_link' => ['nullable', 'string'],
         ];
