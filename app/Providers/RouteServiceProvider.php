@@ -118,7 +118,7 @@ class RouteServiceProvider extends ServiceProvider
             //Command
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/command.php'));
+                ->group(base_path('routes/web/command.php'));
         });
     }
 
