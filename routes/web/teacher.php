@@ -11,7 +11,7 @@ use App\Http\Controllers\Teacher\Profile\ProfileController;
 use App\Http\Controllers\Teacher\Ticket\TicketController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('teacher')->as('teacher.')->middleware(['auth', 'is_teacher', 'prevent_back_history'])->group(function () {
+Route::prefix('itclanbd/teacher')->as('teacher.')->middleware(['auth', 'is_teacher', 'prevent_back_history'])->group(function () {
     // profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile/update/{id}', [ProfileController::class, 'updateProfile'])->name('profile.update');

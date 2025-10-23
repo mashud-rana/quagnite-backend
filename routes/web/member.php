@@ -7,7 +7,7 @@ use App\Http\Controllers\Member\Profile\ProfileController;
 use App\Http\Controllers\Member\Subscription\SubscriptionListController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('member')->as('member.')->middleware(['auth', 'is_member', 'prevent_back_history'])->group(function () {
+Route::prefix('itclanbd/member')->as('member.')->middleware(['auth', 'is_member', 'prevent_back_history'])->group(function () {
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

@@ -21,7 +21,7 @@ use App\Http\Controllers\Student\Subscription\SubscriptionController;
 use App\Http\Controllers\Student\Subscription\SubscriptionPaymentController;
 use App\Http\Controllers\Coach\Coaching\CoachingController as CoachingCoachingController;
 
-Route::prefix('student')->as('student.')->middleware(['auth', 'is_student', 'prevent_back_history'])->group(function () {
+Route::prefix('itclanbd/student')->as('student.')->middleware(['auth', 'is_student', 'prevent_back_history'])->group(function () {
 
     // profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');

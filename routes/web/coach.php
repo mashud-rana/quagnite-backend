@@ -7,7 +7,7 @@ use App\Http\Controllers\Coach\Schedule\ScheduleController;
 use App\Http\Controllers\Coach\Dashboard\DashboardController;
 use App\Http\Controllers\Coach\Student\EnrollCoachController;
 
-Route::prefix('coach')->as('coach.')->middleware(['auth'])->group(function () {
+Route::prefix('itclanbd/coach')->as('coach.')->middleware(['auth'])->group(function () {
 
     // profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
