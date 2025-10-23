@@ -1,29 +1,25 @@
 workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == 'main' || $CI_COMMIT_BRANCH == 'master'
+    - if: $CI_COMMIT_BRANCH == 'master'
       when: always
     - when: never
 
 stages:
   - deploy-staging
-  - deploy-production
 
 stage-deploy-staging:
   stage: deploy-staging
-  image: alpine
-  script:
-    - apk add --update openssh
-    - chmod 400 $STAG_KEY
-    - ssh -i $STAG_KEY -o StrictHostKeyChecking=no -p $STAG_PORT $STAG_HOST "cd /home/ubuntu/www/mcdns.winlearner.com && git pull origin master && composer install --optimize-autoloader --no-interaction && yes | php artisan migrate:fresh --seed | php artisan optimize:clear && exit"
-  only:
-    - dev-master
+  image: alpine:latest
 
-stage-deploy-production:
-  stage: deploy-production
-  image: alpine
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$STAGING_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -p $STAGING_PORT $STAGING_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
   script:
-    - apk add --update openssh
-    - chmod 400 $PROD_KEY
-    - ssh -i $PROD_KEY -o StrictHostKeyChecking=no -p $PROD_PORT $PROD_HOST "cd /home/ubuntu/www/mcdns.winlearner.com && git checkout master && git pull origin master && composer install --optimize-autoloader --no-dev --no-interaction && yes | php artisan migrate | php artisan optimize:clear && exit"
+    - ssh -p $STAGING_PORT $USER@$STAGING_HOST "cd /home/heizoelscom/quagnite && git pull"
   only:
     - master
