@@ -115,6 +115,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web/playground.php'));
+            //Command
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web/command.php'));
         });
     }
 

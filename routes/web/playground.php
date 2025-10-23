@@ -32,7 +32,7 @@ Route::get('/playground', [PlaygroundController::class, 'index'])->name('playgro
 Route::get('/playground-details/{slug}', [PlaygroundController::class, 'playgroundDetails'])
     ->name('playground.details');
 
-Route::prefix('playground')->as('playground.')->middleware(['auth', 'is_student'])->group(function () {
+Route::prefix('itclanbd/playground')->as('playground.')->middleware(['auth', 'is_student'])->group(function () {
     Route::get('/not-available', [PlaygroundController::class, 'notAvailable'])->name('not-available');
 
     Route::middleware('checkEnrollment:' . PlAYGD_PYTHON)->group(function () {

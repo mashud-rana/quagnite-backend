@@ -15,17 +15,25 @@ class ExamResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $resource_data = [
             "id" => $this->id,
             "uuid" => $this->uuid,
             "title" => $this->title,
-            "image" => $this->image ? getStoreFile($this->image, $this->storage_type) : null,
+            "slug" => $this->slug,
             "price" => $this->price,
             "old_price" => $this->old_price,
-            "description" => $this->description,
+            "image" => $this->image,
+            "image_url" => $this->image ? getStoreFile($this->image, 'public') : null,
             "duration" => $this->duration,
             "pass_mark" => $this->pass_mark,
-            "questions" => QuestionResource::collection($this->whenLoaded('questions')),
+            "description" => $this->description,
+            'status' => $this->status == ACTIVE ? 'Active' : 'Inactive',
+
         ];
+        if ($this->relationLoaded('questions') && $this->questions) {
+            $questions = $this->whenLoaded('questions');
+            $resource_data['questions'] = QuestionResource::collection($questions);
+        }
+        return $resource_data;
     }
 }
