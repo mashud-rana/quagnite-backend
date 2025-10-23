@@ -105,7 +105,7 @@ class ExamController extends Controller
        return $this->success($data, 'Exam started successfully');
     }
 
-    public function examSubmit(Request $request)
+   public function examSubmit(Request $request)
     {
         $request->validate([
             'exam_id' => 'required|integer|exists:exams,id',
@@ -120,32 +120,29 @@ class ExamController extends Controller
         DB::beginTransaction();
 
         try {
-            // Step 1: Insert exam result (or update if exists)
-            $this->examService->insertExamResult($request);
+            // Step 1: Insert or update exam result
+            $examResult = $this->examService->insertExamResult($request);
 
-            // Step 2: Upload video file
+            // Step 2: Upload video file and get URL
             $videoUrl = $this->examService->uploadVideo($request);
 
             // Step 3: Determine pass/fail status
             $exam = Exam::findOrFail($request->exam_id);
             $isPassed = $request->score >= $exam->pass_mark;
 
-            // Step 4: Update ExamResult table
-            $updated = ExamResult::where('exam_id', $request->exam_id)
-                ->where('enroll_exam_id', $request->enroll_id)
-                ->update([
-                    'is_passed' => $isPassed,
-                    'video_url' => $videoUrl,
-                ]);
+            // Step 4: Update exam result record
+            $examResult->update([
+                'is_passed' => $isPassed,
+                'video_url' => $videoUrl,
+            ]);
 
             DB::commit();
 
-            return $this->success($updated, 'Exam submitted successfully.');
+            return $this->success($examResult->fresh(), 'Exam submitted successfully.');
 
         } catch (\Exception $e) {
             DB::rollBack();
 
-            // Optional: Log the error for debugging
             Log::error('Exam submission failed: ' . $e->getMessage(), [
                 'exam_id' => $request->exam_id ?? null,
                 'enroll_id' => $request->enroll_id ?? null,
@@ -154,6 +151,7 @@ class ExamController extends Controller
             return $this->error('Failed to submit exam. Please try again later.');
         }
     }
+
 
 
      public function getExamResults(Request $request)

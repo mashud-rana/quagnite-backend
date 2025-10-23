@@ -73,30 +73,29 @@ class ExamService extends BaseService
 
     }
 
-     public function insertExamResult($object)
+    public function insertExamResult($object)
     {
-        DB::transaction(function () use ($object) {
+       $ExamResult= ExamResult::create([
+            'exam_id' => $object->exam_id,
+            'enroll_exam_id' => $object->enroll_id,
+            'user_id' => auth()->id(),
+            'score' => $object->score,
+            'correct_ans' => $object->correct_ans,
+            'wrong_ans' => $object->wrong_ans,
+            'total_qus' => $object->total_qus,
+        ]);
 
-            ExamResult::create([
-                'exam_id' => $object->exam_id,
-                'enroll_exam_id' => $object->enroll_id,
-                'user_id' => auth()->id(),
-                'score' => $object->score,
-                'correct_ans' => $object->correct_ans,
-                'wrong_ans' => $object->wrong_ans,
-                'total_qus' => $object->total_qus,
+        $enrollExam = EnrollExam::whereUserId(auth()->id())->whereExamId($object->exam_id)->first();
+
+        if ($enrollExam) {
+            $enrollExam->update([
+                'status' => COMPLETE,
+                'attempt' => $enrollExam->attempt + 1,
             ]);
-
-            $enrollExam = EnrollExam::whereUserId(auth()->id())->whereExamId($object->exam_id)->first();
-
-            if ($enrollExam) {
-                $enrollExam->update([
-                    'status' => COMPLETE,
-                    'attempt' => $enrollExam->attempt + 1,
-                ]);
-            }
-        });
+        }
+        return $ExamResult;
     }
+
 
     public function getQuestions($uuid)
     {
