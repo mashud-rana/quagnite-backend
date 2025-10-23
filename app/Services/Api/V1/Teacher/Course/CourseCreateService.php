@@ -4,6 +4,7 @@ namespace App\Services\Api\V1\Teacher\Course;
 
 use App\Http\Requests\Api\V1\Teacher\CourseRequest;
 use App\Http\Requests\Api\V1\Teacher\CourseUpdateRequest;
+use App\Http\Requests\Course\CourseLectureDeleteRequest;
 use App\Models\Course;
 use App\Models\CourseLecture;
 use App\Models\CourseLesson;
@@ -191,7 +192,7 @@ class CourseCreateService extends BaseService
 
                     $request->merge(['lecture_id' => $lecture->id]);
 
-                    $this->courseCreateService->deleteLecture($request);
+                    $this->deleteLecture($request);
                 }
             }
 
@@ -200,8 +201,55 @@ class CourseCreateService extends BaseService
 
         $course->delete();
 
-        record_deleted_flash();
+        return true;
+    }
 
-        return back();
+    public function deleteLecture(CourseLectureDeleteRequest $request)
+    {
+        $lecture = $this->getLectureById($request->lecture_id);
+
+        $this->deleteLectureFile($lecture);
+
+        $lecture->delete();
+
+        return true;
+    }
+
+    public function getLectureById(string $id)
+    {
+        return CourseLecture::findOrFail($id);
+    }
+
+    public function deleteLectureFile(CourseLecture $lecture)
+    {
+        switch ($lecture->lecture_format) {
+
+            case LECTURE_FORMAT_VIDEO:
+                $this->fileService->delete($lecture->video_path);
+                break;
+
+            case LECTURE_FORMAT_VIMEO:
+                $this->vimeoService->deleteVideo($lecture->vimeo_path);
+                break;
+
+            case LECTURE_FORMAT_IMAGE:
+                $this->fileService->delete($lecture->image_path);
+                break;
+
+            case LECTURE_FORMAT_PDF:
+                $this->fileService->delete($lecture->pdf_path);
+                break;
+
+            case LECTURE_FORMAT_SLIDE:
+                $this->fileService->delete($lecture->slide_path);
+                break;
+
+            case LECTURE_FORMAT_AUDIO:
+                $this->fileService->delete($lecture->audio_path);
+                break;
+
+            default:
+                $this->fileService->delete($lecture->file_path);
+        }
     }
 }
