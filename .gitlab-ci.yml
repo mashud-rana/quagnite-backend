@@ -20,6 +20,6 @@ stage-deploy-staging:
     - ssh-keyscan -p $STAGING_PORT $STAGING_HOST >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - ssh -p $STAGING_PORT $USER@$STAGING_HOST "cd /home/heizoelscom/quagnite && git pull && php artisan cache:clear"
+    - ssh -p $STAGING_PORT $USER@$STAGING_HOST "cd /home/heizoelscom/quagnite && git pull && php artisan migrate --force && php artisan cache:clear"
   only:
     - master
