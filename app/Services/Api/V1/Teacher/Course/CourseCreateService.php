@@ -11,6 +11,7 @@ use App\Services\BaseService;
 use App\Services\Utils\ChunkFileService;
 use App\Services\Utils\FileService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class CourseCreateService extends BaseService
@@ -26,10 +27,11 @@ class CourseCreateService extends BaseService
         // upload image and video
         $data['image'] = $request->hasFile('image') ? $this->fileService->upload($request->file('image'), 'course/images') : null;
         // $data['video'] = $request->hasFile('video') ? $this->fileService->upload($request->file('video'), 'course/videos') : null;
-        if (isset($data['video']) && $fileName = session()->get('chunk_uploaded_file_name')) {
+//        logger('data file',[Cache::get("chunk_uploaded_file_name"), Cache::get("name")]);
+        if (isset($data['file']) && $fileName = Cache::get("chunk_uploaded_file_name")) {
 
-            $uploadedFilePath = $tmpDirectory .  $data['video'] . '/' . $fileName;
-            $newFileName = $data['video'] . '-' . $fileName;
+            $uploadedFilePath = $tmpDirectory .  $data['file'] . '/' . $fileName;
+            $newFileName = $data['file'] . '-' . $fileName;
 
             $response = $this->chunkFileService->moveUploadedFile($uploadedFilePath, 'course/videos/' . $newFileName);
 
@@ -97,10 +99,10 @@ class CourseCreateService extends BaseService
             $data['image'] = $course->image;
         }
 
-        if (isset($data['video']) && $fileName = session()->get('chunk_uploaded_file_name')) {
+        if (isset($data['file']) && $fileName = Cache::get("chunk_uploaded_file_name")) {
 
-            $uploadedFilePath = $tmpDirectory .  $data['video'] . '/' . $fileName;
-            $newFileName = $data['video'] . '-' . $fileName;
+            $uploadedFilePath = $tmpDirectory .  $data['file'] . '/' . $fileName;
+            $newFileName = $data['file'] . '-' . $fileName;
 
             $response = $this->chunkFileService->moveUploadedFile($uploadedFilePath, 'course/videos/' . $newFileName);
 

@@ -3,6 +3,7 @@
 namespace App\Services\Utils;
 
 use File;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -57,7 +58,7 @@ class ChunkFileService
         $folder = uniqid() . '-' . now()->timestamp;
         $path = storage_path($storeDir  . $folder);
         if( $request->header('Upload-Length') < FILE_CHUNK_SIZE){
-
+            logger('chunk upload file',[$path]);
             $newFileName = Str::random(25) . "." . $request->file('file')->getClientOriginalExtension();
             $request->file('file')->storeAs(
                 $tmpDir.$folder,
@@ -65,7 +66,9 @@ class ChunkFileService
                 'public'
             );
 
+
             session()->put('chunk_uploaded_file_name', $newFileName);
+            Cache::put("chunk_uploaded_file_name", $newFileName, now()->addHours(1));
 
         }else{
             // Ensure the parent directory exists
