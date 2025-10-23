@@ -59,7 +59,9 @@ class ExamService extends BaseService
            $query->completed()->where('attempt','>=', 3);
         }
 
-        return $query->paginate($perPage);
+        return $query
+        ->latest()
+        ->paginate($perPage);
     }
 
     public function getBootcampDetailsBySlug($slug,
