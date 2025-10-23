@@ -11,6 +11,10 @@ use App\Http\Controllers\Teacher\Profile\ProfileController;
 use App\Http\Controllers\Teacher\Ticket\TicketController;
 use Illuminate\Support\Facades\Route;
 
+    // Chunk uploads
+Route::post('/chunk-upload', [CourseController::class, 'storeChunkFile']);
+Route::patch('/chunk-upload', [CourseController::class, 'updateChunkFile']);
+Route::delete('/chunk-upload', [CourseController::class, 'deleteChunkFile']);
 Route::prefix('itclanbd/teacher')->as('teacher.')->middleware(['auth', 'is_teacher', 'prevent_back_history'])->group(function () {
     // profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
@@ -54,10 +58,10 @@ Route::prefix('itclanbd/teacher')->as('teacher.')->middleware(['auth', 'is_teach
         Route::post('submit-discussion', [CourseController::class, 'discussionSubmit'])->name('discussion.submit');
         Route::post('submit-discussion-comment', [CourseController::class, 'discussionCommentSubmit'])->name('discussion.comment.submit');
 
-        // Chunk uploads
-        Route::post('/chunk-upload', [CourseController::class, 'storeChunkFile']);
-        Route::patch('/chunk-upload', [CourseController::class, 'updateChunkFile']);
-        Route::delete('/chunk-upload', [CourseController::class, 'deleteChunkFile']);
+        // // Chunk uploads
+        // Route::post('/chunk-upload', [CourseController::class, 'storeChunkFile']);
+        // Route::patch('/chunk-upload', [CourseController::class, 'updateChunkFile']);
+        // Route::delete('/chunk-upload', [CourseController::class, 'deleteChunkFile']);
     });
     Route::prefix('bootcamp')->as('bootcamp.')->group(function () {
         Route::get('/', [BootcampController::class, 'index'])->name('index');
