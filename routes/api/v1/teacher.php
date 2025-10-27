@@ -41,7 +41,7 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
             // Chunk uploads
             Route::post('chunk-upload', [CourseController::class, 'storeChunkFile']);
             Route::patch('chunk-upload', [CourseController::class, 'updateChunkFile']);
-            Route::delete('chunk-upload', [CourseController::class, 'deleteChunkFile']);
+            Route::delete('chunk-upload/{file}', [CourseController::class, 'deleteChunkFile']);
         });
 
         Route::prefix('bootcamp')->group(function () {
@@ -50,15 +50,15 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
 //            Course Create
             Route::get('/', [CourseController::class, 'courseList']);
             Route::get('/{id}', [CourseController::class, 'courseItem']);
-            Route::post('create', [CourseController::class, 'store']);
+            Route::post('create', [BootcampController::class, 'store']);
             Route::post('update', [CourseController::class, 'updateCourse']);
             Route::delete('delete/{id}', [CourseController::class, 'destroy']);
 
 
             // Chunk uploads
-//            Route::post('chunk-upload', [CourseController::class, 'storeChunkFile']);
-//            Route::patch('chunk-upload', [CourseController::class, 'updateChunkFile']);
-//            Route::delete('chunk-upload', [CourseController::class, 'deleteChunkFile']);
+            Route::post('chunk-upload', [CourseController::class, 'storeChunkFile']);
+            Route::patch('chunk-upload', [CourseController::class, 'updateChunkFile']);
+            Route::delete('chunk-upload/{file}', [CourseController::class, 'deleteChunkFile']);
 
         });
 
