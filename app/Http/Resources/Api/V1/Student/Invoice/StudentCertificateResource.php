@@ -8,6 +8,7 @@ use App\Http\Resources\Api\V1\Student\StudentResource;
 use App\Http\Resources\Api\V1\Student\CategoryResource;
 use App\Http\Resources\Api\V1\Student\EnrollCourseResource;
 use App\Http\Resources\Api\V1\Student\EnrollResultResource;
+use App\Http\Resources\Api\V1\Student\Exam\EnrollExamResource;
 use App\Http\Resources\Api\V1\Student\Teacher\TeacherResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\BootcampsResource;
 use App\Http\Resources\Api\V1\Student\Ebook\EnrolledEbookResource;
@@ -42,7 +43,7 @@ class StudentCertificateResource extends JsonResource
              elseif($this->certifiable->exam){
                 $resourceData['certifiable'] = [
                     'type' => 'exam',
-                    'data' => new EnrollResultResource($this->certifiable)
+                    'data' => new EnrollExamResource($this->certifiable)
                 ];
             }
 

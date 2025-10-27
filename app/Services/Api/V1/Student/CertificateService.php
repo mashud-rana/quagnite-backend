@@ -122,10 +122,20 @@ class CertificateService extends BaseService
                             }
                         )
 
-                        // 3️⃣ ExamResult -> exam.title match
+                        // // 3️⃣ ExamResult -> exam.title match
+                        // ->orWhereHasMorph(
+                        //     'certifiable',
+                        //     [ExamResult::class],
+                        //     function ($morphQuery) use ($search) {
+                        //         $morphQuery->whereHas('exam', function ($examQuery) use ($search) {
+                        //             $examQuery->where('title', 'like', "%{$search}%");
+                        //         });
+                        //     }
+                        // );
+                         // 3️⃣ ExamResult -> exam.title match
                         ->orWhereHasMorph(
                             'certifiable',
-                            [ExamResult::class],
+                            [EnrollExam::class],
                             function ($morphQuery) use ($search) {
                                 $morphQuery->whereHas('exam', function ($examQuery) use ($search) {
                                     $examQuery->where('title', 'like', "%{$search}%");
@@ -141,8 +151,11 @@ class CertificateService extends BaseService
                 if (in_array('course', $types)) {
                     $mappedTypes[] = EnrollCourse::class;
                 }
+                // if (in_array('exam', $types)) {
+                //     $mappedTypes[] = ExamResult::class;
+                // }
                 if (in_array('exam', $types)) {
-                    $mappedTypes[] = ExamResult::class;
+                    $mappedTypes[] = EnrollExam::class;
                 }
 
                 if (!empty($mappedTypes)) {

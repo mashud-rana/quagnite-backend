@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Student\Invoice;
 
 use App\Models\Ebook;
 use App\Models\Invoice;
+use App\Models\EnrollExam;
 use App\Models\ExamResult;
 use App\Models\Certificate;
 use App\Traits\ApiResponse;
@@ -42,12 +43,13 @@ class CertificateController extends Controller
                 'certifiable' => function ($morphTo) {
                     $morphTo->morphWith([
                         EnrollCourse::class => ['course'],
-                        ExamResult::class   => ['exam'],
+                        // ExamResult::class   => ['exam'],
+                        EnrollExam::class   => ['exam']
                     ]);
                 }
             ]
         );
-
+        // return $certificates;
         try {
             if (!$certificates) {
                 return $this->error('No certificates found', 404);
