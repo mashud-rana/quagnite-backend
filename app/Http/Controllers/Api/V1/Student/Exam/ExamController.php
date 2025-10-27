@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\PaginatedResourceTrait;
 use App\Services\Api\V1\Student\ExamService;
+use App\Services\Api\V1\Student\CertificateService;
 use App\Http\Resources\Api\V1\Student\Exam\ExamResource;
 use App\Http\Resources\Api\V1\Student\Exam\EnrollExamResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\EnrolledBootcampsResource;
@@ -27,10 +28,12 @@ class ExamController extends Controller
 {
     use ApiResponse, PaginatedResourceTrait;
     protected $examService;
+    protected $certificateService;
 
-    public function __construct(ExamService $examService)
+    public function __construct(ExamService $examService, CertificateService $certificateService)
     {
         $this->examService = $examService;
+        $this->certificateService = $certificateService;
     }
 
 
@@ -55,7 +58,10 @@ class ExamController extends Controller
     public function examStart($examUuid, $enrollUuid)
     {
         // dd($examUuid, $enrollUuid);
-        $enrollExam = EnrollExam::where('uuid', $enrollUuid)->firstOrFail();
+        $enrollExam = EnrollExam::where('uuid', $enrollUuid)
+        // ->where('attempt','<=',3 )
+        ->first();
+        // dd($enrollExam);
         if(!$enrollExam){
             return $this->error('Enroll exam not found',404);
         }
@@ -136,6 +142,8 @@ class ExamController extends Controller
                 'video_url' => $videoUrl,
             ]);
 
+            $this->certificateService->generateExamResultCertificates($examResult->id);
+
             DB::commit();
 
             return $this->success($examResult->fresh(), 'Exam submitted successfully.');
@@ -151,6 +159,59 @@ class ExamController extends Controller
             return $this->error('Failed to submit exam. Please try again later.');
         }
     }
+
+   public function getExamProgressData($enrolluuid)
+    {
+        $enrollExam = EnrollExam::where('uuid', $enrolluuid)
+            ->where('user_id', auth()->id())
+            ->with(['studentCertificate'])
+            ->firstOrFail();
+
+        $results = ExamResult::where('enroll_exam_id', $enrollExam->id)
+            ->orderBy('id', 'asc')
+            ->get(['id', 'score', 'correct_ans', 'wrong_ans', 'total_qus', 'created_at']);
+
+        if ($results->isEmpty()) {
+            return response()->json([
+                'message' => 'No attempts yet',
+                'percentile' => null,
+                'remaining_attempts' => 3,
+                'chart' => [],
+            ]);
+        }
+
+        // ✅ Calculate percentile
+        $latest = $results->last();
+        $allScores = ExamResult::where('exam_id', $enrollExam->exam_id)->pluck('score');
+        $betterThan = $allScores->filter(fn($s) => $s < $latest->score)->count();
+        $percentile = round(($betterThan / max($allScores->count(), 1)) * 100, 2);
+
+        // ✅ Build chart dataset (scaled score)
+        $chart = $results->map(function ($r, $index) {
+            $score = floatval($r->score);
+            $percent = $r->total_qus > 0 ? ($score / $r->total_qus) * 100 : 0;
+            $skill = ($percent / 100) * 300; // scale 0–300
+
+            return [
+                'attempt' => $index + 1,
+                'score' => round($score, 2),
+                'percent' => round($percent, 2),
+                'skill' => round($skill, 2),
+                'label' => 'Attempt ' . ($index + 1),
+            ];
+        });
+        return $this->success([
+            'percentile' => $percentile,
+            'remaining_attempts' => max(0, 3 - $enrollExam->attempt),
+            'chart' => $chart,
+            'yaxis_min'=> 0,
+            'yaxis_max'=> $chart->max('skill') + 100,
+            'attempt' => $enrollExam->attempt,
+            'student_certificate' => $enrollExam->studentCertificate
+        ], 'Exam progress data fetched successfully');
+
+    }
+
 
 
 

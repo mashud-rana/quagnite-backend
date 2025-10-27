@@ -66,16 +66,23 @@ class CertificateController extends Controller
     {
         try {
 
-            $student = Auth::user();
+
+
             $certificate = StudentCertificate::with('certifiable')->where('uuid', $uuid)
-                ->where('user_id', $student->id)
+                // ->when($student, function ($query) use ($student) {
+                //     $query->where('user_id', $student->id);
+                // })
+                ->with('certifiable.student')
                 ->firstOrFail();
+
             if(!$certificate){
                 return $this->error('Certificate not found', 404);
             }
+
+            $student = $certificate->certifiable->student;
             $certificate_text = Certificate::firstOrFail();
 
-            $pdf = PDF::loadView('student.certificate.certificate', compact('certificate', 'student', 'certificate_text'));
+            $pdf = PDF::loadView('student.Api.V1.certificate.certificate', compact('certificate', 'student', 'certificate_text'));
 
             $fileName = $certificate->certificate_number . '.pdf';
 
@@ -94,16 +101,20 @@ class CertificateController extends Controller
     public function viewCertificate($uuid)
     {
         try {
-            $student = Auth::user();
+            $student = auth()->check() ? Auth::user() : null;
             $certificate = StudentCertificate::with('certifiable')->where('uuid', $uuid)
-                ->where('user_id', $student->id)
+                //  ->when($student, function ($query) use ($student) {
+                //     $query->where('user_id', $student->id);
+                // })
+                ->with('certifiable.student')
                 ->firstOrFail();
             if(!$certificate){
                 return $this->error('Certificate not found', 404);
             }
+            $student = $certificate->certifiable->student;
             $certificate_text = Certificate::firstOrFail();
 
-            $pdf = PDF::loadView('student.certificate.certificate', compact('certificate', 'student', 'certificate_text'));
+            $pdf = PDF::loadView('student.Api.V1.certificate.certificate', compact('certificate', 'student', 'certificate_text'));
 
             $fileName = $certificate->certificate_number . '.pdf';
 

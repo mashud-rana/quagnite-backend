@@ -48,6 +48,11 @@ class EnrollExam extends Model
         return $this->belongsTo(SubscriptionList::class, 'subscription_list_id');
     }
 
+    public function studentCertificate()
+    {
+        return $this->morphOne(StudentCertificate::class, 'certifiable');
+    }
+
 
     public static function boot()
     {

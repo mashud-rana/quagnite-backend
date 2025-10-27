@@ -19,6 +19,13 @@ use App\Http\Controllers\Api\V1\Student\Category\CourseCategoryController;
 
 Route::prefix('student')->name('student.')->group(function () {
 
+    //-------------- Start Certificate (Public) --------------
+    Route::prefix('certificates')->group(function () {
+        Route::controller(CertificateController::class)->group(function () {
+            Route::get('/my-certificates/download/{uuid}', "download");
+            Route::get('/my-certificates/view/{uuid}', "viewCertificate");
+        });
+    });
 
     // // Protected (sanctum + role + ability)
     // Route::middleware(['auth:sanctum', 'role:coach', 'abilities:coach:*'])->group(function () {
@@ -109,8 +116,7 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::prefix('certificates')->group(function () {
             Route::controller(CertificateController::class)->group(function () {
                 Route::get('/get-my-certificates', "myCertificates");
-                Route::get('/my-certificates/download/{uuid}', "download");
-                Route::get('/my-certificates/view/{uuid}', "viewCertificate");
+
             });
         });
         //--------------End  Invoice --------------
@@ -132,6 +138,7 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::get('/start/{examuuid}/{enrolluuid}','examStart');
                 Route::post('/submit','examSubmit');
                 Route::post('/results', 'getExamResults');
+                Route::get('/progress/{enrolluuid}','getExamProgressData');
             });
         });
 

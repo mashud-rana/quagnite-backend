@@ -50,7 +50,7 @@ class ExamService extends BaseService
 
         if ($type === 'upcoming') {
 
-             $query->pending()->where('attempt','=', 0);
+             $query->pending();
 
         } elseif ($type === 'ongoing') {
         //    $query->notCompleted()->doesntHave('result');

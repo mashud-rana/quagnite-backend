@@ -8,6 +8,7 @@ use App\Models\Ebook;
 use App\Models\Course;
 use App\Models\Invoice;
 use App\Models\Bootcamp;
+use App\Models\EnrollExam;
 use App\Models\ExamResult;
 use App\Models\EnrollEbook;
 use App\Models\CourseLesson;
@@ -189,19 +190,25 @@ class CertificateService extends BaseService
         if(!$examResult){
             return ;
         }
+        $EnrollExam = EnrollExam::where('id', $examResult->enroll_exam_id)
+            ->where('user_id', auth()->user()->id)
+            ->where('status', COMPLETE)
+            ->first();
         // Check if a certificate already exists
-        $existingCertificate = StudentCertificate::where('certifiable_type', ExamResult::class)
-            ->where('certifiable_id', $examResult->id)
+        $existingCertificate = StudentCertificate::where('certifiable_type', EnrollExam::class)
+            ->where('certifiable_id', $EnrollExam->id)
             ->first();
 
         // If a certificate does not exist, create one
         if (! $existingCertificate) {
-            $examResult->studentCertificate()->create([
+            $EnrollExam->studentCertificate()->create([
                 'user_id' => auth()->user()->id,
                 'certificate_number' => generateUniqueCertificateNumber(),
             ]);
         }
     }
+
+
 
 
 
