@@ -130,6 +130,31 @@ class CertificateController extends Controller
         }
     }
 
+     public function certificates($uuid)
+    {
+        try {
+
+            $certificate = StudentCertificate::with('certifiable')->where('uuid', $uuid)
+
+                ->with(
+                    [
+                        'certifiable.student',
+                        'certifiable.exam'
+                    ]
+                )
+                ->firstOrFail();
+            if(!$certificate){
+                return $this->error('Certificate not found', 404);
+            }
+            // dd($certificate);
+            return $this->success(new StudentCertificateResource($certificate));
+
+        } catch (\Exception $e) {
+            logger()->error('Invoice view error: ' . $e->getMessage());
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
+    }
+
 
 
 

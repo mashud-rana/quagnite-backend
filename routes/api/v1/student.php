@@ -24,6 +24,7 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::controller(CertificateController::class)->group(function () {
             Route::get('/my-certificates/download/{uuid}', "download");
             Route::get('/my-certificates/view/{uuid}', "viewCertificate");
+            Route::get('/my-certificates/{uuid}', "certificates");
         });
     });
 

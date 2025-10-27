@@ -28,9 +28,9 @@ class EnrollResultResource extends JsonResource
             'is_passed' => $this->is_passed,
 
         ];
-        if ($this->relationLoaded('user') && $this->user) {
-            $user = $this->whenLoaded('user');
-            $resourceData['user'] = new UserResource($user);
+        if ($this->relationLoaded('student') && $this->student) {
+            $student = $this->whenLoaded('student');
+            $resourceData['student'] = new StudentResource($student);
         }
         if ($this->relationLoaded('exam') && $this->exam) {
             $exam = $this->whenLoaded('exam');
