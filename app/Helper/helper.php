@@ -901,3 +901,32 @@ if (!function_exists('generateUniqueCertificateNumber')) {
         return $certificateNumber;
     }
 }
+
+if (!function_exists('examTimePassed')) {
+    /**
+     * Calculate elapsed exam time
+     *
+     * @param int $totalMinutes Total exam duration in minutes
+     * @param string $remainingTime Remaining time in "mm:ss" format
+     * @return string Time passed in "mm:ss" format
+     */
+    function examTimePassed(int $totalMinutes, string $remainingTime): string
+    {
+        // Convert total time to seconds
+        $totalSeconds = $totalMinutes * 60;
+
+        // Convert remaining time to seconds
+        [$min, $sec] = explode(":", $remainingTime);
+        $remainingSeconds = ($min * 60) + $sec;
+
+        // Calculate elapsed time in seconds
+        $elapsedSeconds = $totalSeconds - $remainingSeconds;
+
+        // Convert elapsed seconds back to mm:ss
+        $elapsedMinutes = floor($elapsedSeconds / 60);
+        $elapsedSec = $elapsedSeconds % 60;
+
+        // Format as mm:ss
+        return sprintf("%02d:%02d", $elapsedMinutes, $elapsedSec);
+    }
+}

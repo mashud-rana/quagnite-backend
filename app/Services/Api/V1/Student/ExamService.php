@@ -77,7 +77,8 @@ class ExamService extends BaseService
 
     public function insertExamResult($validated)
     {
-       $ExamResult= ExamResult::create([
+        $exam = Exam::find($validated['exam_id']);
+        $ExamResult= ExamResult::create([
             'exam_id' => $validated['exam_id'],
             'enroll_exam_id' => $validated['enroll_id'],
             'user_id' => auth()->id(),
@@ -85,7 +86,9 @@ class ExamService extends BaseService
             'correct_ans' => $validated['correct_ans'],
             'wrong_ans' => $validated['wrong_ans'],
             'total_qus' => $validated['total_qus'],
-            'exam_complete_duration' => $validated['exam_complete_duration'],
+            'exam_time' => $exam->duration,
+            'exam_time_have' => $validated['exam_complete_duration'],
+            'exam_complete_duration' => examTimePassed($exam->duration, $validated['exam_complete_duration']),
             'results' => json_decode($validated['results']),
         ]);
 

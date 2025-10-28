@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::table('exam_results', function (Blueprint $table) {
             $table->after('is_passed', function($table){
                 $table->json('results')->nullable(); // ✅ JSON colum
+                $table->string('exam_time')->nullable();
+                $table->string('exam_time_have')->nullable();
                 $table->string('exam_complete_duration')->nullable();
             });
         });
