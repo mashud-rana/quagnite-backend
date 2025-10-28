@@ -4,6 +4,7 @@ namespace App\Http\Resources\Api\V1\Student\Exam;
 
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Api\V1\Student\Invoice\StudentCertificateResource;
 
 class EnrollExamResource extends JsonResource
 {
@@ -29,6 +30,10 @@ class EnrollExamResource extends JsonResource
          if ($this->relationLoaded('exam') && $this->exam) {
             $exam = $this->whenLoaded('exam');
             $resource_data['exam'] = new ExamResource($exam);
+        }
+        if ($this->relationLoaded('studentCertificate') && $this->studentCertificate) {
+            $studentCertificate = $this->whenLoaded('studentCertificate');
+            $resource_data['studentCertificate'] = new StudentCertificateResource($studentCertificate);
         }
         return $resource_data;
     }

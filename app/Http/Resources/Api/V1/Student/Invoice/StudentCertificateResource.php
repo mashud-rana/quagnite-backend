@@ -30,6 +30,7 @@ class StudentCertificateResource extends JsonResource
             'uuid' => $this->uuid,
             'certificate_number' => $this->certificate_number,
             'date' => $this->created_at->format('d/m/Y'),
+            'human_diff' => $this->created_at->diffForHumans(),
 
         ];
 

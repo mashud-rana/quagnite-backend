@@ -40,7 +40,7 @@ class ExamController extends Controller
     public function myExams(Request $request)
     {
 
-        $examps = $this->examService->getMyExams(withRelations: ['exam.questions','result']);
+        $examps = $this->examService->getMyExams(withRelations: ['exam.questions','result','studentCertificate']);
         // return $examps;
         try {
             if (!$examps) {
@@ -211,9 +211,6 @@ class ExamController extends Controller
         ], 'Exam progress data fetched successfully');
 
     }
-
-
-
 
      public function getExamResults(Request $request)
     {
