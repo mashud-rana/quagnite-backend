@@ -75,19 +75,21 @@ class ExamService extends BaseService
 
     }
 
-    public function insertExamResult($object)
+    public function insertExamResult($validated)
     {
        $ExamResult= ExamResult::create([
-            'exam_id' => $object->exam_id,
-            'enroll_exam_id' => $object->enroll_id,
+            'exam_id' => $validated['exam_id'],
+            'enroll_exam_id' => $validated['enroll_id'],
             'user_id' => auth()->id(),
-            'score' => $object->score,
-            'correct_ans' => $object->correct_ans,
-            'wrong_ans' => $object->wrong_ans,
-            'total_qus' => $object->total_qus,
+            'score' => $validated['score'],
+            'correct_ans' => $validated['correct_ans'],
+            'wrong_ans' => $validated['wrong_ans'],
+            'total_qus' => $validated['total_qus'],
+            'exam_complete_duration' => $validated['exam_complete_duration'],
+            'results' => json_decode($validated['results']),
         ]);
 
-        $enrollExam = EnrollExam::whereUserId(auth()->id())->whereExamId($object->exam_id)->first();
+        $enrollExam = EnrollExam::whereUserId(auth()->id())->whereExamId($validated['exam_id'])->first();
 
         if ($enrollExam) {
             $enrollExam->update([
@@ -108,10 +110,13 @@ class ExamService extends BaseService
         if (count($questions) > 0) {
 
             foreach ($questions as $key => $qus) {
+                $responses[$key]['index'] = $key + 1;
                 $responses[$key]['question'] = $qus->title;
                 $responses[$key]['correctAnswer'] = $qus->answer;
                 $responses[$key]['hint'] = $qus->hint;
                 $responses[$key]['explanation'] = $qus->explanation;
+                $responses[$key]['givenAnswer'] = '';
+                $responses[$key]['isCurrectOrWrong'] = '';
 
                 foreach ($qus->options as $opt) {
                     if (is_null($opt->title)) {

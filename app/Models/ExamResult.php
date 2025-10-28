@@ -17,6 +17,11 @@ class ExamResult extends Model
 
     protected $appends = ['full_video_url'];
 
+    protected $casts = [
+        'results' => 'array',
+    ];
+
+
     public function getFullVideoUrlAttribute()
     {
         return $this->video_url ? getStoreFile($this->video_url, 'public') : null;

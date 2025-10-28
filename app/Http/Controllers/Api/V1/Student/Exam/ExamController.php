@@ -114,7 +114,7 @@ class ExamController extends Controller
 
    public function examSubmit(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'exam_id' => 'required|integer|exists:exams,id',
             'enroll_id' => 'required|integer|exists:enroll_exams,id',
             'score' => 'required|numeric',
@@ -122,13 +122,15 @@ class ExamController extends Controller
             'wrong_ans' => 'required|integer',
             'total_qus' => 'required|integer',
             'video' => 'required|file|mimetypes:video/webm,video/mp4|max:512000', // 500MB
+            'exam_complete_duration' => 'required',
+            'results' => 'nullable|json', // ✅ Validate as JSON
         ]);
 
         DB::beginTransaction();
 
         try {
             // Step 1: Insert or update exam result
-            $examResult = $this->examService->insertExamResult($request);
+            $examResult = $this->examService->insertExamResult($validated);
 
             // Step 2: Upload video file and get URL
             $videoUrl = $this->examService->uploadVideo($request);
