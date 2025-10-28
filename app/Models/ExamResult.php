@@ -15,6 +15,12 @@ class ExamResult extends Model
 
     public const VIDEO_PATH='exam_results/videos';
 
+    protected $appends = ['full_video_url'];
+
+    public function getFullVideoUrlAttribute()
+    {
+        return $this->video_url ? getStoreFile($this->video_url, 'public') : null;
+    }
 
     public function user()
     {

@@ -22,6 +22,7 @@ use App\Services\Api\V1\Student\ExamService;
 use App\Services\Api\V1\Student\CertificateService;
 use App\Http\Resources\Api\V1\Student\Exam\ExamResource;
 use App\Http\Resources\Api\V1\Student\Exam\EnrollExamResource;
+use App\Http\Resources\Api\V1\Student\Exam\ExamResultResource;
 use App\Http\Resources\Api\V1\Student\Bootcamp\EnrolledBootcampsResource;
 
 class ExamController extends Controller
@@ -214,9 +215,16 @@ class ExamController extends Controller
 
      public function getExamResults(Request $request)
     {
-        $results = ExamResult::whereUserId(auth()->id())->whereEnrollExamId($request->enroll_id)->get();
+        $enrollExam = EnrollExam::where('uuid', $request->enroll_uuid)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+        $results = ExamResult::query()
+        ->where('user_id', auth()->id())
+        ->where('enroll_exam_id', $enrollExam->id)
+        // ->with(['user','exam'])
+        ->get();
 
-        return $this->success($results, 'Exam results fetched successfully');
+        return $this->success(ExamResultResource::collection($results), 'Exam results fetched successfully');
     }
 
 }
