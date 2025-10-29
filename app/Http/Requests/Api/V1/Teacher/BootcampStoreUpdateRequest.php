@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\V1\Teacher;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BootcampStoreRequest extends FormRequest
+class BootcampStoreUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class BootcampStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'bootcamp_id'   => ['required', 'integer', 'exists:bootcamps,id'],
             'title'          => ['required', 'string'],
             'subtitle'       => ['required', 'string'],
             'start_date'       => ['required', 'date'],

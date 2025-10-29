@@ -51,7 +51,7 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
             Route::get('/', [CourseController::class, 'courseList']);
             Route::get('/{id}', [CourseController::class, 'courseItem']);
             Route::post('create', [BootcampController::class, 'store']);
-            Route::post('update', [CourseController::class, 'updateCourse']);
+            Route::post('update', [BootcampController::class, 'updateCourse']);
             Route::delete('delete/{id}', [CourseController::class, 'destroy']);
 
 
