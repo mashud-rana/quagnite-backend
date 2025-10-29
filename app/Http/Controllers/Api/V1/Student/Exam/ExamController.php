@@ -228,5 +228,18 @@ class ExamController extends Controller
 
         return $this->success(ExamResultResource::collection($results), 'Exam results fetched successfully');
     }
+     public function examResult($id)
+    {
+
+        $result = ExamResult::query()
+        ->where('user_id', auth()->id())
+        ->with(['exam'])
+        ->find($id);
+        if(!$result){
+            return $this->error('Exam result not found',404);
+        }
+
+        return $this->success(new ExamResultResource($result), 'Exam result fetched successfully');
+    }
 
 }

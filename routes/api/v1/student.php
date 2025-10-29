@@ -140,6 +140,7 @@ Route::prefix('student')->name('student.')->group(function () {
                 Route::post('/submit','examSubmit');
                 Route::post('/results', 'getExamResults');
                 Route::get('/progress/{enrolluuid}','getExamProgressData');
+                Route::get('/result/{id}', 'examResult');
             });
         });
 

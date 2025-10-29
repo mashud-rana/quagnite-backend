@@ -119,7 +119,7 @@ class ExamService extends BaseService
                 $responses[$key]['hint'] = $qus->hint;
                 $responses[$key]['explanation'] = $qus->explanation;
                 $responses[$key]['givenAnswer'] = '';
-                $responses[$key]['isCurrectOrWrong'] = '';
+                $responses[$key]['isCorrect'] = '';
 
                 foreach ($qus->options as $opt) {
                     if (is_null($opt->title)) {

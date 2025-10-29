@@ -27,7 +27,12 @@ class ExamResultResource extends JsonResource
             "total_qus" => $this->total_qus,
             "is_passed" => $this->is_passed,
             "video_url" => $this->video_url,
+            "full_video_url" => $this->full_video_url,
             'exam_date' => formatDate($this->created_at, 'd M Y'),
+            'results' => $this->results,
+            'exam_time' => $this->exam_time,
+            'exam_time_have' => $this->exam_time_have,
+            'exam_complete_duration' => $this->exam_complete_duration,
 
         ];
         if ($this->relationLoaded('user') && $this->user) {
