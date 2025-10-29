@@ -149,5 +149,19 @@ class ExamService extends BaseService
     }
 
 
+    public function getSuggestedExams(
+        array $selectedFields = ['*'],
+        array $withRelations = []
+    )
+    {
+        $enrollExamIds = EnrollExam::where('user_id', auth()->id())->pluck('exam_id')->toArray();
+
+        $query = Exam::select($selectedFields)
+            ->with($withRelations)
+            ->whereNotIn('id', $enrollExamIds)
+            ->where('status', ACTIVE);
+
+        return $query->latest()->take(3)->get();
+    }
 
 }

@@ -242,4 +242,22 @@ class ExamController extends Controller
         return $this->success(new ExamResultResource($result), 'Exam result fetched successfully');
     }
 
+    public function suggestedExams(Request $request)
+    {
+
+        $examps = $this->examService->getSuggestedExams();
+        // return $examps;
+        try {
+            if (!$examps) {
+                return $this->error('No suggested exams found', 404);
+            }
+
+            // $resource =  $this->paginatedResponse($examps, EnrollExamResource::class);
+            return $this->success(ExamResource::collection($examps));
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
+
 }
