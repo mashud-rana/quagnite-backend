@@ -49,6 +49,23 @@ class AnnouncementController extends Controller
             return $this->error($e->getMessage());
         }
     }
+    public function getTodayAnnouncements(Request $request)
+    {
+
+         $announcements = $this->announcementService->getAllAnnouncements(withRelations: ['myself_read.readable'], type: 'today');
+
+        try {
+            if (!$announcements) {
+                return $this->error('No announcements found', 404);
+            }
+
+            $resource =  $this->paginatedResponse($announcements, AnnouncementResource::class);
+            return $this->success($resource);
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return $this->error($e->getMessage());
+        }
+    }
 
     // Mark a single announcement as read
     public function markAsRead(Request $request)

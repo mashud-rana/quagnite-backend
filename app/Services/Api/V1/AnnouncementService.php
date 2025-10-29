@@ -32,26 +32,26 @@ class AnnouncementService extends BaseService
         $this->fileService = $fileService;
     }
 
-
-
     public function getAllAnnouncements(
         array $selectedFields = ['*'],
-        array $withRelations = []
-    )
-    {
+        array $withRelations = [],
+        string $type = ''
+    ) {
         $request = request();
-
         $perPage = $request->get('per_page', 10);
 
-        $query =    $this->model::query()
-
-        ->select($selectedFields)
-        ->latest()
-        ->with($withRelations);
+        $query = $this->model::query()
+            ->select($selectedFields)
+            ->with($withRelations)
+            ->when($type === 'today', function ($q) {
+                $q->whereDate('created_at', Carbon::today());
+            })
+            // Force order by newest first (even if same date)
+            ->orderBy('created_at', 'desc');
+            // ->orderBy('id', 'desc');
 
         return $query->paginate($perPage);
     }
-
     public function markAsRead($announcement_id)
     {
         $user = Auth::user();

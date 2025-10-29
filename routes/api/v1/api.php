@@ -49,6 +49,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('announcements')->group(function () {
         Route::controller(AnnouncementController::class)->group(function () {
             Route::get('/get-all', "myAnnouncements");
+            Route::get('/get-today', "getTodayAnnouncements");
             Route::post('/read', "markAsRead");
         });
     });
