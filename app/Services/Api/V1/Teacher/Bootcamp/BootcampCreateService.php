@@ -5,10 +5,13 @@ namespace App\Services\Api\V1\Teacher\Bootcamp;
 
 use App\Http\Requests\Api\V1\Teacher\BootcampStoreRequest;
 use App\Http\Requests\Api\V1\Teacher\BootcampStoreUpdateRequest;
+use App\Http\Requests\Bootcamp\BootcampLectureDeleteRequest;
 use App\Http\Requests\Bootcamp\BootcampUpdateRequest;
 use App\Models\Bootcamp;
+use App\Models\BootcampLecture;
 use App\Services\BaseService;
 use App\Services\Utils\FileService;
+use App\Services\Utils\ZoomService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +19,16 @@ use Illuminate\Support\Facades\DB;
 class BootcampCreateService extends BaseService
 {
 
-    public function __construct(Bootcamp $model, protected FileService $fileService,){
+    public function __construct(Bootcamp $model, protected FileService $fileService,private ZoomService $zoomService){
         parent::__construct($model);
+    }
+
+    public function getTeacherAllBootcamp($with = [])
+    {
+        $page = request()->get('page', 1);
+        $limit = request()->get('limit', 10);
+        $bootcamps = $this->model::whereUserId(auth()->user()->id)->paginate($limit, ['*'], 'page', $page);
+        return $bootcamps;
     }
 
 
@@ -148,6 +159,27 @@ class BootcampCreateService extends BaseService
     public function getBootcampById(string $id)
     {
         return Bootcamp::findOrFail($id);
+    }
+
+
+    public function deleteLecture(BootcampLectureDeleteRequest $request)
+    {
+        $lecture = $this->getLectureById($request->lecture_id);
+
+        $response = $this->zoomService->deleteMeeting($lecture->meeting_id);
+
+        if ($response) {
+            $lecture->delete();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getLectureById(string $id)
+    {
+        return BootcampLecture::findOrFail($id);
     }
 
 }

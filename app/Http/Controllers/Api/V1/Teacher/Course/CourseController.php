@@ -61,8 +61,9 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
-        logger('delete course', [$id]);
-//        $response = $this->courseCreateService->deleteCourse($id);
+//        logger('delete course', [$id]);
+        $response = $this->courseCreateService->deleteCourse($id);
+        return $this->success($response, 'Course deleted successfully');
     }
 
 

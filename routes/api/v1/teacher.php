@@ -47,12 +47,12 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::prefix('bootcamp')->group(function () {
 //            Bootcamp list
             Route::get('categories',[BootcampController::class, 'bootcampCategoryList']);;
-//            Course Create
-            Route::get('/', [CourseController::class, 'courseList']);
+//            Bootcamp Create
+            Route::get('/', [BootcampController::class, 'bootcampList']);
             Route::get('/{id}', [CourseController::class, 'courseItem']);
             Route::post('create', [BootcampController::class, 'store']);
             Route::post('update', [BootcampController::class, 'updateCourse']);
-            Route::delete('delete/{id}', [CourseController::class, 'destroy']);
+            Route::delete('delete/{id}', [BootcampController::class, 'destroy']);
 
 
             // Chunk uploads
