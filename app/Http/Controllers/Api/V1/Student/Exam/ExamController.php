@@ -114,6 +114,12 @@ class ExamController extends Controller
 
    public function examSubmit(Request $request)
     {
+        logger()->info('Exam submission attempt', [
+            'user_id' => auth()->id(),
+            'exam_id' => $request->exam_id ?? null,
+            'enroll_id' => $request->enroll_id ?? null,
+        ]);
+
         $validated = $request->validate([
             'exam_id' => 'required|integer|exists:exams,id',
             'enroll_id' => 'required|integer|exists:enroll_exams,id',
@@ -126,6 +132,7 @@ class ExamController extends Controller
             'results' => 'nullable|json', // ✅ Validate as JSON
         ]);
 
+        logger()->info('Exam submission attempt', []);
         DB::beginTransaction();
 
         try {

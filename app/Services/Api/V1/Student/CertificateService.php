@@ -197,7 +197,7 @@ class CertificateService extends BaseService
     public function generateExamResultCertificates($exam_result_id)
     {
         $examResult = ExamResult::where('user_id', Auth::id())
-            ->where('is_passed', true)
+//            ->where('is_passed', true)
 
             ->find($exam_result_id);
         if(!$examResult){
