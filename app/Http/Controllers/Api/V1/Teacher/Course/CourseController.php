@@ -148,7 +148,7 @@ class CourseController extends Controller
 
     public function storeChunkFile(Request $request)
     {
-        logger('store chunk file 1', [$request]);
+//        logger('store chunk file 1', [$request]);
         $tmpDir = $this->tmpDirectory();
 
         return $this->chunkFileSevice->storeFileInServer($request, $tmpDir);
@@ -167,9 +167,9 @@ class CourseController extends Controller
         }
     }
 
-    public function deleteChunkFile()
+    public function deleteChunkFile($file=null)
     {
-        logger('delete chunk file');
+//        logger('delete chunk file');
         $tmpDir = $this->tmpDirectory();
 
         $response = $this->chunkFileSevice->deleteFileFromServer($tmpDir);

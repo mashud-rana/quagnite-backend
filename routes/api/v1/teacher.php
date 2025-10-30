@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Teacher\Announcement\AnnouncementController;
 use App\Http\Controllers\Api\V1\Teacher\Benefits\BenefitsController;
+use App\Http\Controllers\Api\V1\Teacher\Bootcamp\BootcampController;
 use App\Http\Controllers\Api\V1\Teacher\Course\CourseCategory\CourseCategoryController;
 use App\Http\Controllers\Api\V1\Teacher\Course\CourseController;
 use App\Http\Controllers\Api\V1\Teacher\Difficulty\DifficultyController;
@@ -40,7 +41,25 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
             // Chunk uploads
             Route::post('chunk-upload', [CourseController::class, 'storeChunkFile']);
             Route::patch('chunk-upload', [CourseController::class, 'updateChunkFile']);
-            Route::delete('chunk-upload', [CourseController::class, 'deleteChunkFile']);
+            Route::delete('chunk-upload/{file}', [CourseController::class, 'deleteChunkFile']);
+        });
+
+        Route::prefix('bootcamp')->group(function () {
+//            Bootcamp list
+            Route::get('categories',[BootcampController::class, 'bootcampCategoryList']);;
+//            Course Create
+            Route::get('/', [CourseController::class, 'courseList']);
+            Route::get('/{id}', [CourseController::class, 'courseItem']);
+            Route::post('create', [BootcampController::class, 'store']);
+            Route::post('update', [BootcampController::class, 'updateCourse']);
+            Route::delete('delete/{id}', [CourseController::class, 'destroy']);
+
+
+            // Chunk uploads
+            Route::post('chunk-upload', [CourseController::class, 'storeChunkFile']);
+            Route::patch('chunk-upload', [CourseController::class, 'updateChunkFile']);
+            Route::delete('chunk-upload/{file}', [CourseController::class, 'deleteChunkFile']);
+
         });
 
     });
